@@ -3,14 +3,28 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
+import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ArtworkPreviewComponent,
+    HighResArtworkComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatButtonModule
   ],
   providers: [
     provideClientHydration()

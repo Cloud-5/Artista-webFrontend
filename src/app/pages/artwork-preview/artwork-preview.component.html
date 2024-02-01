@@ -1,0 +1,249 @@
+<div class="container mt-0" style="word-wrap: anywhere;">  
+    <div class="row">
+        <div class="col-sm-8 gx-0 pt-3" style="background-color: rgb(249, 249, 249);">
+            <div class="artwork-layout">
+                <section class="artwork-with-likes-published">
+                    <div class="artwork">
+                        <app-high-res-artwork></app-high-res-artwork>
+                    </div>
+                    <div class="likes-published mt-3 d-flex justify-content-around">
+                        <div class="likes d-flex">
+                            <div class="favourite-icon">
+                                <mat-icon>favorite</mat-icon>
+                            </div>
+                            &nbsp;
+                            <div class="count">
+                                <p>{{totalLikes}}</p>
+                            </div>
+                        </div>
+                        <div class="published">
+                            <p>Publshed On: {{ pDate | date }}</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="col-sm-4 gx-0 mt-3 mt-sm-0 mt-xl-0 pt-3">
+            <div class="artwork-details">
+                <div class="artwork-details-content">
+                    <div class="artwork-details-content-name">
+                        <div class="artwork-details-content-name-info">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="artwork-details-content-name-info-box">
+                                        <h3 class="title fs-4 fw-bolder">{{artworkTitle}}</h3>
+                                        <p class="body fs-6">
+                                            <span class="fw-medium">{{artistName}}</span><span>, {{artistLocation}}</span>
+                                        </p>
+                                        <p class="fs-6 mt-4" style="margin-bottom: 2px;">Dimensions: {{dimensions}}</p>
+                                        <p class="fs-6 mt-4" style="margin-bottom: 2px;">Category: {{artworkCategory}}</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <button (click)="toggleFavorite()" class="favorite-button">
+                                        <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
+                                            {{ isFavorite ? 'favorite' : 'favorite_border' }}
+                                        </mat-icon>
+                                    </button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="artwork-details-content-pricing">
+                        <div class="price">
+                            <p class="fs-3 fw-medium">{{price | currency}}</p>
+                        </div>
+                        <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
+                            <div class="d-grid gap-2">
+                                <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button" (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
+                                <button class="btn btn-primary" type="button">Add To Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 gx-0 p-4">
+            <div class="description">
+                <p>
+                    This work reflects my affinity for the Renaissance. The picture shows my granddaughter because she was the model. My inevitable bird is there too. Birds appear in almost all of my paintings. The picture was drawn on the computer, based on my mental concepts. My pictures reflect my ideas. If the picture meets my requirements, it will be transferred to canvas in a special printing shop. My pictures are original. The sides are black.
+                </p>
+            </div>
+            <div class="details-table mt-5">
+                <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="fw-medium">Tools</th>
+                        <td class="d-flex">
+                            <div *ngFor="let tool of artworkTools; let last = last">
+                                {{tool}}{{last ? '' : ', &nbsp;'}}
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="fw-medium">File Formats</th>
+                        <td class="d-flex">
+                            <div *ngFor="let tool of fileFormats; let last = last">
+                                {{tool}}{{last ? '' : ', &nbsp;'}}  
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="tags mt-5">
+                <div>
+                    <p class="fs-5 fw-medium">Tags</p>
+                </div>
+                <div>
+                    <mat-chip-listbox>
+                        <mat-chip>#Doodle</mat-chip>
+                        <mat-chip>#Future</mat-chip>
+                        <mat-chip>#Night</mat-chip>
+                        <mat-chip>#creative</mat-chip>
+                        <mat-chip>#Adobe</mat-chip>
+                        <mat-chip>#Best</mat-chip>
+                        <mat-chip>#Futuristic</mat-chip>
+                        <mat-chip>#Portrait</mat-chip>
+                        <mat-chip>#Blues</mat-chip>
+                        <mat-chip>#Landscape</mat-chip>
+                    </mat-chip-listbox>
+                </div>
+            </div>    
+        </div>
+        <div class="col-sm-4 gx-0">
+            <div class="artist-details">
+                <div class="row text-center align-items-center d-flex">
+                    <div class="col-3 gx-0 col-lg-3">
+                        <div class="profile-pic">
+                            <button class="btn">
+                                <img src="../../../assets/11.jpg" class="rounded-circle" style="height: 80px; width: 80px;">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-5 gx-0 justify-content-around col-lg-9 col-xl-5">
+                        <div>
+                            <p class="fs-6" style="margin-bottom: 0;">
+                                <span class="fw-medium fs-5" >{{artistName}}</span>
+                            </p>
+                            <p class="fs-6" style="margin-bottom: 0;" >
+                                <span>{{artistLocation}}</span>
+                            </p>
+                            <p class="fs-6" style="margin-bottom: 0;" >
+                                <span>Digital Painter</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col gx-0 ">
+                        <div class="follow-button">
+                            <button [ngClass]="['btn', 'btn-outline-info', followButtonClass,'rounded-pill']" type="button" (click)="toggleFollow()">{{followButtonText}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4 justify-content-center d-flex">
+                        <div class="artworks">
+                            <div class="d-flex">
+                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artistArtworks}}</p>
+                                &nbsp;
+                                <mat-icon>palette</mat-icon>
+                            </div>
+                            <p class="fs-6 fw-medium">Artworks</p>
+                        </div>
+                    </div>  
+                    <div class="col-4 justify-content-center d-flex">
+                        <div class="rating">
+                            <div class="d-flex" >
+                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artistRate}}</p>
+                                &nbsp;
+                                <mat-icon>star</mat-icon>
+                            </div>
+                            <p class="fs-6 fw-medium">Rating</p>
+                        </div>
+                    </div>  
+                    <div class="col-4 justify-content-center d-flex">
+                        <div class="followers">
+                            <div class="d-flex">
+                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artistFollowers}}</p>
+                                &nbsp;
+                                <mat-icon>people</mat-icon>
+                            </div>
+                            <p class="fs-6 fw-medium">Followers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="artist-des">
+                        <p>
+                            Volker Rossenbach is an experienced painter and printmaker based in Germany whose works have been widely exhibited nationally. He describes his compositions as being imbued with strong narrative moments and elements of art history. In Rossenbach's most recent works, he often employs motifs from the world of literature. His painterly compositions are most often created with acrylics and ink on canvas.
+                        </p>
+                        <p><a href="#" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Visit Profile</a></p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="message-button d-grid">
+                        <button class="btn btn-primary" type="button">Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+<div class="container bg-light mt-5" style="height: 100px;">
+
+</div>
+
+<!-- use the bootstrap grid system -->
+<div class="sticky-bar" [ngClass]="{'show': showStickyBar}">
+    <div class="d-none d-sm-flex">
+        <div class="d-flex">
+            <div class="float-left">
+                <h3 class="title fs-4 fw-bolder fst-italic">{{artworkTitle}}</h3>
+                <p>by {{artistName}}</p>
+            </div>
+            <div class="d-flex justify-content-end align-items-center flex-grow-1 gap-3">
+                <div class="price">
+                    <p class="fs-3 fw-medium">{{price | currency}}</p>
+                </div>
+                <div>
+                    <button (click)="toggleFavorite()" class="favorite-button">
+                        <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
+                            {{ isFavorite ? 'favorite' : 'favorite_border' }}
+                        </mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button" (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="button">Add To Cart</button>
+                </div>
+            </div>      
+        </div>
+    </div>
+
+    <div class="d-sm-none">
+        <div class="float-left">
+            <h3 class="title fs-6 fw-bolder fst-italic">{{artworkTitle}}</h3>
+            <p class="fs-8">by {{artistName}}</p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <div class="price">
+                <p class="fs-6 fw-medium">{{price | currency}}</p>
+            </div>
+            <div>
+                <button (click)="toggleFavorite()" class="favorite-button">
+                    <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
+                        {{ isFavorite ? 'favorite' : 'favorite_border' }}
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="d-flex mt-2">
+            <button class="btn btn-outline-info w-50" type="button" (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
+            <button class="btn btn-primary w-50" type="button">Add To Cart</button>
+        </div>
+    </div>
+    
+</div>
