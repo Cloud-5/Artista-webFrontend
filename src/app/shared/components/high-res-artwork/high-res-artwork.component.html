@@ -1,1 +1,8 @@
 <img src="../../../assets/512763.jpg" class="img-fluid" alt="..." style="width: 100%;">
+<div *ngIf="artworkType == '2D'; else show3DArtwork">
+    <img [src]="artworkUrl" class="img-fluid" alt="..." style="width: 100%;">   
+</div>
+
+<ng-template #show3DArtwork>
+    <!-- <model-viewer src="{{artworkUrl}}" alt="A 3D model of an astronaut" auto-rotate camera-controls style="width: 100%; height: 100%;"></model-viewer> -->
+</ng-template>  

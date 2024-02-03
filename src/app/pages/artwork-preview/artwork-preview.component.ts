@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { CommentListComponent } from '../../shared/components/comments/comment-list/comment-list.component';
 
 
 @Component({
@@ -25,6 +26,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 ],
 })
 export class ArtworkPreviewComponent implements OnInit {
+
+    selectedArtworkType: string = '';
+    selectedArtworkUrl: string = '';
   
     constructor() { }
   
@@ -42,6 +46,7 @@ export class ArtworkPreviewComponent implements OnInit {
     artistRate:number = 4.5;
     artistFollowers: number = 100;
     artistArtworks: number = 10;
+    commentCount: number = 34;
 
     showStickyBar: boolean = false;
 

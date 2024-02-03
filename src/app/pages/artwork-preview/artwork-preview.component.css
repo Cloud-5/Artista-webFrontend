@@ -137,3 +137,7 @@
     padding-left: 40px;
     padding-right: 24px;
   }
+
+  .artwork-details-content-pricing-buttons{
+    bottom: 0;
+  }

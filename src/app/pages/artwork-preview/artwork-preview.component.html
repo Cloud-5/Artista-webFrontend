@@ -4,20 +4,23 @@
             <div class="artwork-layout">
                 <section class="artwork-with-likes-published">
                     <div class="artwork">
-                        <app-high-res-artwork></app-high-res-artwork>
+                        <app-high-res-artwork
+                            [artworkType]="selectedArtworkType"
+                            [artworkUrl]="selectedArtworkUrl"
+                        ></app-high-res-artwork>
                     </div>
                     <div class="likes-published mt-3 d-flex justify-content-around">
                         <div class="likes d-flex">
                             <div class="favourite-icon">
-                                <mat-icon>favorite</mat-icon>
+                                <mat-icon style="color: red;">favorite</mat-icon>
                             </div>
                             &nbsp;
                             <div class="count">
-                                <p>{{totalLikes}}</p>
+                                <p class="fw-medium">{{totalLikes}}</p>
                             </div>
                         </div>
                         <div class="published">
-                            <p>Publshed On: {{ pDate | date }}</p>
+                            <p class="fw-medium">Publshed On: {{ pDate | date }}</p>
                         </div>
                     </div>
                 </section>
@@ -104,7 +107,7 @@
                         <mat-chip>#Adobe</mat-chip>
                         <mat-chip>#Best</mat-chip>
                         <mat-chip>#Futuristic</mat-chip>
-                        <mat-chip>#Portrait</mat-chip>
+                        <mat-chip>#Portrait</mat-chip>  
                         <mat-chip>#Blues</mat-chip>
                         <mat-chip>#Landscape</mat-chip>
                     </mat-chip-listbox>
@@ -112,7 +115,7 @@
             </div>    
         </div>
         <div class="col-sm-4 gx-0">
-            <div class="artist-details">
+            <div class="artist-details" style="border: 0.5px solid rgb(207, 207, 207); padding: 20px;">
                 <div class="row text-center align-items-center d-flex">
                     <div class="col-3 gx-0 col-lg-3">
                         <div class="profile-pic">
@@ -187,16 +190,36 @@
                 </div>
             </div>
         </div>
-    </div> 
-</div>
-
-<div class="container bg-light mt-5" style="height: 100px;">
-
+        <div class="col-12">
+            <div class="container mt-5">
+                <div class="row">
+                    <hr>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <mat-icon>comment</mat-icon>
+                            &nbsp;
+                            <p class="fw-medium">Comments</p>
+                            <p class="fw-medium">&nbsp;:&nbsp;{{commentCount}}</p>
+                        </div>
+                    </div>
+                    <hr>    
+                </div>
+                <div class="row">
+                    <app-comment-list currentUserId="1"></app-comment-list>
+                </div>    
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="container bg-light" style="height: 300px; bottom: 0;">
+                <p>Hello</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- use the bootstrap grid system -->
 <div class="sticky-bar" [ngClass]="{'show': showStickyBar}">
-    <div class="d-none d-sm-flex">
+    <div class="d-sm-flex">
         <div class="d-flex">
             <div class="float-left">
                 <h3 class="title fs-4 fw-bolder fst-italic">{{artworkTitle}}</h3>
@@ -245,5 +268,4 @@
             <button class="btn btn-primary w-50" type="button">Add To Cart</button>
         </div>
     </div>
-    
-</div>
+</div>  

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-high-res-artwork',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './high-res-artwork.component.css'
 })
 export class HighResArtworkComponent {
+
+  @Input() artworkUrl: string = '';
+  @Input() artworkType: string = '';  
 
 }
