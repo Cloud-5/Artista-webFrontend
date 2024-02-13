@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { CommentListComponent } from '../../shared/components/comments/comment-list/comment-list.component';
 
@@ -10,19 +9,16 @@ import { CommentListComponent } from '../../shared/components/comments/comment-l
   styleUrl: './artwork-preview.component.css',
   animations: [
     trigger('toggleFavorite', [
-        state('filled', style({
-            color: 'red', // Change color to your desired filled color
+        state('true', style({
+          color: 'red', // Change color to your desired filled color
         })),
-        state('border', style({
-            color: 'blue',
+        state('false', style({
+          color: 'blue',
         })),
-        transition('filled => border', [
-            animate('0.5s')
+        transition('true <=> false', [
+          animate('0.5s')
         ]),
-        transition('border => filled', [
-            animate('0.5s')
-        ]),
-    ]),
+      ]),
 ],
 })
 export class ArtworkPreviewComponent implements OnInit {

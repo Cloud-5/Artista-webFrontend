@@ -1,6 +1,6 @@
 <div class="container mt-0" style="word-wrap: anywhere;">  
     <div class="row">
-        <div class="col-sm-8 gx-0 pt-3" style="background-color: rgb(249, 249, 249);">
+        <div class="col-sm-8 gx-0 pt-3">
             <div class="artwork-layout">
                 <section class="artwork-with-likes-published">
                     <div class="artwork">
@@ -12,7 +12,7 @@
                     <div class="likes-published mt-3 d-flex justify-content-around">
                         <div class="likes d-flex">
                             <div class="favourite-icon">
-                                <mat-icon style="color: red;">favorite</mat-icon>
+                                <i class="bi bi-heart-fill fs-5" style="color: blue;"></i>
                             </div>
                             &nbsp;
                             <div class="count">
@@ -44,9 +44,7 @@
                                 </div>
                                 <div class="col">
                                     <button (click)="toggleFavorite()" class="favorite-button">
-                                        <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
-                                            {{ isFavorite ? 'favorite' : 'favorite_border' }}
-                                        </mat-icon>
+                                        <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
                                     </button> 
                                 </div>
                             </div>
@@ -99,18 +97,18 @@
                     <p class="fs-5 fw-medium">Tags</p>
                 </div>
                 <div>
-                    <mat-chip-listbox>
-                        <mat-chip>#Doodle</mat-chip>
-                        <mat-chip>#Future</mat-chip>
-                        <mat-chip>#Night</mat-chip>
-                        <mat-chip>#creative</mat-chip>
-                        <mat-chip>#Adobe</mat-chip>
-                        <mat-chip>#Best</mat-chip>
-                        <mat-chip>#Futuristic</mat-chip>
-                        <mat-chip>#Portrait</mat-chip>  
-                        <mat-chip>#Blues</mat-chip>
-                        <mat-chip>#Landscape</mat-chip>
-                    </mat-chip-listbox>
+                    <div class="d-flex flex-wrap">
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Doodle</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Future</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Night</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#creative</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Adobe</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Best</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Futuristic</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Portrait</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Blues</span>
+                        <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Landscape</span>
+                      </div>
                 </div>
             </div>    
         </div>
@@ -149,7 +147,7 @@
                             <div class="d-flex">
                                 <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artistArtworks}}</p>
                                 &nbsp;
-                                <mat-icon>palette</mat-icon>
+                                <i class="bi bi-palette-fill"></i>
                             </div>
                             <p class="fs-6 fw-medium">Artworks</p>
                         </div>
@@ -159,7 +157,7 @@
                             <div class="d-flex" >
                                 <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artistRate}}</p>
                                 &nbsp;
-                                <mat-icon>star</mat-icon>
+                                <i class="bi bi-star-fill"></i>
                             </div>
                             <p class="fs-6 fw-medium">Rating</p>
                         </div>
@@ -169,7 +167,7 @@
                             <div class="d-flex">
                                 <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artistFollowers}}</p>
                                 &nbsp;
-                                <mat-icon>people</mat-icon>
+                                <i class="bi bi-people-fill"></i>
                             </div>
                             <p class="fs-6 fw-medium">Followers</p>
                         </div>
@@ -196,7 +194,7 @@
                     <hr>
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                            <mat-icon>comment</mat-icon>
+                            <i class="bi bi-chat-square-text-fill fs-5"></i>
                             &nbsp;
                             <p class="fw-medium">Comments</p>
                             <p class="fw-medium">&nbsp;:&nbsp;{{commentCount}}</p>
@@ -231,10 +229,8 @@
                 </div>
                 <div>
                     <button (click)="toggleFavorite()" class="favorite-button">
-                        <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
-                            {{ isFavorite ? 'favorite' : 'favorite_border' }}
-                        </mat-icon>
-                    </button>
+                        <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
+                    </button> 
                 </div>
                 <div>
                     <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button" (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
@@ -257,10 +253,8 @@
             </div>
             <div>
                 <button (click)="toggleFavorite()" class="favorite-button">
-                    <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
-                        {{ isFavorite ? 'favorite' : 'favorite_border' }}
-                    </mat-icon>
-                </button>
+                    <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
+                </button> 
             </div>
         </div>
         <div class="d-flex mt-2">
