@@ -14,6 +14,7 @@
       >
         <i class="sidenav-link-icon" [class]="data.icon"></i>
         <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+        <span class="badge bg-danger rounded-pill" style="font-size: 10px;" *ngIf="data.label=='Artist Requests'"></span>
       </a>
     </li>
     <div class="admin-details">
@@ -28,6 +29,7 @@
           <a class="sidenav-nav-link">
             <i class="sidenav-link-icon bi bi-bell"></i>
             <span class="sidenav-link-text" *ngIf="collapsed">Notifications</span>
+            <span class="badge bg-danger rounded-pill">3</span>
           </a>
       </li>
       <li class="sidenav-nav-item">

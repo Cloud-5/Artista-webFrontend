@@ -15,7 +15,7 @@ import { CommentListComponent } from './shared/components/comments/comment-list/
 import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
 import { CommentsService } from './shared/services/comments.service';
 
-import { NgChartsModule } from 'ng2-charts';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
 
@@ -34,8 +34,8 @@ import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-l
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgChartsModule,
-    DefaultLayoutModule
+    DefaultLayoutModule,
+    HighchartsChartModule
   ],
   providers: [
     provideClientHydration(),

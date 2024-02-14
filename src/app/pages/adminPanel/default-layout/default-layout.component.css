@@ -1,51 +1,3 @@
-/* .navbar{
-    position: fixed;
-    width: 100%;
-}
-
-.sidebar {
-    position: fixed;
-    top: 56px;
-    overflow: auto;
-    background-color: #fff;
-    height: 100%;
-    border-right: 1px solid gray;
-    padding: 30px 5px;
-    margin: 0;
-    width: 210px;
-}
-
-.sidebar ul {
-    list-style: none;
-}
-
-.sidebar a {
-    text-decoration: none;
-    color: black;
-    padding: 10px 10px;
-    text-align: left;
-    display: block;
-}
-
-.sidebar i {
-    padding-right: 10px;
-    font-size: larger;
-}
-
-.sidebar button.toggle-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.sidebar button.toggle-btn i {
-    font-size: larger;
-}
-
-.sidebar button.toggle-btn.collapsed i::before {
-    content: "\f0c9";
-} */
-
 .sidenav{
     background: #0f2557;
     transition: all .2s ease;
@@ -163,7 +115,6 @@
 
 .body{
     width: calc(100% - 5rem);
-    height: 100vh;
     margin-left: 5rem;
     z-index: 0;
     position: relative;
