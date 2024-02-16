@@ -1,2 +1,55 @@
-<p>art-categories works!</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nisi rem cum, veritatis quo explicabo sapiente alias ipsum itaque recusandae iure asperiores quidem amet sint suscipit? Modi dicta minima quos?</p>
+<h2>Artwork Categories</h2>
+
+<div class="card card1" style="margin-bottom: 10px;">
+    <div class="card-title fw-medium">
+        <p>Total Categories</p>
+        <hr>
+    </div>
+    <div class="card-body" style="align-items: flex-start; text-align: left;">
+        <h1 class="card-title">6</h1>
+    </div>
+</div>
+
+<div class="details">
+    <h4 style="margin-top: 30px;">Edit / Add Category</h4>
+    <form class="d-flex">
+        <input class="form-control me-sm-2 rounded-pill border border-primary" type="search"
+            placeholder="Search Category">
+        <button class="btn btn-primary my-2 my-sm-0 rounded-pill" style="width: 150px;"
+            data-bs-toggle="modal"
+            data-bs-target="#newCategoryModal"
+        >
+            New Category
+        </button>
+    </form>
+    <div class="cards mt-2 border border-secondary-subtle rounded p-3">
+        <div class="card m-2" style="width: 19.2rem; height: 33rem;" *ngFor="let card of categoryData">
+            <img src={{card.imageSrc}} class="card-img-top" alt="Banner" style="min-height: 200px; width: 100%;">
+            <div class="card-body">
+                <div class="text-center m-2">
+                    <h5 class="card-title">{{card.title}}</h5>
+                    <p class="card-text" style="font-size: x-small;">{{card.description}}</p>
+                </div>
+                <div class="fw-medium">
+                    <div class="mb-2">
+                        Total Creations: {{card.totalCreations}}
+                        </div>
+                        <div class="mb-2">
+                        Margin: {{card.margin}}
+                        </div>
+                        <div class="mb-2">
+                        File Types:
+                        <span *ngFor="let types of card.fileTypes; let last = last">
+                            {{types}}{{!last ? ', ' : ''}}
+                        </span>
+                        </div>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                    <button class="btn btn-primary"><i class="bi bi-pencil-fill"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

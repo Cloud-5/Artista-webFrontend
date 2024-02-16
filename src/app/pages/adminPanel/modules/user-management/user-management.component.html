@@ -1,2 +1,201 @@
-<p>user-management works!</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias temporibus ut obcaecati, quo beatae explicabo tempora voluptatibus doloribus totam expedita quia nulla consectetur voluptates delectus aliquid ipsa blanditiis quisquam facere.</p>
+<h2>User Management</h2>
+
+<div class="d-flex">
+    <div class="card card1" style="margin-bottom: 10px;" style="background-color: #f08c8c;">
+        <div class="card-title fw-medium">
+            <p>User Registrations</p>
+            <hr>
+        </div>
+        <div class="card-body" style="align-items: flex-start; text-align: left;">
+            <h1 class="card-title">8</h1>
+        </div>
+    </div>
+    <div class="card card1" style="margin-bottom: 10px;" style="background-color: #b4f08c;">
+        <div class="card-title fw-medium">
+            <p>Approved Artists</p>
+            <hr>
+        </div>
+        <div class="card-body" style="align-items: flex-start; text-align: left;">
+            <h1 class="card-title">3</h1>
+        </div>
+    </div>
+    <div class="card card1" style="margin-bottom: 10px;" style="background-color: #8cd4f0;">
+        <div class="card-title fw-medium">
+            <p style="font-size: 17.5px;">Registered Customers</p>
+            <hr>
+        </div>
+        <div class="card-body" style="align-items: flex-start; text-align: left;">
+            <h1 class="card-title">21</h1>
+        </div>
+    </div>
+    <div class="card card1" style="margin-bottom: 10px;" style="background-color: #edf08c;">
+        <div class="card-title fw-medium">
+            <p>Deleted Accounts</p>
+            <hr>
+        </div>
+        <div class="card-body" style="align-items: flex-start; text-align: left;">
+            <h1 class="card-title">13</h1>
+        </div>
+    </div>
+    <div class="card card1" style="margin-bottom: 10px;" style="background-color: #dc8cf0;">
+        <div class="card-title fw-medium">
+            <p>Banned Acounts</p>
+            <hr>
+        </div>
+        <div class="card-body" style="align-items: flex-start; text-align: left;">
+            <h1 class="card-title">3</h1>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-tabs mt-4" role="tablist" style="width: 100%;">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" data-bs-toggle="tab" href="#artist" aria-selected="true" role="tab">Approved
+            Artist</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#customer" aria-selected="false" tabindex="-1"
+            role="tab">Registered Customers</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#deleted" aria-selected="false" tabindex="-1" role="tab">Deleted
+            Accounts</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#banned" aria-selected="false" tabindex="-1" role="tab">Banned
+            Accounts</a>
+    </li>
+
+    <div id="myTabContent" class="tab-content" style="width: 100%;">
+        <div class="tab-pane fade show active" id="artist" role="tabpanel">
+            <form class="d-flex">
+                <input class="form-control me-sm-2 rounded-pill border border-primary" type="search"
+                    placeholder="Search Artist">
+            </form>
+            <div class="card request-card">
+                <div class="d-flex" style="height: 100%;">
+                    <div class="profile-pic">
+                        <img src="assets/512763.jpg" alt="Profile Picture" class="rounded-pill"
+                            style="width: 78px; height: 78px;">
+                    </div>
+                    <div class="card-body" style="margin: auto;">
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div class="d-flex">
+                                <span style="font-size: large;">John Doe |</span>&nbsp;
+                                <span class="fs-6 fw-medium mr-2 text-secondary">UX designer |</span>&nbsp;
+                                <span class="fs-6 fw-medium text-info">Alabama, WV</span>
+                            </div>
+                            <div>
+                                <span class="fs-6 fw-medium">21 / 04 / 2024</span>
+                            </div>
+                        </div>
+                        <div style="margin: auto; text-align: left;">
+                            <a href="" class="fs-6">More Details</a>
+                        </div>
+
+                    </div>
+                    <div class="buttons d-flex" style="margin: auto;">
+                        <button class="btn btn-success">Ban</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="customer" role="tabpanel">
+            <form class="d-flex">
+                <input class="form-control me-sm-2 rounded-pill border border-primary" type="search"
+                    placeholder="Search Customer">
+            </form>
+            <div class="card request-card">
+                <div class="d-flex" style="height: 100%;">
+                    <div class="profile-pic">
+                        <img src="assets/512763.jpg" alt="Profile Picture" class="rounded-pill"
+                            style="width: 78px; height: 78px;">
+                    </div>
+                    <div class="card-body" style="margin: auto;">
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div class="d-flex">
+                                <span style="font-size: large;">John Doe |</span>&nbsp;
+                                <span class="fs-6 fw-medium mr-2 text-secondary">UX designer |</span>&nbsp;
+                                <span class="fs-6 fw-medium text-info">Alabama, WV</span>
+                            </div>
+                            <div>
+                                <span class="fs-6 fw-medium">21 / 04 / 2024</span>
+                            </div>
+                        </div>
+                        <div style="margin: auto; text-align: left;">
+                            <a href="" class="fs-6">More Details</a>
+                        </div>
+
+                    </div>
+                    <div class="buttons d-flex" style="margin: auto;">
+                        <button class="btn btn-success">Ban</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="deleted" role="tabpanel">
+            <form class="d-flex">
+                <input class="form-control me-sm-2 rounded-pill border border-primary" type="search"
+                    placeholder="Search User">
+            </form>
+            <div class="card request-card">
+                <div class="d-flex" style="height: 100%;">
+                    <div class="profile-pic">
+                        <img src="assets/512763.jpg" alt="Profile Picture" class="rounded-pill"
+                            style="width: 78px; height: 78px;">
+                    </div>
+                    <div class="card-body" style="margin: auto;">
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div class="d-flex">
+                                <span style="font-size: large;">John Doe |</span>&nbsp;
+                                <span class="fs-6 fw-medium mr-2 text-secondary">UX designer |</span>&nbsp;
+                                <span class="fs-6 fw-medium text-info">Alabama, WV</span>
+                            </div>
+                            <div>
+                                <span class="fs-6 fw-medium">21 / 04 / 2024</span>
+                            </div>
+                        </div>
+                        <div style="margin: auto; text-align: left;">
+                            <a href="" class="fs-6">More Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="banned" role="tabpanel">
+            <form class="d-flex">
+                <input class="form-control me-sm-2 rounded-pill border border-primary" type="search"
+                    placeholder="Search User">
+            </form>
+            <div class="card request-card">
+                <div class="d-flex" style="height: 100%;">
+                    <div class="profile-pic">
+                        <img src="assets/512763.jpg" alt="Profile Picture" class="rounded-pill"
+                            style="width: 78px; height: 78px;">
+                    </div>
+                    <div class="card-body" style="margin: auto;">
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div class="d-flex">
+                                <span style="font-size: large;">John Doe |</span>&nbsp;
+                                <span class="fs-6 fw-medium mr-2 text-secondary">UX designer |</span>&nbsp;
+                                <span class="fs-6 fw-medium text-info">Alabama, WV</span>
+                            </div>
+                            <div>
+                                <span class="fs-6 fw-medium">21 / 04 / 2024</span>
+                            </div>
+                        </div>
+                        <div style="margin: auto; text-align: left;">
+                            <a href="" class="fs-6">More Details</a>
+                        </div>
+
+                    </div>
+                    <div class="buttons d-flex" style="margin: auto;">
+                        <button class="btn btn-success">Remove Ban</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ul>

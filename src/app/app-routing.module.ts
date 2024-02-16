@@ -7,8 +7,10 @@ import { ArtCategoriesComponent } from './pages/adminPanel/modules/art-categorie
 import { UserManagementComponent } from './pages/adminPanel/modules/user-management/user-management.component';
 import { ArtistRequestsComponent } from './pages/adminPanel/modules/artist-requests/artist-requests.component';
 
+
 const routes: Routes = [
   { path: 'art-p', component: ArtworkPreviewComponent },
+  
   {
     path: 'admin',
     component: DefaultLayoutComponent,
