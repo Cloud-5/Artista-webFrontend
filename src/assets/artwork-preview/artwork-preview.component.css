@@ -1,0 +1,143 @@
+
+.favorite-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.filled {
+    animation: scaleIn 0.5s ease-out, rotate 0.5s ease-out;
+}
+
+.border {
+    animation: fadeInOut 0.5s ease-out;
+}
+
+.custom-icon-color {
+    color: #ffD700;
+  }
+
+.following {
+    background-color: #000000 !important;
+    color: rgb(255, 255, 255) !important;
+    border: #000000 solid 1px !important;
+}
+
+.follow{
+    background-color: #ffffff !important;
+    color: black !important;
+    border: #000000 solid 1px !important;
+}
+
+.follow:hover {
+    background-color: #000000 !important;
+    color: white !important;
+    border: #000000 solid 1px !important;
+}
+.add-to-gallery {
+    background-color: #ffffff !important;
+    
+}
+.add-to-gallery:hover {
+    background-color: #0dcaf0 !important;
+    
+}
+
+.added-to-gallery {
+    background-color:  #0dcaf0 !important;
+    color: black !important;
+}
+.artwork-layout{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.artwork-layout .mat-card {
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.artwork-details-content-name{
+    padding-left: 40px;
+    padding-right: 24px;
+    margin-right: 16px;
+}
+
+.artwork-details-content-pricing{
+    padding-left: 40px;
+    padding-right: 24px;
+    padding-top: 24px;
+    margin-right: 16px; 
+}
+
+.artwork-details-content-name-info-box{
+    margin-right: 32px;
+}
+
+.artwork-details-content-name-info-box .title{
+    margin-bottom: 20px;
+}
+.artwork-details-content-name-info-box .body{
+    margin-bottom: 2px;
+}
+
+.sticky-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Adjust background color as needed */
+    padding: 10px;
+    z-index: 1000;
+    transition: top 0.3s; /* Add smooth transition for a better visual effect */
+  }
+  
+  .sticky-bar.show {
+    display: block;
+  }
+
+  .artist-details{
+    padding-left: 40px;
+    padding-right: 24px;
+  }
+
+  .artwork-details-content-pricing-buttons{
+    bottom: 0;
+  }

@@ -18,7 +18,6 @@ import { CommentsService } from './shared/services/comments.service';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
-import { ModelComponent } from './shared/components/model/model.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { ModelComponent } from './shared/components/model/model.component';
     CommentComponent,
     CommentFormComponent,
     CommentListComponent,
-    ModelComponent,
   ],
   imports: [
     BrowserModule,
