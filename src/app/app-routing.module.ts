@@ -6,9 +6,11 @@ import { DashboardComponent } from './pages/adminPanel/modules/dashboard/dashboa
 import { ArtCategoriesComponent } from './pages/adminPanel/modules/art-categories/art-categories.component';
 import { UserManagementComponent } from './pages/adminPanel/modules/user-management/user-management.component';
 import { ArtistRequestsComponent } from './pages/adminPanel/modules/artist-requests/artist-requests.component';
+import { ModelComponent } from './shared/components/model/model.component';
 
 const routes: Routes = [
   { path: 'art-p', component: ArtworkPreviewComponent },
+  { path: 'model', component: ModelComponent},
   {
     path: 'admin',
     component: DefaultLayoutComponent,

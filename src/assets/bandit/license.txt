@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bandit head mask from STALKER
+* source:	https://sketchfab.com/3d-models/bandit-head-mask-from-stalker-e996a0277ca8442cbf421cd30cfe8d9f
+* author:	3dmodelsst (https://sketchfab.com/3dmodelsst)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bandit head mask from STALKER" (https://sketchfab.com/3d-models/bandit-head-mask-from-stalker-e996a0277ca8442cbf421cd30cfe8d9f) by 3dmodelsst (https://sketchfab.com/3dmodelsst) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
