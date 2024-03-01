@@ -1,0 +1,23 @@
+/* MODAL STYLES
+-------------------------------*/
+.new-modal {
+    /* modals are hidden by default */
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 40px;
+    overflow: auto;
+}
+
+.new-modal-body {
+    padding: 20px;
+    background: #fff;
+}
+
+body.new-modal-open {
+    /* body overflow is hidden to hide the main scrollbar when the modal window is open */
+    overflow: hidden;
+    
+}

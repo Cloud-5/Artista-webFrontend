@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { categoryData } from './categoryData';
+import { ModalService } from '../../../../shared/services/modal.service';
+
 
 @Component({
   selector: 'app-art-categories',
@@ -9,6 +11,12 @@ import { categoryData } from './categoryData';
 export class ArtCategoriesComponent{
 
   categoryData = categoryData;
+
+  constructor(public modalService: ModalService) { }
+
+  openAddCategoryModal(){
+    this.modalService.open('modal-addCategory');
+  }
 
 
 }

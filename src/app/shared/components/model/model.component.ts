@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
+import {Raycaster, Vector2} from "three";
 
 @Component({
   selector: 'app-model',
@@ -29,6 +30,8 @@ export class ModelComponent implements OnInit, AfterViewInit {
   private light4: THREE.PointLight | undefined;
   private model: any;
   private directionalLight: THREE.DirectionalLight | undefined;
+  private raycaster: Raycaster | undefined;
+  private mouse: Vector2 | undefined;
 
   // Helper Properties
 
@@ -50,15 +53,20 @@ export class ModelComponent implements OnInit, AfterViewInit {
   // Create the controls
   private createControls = () => {
     const renderer = new CSS2DRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.top = '0px';
-    document.body.appendChild(renderer.domElement);
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    const container = this.canvas.parentElement;
+    if(container) {
+      container.appendChild(renderer.domElement);
+    }
     if (this.camera && this.scene) {
       this.controls = new OrbitControls(this.camera, renderer.domElement);
       this.controls.autoRotate = true;
       this.controls.enableZoom = true;
-      this.controls.enablePan = false;
+      this.controls.enablePan = true;
       this.controls.update();
     }
   };
@@ -67,20 +75,19 @@ export class ModelComponent implements OnInit, AfterViewInit {
   private createScene() {
     //* Scene
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x222222)
+    this.scene.background = new THREE.Color(0xffffff);
     this.scene.fog = new THREE.Fog(0x000000, 1, 10);
 
     const planeGeometry = new THREE.PlaneGeometry(10, 10, 10);
     const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, opacity: 1, transparent: true});
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    const planeHeight = 0.1;
     plane.rotation.x = -0.5 * Math.PI;
     plane.position.set(0,0,0);
     this.scene.add(plane);
     plane.castShadow = false;
     plane.receiveShadow = true;
 
-    this.loaderGLTF.load('assets/ford/scene.gltf', (gltf: GLTF) => {
+    this.loaderGLTF.load('assets/robot/scene.gltf', (gltf: GLTF):void => {
       this.model = gltf.scene.children[0];
       console.log(this.model);
 
@@ -93,7 +100,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
         const center = new THREE.Vector3();
         box.getCenter(this.model.position);
 
-        const desiredScale = 2;
+        const desiredScale = 3;
         const scaleV3 = new THREE.Vector3().setScalar(desiredScale);
         const scaleTemp = new THREE.Vector3().copy(scaleV3).divide(size);
         const scale = Math.min(scaleTemp.x, Math.min(scaleTemp.y, scaleTemp.z));
@@ -103,7 +110,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
         this.scene!.add(this.model);
         this.model.castShadow = true;
         this.model.receiveShadow = true;
-        
+        this.camera?.lookAt(center);
       }
     });
     //*Camera
@@ -115,8 +122,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
       this.farClippingPane
     )
     this.camera.rotation.y = Math.PI/6;
-    this.camera!.position.set(0,0,3);
-    this.camera!.lookAt(this.scene!.position);
+    this.camera.position.set(3,1,2);
     this.ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(this.ambientLight);
     this.directionalLight = new THREE.DirectionalLight(0xffffff, 10);
@@ -150,7 +156,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     let component: ModelComponent = this;
     (function render() {
-      if (component.scene && component.camera && component.renderer) { 
+      if (component.scene && component.camera && component.renderer) {
         component.renderer.render(component.scene, component.camera);
       }
      //component.animateModel();
@@ -169,6 +175,4 @@ export class ModelComponent implements OnInit, AfterViewInit {
     this.startRenderingLoop();
     this.createControls();
   }
-
-
 }

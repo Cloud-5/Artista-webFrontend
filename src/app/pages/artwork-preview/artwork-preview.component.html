@@ -1,4 +1,4 @@
-<div class="container mt-0" style="word-wrap: anywhere;">  
+<div class="container mt-0" style="word-wrap: anywhere;">
     <div class="row">
         <div class="col-sm-8 gx-0 pt-3">
             <div class="artwork-layout">
@@ -45,7 +45,7 @@
                                 <div class="col">
                                     <button (click)="toggleFavorite()" class="favorite-button">
                                         <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
-                                    </button> 
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         <th scope="row" class="fw-medium">File Formats</th>
                         <td class="d-flex">
                             <div *ngFor="let tool of fileFormats; let last = last">
-                                {{tool}}{{last ? '' : ', &nbsp;'}}  
+                                {{tool}}{{last ? '' : ', &nbsp;'}}
                             </div>
                         </td>
                       </tr>
@@ -110,7 +110,7 @@
                         <span class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: rgb(158, 158, 158);">#Landscape</span>
                       </div>
                 </div>
-            </div>    
+            </div>
         </div>
         <div class="col-sm-4 gx-0">
             <div class="artist-details" style="border: 0.5px solid rgb(207, 207, 207); padding: 20px;">
@@ -151,7 +151,7 @@
                             </div>
                             <p class="fs-6 fw-medium">Artworks</p>
                         </div>
-                    </div>  
+                    </div>
                     <div class="col-4 justify-content-center d-flex">
                         <div class="rating">
                             <div class="d-flex" >
@@ -161,7 +161,7 @@
                             </div>
                             <p class="fs-6 fw-medium">Rating</p>
                         </div>
-                    </div>  
+                    </div>
                     <div class="col-4 justify-content-center d-flex">
                         <div class="followers">
                             <div class="d-flex">
@@ -200,11 +200,11 @@
                             <p class="fw-medium">&nbsp;:&nbsp;{{commentCount}}</p>
                         </div>
                     </div>
-                    <hr>    
+                    <hr>
                 </div>
                 <div class="row">
                     <app-comment-list currentUserId="1"></app-comment-list>
-                </div>    
+                </div>
             </div>
         </div>
         <div class="col-12">
@@ -230,7 +230,7 @@
                 <div>
                     <button (click)="toggleFavorite()" class="favorite-button">
                         <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
-                    </button> 
+                    </button>
                 </div>
                 <div>
                     <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button" (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
@@ -238,7 +238,7 @@
                 <div>
                     <button class="btn btn-primary" type="button">Add To Cart</button>
                 </div>
-            </div>      
+            </div>
         </div>
     </div>
 
@@ -254,7 +254,7 @@
             <div>
                 <button (click)="toggleFavorite()" class="favorite-button">
                     <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
-                </button> 
+                </button>
             </div>
         </div>
         <div class="d-flex mt-2">
@@ -262,4 +262,4 @@
             <button class="btn btn-primary w-50" type="button">Add To Cart</button>
         </div>
     </div>
-</div>  
+</div>

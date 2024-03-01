@@ -1,7 +1,7 @@
 <div *ngIf="artworkType == '2D'; else show3DArtwork">
-    <img [src]="artworkUrl" class="img-fluid" alt="..." style="width: 100%;">   
+    <img [src]="artworkUrl" class="img-fluid" alt="..." style="width: 100%;">
 </div>
 
 <ng-template #show3DArtwork>
     <app-model></app-model>
-</ng-template>  
+</ng-template>

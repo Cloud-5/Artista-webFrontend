@@ -16,8 +16,7 @@
         <input class="form-control me-sm-2 rounded-pill border border-primary" type="search"
             placeholder="Search Category">
         <button class="btn btn-primary my-2 my-sm-0 rounded-pill" style="width: 150px;"
-            data-bs-toggle="modal"
-            data-bs-target="#newCategoryModal"
+        (click)="openAddCategoryModal()"
         >
             New Category
         </button>
@@ -53,3 +52,49 @@
         </div>
     </div>
 </div>
+
+<app-modal id="modal-addCategory">
+    <div class="new-modal">
+        <div class="new-modal-body">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="categoryName" class="form-label
+                            ">Category Name</label>
+                            <input type="text" class="form-control" id="categoryName" placeholder="Category Name">
+                        </div>  
+                        <div class="mb-3">
+                            <label for="categoryDescription" class="form-label">Category Description</label>
+                            <textarea class="form-control" id="categoryDescription" rows="3" placeholder="Category Description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoryMargin" class="form-label
+                            ">Margin</label>
+                            <input type="text" class="form-control" id="categoryMargin" placeholder="Margin">
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoryFileTypes" class="form-label
+                            ">File Types</label>
+                            <input type="text" class="form-control" id="categoryFileTypes" placeholder="File Types">
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoryImage" class="form-label
+                            ">Category Image</label>
+                            <input type="file" class="form-control" id="categoryImage" placeholder="Category Image">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modal>
+

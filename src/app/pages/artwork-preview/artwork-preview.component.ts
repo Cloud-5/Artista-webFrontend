@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { CommentListComponent } from '../../shared/components/comments/comment-list/comment-list.component';
 
 
 @Component({

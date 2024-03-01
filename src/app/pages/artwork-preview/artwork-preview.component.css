@@ -66,11 +66,11 @@
 }
 .add-to-gallery {
     background-color: #ffffff !important;
-    
+
 }
 .add-to-gallery:hover {
     background-color: #0dcaf0 !important;
-    
+
 }
 
 .added-to-gallery {
@@ -80,18 +80,23 @@
 .artwork-layout{
     margin-left: 10px;
     margin-right: 10px;
+    height: 100%;
+    width: 100%;
+    position: relative !important;
 }
 
 .artwork-layout .mat-card {
     margin: 10px;
-    width: 300px;
-    height: 300px;
     display: inline-block;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
+}
+
+.artwork{
+  width: 100%;
 }
 
 .artwork-details-content-name{
@@ -104,7 +109,7 @@
     padding-left: 40px;
     padding-right: 24px;
     padding-top: 24px;
-    margin-right: 16px; 
+    margin-right: 16px;
 }
 
 .artwork-details-content-name-info-box{
@@ -128,7 +133,7 @@
     z-index: 1000;
     transition: top 0.3s; /* Add smooth transition for a better visual effect */
   }
-  
+
   .sticky-bar.show {
     display: block;
   }

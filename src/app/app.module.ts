@@ -21,6 +21,9 @@ import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-l
 import { ModelComponent } from './shared/components/model/model.component';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,7 @@ import { ModelComponent } from './shared/components/model/model.component';
     CommentComponent,
     CommentFormComponent,
     CommentListComponent,
-    ModelComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,
