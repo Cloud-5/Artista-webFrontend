@@ -1,0 +1,65 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+}
+.category-card {
+    height: 275px; /* Set fixed height for the card */
+    width: 400px;/* Adjust the width of your card */
+    overflow: hidden; /* Ensure that anything outside the card's boundaries is hidden */
+    border: none;
+    box-shadow: 0px 0px 40px -10px rgba(5, 5, 5, 0.9);
+    position: relative;
+    transition: transform 0.5s, box-shadow 0.3s, background-color 0.3s ease;
+    margin-bottom: 15px;
+    background-size: cover; /* Ensure the background image covers the entire card */
+    background-position: center; /* Center the background image */
+
+
+  
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1%;
+}
+
+.card-title,
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.additional-texts {
+    margin-top: 5px;
+}
+
+.artist-name,
+.like-count {
+    font-size: 0.7rem;
+    margin-bottom: 2px;
+}
+
+.zoom-in-out-on-hover {
+    transition: transform 0.3s ease;
+}
+
+.zoom-in-out-on-hover:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.zoom-in-out-on-hover:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.btn{
+    padding-left: 0%;
+    padding-right: 0%;
+   
+}
+
