@@ -16,6 +16,7 @@ import { ArtistsComponent } from './shared/cards/artists/artists.component';
 import { ArtsComponent } from './shared/cards/arts/arts.component';
 import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
 import { CategoryComponent } from './shared/cards/category/category.component';
+import { ArtistComponent } from './pages/artist/artist.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CategoryComponent } from './shared/cards/category/category.component';
     ArtistsComponent,
     ArtsComponent,
     CartCardComponent,
-    CategoryComponent
+    CategoryComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,

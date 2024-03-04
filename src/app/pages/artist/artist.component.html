@@ -1,0 +1,42 @@
+<section class="head-title-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center mt-5">
+          <h3 class="text-color">Embark on a journey to discover the perfect artist just for you!</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center mt-3">
+          <div class="input-group">
+            <div class="form-outline" data-mdb-input-init>
+              <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists" aria-describedby="search-button">
+            </div>
+            <button id="search-button" type="button" class="btn btn-primary button-search">
+              <i class="bi bi-search"></i>
+            </button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Option 1</a></li>
+                  <li><a class="dropdown-item" href="#">Option 2</a></li>
+                  <li><a class="dropdown-item" href="#">Option 3</a></li>
+                </ul>
+              </div>
+              
+            
+          </div>
+        </div>
+      </div>
+      
+      <div class="container mt-5 mb-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+          <div class="col mb-3" *ngFor="let artist of filteredArtists">
+            <app-artists [artist]="artist"></app-artists>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
