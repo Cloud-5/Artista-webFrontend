@@ -1,0 +1,126 @@
+<head>
+  <style>
+    /* styles */
+
+    .form-container {
+      padding: 80px;
+    }
+
+    /* border style */
+    .form-section {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body class="container pt-3">
+  <h1>Edit Profile</h1>
+  <br>
+  <div class="row">
+    <div class="col">
+      <p>Edit your information and click save to make changes.</p>
+    </div>
+    <div class="col" style="text-align: end;">
+      <a routerLink="/customer-profile-gallery">
+        <button type="button" class="btn btn-primary">View Profile</button>
+      </a>
+    </div>
+  </div>
+
+
+
+
+  <div class="form-container">
+    <div class ="form-section">
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label for="profile-image" class="form-label">Profile Image:</label>
+              <input type="file" class="form-control" id="profile-image" accept="image/*">
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class ="form-section">
+            <div class="row mb-3">
+              <h2>Basic Information</h2>
+              <div class="col-sm-6">
+                <label for="first-name" class="form-label">First Name:</label>
+                <input type="text" class="form-control" id="first-name" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="last-name" class="form-label">Last Name:</label>
+                <input type="text" class="form-control" id="last-name" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" class="form-control" rows="4" required></textarea>
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end mb-3">
+          <button type="button" class="btn btn-primary me-2">Save</button>
+        </div>
+        </div>
+    </div>
+  </div>
+<br>
+<br>
+
+    <div class="form-section">
+      <h2>Login Details</h2>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="col-md-6">
+          <label for="new-password" class="form-label">New Password:</label>
+          <input type="password" class="form-control" id="new-password" required>
+        </div>
+        <div class="col-md-6">
+          <label for="confirm-password" class="form-label">Confirm Password:</label>
+          <input type="password" class="form-control" id="confirm-password" required>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-primary me-2">Save</button>
+      </div>
+    </div>
+<br>
+<br>
+    <div class="form-section">
+      <h2>Regional Details</h2>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="currency" class="form-label">Currency:</label>
+          <input type="text" class="form-control" id="currency" required>
+        </div>
+        <div class="col-md-6">
+          <label for="country" class="form-label">Country:</label>
+          <input type="text" class="form-control" id="country" required>
+        </div>
+      </div>
+      <br>
+      <div class="d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-primary me-2">Save</button>
+      </div>
+    </div>
+<br>
+    <div class="d-flex justify-content-center mt-5 mb-3">
+      <div style="padding-right: 400px">
+        <button type="button" class="btn btn-secondary">Discard Profile</button>
+      </div>
+      <div style="padding-left: 400px">
+          <button type="button" class="btn btn-primary">Save Profile</button>
+          </div>
+      </div>
+    </div>
+
+</body>
+<br>
+<br>

@@ -1,0 +1,123 @@
+
+  <body>
+    <app-navbar></app-navbar>
+    <div class="header__wrapper">
+      <header></header>
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <img src="https://img.freepik.com/free-photo/portrait-man-having-great-time_23-2149443790.jpg?size=626&ext=jpg&ga=GA1.1.87170709.1707868800&semt=ais" alt="Peter Anderson" />
+            <span></span>
+          </div>
+          <h2>Peter Anderson</h2>
+          <p><b>Digital Creator /UI Engineer</b></p>
+          <p><b>Switzerland</b></p>
+          <p><b>Member Since : </b>02 Feb 2024</p>
+
+          <ul class="about">
+            <li><span>2,543</span>Likes</li>
+            <li><span>4,322</span>Followers</li>
+            <li><span>543</span>Creations</li>
+
+          </ul>
+
+          <div class="content">
+             <p>
+              Hey! My name is Peter,I'm passionate about creating intuitive and visually appealing user experiences.
+              As a professional UI and UX designer, I thrive on the intersection of creativity and functionality,
+              aiming to make digital interactions more seamless and delightful for users.
+
+              </p>
+            <br>
+
+          </div>
+          <form>
+            <div class="form-group">
+                <label for="feedback"><b>Give a feedback:</b></label>
+                <br>
+                <textarea class="form-control" id="feedback" rows="5" maxlength="1000"></textarea>
+                <small id="wordCount" class="text-muted">0 words (Max 150 words)</small>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+        <script>
+            const textarea = document.getElementById('feedback');
+            const wordCountDisplay = document.getElementById('wordCount');
+
+            textarea.addEventListener('input', function() {
+                const words = this.value.split(/\s+/).filter(word => word.length > 0);
+                const wordCount = words.length;
+
+                if (wordCount > 150) {
+                    this.value = words.slice(0, 150).join(' ');
+                    wordCountDisplay.textContent = '150 words (Max 150 words)';
+                } else {
+                    wordCountDisplay.textContent = wordCount + ' words (Max 150 words)';
+                }
+            });
+        </script>
+
+
+        </div>
+        <div class="right__col">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" >Creations</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" tabindex="-1">Feedbacks</a>
+            </li>
+
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active show" id="home" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                  <form class="d-flex" role="search" style="width: 100%;">
+                    <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+              <div class="Creations">
+                <img src="../assets/imgs/art.jpg" alt="Photo" />
+                <img src="../assets/imgs/art1.jpg" alt="Photo" />
+                <img src="../assets/imgs/art2.jpg" alt="Photo" />
+                <img src="../assets/imgs/art3.jpg" alt="Photo" />
+                <img src="../assets/imgs/art4.jpg" alt="Photo" />
+                <img src="../assets/imgs/art5.jpg" alt="Photo" />
+                <img src="../assets/imgs/art6.jpg" alt="Photo" />
+                <img src="../assets/imgs/art7.jpg" alt="Photo" />
+                <img src="../assets/imgs/art8.jpg" alt="Photo" />
+                <img src="../assets/imgs/art9.jpg" alt="Photo" />
+                <img src="../assets/imgs/art10.jpg" alt="Photo" />
+                <img src="../assets/imgs/art11.jpg" alt="Photo" />
+                <img src="../assets/imgs/art12.jpg" alt="Photo" />
+                <img src="../assets/imgs/art6.jpg" alt="Photo" />
+                <img src="../assets/imgs/art7.jpg" alt="Photo" />
+
+              </div>
+            </div>
+            <div class="tab-pane fade " id="profile" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container">
+                  <form class="d-flex" role="search" style="width: 100%;">
+                    <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+
+                </div>
+              </nav>
+              <app-feedback-list-card></app-feedback-list-card>
+            </div>
+
+         </div>
+          </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </body>
+
+

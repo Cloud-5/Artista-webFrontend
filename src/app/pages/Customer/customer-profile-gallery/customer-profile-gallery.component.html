@@ -1,0 +1,120 @@
+
+  <body>
+    <app-navbar></app-navbar>
+
+    <div class="header__wrapper">
+      <header></header>
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <img src="https://instacaptionsforall.in/wp-content/uploads/2023/11/87-5-1024x1024.jpg" alt="Anna Smith" />
+            <span></span>
+          </div>
+          <h2>Ann Doe</h2>
+          <p><b>Australia</b></p>
+          <p><b>Member Since : </b>02 Feb 2024</p>
+
+          <ul class="about">
+            <li><span>2,543</span>Gallery</li>
+            <li><span>4,322</span>Following</li>
+            <li><span>543</span>Purchases</li>
+
+          </ul>
+
+          <div class="content">
+             <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
+              erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl
+              ligula egestas nulla.
+            </p>
+            <br>
+            <br>
+            <div class="row" style="margin: 0;">
+              <div class="d-flex" style="justify-content: space-between;">
+                <a routerLink='/edit-customer-profile' class="btn btn-primary" style="width: 48%;">Edit Profile</a>
+                <button type="button" class="btn btn-secondary" style="width: 48%;">Delete Profile</button>
+              </div>
+              <div class="row" style="margin: 10px 0 0 0;">
+                <button type="button" class="btn btn-success">Log Out</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="right__col">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" >Gallery</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" tabindex="-1">Following</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#history" aria-selected="false" tabindex="-1" role="tab">Purchase History</a>
+            </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active show" id="home" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                  <form class="d-flex" role="search" style="width: 100%;">
+                    <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+              <div class="Gallery" >
+                <img src="../assets/imgs/art.jpg" alt="Photo" />
+                <img src="../assets/imgs/art1.jpg" alt="Photo" />
+                <img src="../assets/imgs/art2.jpg" alt="Photo" />
+                <img src="../assets/imgs/art3.jpg" alt="Photo" />
+                <img src="../assets/imgs/art4.jpg" alt="Photo" />
+                <img src="../assets/imgs/art5.jpg" alt="Photo" />
+                <img src="../assets/imgs/art6.jpg" alt="Photo" />
+                <img src="../assets/imgs/art7.jpg" alt="Photo" />
+                <img src="../assets/imgs/art8.jpg" alt="Photo" />
+                <img src="../assets/imgs/art9.jpg" alt="Photo" />
+                <img src="../assets/imgs/art10.jpg" alt="Photo" />
+                <img src="../assets/imgs/art11.jpg" alt="Photo" />
+                <img src="../assets/imgs/art12.jpg" alt="Photo" />
+                <img src="../assets/imgs/art6.jpg" alt="Photo" />
+                <img src="../assets/imgs/art7.jpg" alt="Photo" />
+
+
+              </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                  <form class="d-flex" role="search" style="width: 100%;">
+                    <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                  <app-following-artists></app-following-artists>
+                </div>
+              </nav>
+            </div>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade" id="history" role="tabpanel">
+                <nav class="navbar bg-body-tertiary">
+                  <div class="container-fluid">
+                    <form class="d-flex" role="search" style="width: 100%;">
+                      <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <app-purchase-img-card></app-purchase-img-card>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+        </div>
+        </div>
+         </div>
+
+        </div>
+        <app-footer></app-footer>
+
+  </body>
+

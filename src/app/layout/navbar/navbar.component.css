@@ -1,0 +1,50 @@
+/* Add margin to the left to move the logo to the right */
+.custom-logo {
+  margin-left: 50px;
+  max-height: 50px;
+  max-width: 600px;
+  margin-right: 60px; /* Add margin to the right of the logo */
+
+}
+
+/* icons */
+.navbar-text .bi-bell-fill,
+.navbar-text .bi-chat-dots-fill,
+.navbar-text .bi-cart-fill,
+.navbar-text .bi-person-circle {
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+  margin-right: 30px;
+  transition: color 0.3s;
+}
+
+.navbar-text:hover .bi-bell-fill,
+.navbar-text:hover .bi-chat-dots-fill,
+.navbar-text:hover .bi-cart-fill,
+.navbar-text:hover .bi-person-circle {
+  color: rgb(212, 212, 212);
+}
+
+/* Increase the size and make the text bold for "ForYou" and "Artist" */
+.navbar-nav .nav-link {
+  font-size: 1.2rem; /* Adjust the size as needed */
+  font-weight: bold; /* Make the text bold */
+  margin-right: 50px;
+}
+
+/* Increase the width of the search bar and add round corners */
+.form-control {
+  width: 400px; /* Adjust the width as needed */
+  border-radius: 14px; /* Add round corners */
+  margin-left: 180px;
+}
+
+
+
+
+
+/*icons to the right corner*/
+.d-flex {
+  margin-left: auto;
+}
