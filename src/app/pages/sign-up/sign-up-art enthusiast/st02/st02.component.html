@@ -1,0 +1,42 @@
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../../../assets/ArtistaLogo.jpg" alt="ARTISTA Logo">
+      </div>
+      <div class="col-md-6 mt-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="sign-in-container">
+              <form class="row g-3" (submit)="createAccount()">
+                <p>Step 2 of 2</p>
+                <br><br><br><br><br>
+                <div class="col-md-6">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Date of Birth</label>
+                  <input type="date" class="form-control" [(ngModel)]="dob" name="dob">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-control" [(ngModel)]="location" name="location">
+                </div>
+                <p>By clicking create account... <a href="">Terms of use</a> & <a href="">privacy policy</a></p>
+                <br><br><br><br><br>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

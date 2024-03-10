@@ -1,0 +1,51 @@
+
+<div class="container mt-5 ">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../../../assets/ArtistaLogo.jpg" alt="ARTISTA Logo">
+      </div>
+      <div class="col-md-6 mt-4 ">
+        <div class="card">
+          <div class="card-body">
+            <div class="sign-in-container">
+              <form (ngSubmit)="signIn()">
+                <h1>Sign In</h1>
+                <br><br>
+                <div class="mb-3">
+                  <label for="inputEmail" class="form-label">Email address</label>
+                  <input type="email" id="inputEmail" [(ngModel)]="email" name="email" class="form-control" placeholder="Enter your Email">
+                </div>
+                <div class="mb-3">
+                  <label for="inputPassword" class="form-label">Password</label>
+                  <input type="password" id="inputPassword" [(ngModel)]="password" name="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="mb-3 row">
+                  <div class="d-flex justify-content-start col-6">
+                    <a routerLink="/reset">Forget password?</a>
+                  </div>
+                  <div class="d-flex justify-content-end col-6">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                  </div>
+                </div>
+                <br><br><br><br><br>
+                <div class="mb-3">
+                  <a href="#">New User?</a>
+                  <a href="#">Get help for signing In</a>
+                </div>
+                <br>
+                <div class="mb-3 row">
+                  <div class="d-flex justify-content-start col-6">
+                    <button type="button" class="btn btn-secondary" routerLink="/st1">Become an Artist</button>
+                  </div>
+                  <div class="d-flex justify-content-end col-6">
+                    <button type="button" class="btn btn-secondary" routerLink="/st01">Become an Art Enthusiast</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

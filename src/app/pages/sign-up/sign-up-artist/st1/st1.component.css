@@ -1,0 +1,23 @@
+.container
+{
+  background-color: #006ca5;
+
+}
+h1
+{
+    color: #4D63D9;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.form
+{
+    
+   height: 500px;
+}
+p{
+    font-weight: bold;
+}
+label
+{
+    font-weight: bold;
+}

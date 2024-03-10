@@ -1,0 +1,39 @@
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../../../assets/ArtistaLogo.jpg" alt="ARTISTA Logo">
+      </div>
+      <div class="col-md-6 mt-1 p-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="sign-in-container">
+              <form class="form" (ngSubmit)="submitForm()">
+                <p>Step 1 of 2</p>
+                <br>
+                <h1>Join as an Art Enthusiast</h1>
+                <br><br>
+                <div class="mb-3">
+                  <label class="form-label">Email address</label>
+                  <input type="email" name="Email" [(ngModel)]="formData.email" class="form-control" placeholder="Enter your Email" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" name="Password" [(ngModel)]="formData.password" class="form-control" placeholder="Password" required>
+                </div>
+  
+                <div class="mb-3">
+                  <a href="#">Password validation part should be there</a>
+                </div>
+                <br><br><br>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary" routerLink="/st02">Continue</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

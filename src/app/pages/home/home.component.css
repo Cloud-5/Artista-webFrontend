@@ -1,0 +1,125 @@
+.hero-body{
+    background-image: url("../../assets/images/");
+    background-size: cover;
+    background-position: center center;
+
+}
+.card-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  h1{
+    font-weight: bold;
+  }
+/* .navbar
+{
+    background-color: #3682cd;
+} */
+
+
+/* Add margin to the left to move the logo to the right */
+.custom-logo {
+  margin-left: 50px;
+  max-height: 50px;
+  max-width: 600px;
+  margin-right: 60px; /* Add margin to the right of the logo */
+
+}
+
+/* icons */
+.navbar-text .bi-bell-fill,
+.navbar-text .bi-chat-dots-fill,
+.navbar-text .bi-cart-fill,
+.navbar-text .bi-person-circle {
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+  margin-right: 30px;
+  transition: color 0.3s;
+}
+
+.navbar-text:hover .bi-bell-fill,
+.navbar-text:hover .bi-chat-dots-fill,
+.navbar-text:hover .bi-cart-fill,
+.navbar-text:hover .bi-person-circle {
+  color: rgb(212, 212, 212);
+}
+
+/* Increase the size and make the text bold for "ForYou" and "Artist" */
+.navbar-nav .nav-link {
+  font-size: 1.2rem; /* Adjust the size as needed */
+  font-weight: bold; /* Make the text bold */
+  margin-right: 50px;
+}
+
+/* Increase the width of the search bar and add round corners */
+.form-control {
+  width: 400px; /* Adjust the width as needed */
+  border-radius: 14px; /* Add round corners */
+  margin-left: 180px;
+}
+
+
+.d-flex {
+  margin-left:auto;
+}
+
+
+
+
+/* Add any additional styles for your footer here */
+
+.footer {
+  padding: 20px 0; /* Adjust padding as needed */
+  margin-top: 20px;
+}
+
+.footer-logo {
+  max-width: 200px; /* Adjust the max-width of the logo */
+}
+
+/* Adjust margin for all buttons */
+.btn-footer {
+  margin-right: 1px; /* Reduce the right margin between buttons */
+}
+
+/* Style for the five buttons */
+.btn-footer {
+  display: inline-block;
+  padding: 8px 50px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Dark blue background on hover for buttons */
+.btn-footer:hover {
+  background-color: #001f3f; /* Dark blue color */
+  color: #fff; /* White text color on hover */
+}
+
+/* Social media icons */
+.bi {
+  font-size: 2rem; /* Adjust the size of the icons */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the icons */
+}
+
+/* Gray color on hover for social media icons */
+.btn-link:hover .bi {
+  color: #999; /* Gray color on hover */
+}
+
+/* Responsive styles for the row */
+@media (max-width: 991.98px)
+{
+  .align-items-center {
+    flex-direction: column; /* Stack items vertically on medium-sized screens and below */
+    align-items: center; /* Align items to the center on medium-sized screens and below */
+  }
+
+  .footer-buttons {
+    margin-top: 20px; /* Add spacing between the logo and buttons on medium-sized screens and below */
+
+  }}
