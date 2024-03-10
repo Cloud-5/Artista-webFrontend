@@ -1,6 +1,7 @@
 
   <body>
     <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
     <div class="header__wrapper">
       <header></header>
       <div class="cols__container">
@@ -11,7 +12,7 @@
           </div>
           <h2>Peter Anderson</h2>
           <p><b>Digital Creator /UI Engineer</b></p>
-          <p><b>Switzerland</b></p>
+          <p><b>Switzerland</b></p>   
           <p><b>Member Since : </b>02 Feb 2024</p>
 
           <ul class="about">
@@ -82,22 +83,9 @@
                 </div>
               </nav>
               <div class="Creations">
-                <img src="../assets/imgs/art.jpg" alt="Photo" />
-                <img src="../assets/imgs/art1.jpg" alt="Photo" />
-                <img src="../assets/imgs/art2.jpg" alt="Photo" />
-                <img src="../assets/imgs/art3.jpg" alt="Photo" />
-                <img src="../assets/imgs/art4.jpg" alt="Photo" />
-                <img src="../assets/imgs/art5.jpg" alt="Photo" />
-                <img src="../assets/imgs/art6.jpg" alt="Photo" />
-                <img src="../assets/imgs/art7.jpg" alt="Photo" />
-                <img src="../assets/imgs/art8.jpg" alt="Photo" />
-                <img src="../assets/imgs/art9.jpg" alt="Photo" />
-                <img src="../assets/imgs/art10.jpg" alt="Photo" />
-                <img src="../assets/imgs/art11.jpg" alt="Photo" />
-                <img src="../assets/imgs/art12.jpg" alt="Photo" />
-                <img src="../assets/imgs/art6.jpg" alt="Photo" />
-                <img src="../assets/imgs/art7.jpg" alt="Photo" />
-
+                <div class="col mb-3" *ngFor="let art of artsData">
+                  <app-arts [art]="art"></app-arts>
+                </div>
               </div>
             </div>
             <div class="tab-pane fade " id="profile" role="tabpanel">

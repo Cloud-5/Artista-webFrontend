@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card   shadow mb-4 zoom-in-out-on-hover">
+        <img [src]="art.artImgUrl" class="card-img-top" alt="Artwork Image">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="card-title"><strong>{{art.artworkName}}</strong></p>
+                <div class="cart-container">
+
+                    <p class="card-text price-text"  ><strong>
+                        
+                    </strong>
+                    <button class="btn cart-icon-btn">
+
+
+                            <i class="bi bi-cart-plus-fill"></i>
+
+
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional texts in the same row -->
+            <div class="d-flex justify-content-between additional-texts">
+                <p class="artist-name"><strong>{{art.artistName}}</strong></p>
+                <p class="like-count"><strong>{{formatLikeCount(art.likeCount)}}</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
