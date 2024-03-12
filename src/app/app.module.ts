@@ -24,7 +24,8 @@ import { ArtsComponent } from './shared/components/cards/arts/arts.component';
     PurchaseImgCardComponent,
     NavbarComponent,
     FooterComponent,
-    ArtsComponent
+    ArtsComponent,
+   
   ],
   imports: [
     BrowserModule,

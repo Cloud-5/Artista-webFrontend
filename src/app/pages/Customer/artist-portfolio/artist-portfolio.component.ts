@@ -16,5 +16,7 @@ export class ArtistPortfolioComponent {
     { artImgUrl: '../assets/imgs/motionArt.png', artworkName: 'Eternal Waves', price: 250, artistName: 'Benjamin Adams', likeCount: 4200 },
     { artImgUrl: '../assets/imgs/generativeArts.jpg', artworkName: 'Digital Eden', price: 190, artistName: 'Aria Nguyen', likeCount: 3600 },
     { artImgUrl: '../assets/imgs/graphicDesign.jpg', artworkName: 'Cityscape Symphony', price: 170, artistName: 'Elijah Roberts', likeCount: 2900 },
+    { artImgUrl: '../assets/imgs/motionArt.png', artworkName: 'Galactic Groove', price: 260, artistName: 'Chloe Foster', likeCount: 4400 },
   ];
+currentRating: number;
 }
