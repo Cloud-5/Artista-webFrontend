@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="find-art-column">
+    <h3>Find An Art</h3>
+     <br>
+    <h5>Category</h5>
+    <ul>
+      <li>3D Art</li>
+      <li>Digital Arts</li>
+      <li>Generative Arts</li>
+      <li>Motion Arts</li>
+      <li>Pixel Art</li>
+      <li>Vector Art</li>
+      <li>Anime</li>
+    </ul>
+
+    <h5>Price</h5>
+    <ul>
+      <li>Min</li>
+      <li>Max</li>
+     </ul>
+  </div>
+
+  <div class="art-gallery-column">
+<section class="head-title-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center mt-5">
+        <h3 class="text-color">Embark on a journey through our art gallery to find your perfect masterpiece!</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center mt-3">
+        <div class="input-group">
+          <div class="form-outline" data-mdb-input-init>
+            <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" id="search-input" type="search" class="form-control custom-search" placeholder="Search for Arts" aria-label="Search for Arts" aria-describedby="search-button">
+          </div>
+          <button id="search-button" type="button" class="btn btn-primary button-search">
+            <i class="bi bi-search"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5 mb-3">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <div class="col mb-3" *ngFor="let arts of filteredArts">
+          <app-arts [art]="arts"></app-arts>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+
+<app-footer></app-footer>

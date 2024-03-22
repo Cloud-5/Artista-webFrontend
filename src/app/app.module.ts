@@ -11,6 +11,7 @@ import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/pur
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ArtsComponent } from './shared/components/cards/arts/arts.component';
+import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ArtsComponent } from './shared/components/cards/arts/arts.component';
     NavbarComponent,
     FooterComponent,
     ArtsComponent,
-   
+    SearchArtComponent,
+
   ],
   imports: [
     BrowserModule,

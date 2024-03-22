@@ -18,5 +18,4 @@ export class ArtistPortfolioComponent {
     { artImgUrl: '../assets/imgs/graphicDesign.jpg', artworkName: 'Cityscape Symphony', price: 170, artistName: 'Elijah Roberts', likeCount: 2900 },
     { artImgUrl: '../assets/imgs/motionArt.png', artworkName: 'Galactic Groove', price: 260, artistName: 'Chloe Foster', likeCount: 4400 },
   ];
-currentRating: number;
 }

@@ -26,3 +26,12 @@
       height: 40px;
   }
 }
+
+.request-card {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.request-card:hover {
+  transform: scale(1.05);
+}
