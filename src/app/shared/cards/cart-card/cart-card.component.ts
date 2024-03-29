@@ -10,6 +10,7 @@ export class CartCardComponent  {
   @Input() getCartDetails: any;
   @Input() art: any;
   @Output() countChange = new EventEmitter<number>(); // Output property
+  @Input() cartItem: any;
   
   count: number = 1;
   totalPrice: number = 0;
