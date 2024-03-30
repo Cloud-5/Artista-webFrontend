@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { categoryData } from './categoryData';
 import { ModalService } from '../../../../shared/services/modal.service';
-
+import { ArtCategoriesService } from './art-categories.service';
 
 @Component({
   selector: 'app-art-categories',
@@ -10,14 +9,34 @@ import { ModalService } from '../../../../shared/services/modal.service';
 })
 export class ArtCategoriesComponent{
 
-  categoryData = categoryData;
+  categoryData: any[] = [];
 
-  constructor(public modalService: ModalService) { }
+  constructor(public modalService: ModalService,private artCategoriesService: ArtCategoriesService) { }
 
-  openAddCategoryModal(){
-    this.modalService.open('modal-addCategory');
+  ngOnInit() {
+    this.loadCategories();
   }
 
-
+  private loadCategories(): void {
+    this.artCategoriesService.getAllCategories().subscribe(
+      (data: any) => {
+        this.categoryData = data;
+      },
+      (error) => {
+        console.error('Error loading categories:', error);
+      }
+    );
+  }
+  deleteCategory(categoryId: string): void {
+    this.artCategoriesService.deleteCategory(categoryId).subscribe(
+      () => {
+        this.categoryData = this.categoryData.filter(category => category.category_id !== categoryId);
+        console.log('Category deleted successfully');
+      },
+      (error) => {
+        console.error('Error deleting category:', error);
+      }
+    );
+  }
+  
 }
-                                                      

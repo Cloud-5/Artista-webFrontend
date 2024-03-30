@@ -5,7 +5,7 @@ import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css',
+  styleUrls: ['./modal.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -19,7 +19,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-      // add self (this modal instance) to the modal service so it can be opened from any component
+      // add self (this modal instance) to the modal service. so it can be opened from any component
       this.modalService.add(this);
 
       // move element to bottom of page (just before </body>) so it can be displayed above everything else
@@ -27,7 +27,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
       //close modal on background click
       this.element.addEventListener('click', (el: any) => {
-          if (el.target.className === 'new-modal') {
+          if (el.target.className === 'app-modal') {
               this.close();
           }
       });
@@ -44,13 +44,13 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   open() {
       this.element.style.display = 'block';
-      document.body.classList.add('new-modal-open');
+      document.body.classList.add('app-modal-open');
       this.isOpen = true;
   }
 
   close() {
       this.element.style.display = 'none';
-      document.body.classList.remove('new-modal-open');
+      document.body.classList.remove('app-modal-open');
       this.isOpen = false;
   }
 }

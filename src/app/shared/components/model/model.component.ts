@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-import {Raycaster, Vector2} from "three";
 
 @Component({
   selector: 'app-model',
@@ -30,8 +29,6 @@ export class ModelComponent implements OnInit, AfterViewInit {
   private light4: THREE.PointLight | undefined;
   private model: any;
   private directionalLight: THREE.DirectionalLight | undefined;
-  private raycaster: Raycaster | undefined;
-  private mouse: Vector2 | undefined;
 
   // Helper Properties
 
