@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: FirstForyouComponent },
   { path: 'cart', component: CartComponent },
   { path: 'foryou', component: ForyouComponent },
-  { path: 'artist/:id', component: ArtistComponent },
+  { path: 'artist', component: ArtistComponent },
   { path: 'checkout', component: CheckoutFormComponent}
 ];
 
