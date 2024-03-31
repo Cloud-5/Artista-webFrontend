@@ -5,14 +5,15 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
-
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   { path: '', component: FirstForyouComponent },
   { path: 'cart', component: CartComponent },
   { path: 'foryou', component: ForyouComponent },
   { path: 'artist', component: ArtistComponent },
-  { path: 'checkout', component: CheckoutFormComponent}
+  { path: 'checkout', component: CheckoutFormComponent},
+  { path: 'categories', component: CategoriesComponent}
 ];
 
 @NgModule({

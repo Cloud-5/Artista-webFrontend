@@ -22,7 +22,7 @@ import { FirstForyouComponent } from './pages/first-foryou/first-foryou.componen
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
-
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 @NgModule({
@@ -40,8 +40,8 @@ import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.compo
     CartComponent,
     FirstForyouComponent,
     ForyouComponent,
-    CheckoutFormComponent
-    
+    CheckoutFormComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

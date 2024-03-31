@@ -48,12 +48,12 @@
 }
 
 .zoom-in-out-on-hover:hover {
-    transform: scale(1.1);
+    transform: scale(1.04);
     transition: transform 0.3s ease;
 }
 
 .zoom-in-out-on-hover:active {
-    transform: scale(0.9);
+    transform: scale(0.999);
     transition: transform 0.3s ease;
 }
 
