@@ -7,11 +7,11 @@ import { environment } from "../../../../../environments/environment";
   providedIn: 'root'
 })
 export class ArtCategoriesService {
-  
-  
+
+
   private apiUrl: string = environment.apiUrl + '/art-categories';
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAllCategories(): Observable<any> {
     return this.http.get(`${this.apiUrl}/`);

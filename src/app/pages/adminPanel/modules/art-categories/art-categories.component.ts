@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { ArtCategoriesService } from './art-categories.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { response } from 'express';
+import { uploadFileToS3 } from '../../../../handlers/s3handler';
 
 @Component({
   selector: 'app-art-categories',
@@ -11,18 +13,34 @@ import { response } from 'express';
 export class ArtCategoriesComponent implements OnInit {
 
   categoryData: any[] = [];
+
   newCategory: any = {
     name: '',
     description: '',
     margin: '',
-    formats: []
+    formats: [],
+    image: File
   };
+
+  selectedCategory: any = {};
 
   newFormat: string = '';
 
-  addNewFormat(){
-    if(this.newFormat.trim() !== ''){
-      this.newCategory.formats.push({format_name: this.newFormat});
+  editingCategoryIndex: number | null = null;
+
+  constructor(
+    public modalService: ModalService,
+    private artCategoriesService: ArtCategoriesService,
+  ) { }
+
+  ngOnInit() {
+    this.loadCategories();
+  }
+
+
+  addNewFormat() {
+    if (this.newFormat.trim() !== '') {
+      this.newCategory.formats.push({ format_name: this.newFormat });
       this.newFormat = '';
     }
   }
@@ -35,11 +53,6 @@ export class ArtCategoriesComponent implements OnInit {
     this.newCategory.formats.splice(index, 1);
   }
 
-  constructor(public modalService: ModalService, private artCategoriesService: ArtCategoriesService) { }
-
-  ngOnInit() {
-    this.loadCategories();
-  }
 
   loadCategories(): void {
     this.artCategoriesService.getAllCategories().subscribe(
@@ -52,33 +65,38 @@ export class ArtCategoriesComponent implements OnInit {
     );
   }
 
-  addCategory(categoryForm: any): void {
-    if (categoryForm.valid) {
-      this.artCategoriesService.createCategory(this.newCategory).subscribe(
-        (response: any) => {
-          console.log('Category Added successfully', response);
-          this.categoryData.push(response);
-          this.loadCategories();
-          categoryForm.reset();
-          this.newCategory = {};
-          this.modalService.close();
-        },
-        (error) => {
-          console.error('Error adding category:', error);
-        }
-      );
+  handleImageUpload(event: any) {
+    console.log("ok")
+    if (event.target.files && event.target.files[0]) {
+      const img = event.target.files[0];
+      console.log(img);
+      this.newCategory.image = img;
     }
+    console.log(this.newCategory.image);
+
   }
 
-  openEditModal(category: any): void {
-    // Set the newCategory object with the selected category data
-    this.newCategory = {
-        ...category,
-        formats: category.formats.map((format: any) => ({ format_name: format.format_name }))
-    };
-    // Open the modal
-    this.modalService.open('modal-editCategory');
-}
+  async addCategory(categoryForm: any): Promise<void> {
+    if (categoryForm.valid) {
+      try {
+
+        //const imageUrl = uploadFileToS3(this.newCategory.image); // Get the URL of the uploaded file
+        // Set the URL to the newCategory object
+        //this.newCategory.image = imageUrl;  
+
+        const response = await this.artCategoriesService.createCategory(this.newCategory).toPromise();
+
+        console.log('Category Added successfully', response);
+        this.categoryData.push(response);
+        this.loadCategories();
+        categoryForm.reset();
+        this.newCategory = {};
+        this.modalService.close();
+      } catch (error) {
+        console.error('Error adding category:', error);
+      }
+    }
+  }
 
   deleteCategory(categoryId: string): void {
     this.artCategoriesService.deleteCategory(categoryId).subscribe(
@@ -92,24 +110,68 @@ export class ArtCategoriesComponent implements OnInit {
     );
   }
 
-  updateCategory(categoryForm: any): void {
-    if (categoryForm.valid) {
-      const categoryId = this.newCategory.category_id; // Assuming category_id exists in the newCategory object
-      this.artCategoriesService.updateCategory(categoryId, this.newCategory).subscribe(
+
+  //updating existing category
+
+  openEditModal(category: any): void {
+    //copying category data to selected category
+    this.selectedCategory = { ...category };
+    console.log('Selected category: ', category)
+    this.modalService.open('modal-editCategory');
+  }
+
+  updateCategory(editCategoryForm: any): void {
+    if (editCategoryForm.valid) {
+
+      this.artCategoriesService.updateCategory(this.selectedCategory.category_id, this.selectedCategory).subscribe(
         (response: any) => {
-          console.log('Category Updated successfully', response);
-          // Update the category data in categoryData array
-          const index = this.categoryData.findIndex(category => category.category_id === categoryId);
-          if (index !== -1) {
-            this.categoryData[index] = this.newCategory;
+          console.log('Category updated successfully', response);
+
+          const index = this.categoryData.findIndex(cat => cat.category_id === response.category_id);
+          if (index != -1) {
+            this.categoryData[index] = response;
           }
-          // Close the modal
+
           this.modalService.close();
         },
         (error) => {
-          console.error('Error updating category:', error);
+          console.error('Error updating...', error);
         }
       );
     }
   }
+  removeOldFormat(index: number): void {
+    this.selectedCategory.formats.splice(index, 1);
+  }
+
+  updateNewFormat(): void {
+    if (this.newFormat.trim() !== '') {
+      this.selectedCategory.formats.push({ format_name: this.newFormat });
+      this.newFormat = '';
+    }
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.newCategory.image = file;
+  }
+
+  // async uploadFileToS3(): Promise<string> {
+  //   const formData = new FormData();
+  //   formData.append('file', this.newCategory.image);
+
+  //   try {
+  //     const response = await fetch('/api/uploadToS3', {
+  //       method: 'POST',
+  //       body: formData
+  //     });
+
+  //     const data = await response.json();
+  //     return data.Location; // Return the URL of the uploaded file
+  //   } catch (error) {
+  //     console.error('Error uploading file to S3:', error);
+  //     throw error;
+  //   }
+  // }
+
 }

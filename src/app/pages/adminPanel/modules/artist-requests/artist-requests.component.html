@@ -2,12 +2,12 @@
 
 <div class="d-flex">
     <div class="card card1" style="margin-bottom: 10px;" style="background-color: #f08c8c;">
-        <div class="card-title fw-medium" >
+        <div class="card-title fw-medium">
             <p>Pending Requests</p>
             <hr>
         </div>
         <div class="card-body" style="align-items: flex-start; text-align: left;">
-            <h1 class="card-title">8</h1>
+            <h1 class="card-title">{{ pendingRequests }}</h1>
         </div>
     </div>
     <div class="card card1" style="margin-bottom: 10px;" style="background-color: #b4f08c;">
@@ -16,7 +16,7 @@
             <hr>
         </div>
         <div class="card-body" style="align-items: flex-start; text-align: left;">
-            <h1 class="card-title">3</h1>
+            <h1 class="card-title">{{ rejectedRequests }}</h1>
         </div>
     </div>
     <div class="card card1" style="margin-bottom: 10px;" style="background-color: #8cd4f0;">
@@ -25,7 +25,7 @@
             <hr>
         </div>
         <div class="card-body" style="align-items: flex-start; text-align: left;">
-            <h1 class="card-title">21</h1>
+            <h1 class="card-title">{{ approvedArtists }}</h1>
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@
 <ul class="nav nav-tabs mt-4" role="tablist" style="width: 100%;">
     <li class="nav-item" role="presentation">
         <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Pending Requests</a>
-        
+
     </li>
     <li class="nav-item" role="presentation">
         <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" tabindex="-1"
@@ -42,59 +42,61 @@
 
     <div id="myTabContent" class="tab-content" style="width: 100%;">
         <div class="tab-pane fade show active" id="home" role="tabpanel">
-            <div class="card request-card">
+            <div class="card request-card" *ngFor="let artist of requestedArtists">
                 <div class="d-flex" style="height: 100%;">
                     <div class="profile-pic">
-                        <img src="assets/512763.jpg" alt="Profile Picture" class="rounded-pill" style="width: 78px; height: 78px;">
+                        <img [src]="artist.profile_photo_url" alt="Profile Picture" class="rounded-pill"
+                            style="width: 78px; height: 78px;">
                     </div>
                     <div class="card-body" style="margin: auto;">
                         <div class="d-flex" style="justify-content: space-between;">
                             <div class="d-flex">
-                                <span style="font-size: large;">John Doe |</span>&nbsp;
-                                <span class="fs-6 fw-medium mr-2 text-secondary">UX designer |</span>&nbsp;
-                                <span class="fs-6 fw-medium text-info">Alabama, WV</span>
+                                <span style="font-size: large;">{{ artist.fName }} {{ artist.LName }} |</span>&nbsp;
+                                <span class="fs-6 fw-medium mr-2 text-secondary">{{ artist.profession }} |</span>&nbsp;
+                                <span class="fs-6 fw-medium text-info">{{ artist.location }}</span>
                             </div>
                             <div>
-                                <span class="fs-6 fw-medium">21 / 04 / 2024</span>
+                                <span class="fs-6 fw-medium">{{artist.registered_at | date: 'yyyy-MM-dd' }}</span>
                             </div>
                         </div>
                         <div style="margin: auto; text-align: left;">
                             <a href="" class="fs-6">More Details</a>
                         </div>
-                        
+
                     </div>
                     <div class="buttons d-flex" style="margin: auto;">
-                        <button class="btn btn-success">Approve</button>
-                        <button class="btn btn-danger">Reject</button>
+                        <button class="btn btn-success" (click)="approveArtist(artist.user_id)">Approve</button>
+                        <button class="btn btn-danger" (click)="rejectArtist(artist.user_id)">Reject</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
         <div class="tab-pane fade" id="profile" role="tabpanel">
-            <div class="card request-card">
+            <div class="card request-card" *ngFor="let artist of rejectedArtists">
                 <div class="d-flex" style="height: 100%;">
                     <div class="profile-pic">
-                        <img src="assets/512763.jpg" alt="Profile Picture" class="rounded-pill" style="width: 78px; height: 78px;">
+                        <img [src]="artist.profile_photo_url" alt="Profile Picture" class="rounded-pill"
+                            style="width: 78px; height: 78px;">
                     </div>
                     <div class="card-body" style="margin: auto;">
                         <div class="d-flex" style="justify-content: space-between;">
                             <div class="d-flex">
-                                <span style="font-size: large;">John Doe |</span>&nbsp;
-                                <span class="fs-6 fw-medium mr-2 text-secondary">UX designer |</span>&nbsp;
-                                <span class="fs-6 fw-medium text-info">Alabama, WV</span>
+                                <span style="font-size: large;">{{ artist.fName }} {{ artist.LName }} |</span>&nbsp;
+                                <span class="fs-6 fw-medium mr-2 text-secondary">{{ artist.profession }} |</span>&nbsp;
+                                <span class="fs-6 fw-medium text-info">{{ artist.location }}</span>
                             </div>
                             <div>
-                                <span class="fs-6 fw-medium">21 / 04 / 2024</span>
+                                <span class="fs-6 fw-medium">{{ artist.registered_at | date: 'yyyy-MM-dd' }}</span>
                             </div>
                         </div>
                         <div style="margin: auto; text-align: left;">
                             <a href="" class="fs-6">More Details</a>
                         </div>
-                        
+
                     </div>
                     <div class="buttons d-flex" style="margin: auto;">
-                        <button class="btn btn-success">Approve</button>
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-success" (click)="approveArtist(artist.user_id)">Approve</button>
+                        <button class="btn btn-danger" (click)="deleteArtist(artist.user_id)">Delete</button>
                     </div>
                 </div>
             </div>

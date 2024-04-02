@@ -46,9 +46,9 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <button class="btn btn-danger" (click)="deleteCategory(card.category_id)">
                         <i class="bi bi-trash3-fill"></i></button>
-                        <button class="btn btn-primary" (click)="openEditModal(card)">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
+                    <button class="btn btn-primary" (click)="openEditModal(card)">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -85,21 +85,24 @@
                         <div class="mb-3">
                             <label for="categoryFileTypes" class="form-label">File Types</label>
                             <div class="d-flex flex-wrap">
-                                <span *ngFor="let format of newCategory.formats; let i = index" class="badge bg-primary mr-2 mb-2">
+                                <span *ngFor="let format of newCategory.formats; let i = index"
+                                    class="badge bg-primary mr-2 mb-2">
                                     {{ format.format_name }}
-                                    <button type="button" class="btn-close" aria-label="Close" (click)="removeFormat(i)"></button>
+                                    <button type="button" class="btn-close" aria-label="Close"
+                                        (click)="removeFormat(i)"></button>
                                 </span>
                             </div>
                             <div class="input-group mt-2">
-                                <input type="text" class="form-control" placeholder="Add Format" [(ngModel)]="newFormat" name="newFormat">
+                                <input type="text" class="form-control" placeholder="Add Format" [(ngModel)]="newFormat"
+                                    name="newFormat">
                                 <button class="btn btn-primary" type="button" (click)="addNewFormat()">Add</button>
                             </div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="categoryImage" class="form-label">Category Image</label>
                             <input type="file" class="form-control" id="categoryImage" placeholder="Category Image"
-                                [(ngModel)]="newCategory.image" name="image">
+                                name="image" (change)="handleImageUpload($event)" />
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
@@ -108,7 +111,7 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -124,41 +127,38 @@
                         (click)="modalService.close()"></button>
                 </div>
                 <div class="modal-body">
-                    <form #categoryForm="ngForm" (ngSubmit)="updateCategory(categoryForm)">
+                    <form #editCategoryForm="ngForm" (ngSubmit)="updateCategory(editCategoryForm)">
                         <div class="mb-3">
-                            <label for="categoryName" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="categoryName" placeholder="Category Name"
-                                [(ngModel)]="newCategory.name" name="name" required>
+                            <label for="editCategoryName" class="form-label">Category Name</label>
+                            <input type="text" class="form-control" id="editCategoryName" placeholder="Category Name"
+                                [(ngModel)]="selectedCategory.name" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="categoryDescription" class="form-label">Category Description</label>
-                            <textarea class="form-control" id="categoryDescription" rows="3"
-                                placeholder="Category Description" [(ngModel)]="newCategory.description"
+                            <label for="editCategoryDescription" class="form-label">Category Description</label>
+                            <textarea class="form-control" id="editCategoryDescription" rows="3"
+                                placeholder="Category Description" [(ngModel)]="selectedCategory.description"
                                 name="description" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="categoryMargin" class="form-label">Margin</label>
-                            <input type="text" class="form-control" id="categoryMargin" placeholder="Margin"
-                                [(ngModel)]="newCategory.margin" name="margin" required>
+                            <label for="editCategoryMargin" class="form-label">Margin</label>
+                            <input type="text" class="form-control" id="editCategoryMargin" placeholder="Margin"
+                                [(ngModel)]="selectedCategory.margin" name="margin" required>
                         </div>
                         <div class="mb-3">
-                            <label for="categoryFileTypes" class="form-label">File Types</label>
+                            <label for="editCategoryFileTypes" class="form-label">File Types</label>
                             <div class="d-flex flex-wrap">
-                                <span *ngFor="let format of newCategory.formats; let i = index" class="badge bg-primary mr-2 mb-2">
+                                <span *ngFor="let format of selectedCategory.formats; let i = index"
+                                    class="badge bg-primary mr-2 mb-2">
                                     {{ format.format_name }}
-                                    <button type="button" class="btn-close" aria-label="Close" (click)="removeFormat(i)"></button>
+                                    <button type="button" class="btn-close" aria-label="Close"
+                                        (click)="removeOldFormat(i)"></button>
                                 </span>
                             </div>
                             <div class="input-group mt-2">
-                                <input type="text" class="form-control" placeholder="Add Format" [(ngModel)]="newFormat" name="newFormat">
-                                <button class="btn btn-primary" type="button" (click)="addNewFormat()">Add</button>
+                                <input type="text" class="form-control" placeholder="Add Format" [(ngModel)]="newFormat"
+                                    name="newFormat">
+                                <button class="btn btn-primary" type="button" (click)="updateNewFormat()">Add</button>
                             </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="categoryImage" class="form-label">Category Image</label>
-                            <input type="file" class="form-control" id="categoryImage" placeholder="Category Image"
-                                [(ngModel)]="newCategory.image" name="image">
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
@@ -167,9 +167,8 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
     </div>
 </app-modal>
-

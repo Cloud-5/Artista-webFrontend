@@ -8,6 +8,7 @@ import { DashboardComponent } from '../modules/dashboard/dashboard.component';
 import { ArtCategoriesComponent } from '../modules/art-categories/art-categories.component';
 import { UserManagementComponent } from '../modules/user-management/user-management.component';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
+import { ArtistRequestsComponent } from '../modules/artist-requests/artist-requests.component';
 
 import {FormsModule} from "@angular/forms";
 
@@ -18,7 +19,8 @@ import {FormsModule} from "@angular/forms";
     DashboardComponent,
     ArtCategoriesComponent,
     UserManagementComponent,
-    ModalComponent
+    ModalComponent,
+    ArtistRequestsComponent
   ],
   imports: [
     CommonModule,
