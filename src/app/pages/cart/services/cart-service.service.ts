@@ -18,6 +18,7 @@ export class CartServiceService {
     if (isPlatformBrowser(this.platformId)) {
       const itemsJson = localStorage.getItem('localCart');
       this.cartItems = itemsJson ? JSON.parse(itemsJson) : [];
+      console.log('cartItems: ', this.cartItems);
       this.cartItemsSubject.next(this.cartItems);
     }
   }
@@ -35,6 +36,7 @@ export class CartServiceService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('localCart', JSON.stringify(this.cartItems));
       this.cartItemsSubject.next(this.cartItems);
+      console.log('cartItems: ', this.cartItems);
     }
   }
 

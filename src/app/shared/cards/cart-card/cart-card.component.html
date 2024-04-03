@@ -3,14 +3,14 @@
     <!-- Column 1 -->
     <div class="col">
       <div class="card-body">
-        <img [src]="cartItem.artImgUrl" alt="art" class="rounded card-img-left img-fluid " />
+        <img [src]="cartItem.thumbnail_url" alt="art" class="rounded card-img-left img-fluid " />
       </div>
     </div>
     <!-- Column 2 -->
     <div class="col">
       <div class="card-body">
-        <p class="artwork-name"><strong> {{cartItem.artworkName}}</strong></p>
-        <p class="artist-name"><strong>{{cartItem.artistName}}</strong></p>
+        <p class="artwork-name"><strong> {{cartItem.artwork_title}}</strong></p>
+        <p class="artist-name"><strong>{{cartItem.artist_name}}</strong></p>
       </div>
     </div>
     <!-- Column 3 -->

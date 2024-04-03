@@ -3,20 +3,20 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
       <div class="row">
         <div class="col-md-9">
-          <div class="text-center mt-5">
+          <div class="text-center mt-5">      
             <h3 class="text-color">Checkout Form</h3>
           </div>
 
           <!--form content -->
 
 
-          <fieldset>
+          <fieldset>  	
             <legend class="mt-4">Personal Details</legend>
             <div class="form-group">
               <label for="firstNameInput" class="form-label mt-4">First Name</label>
               <input type="text" class="form-control" id="firstNameInput" name="firstNameInput"
                      aria-describedby="firstNameHelp" placeholder="Enter your first name"
-                     formControlName="firstNameInput">
+                     formControlName="firstNameInput" [(ngModel)]="fiName">
               <div class="error" *ngIf="submitted && f['firstNameInput'].errors">
                 <div *ngIf="f['firstNameInput'].errors?.['required']">First Name is Required</div>
               </div>
@@ -24,7 +24,7 @@
             <div class="form-group">
               <label for="lastNameInput" class="form-label mt-4">Last Name</label>
               <input type="text" class="form-control" id="lastNameInput" name="lastNameInput"
-                     aria-describedby="lastNameHelp" placeholder="Enter your last name" formControlName="lastNameInput">
+                     aria-describedby="lastNameHelp" placeholder="Enter your last name" formControlName="lastNameInput" [ngModel]="lastName">
               <div class="error" *ngIf="submitted && f['lastNameInput'].errors">
                 <div *ngIf="f['lastNameInput'].errors?.['required']">Last Name is Required</div>
               </div>
@@ -33,7 +33,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                     placeholder="Enter email" formControlName="emailInput">
+                     placeholder="Enter email" formControlName="emailInput" [ngModel]="email">
               <!-- Error message for required validation -->
               <div class="error" *ngIf="submitted && f['emailInput'].errors">
                 <div *ngIf="f['emailInput'].errors?.['required']">Email address is required</div>
@@ -69,7 +69,7 @@
             <div class="form-group">
               <label for="descriptionInput" class="form-label mt-4">Description</label>
               <textarea class="form-control" id="descriptionInput" rows="4" maxlength="200"
-                        placeholder="Enter your description"></textarea>
+                        placeholder="Enter your description" formControlName="descriptionInput"></textarea>
               <!-- The rows attribute specifies the visible number of lines in the textarea -->
               <!-- The maxlength attribute limits the number of characters allowed in the textarea -->
               <small class="form-text text-muted">Maximum 200 characters allowed.</small>

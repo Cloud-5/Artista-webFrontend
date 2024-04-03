@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,20 +6,16 @@ import { Component, Input } from '@angular/core';
   templateUrl: './artists.component.html',
   styleUrls: ['./artists.component.css']
 })
-export class ArtistsComponent {
-  
+export class ArtistsComponent  {
+
+
   @Input() artist: any ;
+  
+  constructor() { }
+ 
+  
 
-
-  formatLikeCount(likeCount: number): string {
-    if (likeCount < 1000) {
-      return likeCount.toString();
-    } else if (likeCount < 1000000) {
-      return (likeCount / 1000).toFixed(1) + 'K';
-    } else {
-      return (likeCount / 1000000).toFixed(1) + 'M';
-    }
-  }
+ 
 
   formatCrationCount(creationCount:number):string{
     if (creationCount < 1000) {

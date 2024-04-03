@@ -7,8 +7,8 @@
         </div>
         <div class="container mt-5 mb-3 ">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" >
-                <div class="col mb-3" *ngFor="let category of categories" >
-                    <app-category [imageUrl]="category.imageUrl" [title]="category.title" ></app-category>                
+                <div class="col mb-3" *ngFor="let category of categoryData" >
+                    <app-category [imageUrl]="category.image_url" [title]="category.name"></app-category>                
                 </div>
             </div>
         </div>

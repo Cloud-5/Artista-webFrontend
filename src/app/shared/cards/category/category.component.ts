@@ -9,8 +9,11 @@ export class CategoryComponent {
   @Input() imageUrl!: string;
   @Input() title!: string;
   @Input() selected: boolean = false;
-
-  constructor() { }
+  @Input() category: any 
+  
+ 
+  constructor() { 
+  }
 
   toggleSelection(): void {
     console.log('Toggle selection called');

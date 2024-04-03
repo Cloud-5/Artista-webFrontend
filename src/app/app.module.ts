@@ -23,7 +23,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     MatIconModule,
     MatChipsModule,
     MatTooltipModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

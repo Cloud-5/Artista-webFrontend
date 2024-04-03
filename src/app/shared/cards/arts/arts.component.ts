@@ -23,12 +23,14 @@ export class ArtsComponent  {
     }
   }
 addCart(art: any) {
+  
   console.log(art);
 
  
   let cartDataString = localStorage.getItem('localCart');
   let cartData: any[] = cartDataString ? JSON.parse(cartDataString) : [];
-
+// Create a new array to record cart items and quantities
+let recordedCartData: any[] = [];
 
   if (!Array.isArray(cartData)) {
   
@@ -46,9 +48,15 @@ addCart(art: any) {
     art.quantity = 1; 
     cartData.push(art);
   }
+  cartData.forEach(item => {
+    recordedCartData.push({ artId: item.artId, quantity: item.quantity });
+  });
 
+  // Store the recordedCartData in local storage
+  localStorage.setItem('recordedCart', JSON.stringify(recordedCartData));
   
   localStorage.setItem('localCart', JSON.stringify(cartData));
+  console.log('recordedCartData: ', recordedCartData);
 }
 
 

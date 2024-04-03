@@ -1,16 +1,16 @@
 <div class= "card artist-card shadow zoom-in-out-on-hover">
     
-    <img [src]="artist.bannerImgUrl" class="card-img-top" alt="Banner Image">
+    <img [src]="artist.banner_image_url" class="card-img-top" alt="Banner Image">
    
 
 <div class="card-body">
     
     <div class="profile-pic">
-         <img [src]="artist.artistImgUrl" class="profile-picture rounded-circle shadow" alt="Profile Picture">
+         <img [src]="artist.profile_photo_url" class="profile-picture rounded-circle shadow" alt="Profile Picture">
     </div>
     <div class="artist-detail">
-         <p class="card-title "><strong>{{artist.artistName}}</strong></p>
-         <p class="job-title ">{{artist.proffesionStatus}}</p>  
+         <p class="card-title "><strong>{{artist.fName+" "+artist.LName}}</strong></p>
+         <p class="job-title ">{{artist.profession}}</p>  
          <div class="row location-style">
            <div class="col-auto">
              <i class="bi bi-geo-alt-fill"></i>
@@ -24,7 +24,7 @@
              <i class="bi bi-star-fill"></i>
            </div>
              <div class="col">
-             <p class="like-count"><Strong>{{formatLikeCount(artist.likeCount)}}</Strong></p>
+             <p class="like-count"><Strong>{{artist.rating[0].rating_value}}</Strong></p>
            </div>
            <div class="col">
              <p class="creation text-right"><strong>Creation: {{formatCrationCount(artist.creationCount)}}</strong></p>
