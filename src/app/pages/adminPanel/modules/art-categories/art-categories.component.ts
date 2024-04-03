@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { ArtCategoriesService } from './art-categories.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { response } from 'express';
 import { uploadFileToS3 } from '../../../../handlers/s3handler';
 
 @Component({
@@ -81,7 +80,7 @@ export class ArtCategoriesComponent implements OnInit {
       try {
 
         //const imageUrl = uploadFileToS3(this.newCategory.image); // Get the URL of the uploaded file
-        // Set the URL to the newCategory object
+        //Set the URL to the newCategory object
         //this.newCategory.image = imageUrl;  
 
         const response = await this.artCategoriesService.createCategory(this.newCategory).toPromise();

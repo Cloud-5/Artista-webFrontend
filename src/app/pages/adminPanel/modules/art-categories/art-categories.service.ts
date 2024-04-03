@@ -8,7 +8,6 @@ import { environment } from "../../../../../environments/environment";
 })
 export class ArtCategoriesService {
 
-
   private apiUrl: string = environment.apiUrl + '/art-categories';
 
   constructor(private http: HttpClient) { }

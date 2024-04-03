@@ -12,6 +12,7 @@ export class ArtistRequestsComponent implements OnInit {
   approvedArtists: number = 0;
   requestedArtists: any[] = [];
   rejectedArtists: any[] = [];
+  
 
   constructor(private artistRequestsService: ArtistRequestsService) {}
 
