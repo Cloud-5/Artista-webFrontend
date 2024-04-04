@@ -36,12 +36,12 @@ export class CartServiceService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('localCart', JSON.stringify(this.cartItems));
       this.cartItemsSubject.next(this.cartItems);
-      console.log('cartItems: ', this.cartItems);
+      console.log('saved cartItems: ', this.cartItems);
     }
   }
 
   incrementItemQuantity(id: string) {
-    const item = this.cartItems.find((item) => item.artId === id);
+    const item = this.cartItems.find((item) => item.artwork_id === id);
     if (item) {
       item.quantity += 1;
       this.saveCartItems();
@@ -49,7 +49,7 @@ export class CartServiceService {
   }
 
   decrementItemQuantity(id: string) {
-    const item = this.cartItems.find((item) => item.artId === id);
+    const item = this.cartItems.find((item) => item.artwork_id === id);
     if (item && item.quantity > 1) {
       item.quantity -= 1;
       this.saveCartItems();
@@ -57,7 +57,7 @@ export class CartServiceService {
   }
 
   deleteItem(id: string) {
-    this.cartItems = this.cartItems.filter(item => item.artId !== id);
+    this.cartItems = this.cartItems.filter(item => item.artwork_id!== id);
     this.saveCartItems();
   }
 

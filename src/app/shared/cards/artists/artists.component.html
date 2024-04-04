@@ -27,8 +27,8 @@
              <p class="like-count"><Strong>{{artist.rating[0].rating_value}}</Strong></p>
            </div>
            <div class="col">
-             <p class="creation text-right"><strong>Creation: {{formatCrationCount(artist.creationCount)}}</strong></p>
-           </div>
+            <p class="creation text-right"><strong>Creation: {{artist.total_creations[0]['COUNT(artwork_id)']}}</strong></p>
+        </div>
            <button type="button" class="btn btn-primary mx-auto">Message</button>
          </div>
     </div>

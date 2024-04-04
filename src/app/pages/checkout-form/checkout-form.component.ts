@@ -49,14 +49,17 @@
       console.log('Form submitted');
       this.submitted = true;
     
-      //  Check if form is valid before proceeding
-      //  if (this.reactiveForm.invalid) { 
-      //    return;
-      //  }
+      // Check if form is valid before proceeding
+       if ( this.reactiveForm.value.locationInput.invalid || this.reactiveForm.value.phoneNumberInput.invalid || this.reactiveForm.value.paymentOption.invalid || this.reactiveForm.value.descriptionInput.invalid || this.reactiveForm.value.paymentOption.invalid || this.reactiveForm.value.agreeTermsCheckbox.invalid || this.reactiveForm.value.agreePrivacyCheckbox.invalid || this.reactiveForm.value.agreeMarketingCheckbox.invalid) { 
+        console.log('Form is invalid');
+       
+       return;
+       
+       }
     
       // Extract artwork IDs and quantities from cartItems
       const cartItemsData = this.cartItems.map(item => ({
-        artwork_id: item.artId,
+        artwork_id: item.artwork_id,
         quantity: item.quantity
       }));
     
@@ -86,7 +89,7 @@
       this.checkoutService.createPurchase(this.userId, formData).subscribe(
         response => {
           console.log('Purchase created successfully:', response);
-          // Optionally, reset the form or show a success message
+          // reset the form or show a success message
         },
         error => {
           console.error('Error creating purchase:', error);

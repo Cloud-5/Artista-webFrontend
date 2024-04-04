@@ -13,15 +13,7 @@ export class ArtsComponent  {
 
   constructor(){}
   
-  formatLikeCount(likeCount: number): string {
-    if (likeCount < 1000) {
-      return likeCount.toString();
-    } else if (likeCount < 1000000) {
-      return (likeCount / 1000).toFixed(1) + 'K';
-    } else {
-      return (likeCount / 1000000).toFixed(1) + 'M';
-    }
-  }
+  
 addCart(art: any) {
   
   console.log(art);
@@ -38,7 +30,7 @@ let recordedCartData: any[] = [];
   }
 
  
-  let existingItemIndex = cartData.findIndex(item => parseInt(item.artId) === parseInt(art.artId));
+  let existingItemIndex = cartData.findIndex(item => parseInt(item.artwork_id) === parseInt(art.artwork_id));
 
   if (existingItemIndex !== -1) {
    
@@ -49,7 +41,7 @@ let recordedCartData: any[] = [];
     cartData.push(art);
   }
   cartData.forEach(item => {
-    recordedCartData.push({ artId: item.artId, quantity: item.quantity });
+    recordedCartData.push({ artId: item.artwork_id, quantity: item.quantity });
   });
 
   // Store the recordedCartData in local storage

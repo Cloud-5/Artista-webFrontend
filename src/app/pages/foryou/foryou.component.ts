@@ -1,4 +1,4 @@
-import { Component,Input,OnInit } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { ForyouServiceService } from './foryou-service.service';
 
 
@@ -8,11 +8,11 @@ import { ForyouServiceService } from './foryou-service.service';
   styleUrls: ['./foryou.component.css']
 })
 export class ForyouComponent {
-
   artsData: any[]= [];
   userId: number = 2;
 
   constructor(private foryouService: ForyouServiceService) { }
+
 
   // artsData = [
   //   { artId:1, artImgUrl: '../assets/images/digitalIllustrations.jpg', artworkName: 'Mystic Mountains', price: 150, artistName: 'Emma Turner', likeCount: 2350,quantity:1 },
@@ -33,16 +33,6 @@ export class ForyouComponent {
   //   { artId:16, artImgUrl: '../assets/images/generativeArts.jpg', artworkName: 'Artificial Arcadia', price: 200, artistName: 'Liam Murphy', likeCount: 3750,quantity:1 }
   // ];
 
-  // loadArtistData(): void{
-  //   this.artistService.getArtist().subscribe((data: any[]) => {
-  //     console.log('Artist data: ', data);
-  //     this.artistsData = data;
-  //     this.filteredArtists = this.artistsData; 
-  //   }, (error) => {
-  //     console.error('Error fetching artist data: ', error);
-  //   });
-  // }
-  
   ngOnInit(): void {
     this.loadArtworkData(this.userId);
   }
@@ -54,6 +44,6 @@ export class ForyouComponent {
       console.error('Error fetching cart data: ', error);
     });
   }
- 
+  
 
 }

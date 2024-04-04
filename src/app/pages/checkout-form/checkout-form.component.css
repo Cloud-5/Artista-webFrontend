@@ -46,8 +46,10 @@
 
 .alert{
     margin-top: 10px;
-    background-color: green;
+  
     padding: 10px 20px;
     color: aliceblue;
     border-radius: 5px;
 }
+
+

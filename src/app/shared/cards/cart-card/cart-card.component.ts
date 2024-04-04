@@ -15,14 +15,14 @@ export class CartCardComponent {
   }
 
   increment() {
-    this.cartService.incrementItemQuantity(this.cartItem.artId);
+    this.cartService.incrementItemQuantity(this.cartItem.artwork_id);
   }
 
   decrement() {
-    this.cartService.decrementItemQuantity(this.cartItem.artId);
+    this.cartService.decrementItemQuantity(this.cartItem.artwork_id);
   }
 
   singleDelete() {
-    this.cartService.deleteItem(this.cartItem.artId);
+    this.cartService.deleteItem(this.cartItem.artwork_id);
   }
 }
