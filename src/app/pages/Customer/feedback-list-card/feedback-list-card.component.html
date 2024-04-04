@@ -1,42 +1,10 @@
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+  <a *ngFor="let feedback of feedbackList" href="#" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">John Doe  | </h5>
-      <small>3 days ago</small>
+      <h5 class="mb-1">{{ feedback.customer_name }} | </h5>
+      <small>{{ feedback.timestamp | date:'yyyy-mm-dd' }}</small>
     </div>
-    <p class="mb-1">This is the feedback.</p>
-    <small>Excellent work.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Ann Peterson  |</h5>
-      <small class="text-body-secondary">3 days ago</small>
-    </div>
-    <p class="mb-1">This is the feedback.</p>
-    <small class="text-body-secondary">Great work.Keep it up</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">John Anderson |</h5>
-      <small class="text-body-secondary">2 days ago</small>
-    </div>
-    <p class="mb-1">This is the feedback.</p>
-    <small class="text-body-secondary">Excellent Artwork</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Ann Peterson  |</h5>
-      <small class="text-body-secondary">2 days ago</small>
-    </div>
-    <p class="mb-1">This is the feedback.</p>
-    <small class="text-body-secondary">Love it.Great work</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">John Anderson |</h5>
-      <small class="text-body-secondary">1 days ago</small>
-    </div>
-    <p class="mb-1">This is the feedback.</p>
-    <small class="text-body-secondary">Amazing Artwork</small>
+    <p class="mb-1">{{ feedback.feedback_content }}</p>
+    <small>{{ feedback.feedback_content }}</small>
   </a>
 </div>

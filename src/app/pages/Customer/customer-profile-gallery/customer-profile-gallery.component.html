@@ -1,28 +1,27 @@
 <app-navbar></app-navbar>
 
 <div class="header__wrapper">
+  <img src="{{CustomerData.banner_img_url}}"alt="Banner Image" style="width: 100%; height:200px;">
   <header></header>
   <div class="cols__container">
     <div class="left__col">
       <div class="img__container">
-        <img src="https://instacaptionsforall.in/wp-content/uploads/2023/11/87-5-1024x1024.jpg" alt="Anna Smith" />
+        <img src="{{CustomerData.profile_photo_url}}" alt="Anna Smith" />
         <span></span>
       </div>
-      <h2>Ann Doe</h2>
-      <p><b>Australia</b></p>
-      <p><b>Member Since : </b>02 Feb 2024</p>
+      <h2>{{CustomerData.name}}</h2>
+      <p><b>{{CustomerData.location}}</b></p>
+      <p><b>Member Since : </b>{{CustomerData.joined_date | date:'yyyy-mm-dd'}}</p>
 
       <ul class="about">
-        <li><span>2,543</span>Gallery</li>
-        <li><span>4,322</span>Following</li>
-        <li><span>543</span>Purchases</li>
+        <li>{{CustomerData.total_gallery_items}}<span></span>Gallery</li>
+        <li>{{CustomerData.total_following_count}}<span></span>Following</li>
+        <li>{{CustomerData.total_purchases}}<span></span>Purchases</li>
       </ul>
 
       <div class="content">
         <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
-          erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl ligula
-          egestas nulla.
+          {{CustomerData.description}}
         </p>
         <br />
         <br />
@@ -37,6 +36,7 @@
             <button type="button" class="btn btn-success">Log Out</button>
           </div>
         </div>
+        
       </div>
     </div>
     <div class="right__col">
@@ -67,7 +67,7 @@
             </div>
           </nav>
           <div class="Gallery">
-            <div class="col mb-3" *ngFor="let art of artsData">
+            <div class="col mb-3" *ngFor="let art of galleryArtData">
               <app-arts [art]="art"></app-arts>
             </div>
           </div>

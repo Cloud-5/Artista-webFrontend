@@ -1,12 +1,4 @@
 
-body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  min-height: 100vh;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -21,13 +13,6 @@ a {
 .button-container {
   display: flex;
   justify-content: space-between;
-}
-
-
-.header__wrapper header {
-  width: 100%;
-  background: url("https://as1.ftcdn.net/v2/jpg/03/50/68/30/1000_F_350683074_SSaXPN4XBvmwEKWRG4aU18Kl7kwkOdrg.jpg") no-repeat 50% 20% / cover;
-  min-height: calc(100px + 15vw);
 }
 
 .header__wrapper .cols__container .left__col {
