@@ -72,7 +72,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
   private createScene() {
     //* Scene
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xffffff);
+    this.scene.background = new THREE.Color(0x000000);
     this.scene.fog = new THREE.Fog(0x000000, 1, 10);
 
     const planeGeometry = new THREE.PlaneGeometry(10, 10, 10);
@@ -84,7 +84,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
     plane.castShadow = false;
     plane.receiveShadow = true;
 
-    this.loaderGLTF.load('assets/robot/scene.gltf', (gltf: GLTF):void => {
+    this.loaderGLTF.load('assets/car/scene.gltf', (gltf: GLTF):void => {
       this.model = gltf.scene.children[0];
       console.log(this.model);
 

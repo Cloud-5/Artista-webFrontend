@@ -12,6 +12,7 @@ import { ArtistRequestsComponent } from '../modules/artist-requests/artist-reque
 
 import {FormsModule} from "@angular/forms";
 
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DefaultLayoutComponent

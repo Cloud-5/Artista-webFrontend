@@ -4,6 +4,8 @@ import { ArtCategoriesService } from './art-categories.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { uploadFileToS3 } from '../../../../handlers/s3handler';
 
+import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-art-categories',
   templateUrl: './art-categories.component.html',
@@ -74,6 +76,7 @@ export class ArtCategoriesComponent implements OnInit {
     console.log(this.newCategory.image);
 
   }
+
 
   async addCategory(categoryForm: any): Promise<void> {
     if (categoryForm.valid) {

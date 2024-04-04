@@ -159,7 +159,7 @@
                     <div class="col-4 justify-content-center d-flex">
                         <div class="rating">
                             <div class="d-flex">
-                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artworkDetails.avg_rating}}</p>
+                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artworkDetails.avg_rating | number: '1.0-0'}}</p>
                                 &nbsp;
                                 <i class="bi bi-star-fill"></i>
                             </div>
@@ -210,7 +210,7 @@
                     </div>
                     <hr>
                 </div>
-                <div class="row">
+                <div class="row border">
                     <app-comment-list currentUserId="1"></app-comment-list>
                 </div>
             </div>
