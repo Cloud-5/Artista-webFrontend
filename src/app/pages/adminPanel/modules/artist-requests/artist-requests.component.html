@@ -32,12 +32,13 @@
 
 <ul class="nav nav-tabs mt-4" role="tablist" style="width: 100%;">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Pending Requests</a>
+        <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Pending
+            Requests</a>
 
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" tabindex="-1"
-            role="tab">Rejected Requests</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" tabindex="-1" role="tab">Rejected
+            Requests</a>
     </li>
 
     <div id="myTabContent" class="tab-content" style="width: 100%;">
@@ -60,7 +61,7 @@
                             </div>
                         </div>
                         <div style="margin: auto; text-align: left;">
-                            <a href="" class="fs-6">More Details</a>
+                            <p class="fs-6" (click)="openUserDetailsModal(artist)">More Details</p>
                         </div>
 
                     </div>
@@ -70,7 +71,7 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
         <div class="tab-pane fade" id="profile" role="tabpanel">
             <div class="card request-card" *ngFor="let artist of rejectedArtists">
                 <div class="d-flex" style="height: 100%;">
@@ -90,7 +91,7 @@
                             </div>
                         </div>
                         <div style="margin: auto; text-align: left;">
-                            <a href="" class="fs-6">More Details</a>
+                            <p class="fs-6" (click)="openUserDetailsModal(artist)">More Details</p>
                         </div>
 
                     </div>
@@ -105,3 +106,60 @@
 </ul>
 
 
+<app-modal id="modal-userDetails">
+    <div class="new-modal">
+      <div class="new-modal-body">
+        <div class="modal-content">
+          <div class="modal-header mb-4">
+            <h5 class="modal-title text-info">User Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalService.close()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="border border-primary p-3">
+                  <h5 class="text-body-secondary">Profile Photo</h5>
+                  <img [src]="selectedArtist.profile_photo_url" alt="Profile Photo" class="img-fluid mb-3 rounded" style="width: 200px; height: 200px;">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="border border-primary p-3">
+                  <h5 class="text-body-secondary">Basic Information</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item"><strong>First Name:</strong> {{ selectedArtist.fName }}</li>
+                    <li class="list-group-item"><strong>Last Name:</strong> {{ selectedArtist.LName }}</li>
+                    <li class="list-group-item"><strong>Profession:</strong> {{ selectedArtist.profession }}</li>
+                    <li class="list-group-item"><strong>Location:</strong> {{ selectedArtist.location }}</li>
+                    <li class="list-group-item"><strong>Applied Date:</strong> {{ selectedArtist.registered_at | date: 'short' }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="border border-primary p-3 mt-4">
+              <h5 class="text-body-secondary">On the Web</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let socialLink of selectedArtist.socialLinks">
+                      <img [src]="socialLink.logoUrl" alt="{{ socialLink.name }}" class="img-fluid me-2" style="width: 20px;">
+                      <a [href]="socialLink.link" target="_blank">{{ socialLink.name }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="border border-primary p-3 mt-4">
+              <h5 class="text-body-secondary">Description</h5>
+              <p>{{ selectedArtist.description }}</p>
+            </div>
+            <div class="border border-primary p-3 mt-4">
+              <h5 class="text-body-secondary">Work Experience</h5>
+              <p>{{ selectedArtist.workExperience }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-modal>
+  
+  

@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ArtworkPreviewService } from './artwork-preview.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   animations: [
     trigger('toggleFavorite', [
         state('true', style({
-          color: 'red', // Change color to your desired filled color
+          color: 'red', // Change color
         })),
         state('false', style({
           color: 'blue',
@@ -25,28 +26,47 @@ export class ArtworkPreviewComponent implements OnInit {
     selectedArtworkType: string = '';
     selectedArtworkUrl: string = '';
   
-    constructor() { }
+    constructor(private artworkService: ArtworkPreviewService) { }
   
     ngOnInit() {
+        this.loadArtworkDetails('3');
     }
+
+    artworkDetails: any = {};
+
+    tags: string = ''
+    tagsArray: string[] = [];
+
+
+    loadArtworkDetails(artworkId: string): void {
+        this.artworkService.getArtworkDetails(artworkId).subscribe(
+            (data: any) => {
+                this.artworkDetails = data.artworkDetails[0]; 
+                this.tags = this.artworkDetails.tags;
+                this.tagsArray = this.tags.split(',');
+            },
+            (error) => {
+                console.error('Error fetching artwork details:', error);
+            }
+        );
+    }
+
+    loadComments(artworkId: string): void {
+        this.artworkService.getArtworkDetails(artworkId).subscribe(
+            (data:any) => {
+                this.artworkDetails = data.artworkDetails[1];
+                console.log('Comments:', this.artworkDetails[1]);
+            },
+            (error)=> {
+                console.error('Error fetching comments:', error);
+            }
+        )
+    }
+    
+
     isFavorite: boolean = false;
-    totalLikes: number = 10;
-    pDate: Date = new Date(2019, 1, 1);
-    artworkTitle: string = 'Day Dreaming';
-    artistName: string = 'Walter White';
-    artistLocation: string = 'Albuquerque, NM';
-    dimensions: string = '24" x 36"';
-    artworkCategory: string = 'Doodle';
-    price: number = 8043.99;
-    artistRate:number = 4.5;
-    artistFollowers: number = 100;
-    artistArtworks: number = 10;
-    commentCount: number = 34;
 
     showStickyBar: boolean = false;
-
-    artworkTools: string[] = ['Jupyter', 'Adobe Illustrator'];
-    fileFormats: string[] = ['PDF', 'PNG', 'JPG'];
 
     toggleFavorite() {
         this.isFavorite = !this.isFavorite;

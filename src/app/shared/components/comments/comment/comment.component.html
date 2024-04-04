@@ -10,13 +10,13 @@
         &nbsp;
         <div class="fw-medium">{{ createdAt }}</div>
       </div>
-      <div class="comment-text" *ngIf="!isEditing()">{{ comment.body }}</div>
+      <div class="comment-text" *ngIf="!isEditing()">{{ comment.content }}</div>
       <app-comment-form
         *ngIf="isEditing()"
         submitLabel="Update"
         [hasCancelButton]="true"
-        [initialText]="comment.body"
-        (handleSubmit)="updateComment.emit({ text: $event, commentId: comment.id })"
+        [initialText]="comment.content"
+        (handleSubmit)="updateComment.emit({ text: $event, commentId: comment.comment_id})"
         (handleCancel)="setActiveComment.emit(null)"
       ></app-comment-form>
     </div>
@@ -26,7 +26,7 @@
           class="comment-action"
           (click)="
             setActiveComment.emit({
-              id: comment.id,
+              id: comment.comment_id,
               type: activeCommentType.replying
             })
           "
@@ -38,7 +38,7 @@
           class="comment-action"
           (click)="
             setActiveComment.emit({
-              id: comment.id,
+              id: comment.comment_id,
               type: activeCommentType.editing
             })
           "
@@ -48,7 +48,7 @@
       <div
           *ngIf="canDelete"
           class="comment-action"
-          (click)="deleteComment.emit(comment.id)"
+          (click)="deleteComment.emit(comment.comment_id)"
         >
           Delete
       </div>
@@ -67,7 +67,7 @@
           (updateComment)="updateComment.emit($event)"
           (deleteComment)="deleteComment.emit($event)"
           (addComment)="addComment.emit($event)"
-          [parentId]="comment.id"
+          [parentId]="comment.comment_id"
           [replies]="[]"
           [currentUserId]="currentUserId"
         ></app-comment>

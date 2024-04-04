@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistRequestsService } from './artist-requests.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 
 @Component({
   selector: 'app-artist-requests',
@@ -13,8 +14,9 @@ export class ArtistRequestsComponent implements OnInit {
   requestedArtists: any[] = [];
   rejectedArtists: any[] = [];
   
+  selectedArtist: any ={};
 
-  constructor(private artistRequestsService: ArtistRequestsService) {}
+  constructor(private artistRequestsService: ArtistRequestsService, public modalService: ModalService) {}
 
   ngOnInit(): void {
     this.fetchArtistData();
@@ -22,12 +24,6 @@ export class ArtistRequestsComponent implements OnInit {
 
   fetchArtistData(): void {
     this.artistRequestsService.getAllArtistData().subscribe((data: any) => {
-
-      // console.log('Total Pending Requests:', data.totalPendingRequests);
-      // console.log('Total Rejected Artists:', data.totalRejectedArtists);
-      // console.log('Total Approved Artists:', data.totalApprovedArtists);
-      // console.log('Requested Artists:', data.requestedArtists);
-      // console.log('Rejected Artists:', data.rejectedArtists);
 
       this.pendingRequests = data.totalPendingRequests;
       this.rejectedRequests = data.totalRejectedArtists;
@@ -65,6 +61,12 @@ export class ArtistRequestsComponent implements OnInit {
       // Refresh artist data after deletion
       this.fetchArtistData();
     });
+  }
+
+  openUserDetailsModal(artist: any): void {
+    this.selectedArtist = artist;
+    console.log('Selected Artist:', this.selectedArtist);
+    this.modalService.open('modal-userDetails');
   }
 
 }

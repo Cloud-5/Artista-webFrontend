@@ -94,5 +94,10 @@ export class UserManagementComponent implements OnInit {
       );
     }
   }
+  openUserDetailsModal(artist: any): void {
+    this.selectedUser = artist;
+    console.log('Selected Artist:', this.selectedUser);
+    this.modalService.open('modal-userDetails');
+  }
   
 }

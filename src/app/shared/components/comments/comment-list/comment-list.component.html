@@ -8,7 +8,7 @@
       <app-comment
         *ngFor="let rootComment of getRootComments()"
         [comment]="rootComment"
-        [replies]="getReplies(rootComment.id)"
+        [replies]="getReplies(rootComment.comment_id)"
         [activeComment]="activeComment"
         (setActiveComment)="setActiveComment($event)"
         (addComment)="addComment($event)"

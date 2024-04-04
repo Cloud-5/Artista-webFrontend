@@ -37,16 +37,16 @@ export class CommentComponent implements OnInit{
     const fiveMinutes = 300000;
     const timePassed =
       new Date().getMilliseconds() -
-        new Date(this.comment.createdAt).getMilliseconds() >
+        new Date(this.comment.created_at).getMilliseconds() >
       fiveMinutes;
-    this.createdAt = new Date(this.comment.createdAt).toLocaleDateString();
+    this.createdAt = new Date(this.comment.created_at).toLocaleDateString();
     this.canReply = Boolean(this.currentUserId);
-    this.canEdit = this.currentUserId === this.comment.userId && !timePassed;
+    this.canEdit = this.currentUserId === this.comment.user_id && !timePassed;
     this.canDelete =
-      this.currentUserId === this.comment.userId &&
+      this.currentUserId === this.comment.user_id &&
       this.replies.length === 0 &&
       !timePassed;
-    this.replyId = this.parentId ? this.parentId : this.comment.id;
+    this.replyId = this.parentId ? this.parentId : this.comment.comment_id;
   }
   
   isReplying(): boolean {
@@ -54,7 +54,7 @@ export class CommentComponent implements OnInit{
       return false;
     }
     return (
-      this.activeComment.id === this.comment.id &&
+      this.activeComment.id === this.comment.comment_id &&
       this.activeComment.type === this.activeCommentType.replying
     );
   }
@@ -64,7 +64,7 @@ export class CommentComponent implements OnInit{
       return false;
     }
     return (
-      this.activeComment.id === this.comment.id &&
+      this.activeComment.id === this.comment.comment_id &&
       this.activeComment.type === 'editing'
     );
   }

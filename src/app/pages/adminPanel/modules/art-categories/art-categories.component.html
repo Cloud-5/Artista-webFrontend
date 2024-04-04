@@ -20,15 +20,18 @@
             New Category
         </button>
     </form>
+
     <div class="cards mt-2 border border-secondary-subtle rounded p-3">
-        <div class="card m-2" style="width: 19.2rem; height: 33rem;" *ngFor="let card of categoryData">
-            <img src="{{card.banner}}" class="card-img-top" alt="Banner" style="min-height: 200px; width: 100%;">
-            <div class="card-body">
+        <div class="card m-2" style="width: 19.2rem; height: 550px;" *ngFor="let card of categoryData">
+            <img src="{{card.banner}}" class="card-img-top" alt="Banner"
+                style="min-height: 200px; max-height: 200px; width: 100%; object-fit: cover;">
+
+            <div class="card-body" style="height: 10rem;">
                 <div class="text-center m-2">
-                    <h5 class="card-title">{{card.name}}</h5>
-                    <p class="card-text" style="font-size: x-small;">{{card.description}}</p>
+                    <h5 class="card-title" style="min-height: 3rem;">{{card.name}}</h5>
+                    <p class="card-text" style="font-size: x-small; min-height: 3rem;">{{card.description}}</p>
                 </div>
-                <div class="fw-medium">
+                <div class="fw-normal">
                     <div class="mb-2">
                         Total Creations: {{card.totalArtworks}}
                     </div>
@@ -42,12 +45,14 @@
                         </span>
                     </div>
                 </div>
-
+            </div>
+            <div class="card-footer">
                 <div class="d-flex justify-content-between align-items-center">
                     <button class="btn btn-danger" (click)="deleteCategory(card.category_id)">
-                        <i class="bi bi-trash3-fill"></i></button>
-                    <button class="btn btn-primary" (click)="openEditModal(card)">
-                        <i class="bi bi-pencil-fill"></i>
+                        <i class="bi bi-trash3-fill"></i>Delete
+                    </button>
+                    <button class="btn btn-primary"  (click)="openEditModal(card)">
+                        <i class="bi bi-pencil-fill"></i>Edit
                     </button>
                 </div>
             </div>

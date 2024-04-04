@@ -1,45 +1,50 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CommentInterface } from '../interfaces/comment.interface';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class CommentsService {
   constructor(private httpClient: HttpClient) {}
 
-  getComments(): Observable<CommentInterface[]> {
-    return this.httpClient.get<CommentInterface[]>(
-      'http://localhost:3000/comments'
+  private apiUrl: string = environment.apiUrl + '/artwork-preview';
+
+
+  getComments(artId: string): Observable<CommentInterface[]> {
+    return this.httpClient.get<CommentInterface[]>(`${this.apiUrl}/${artId}`)
+    .pipe(
+      map((response: any) => response.comments)
     );
   }
 
   createComment(
     text: string,
+    artworkId: string,
     parentId: string | null = null
   ): Observable<CommentInterface> {
     return this.httpClient.post<CommentInterface>(
-      'http://localhost:3000/comments',
+      `${this.apiUrl}/${artworkId}/comments`,
       {
         body: text,
-        parentId,
-        // Should not be set here
-        createdAt: new Date().toISOString(),
-        userId: '1',
-        username: 'John',
+        artwork_id: artworkId,
+        parent_comment_id: parentId,
       }
     );
   }
+  
 
   updateComment(id: string, text: string): Observable<CommentInterface> {
     return this.httpClient.patch<CommentInterface>(
-      `http://localhost:3000/comments/${id}`,
+      `${this.apiUrl}/${id}`,
       {
         body: text,
       }
     );
   }
-
+  
   deleteComment(id: string): Observable<{}> {
-    return this.httpClient.delete(`http://localhost:3000/comments/${id}`);
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
   }
+  
 }

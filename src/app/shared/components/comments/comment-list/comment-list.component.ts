@@ -19,13 +19,18 @@ export class CommentListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.commentsService.getComments().subscribe((comments) => {
+    const artworkId = '3';
+    this.commentsService.getComments(artworkId).subscribe((comments: CommentInterface[]) => {
       this.comments = comments;
+      console.log('Comments:', this.comments);
     });
+    (error: any)=>{
+      console.error('Error fetching comments:', error);
+    }
   }
 
   getRootComments(): CommentInterface[] {
-    return this.comments.filter((comment) => comment.parentId === null);
+    return this.comments.filter((comment) => comment.parent_comment_id === null);
   }
 
   updateComment({
@@ -39,7 +44,7 @@ export class CommentListComponent implements OnInit {
       .updateComment(commentId, text)
       .subscribe((updatedComment) => {
         this.comments = this.comments.map((comment) => {
-          if (comment.id === commentId) {
+          if (comment.comment_id === commentId) {
             return updatedComment;
           }
           return comment;
@@ -52,7 +57,7 @@ export class CommentListComponent implements OnInit {
   deleteComment(commentId: string): void {
     this.commentsService.deleteComment(commentId).subscribe(() => {
       this.comments = this.comments.filter(
-        (comment) => comment.id !== commentId
+        (comment) => comment.comment_id !== commentId
       );
     });
   }
@@ -68,20 +73,22 @@ export class CommentListComponent implements OnInit {
     text: string;
     parentId: string | null;
   }): void {
+    const artworkId = '3';
     this.commentsService
-      .createComment(text, parentId)
+      .createComment(text, artworkId, parentId)
       .subscribe((createdComment) => {
         this.comments = [...this.comments, createdComment];
         this.activeComment = null;
       });
   }
+  
 
   getReplies(commentId: string): CommentInterface[] {
     return this.comments
-      .filter((comment) => comment.parentId === commentId)
+      .filter((comment) => comment.parent_comment_id === commentId)
       .sort(
         (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
       );
   }
 }
