@@ -1,33 +1,52 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommentComponent } from './shared/components/comments/comment/comment.component';
+import { CommentListComponent } from './shared/components/comments/comment-list/comment-list.component';
+import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
+import { CommentsService } from './shared/services/comments.service';
+
+import { HighchartsChartModule } from 'highcharts-angular';
+
+import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
+import { ModelComponent } from './shared/components/model/model.component';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtworkPreviewComponent,
-    HighResArtworkComponent
+    HighResArtworkComponent,
+    CommentComponent,
+    CommentFormComponent,
+    CommentListComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatChipsModule,
-    MatTooltipModule,
-    MatButtonModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    DefaultLayoutModule,
+    HighchartsChartModule,
+    FormsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    CommentsService
   ],
   bootstrap: [AppComponent]
 })
