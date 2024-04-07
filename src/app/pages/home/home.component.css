@@ -1,17 +1,4 @@
-.hero-body{
-    background-image: url("../../assets/images/");
-    background-size: cover;
-    background-position: center center;
 
-}
-.card-container {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  h1{
-    font-weight: bold;
-  }
 /* .navbar
 {
     background-color: #3682cd;
@@ -34,9 +21,9 @@
 .navbar-text .bi-person-circle {
   color: white;
   font-size: 1.5rem;
-  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
-  margin-right: 30px;
-  transition: color 0.3s;
+  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2); 
+  margin-right: 30px; 
+  transition: color 0.3s; 
 }
 
 .navbar-text:hover .bi-bell-fill,
@@ -64,8 +51,20 @@
 .d-flex {
   margin-left:auto;
 }
-
-
+.hero-body{
+    /* background-image: url("assets/images/background.jpg"); */
+    background-size: cover;
+    background-position: center center;
+    /* assets/images/background.jpg */
+}
+.card-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  h1{
+    font-weight: bold;
+  }
 
 
 /* Add any additional styles for your footer here */

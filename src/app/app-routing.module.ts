@@ -7,7 +7,7 @@ import { St1Component } from './pages/sign-up/sign-up-artist/st1/st1.component';
 import { St2Component } from './pages/sign-up/sign-up-artist/st2/st2.component';
 import { ResetPasswordComponent } from './pages/fogot-password/reset-password/reset-password.component';
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
-
+import { MessageComponent } from './pages/message/message/message.component';
 import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HomeComponent } from './pages/home/home.component';
 
@@ -40,6 +40,10 @@ const routes: Routes = [
   {
     path:'new', component: NewPasswordComponent
   },
+  
+  {
+    path:'message', component :MessageComponent
+  }
 
 ];
 

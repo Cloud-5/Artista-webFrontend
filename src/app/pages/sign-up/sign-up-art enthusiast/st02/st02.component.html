@@ -1,5 +1,5 @@
 
-<div class="container mt-5">
+   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
         <img src="../../../assets/ArtistaLogo.jpg" alt="ARTISTA Logo">
@@ -8,29 +8,52 @@
         <div class="card">
           <div class="card-body">
             <div class="sign-in-container">
-              <form class="row g-3" (submit)="createAccount()">
+              <form class="row g-3" [formGroup]="signupForm" (submit)="createAccount()">
                 <p>Step 2 of 2</p>
                 <br><br><br><br><br>
                 <div class="col-md-6">
                   <label class="form-label">First Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName">
-                </div>
+                  <input type="text" class="form-control" [(ngModel)]="fName" formControlName="fName">
+                  <div *ngIf="signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.dirty || signupForm.get('firstName')?.touched)" class="text-danger">
+                    First Name is required
+                  </div>
+                </div> 
                 <div class="col-md-6">
                   <label class="form-label">Last Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName">
+                  <input type="text" class="form-control" [(ngModel)]="lName" formControlName="lName">
+                  <div *ngIf="signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.dirty || signupForm.get('lastName')?.touched)" class="text-danger">
+                    Last Name is required
+                  </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Date of Birth</label>
-                  <input type="date" class="form-control" [(ngModel)]="dob" name="dob">
+                  <input type="date" class="form-control" [(ngModel)]="dob" formControlName="dob">
+                  <div *ngIf="signupForm.get('dob')?.invalid && (signupForm.get('dob')?.dirty || signupForm.get('dob')?.touched)" class="text-danger">
+                    Date of Birth is required
+                  </div>
                 </div>
                 <div class="col-12">
                   <label class="form-label">Location</label>
-                  <input type="text" class="form-control" [(ngModel)]="location" name="location">
+                  <input type="text" class="form-control" [(ngModel)]="location" formControlName="location">
+                  <div *ngIf="signupForm.get('location')?.invalid && (signupForm.get('location')?.dirty || signupForm.get('location')?.touched)" class="text-danger">
+                    Location is required
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Role</label>
+                  <select class="form-select" [(ngModel)]="role" formControlName="role">
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="artist">Artist</option>
+                    <option value="enthusiast">Art Enthusiast</option>
+                  </select>
+                  <div *ngIf="signupForm.get('role')?.invalid && (signupForm.get('role')?.dirty || signupForm.get('role')?.touched)" class="text-danger">
+                    Role is required
+                  </div>
                 </div>
                 <p>By clicking create account... <a href="">Terms of use</a> & <a href="">privacy policy</a></p>
-                <br><br><br><br><br>
+                <br><br><br><br>
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary">Create Account</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Create Account</button>
                 </div>
               </form>
             </div>

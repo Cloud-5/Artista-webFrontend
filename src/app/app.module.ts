@@ -23,6 +23,8 @@ import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './pages/message/message/message.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HomeComponent,
     HelpCenterComponent,
     ArtistCardComponent,
-    CardComponent
+    CardComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatTooltipModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class St1Component {
   email: string = '';
   password: string = '';
+  conformPassword: string = '';
 
   constructor(private router: Router) {}
 

@@ -1,5 +1,7 @@
 
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-st01',
@@ -9,11 +11,17 @@ import { Component } from '@angular/core';
 export class St01Component {
   formData = {
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   };
+
+  constructor(private router: Router) { }
 
   submitForm() {
     // Handle form submission logic here
+    sessionStorage.setItem('artista-form-data', JSON.stringify(this.formData));
     console.log('Form submitted with data:', this.formData);
+    this.router.navigate(["/st02"]);
   }
 }
+ 
