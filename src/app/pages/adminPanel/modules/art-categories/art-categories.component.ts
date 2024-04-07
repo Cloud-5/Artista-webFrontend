@@ -100,6 +100,7 @@ export class ArtCategoriesComponent implements OnInit {
   //     console.error('Error uploading image:', error);
   //   }
   // }
+  
   async addCategory(categoryForm: any): Promise<void> {
     if (categoryForm.valid) {
       try {
