@@ -11,42 +11,6 @@ import { NewPasswordComponent } from './pages/fogot-password/new-password/new-pa
 import { MessageComponent } from './pages/message/message/message.component';
 import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HomeComponent } from './pages/home/home.component';
-
-const routes: Routes = [
-  {
-    path:'', component: HomeComponent
-  },
-  {
-    path:'login', component :SignInComponent
-  },
-  {
-    path:'st1', component: St1Component
-  },
-  {
-    path:'st01', component: St01Component
-  },
-  {
-    path:'st2', component: St2Component
-  },
-  {
-    path:'st02', component: St02Component
-  },
-  {
-    path:'helpCenter', component: HelpCenterComponent
-  },
-
-  {
-    path:'reset', component: ResetPasswordComponent
-  },
-  {
-    path:'new', component: NewPasswordComponent
-  },
-  
-  {
-    path:'message', component :MessageComponent
-  }
-
-
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { DefaultLayoutComponent } from './pages/adminPanel/default-layout/default-layout.component';
 import { DashboardComponent } from './pages/adminPanel/modules/dashboard/dashboard.component';
@@ -55,14 +19,48 @@ import { UserManagementComponent } from './pages/adminPanel/modules/user-managem
 import { ArtistRequestsComponent } from './pages/adminPanel/modules/artist-requests/artist-requests.component';
 import { ModelComponent } from './shared/components/model/model.component';
 
+
+
 const routes: Routes = [
-  { path: 'art-p', component: ArtworkPreviewComponent },
-  { path: 'model', component: ModelComponent},
   {
-    path: 'admin',
-    component: DefaultLayoutComponent,
+    path: '', component: HomeComponent
+  },
+  {
+    path: 'login', component: SignInComponent
+  },
+  {
+    path: 'st1', component: St1Component
+  },
+  {
+    path: 'st01', component: St01Component
+  },
+  {
+    path: 'st2', component: St2Component
+  },
+  {
+    path: 'st02', component: St02Component
+  },
+  {
+    path: 'helpCenter', component: HelpCenterComponent
+  },
+
+  {
+    path: 'reset', component: ResetPasswordComponent
+  },
+  {
+    path: 'new', component: NewPasswordComponent
+  },
+
+  {
+    path: 'message', component: MessageComponent
+  },
+
+  { path: 'art-p', component: ArtworkPreviewComponent },
+  { path: 'model', component: ModelComponent },
+  {
+    path: 'admin', component: DefaultLayoutComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'art-categories', component: ArtCategoriesComponent },
       { path: 'user-management', component: UserManagementComponent },
@@ -74,8 +72,9 @@ const routes: Routes = [
 
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  
+  export class AppRoutingModule { }

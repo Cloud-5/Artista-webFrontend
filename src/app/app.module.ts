@@ -23,10 +23,7 @@ import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './pages/message/message/message.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './shared/components/comments/comment/comment.component';
 import { CommentListComponent } from './shared/components/comments/comment-list/comment-list.component';
 import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
@@ -36,7 +33,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 
 import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
 import { ModelComponent } from './shared/components/model/model.component';
-import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -59,7 +56,7 @@ import { FormsModule } from '@angular/forms';
     HelpCenterComponent,
     ArtistCardComponent,
     CardComponent,
-    MessageComponent
+    MessageComponent,
     CommentComponent,
     CommentFormComponent,
     CommentListComponent,
@@ -71,9 +68,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
     HttpClientModule,
-    ReactiveFormsModule,
     DefaultLayoutModule,
     HighchartsChartModule,
     FormsModule

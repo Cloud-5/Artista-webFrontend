@@ -11,3 +11,4 @@ export class HighResArtworkComponent {
   @Input() artworkType: string = '';  
 
 }
+  
