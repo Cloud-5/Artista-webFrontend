@@ -1,0 +1,42 @@
+
+<div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="card chat-app">
+          <div id="plist" class="people-list">
+            <!-- People list goes here -->
+          </div>
+          <div class="chat">
+            <div class="chat-header clearfix">
+              <!-- Chat header goes here -->
+            </div>
+            <div class="chat-history">
+              <ul class="m-b-0">
+                <li *ngFor="let message of messages" class="clearfix">
+                  <div *ngIf="message.from !== 'Me'" class="message-data">
+                    <span class="message-data-time">{{ message.time }}</span>
+                    <img src="../assets/images/profile1.jpg" alt="avatar">
+                  </div>
+                  <div *ngIf="message.from === 'Me'" class="message-data text-right">
+                    <span class="message-data-time">{{ message.time }}</span>
+                    <img src="../assets/images/profile3.jpg" alt="avatar">
+                  </div>
+                  <div [ngClass]="{ 'message': true, 'other-message': message.from !== 'Me', 'my-message': message.from === 'Me' }" class="float-right">{{ message.message }}</div>
+                </li>
+              </ul>
+            </div>
+            <div class="chat-message clearfix">
+              <div class="input-group mb-0">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-send"></i></span>
+                </div>
+                <input #messageInput type="text" class="form-control" placeholder="Enter text here...">
+                <button (click)="sendMessage(messageInput)" class="btn btn-primary">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

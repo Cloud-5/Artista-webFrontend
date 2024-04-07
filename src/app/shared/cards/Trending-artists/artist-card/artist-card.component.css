@@ -1,0 +1,9 @@
+h6{
+  font-weight: bold;
+}
+
+
+.card img {
+  height: 100px; /* Set the desired height for the image */
+  object-fit: cover;
+}
