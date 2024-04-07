@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
+
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { St01Component } from './pages/sign-up/sign-up-art enthusiast/st01/st01.component';
 import { St02Component } from './pages/sign-up/sign-up-art enthusiast/st02/st02.component';
@@ -26,11 +26,27 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './pages/message/message/message.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommentComponent } from './shared/components/comments/comment/comment.component';
+import { CommentListComponent } from './shared/components/comments/comment-list/comment-list.component';
+import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
+import { CommentsService } from './shared/services/comments.service';
+
+import { HighchartsChartModule } from 'highcharts-angular';
+
+import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
+import { ModelComponent } from './shared/components/model/model.component';
+import { FormsModule } from '@angular/forms';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ArtworkPreviewComponent,
     HighResArtworkComponent,
+
     SignInComponent,
     St01Component,
     St02Component,
@@ -44,21 +60,28 @@ import { MessageComponent } from './pages/message/message/message.component';
     ArtistCardComponent,
     CardComponent,
     MessageComponent
+    CommentComponent,
+    CommentFormComponent,
+    CommentListComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatChipsModule,
-    MatTooltipModule,
-    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    DefaultLayoutModule,
+    HighchartsChartModule,
+    FormsModule
+
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    CommentsService
   ],
   bootstrap: [AppComponent]
 })
