@@ -4,7 +4,9 @@ import { ArtCategoriesService } from './art-categories.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { uploadFileToS3 } from '../../../../handlers/s3handler';
 
+
 import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-art-categories',
@@ -14,6 +16,8 @@ import { NgForm } from '@angular/forms';
 export class ArtCategoriesComponent implements OnInit {
 
   categoryData: any[] = [];
+
+  imageUrl: string = '';
 
   newCategory: any = {
     name: '',
@@ -31,7 +35,7 @@ export class ArtCategoriesComponent implements OnInit {
 
   constructor(
     public modalService: ModalService,
-    private artCategoriesService: ArtCategoriesService,
+    private artCategoriesService: ArtCategoriesService
   ) { }
 
   ngOnInit() {
@@ -77,7 +81,25 @@ export class ArtCategoriesComponent implements OnInit {
 
   }
 
+  // async handleImageUpload(event: any) {
+  //   const file = event.target.files[0];
 
+  //   // Generate a unique key for the image file
+  //   const key = `images/${Date.now()}_${file.name}`;
+
+  //   try {
+  //     // Upload the image file to S3
+  //     await Storage.put(key, file);
+
+  //     // Get the URL of the uploaded image
+  //     const url = await Storage.get(key);
+  //     this.imageUrl = url;
+
+  //     console.log('Image uploaded successfully:', this.imageUrl);
+  //   } catch (error) {
+  //     console.error('Error uploading image:', error);
+  //   }
+  // }
   async addCategory(categoryForm: any): Promise<void> {
     if (categoryForm.valid) {
       try {
