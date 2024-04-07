@@ -23,10 +23,10 @@
                   <input type="password" name="Password" [(ngModel)]="formData.password" class="form-control" placeholder="Password" required>
                   <!-- <div *ngIf="!formData.password" class="text-danger">Password is required</div> -->
                   <div *ngIf="!formData.password.match('^(?=.*[A-Z])')" class="text-danger">At least one uppercase letter is required</div>
-                  <div *ngIf="!formData.password.match('(?=.*[a-z])')" class="text-danger">At least one lowercase letter is required</div>
+                  <div *ngIf="!formData.password.match('(?=.*[a-z])')" class="text-danger">At least two lowercase letter is required</div>
                   <div *ngIf="!formData.password.match('(.*[0-9].*)')" class="text-danger">At least one digit is required</div>
                   <div *ngIf="!formData.password.match('(?=.*[!@#$%^&*])')" class="text-danger">At least one special character is required</div>
-                  <div *ngIf="!formData.password.match('.{8,}')" class="text-danger">At least 8 characters long</div>
+                  <div *ngIf="!formData.password.match('.{8,}')" class="text-danger">At least 10 characters long</div>
                 </div>
   
                 <div class="mb-3">

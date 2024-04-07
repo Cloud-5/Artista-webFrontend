@@ -16,12 +16,12 @@
               <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address</label>
                 <input type="email" id="inputEmail" formControlName="email" class="form-control" placeholder="Enter your Email">
-                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">Please enter a valid email</div>
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')" class="text-danger">Please enter a valid email</div>
               </div>
               <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password</label>
                 <input type="password" id="inputPassword" formControlName="password" class="form-control" placeholder="Password">
-                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">Password is required</div>
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')" class="text-danger">Password is required</div>
               </div>
               <br>
               <div class="mb-3 row">

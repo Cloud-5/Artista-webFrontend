@@ -39,10 +39,7 @@ export class SignInComponent implements OnInit {
       } else {
         console.error('Email or password is null');
       }
-    } else {
-      // Mark all fields as touched to show validation messages
-      this.loginForm?.markAllAsTouched();
-    }
+    } 
   }
 }
 
