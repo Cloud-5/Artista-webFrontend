@@ -75,8 +75,7 @@ const routes: Routes = [
       { path: 'artist-requests', component: ArtistRequestsComponent },
     ],
   },
-  { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
-  { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
+  
 
   { path: 'customer-profile-gallery', component: CustomerProfileGalleryComponent },
   { path: 'edit-customer-profile', component: EditCustomerProfileComponent },
@@ -85,7 +84,10 @@ const routes: Routes = [
   { path: 'feedback-list-card',component: FeedbackListComponent},
   { path: 'arts',component: ArtsComponent},
   { path:'search-art',component: SearchArtComponent},
-  { path:'purchase-img-card',component:PurchaseImgCardComponent}
+  { path:'purchase-img-card',component:PurchaseImgCardComponent},
+
+  { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
+  { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 
 ];
 
