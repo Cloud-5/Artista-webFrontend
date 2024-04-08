@@ -1,5 +1,4 @@
-import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
-import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -36,6 +35,14 @@ import { ForyouComponent } from './pages/foryou/foryou.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { TestComponent } from './test/test.component';
+
+import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
+
+import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
+
 
 
 
@@ -55,7 +62,7 @@ const routes: Routes = [
 
   { path: 'art-p', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
-  
+
   {
     path: 'admin', component: DefaultLayoutComponent,
     children: [
@@ -66,55 +73,39 @@ const routes: Routes = [
       { path: 'artist-requests', component: ArtistRequestsComponent },
     ],
   },
-  
+
 
   { path: 'customer-profile-gallery', component: CustomerProfileGalleryComponent },
   { path: 'edit-customer-profile', component: EditCustomerProfileComponent },
-  { path: 'following-artists', component: FollowingArtistsComponent},
-  { path: 'artist-portfolio', component: ArtistPortfolioComponent},
-  { path: 'feedback-list-card',component: FeedbackListComponent},
-  { path: 'arts',component: ArtsComponent},
-  { path:'search-art',component: SearchArtComponent},
-  { path:'purchase-img-card',component:PurchaseImgCardComponent},
+  { path: 'following-artists', component: FollowingArtistsComponent },
+  { path: 'artist-portfolio', component: ArtistPortfolioComponent },
+  { path: 'feedback-list-card', component: FeedbackListComponent },
+  { path: 'arts', component: ArtsComponent },
+  { path: 'search-art', component: SearchArtComponent },
+  { path: 'purchase-img-card', component: PurchaseImgCardComponent },
 
   { path: 'home', component: FirstForyouComponent },
   { path: 'cart', component: CartComponent },
   { path: 'foryou', component: ForyouComponent },
   { path: 'artist', component: ArtistComponent },
-  { path: 'checkout', component: CheckoutFormComponent},
-  { path: 'categories', component: CategoriesComponent},
+  { path: 'checkout', component: CheckoutFormComponent },
+  { path: 'categories', component: CategoriesComponent },
+
+  { path: 'newHome', component: ArtistNewHomeComponent },
+  { path: 'edit-artist-profile-component', component: EditArtistProfileComponent, },
+  { path: 'artist-feedback', component: ArtistFeedbackComponent },
+  { path: 'artist-followers', component: ArtistFollowersComponent },
+  { path: 'arts', component: ArtsComponent },
+  { path: 'test', component: TestComponent },
+
 
   { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 
 ];
 
-import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
-import { ArtsComponent } from './shared/components/arts/arts.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { TestComponent } from './test/test.component';
 
-const routes: Routes = [
-  { path: '', component: ArtistNewHomeComponent },
-  {
-    path: 'edit-artist-profile-component',
-    component: EditArtistProfileComponent,
-  },
-  { path: 'artist-feedback', component: ArtistFeedbackComponent },
-  { path: 'artist-followers', component: ArtistFollowersComponent },
-  { path: 'arts', component: ArtsComponent },
-  { path: 'test', component: TestComponent },
 
-  // { path: 'edit-customer-profile', component: EditCustomerProfileComponent },
-  //   { path: 'following-artists', component: FollowingArtistsComponent},
-  //   { path: 'artist-portfolio', component: ArtistPortfolioComponent},
-  //   { path: 'feedback-list-card',component: FeedbackListCardComponent},
-  //   { path: 'arts',component: ArtsComponent},
-  //   { path:'purchase-img-card',component:PurchaseImgCardComponent},
-  //   { path: '', component: CustomerProfileGalleryComponent }
-];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -122,4 +113,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 
- }
+}

@@ -7,6 +7,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
+import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SignInComponent } from './pages/sign-in/sign-in.component';
@@ -58,11 +59,22 @@ import { ForyouComponent } from './pages/foryou/foryou.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 
+import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
+import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
+import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
+import { TestComponent } from './test/test.component';
+import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
+import { NotificationComponent } from './pages/artist/artist-profile/notification/notification.component';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ArtworkPreviewComponent,
-    HighResArtworkComponent,
+    ModelComponent,
     SignInComponent,
     St01Component,
     St02Component,
@@ -90,8 +102,6 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     ArtsComponent,
     SearchArtComponent,
     FeedbackListComponent,
-    FooterComponent,
-    NavbarComponent,
     ArtistsComponent,
     ArtsComponent,
     CartCardComponent,
@@ -101,7 +111,17 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     FirstForyouComponent,
     ForyouComponent,
     CheckoutFormComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    HighResArtworkComponent,
+
+    ArtistNewHomeComponent,
+    ArtistFeedbackComponent,
+    EditArtistProfileComponent,
+    ArtistFollowersComponent,
+    TestComponent,
+    UploadArtworksComponent,
+    NotificationComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -112,7 +132,6 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     HttpClientModule,
     DefaultLayoutModule,
     HighchartsChartModule,
-
   ],
   providers: [
     provideClientHydration(),
