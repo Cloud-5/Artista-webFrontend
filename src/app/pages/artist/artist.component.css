@@ -1,0 +1,14 @@
+.text-color{
+    color: var(--body-text-color);
+    font-size: 130%;
+    font-weight: bold;
+}
+
+.custom-search{
+    width:400px;
+    margin-left: 100px;
+}
+
+.search-button{
+    margin-left:1px;
+}

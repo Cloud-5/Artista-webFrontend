@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MessageComponent } from './pages/message/message/message.component';
 import { CommentComponent } from './shared/components/comments/comment/comment.component';
 import { CommentListComponent } from './shared/components/comments/comment-list/comment-list.component';
@@ -39,15 +39,25 @@ import { FollowingArtistsComponent } from './pages/Customer/following-artists/fo
 import { ArtistPortfolioComponent } from './pages/Customer/artist-portfolio/artist-portfolio.component';
 import { FeedbackListComponent } from './pages/Customer/feedback-list-card/feedback-list-card.component';
 import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/purchase-img-card.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { ArtsComponent } from './shared/components/cards/arts/arts.component';
+
 import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 
 import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service'
 
 //import { FeedbackListCardComponent } from './pages/Customer/feedback-list-card/feedback-list-card.component'; // Import the FeedbackListCardComponent class
 
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { ArtistsComponent } from './shared/cards/artists/artists.component';
+import { ArtsComponent } from './shared/cards/arts/arts.component';
+import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
+import { CategoryComponent } from './shared/cards/category/category.component';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ForyouComponent } from './pages/foryou/foryou.component';
+import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +90,19 @@ import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist
     FooterComponent,
     ArtsComponent,
     SearchArtComponent,
-    FeedbackListComponent
+    FeedbackListComponent,
+    FooterComponent,
+    NavbarComponent,
+    ArtistsComponent,
+    ArtsComponent,
+    CartCardComponent,
+    CategoryComponent,
+    ArtistComponent,
+    CartComponent,
+    FirstForyouComponent,
+    ForyouComponent,
+    CheckoutFormComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +113,6 @@ import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist
     HttpClientModule,
     DefaultLayoutModule,
     HighchartsChartModule,
-    FormsModule
 
   ],
   providers: [

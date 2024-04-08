@@ -86,10 +86,24 @@ const routes: Routes = [
   { path:'search-art',component: SearchArtComponent},
   { path:'purchase-img-card',component:PurchaseImgCardComponent},
 
+  { path: 'home', component: FirstForyouComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'foryou', component: ForyouComponent },
+  { path: 'artist', component: ArtistComponent },
+  { path: 'checkout', component: CheckoutFormComponent},
+  { path: 'categories', component: CategoriesComponent},
+
   { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 
 ];
+import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ForyouComponent } from './pages/foryou/foryou.component';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

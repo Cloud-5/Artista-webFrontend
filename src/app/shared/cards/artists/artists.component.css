@@ -1,0 +1,128 @@
+.card {
+    height: 250px;
+    width: 350px;
+  margin-right: 500%;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+}
+.category-card {
+    height: 275px; 
+    width: 400px;
+    overflow: hidden; 
+    border: none;
+    box-shadow: 0px 0px 40px -10px rgba(5, 5, 5, 0.9);
+    position: relative;
+    transition: transform 0.5s, box-shadow 0.3s, background-color 0.3s ease;
+    margin-bottom: 15px;
+    background-size: cover; 
+    background-position: center; 
+}
+  
+  .card-img-top {
+    object-fit: cover;
+    height: 35%;
+  }
+
+  .profile-picture{
+    width:100px;
+    height: 100px;
+    margin-top: -65px;
+    margin-left: 6px;
+    border-radius: 50%;
+  }
+
+  .card-title {
+    font-size: 17px;
+    margin-left: 105px;
+    margin-top: -60px;
+    padding-top: 16px;
+    padding-left: 1%;
+    padding-right: 0.5%;
+  }
+
+  .job-title {
+    font-size: 14px;
+    margin-left: 105px;
+    margin-top: -25px;
+    padding-top: 15px;
+    padding-left: 1%;
+    padding-right: 0.5%;
+    font-weight: 600;
+    color: rgb(107, 107, 107);
+  }
+
+  .location-style{
+    font-size: 14px;
+    margin-left: 105px;
+    margin-top: -25px;
+    padding-top: 7px;
+    padding-left: 1%;
+    padding-right: 0.5%;
+    font-weight: 600;
+    font-weight: 600;
+    color: rgb(107, 107, 107);
+  }
+
+  .location{
+    margin-left: -20px;
+  }
+
+  .bi-geo-alt-fill{
+    margin-left: -13px;
+    font-size: 13px;
+  }
+
+  .like-count{
+    margin-left: -9%;
+  }
+
+  .bi-star-fill{
+   padding-left: 60%;
+  
+  }
+
+  .creation{
+    padding-left: -100%;
+    padding-right: 0.5%;
+  }
+
+  .like-creation{
+   margin-top: -8px;
+   font-size: 15px;
+   
+  }
+
+  .btn-primary{
+    padding: 6px;
+    width: 95%;
+    align-items: center;
+  }
+
+
+  .artist-card:hover {
+    transform: scale(1.05); /* Scale up the card size on hover */
+    box-shadow: 0px 0px 40px -10px rgba(71, 114, 254, 2); /* Darker shadow on hover */
+   
+}
+
+.zoom-in-out-on-hover {
+    transition: transform 0.3s ease;
+}
+
+.zoom-in-out-on-hover:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.zoom-in-out-on-hover:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+  
+ 
+  
