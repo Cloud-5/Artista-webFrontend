@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { ArtworkPreviewService } from './artwork-preview.service';
+import { ArtworkPreviewService } from './artwork-preview.service'
 
 
 @Component({

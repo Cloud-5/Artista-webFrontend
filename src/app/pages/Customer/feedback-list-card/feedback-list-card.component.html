@@ -1,0 +1,10 @@
+<div class="list-group">
+  <a *ngFor="let feedback of feedbackList" href="#" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ feedback.customer_name }} | </h5>
+      <small>{{ feedback.timestamp | date:'yyyy-mm-dd' }}</small>
+    </div>
+    <p class="mb-1">{{ feedback.feedback_content }}</p>
+    <small>{{ feedback.feedback_content }}</small>
+  </a>
+</div>

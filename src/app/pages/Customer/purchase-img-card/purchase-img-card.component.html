@@ -1,0 +1,23 @@
+<div *ngFor="let artwork of artworks" class="card request-card" style="width: 720px;">
+  <div class="d-flex" style="height: 100%;">
+    <div class="profile-pic">
+      <img src="{{artwork.artwork_image}}" alt="Artwork" style="width: 180px; height: 180px;">
+    </div>
+    <div class="card-body">
+      <div class="d-flex" style="justify-content: space-between;">
+        <div class="d-flex">
+            <span style="font-size: large;">{{ artwork.artwork_name}} |</span>&nbsp;
+          <span class="fs-6 fw-medium mr-2 text-secondary">{{ artwork.artist_name }} |</span>&nbsp;
+          <span class="fs-6 fw-medium text-info">Date: {{ artwork.purchase_datetime | date:'yyyy-mm-dd'}}</span>
+        </div>
+      </div>
+      <div style="margin: auto; text-align: left;">
+        <a href="" class="fs-6">More Details</a>
+      </div>
+      <div class="buttons d-flex flex-column align-items-end mt-2">
+        <button class="btn btn-success">Comment</button>
+        <button class="btn btn-danger">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
