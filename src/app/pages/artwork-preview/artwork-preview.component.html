@@ -1,10 +1,10 @@
-<div class="container mt-0" style="word-wrap: anywhere;">  
+<div class="container mt-0" style="word-wrap: anywhere;">
     <div class="row">
         <div class="col-sm-8 gx-0 pt-3" style="background-color: rgb(249, 249, 249);">
             <div class="artwork-layout">
                 <section class="artwork-with-likes-published">
                     <div class="artwork">
-                        <app-high-res-artwork></app-high-res-artwork>
+                      <!-- <app-high-res-artwork></app-high-res-artwork> -->
                     </div>
                     <div class="likes-published mt-3 d-flex justify-content-around">
                         <div class="likes d-flex">
@@ -44,7 +44,7 @@
                                         <mat-icon aria-hidden="false" aria-label="Favorite icon" [@toggleFavorite]="isFavorite ? 'filled' : 'border'">
                                             {{ isFavorite ? 'favorite' : 'favorite_border' }}
                                         </mat-icon>
-                                    </button> 
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                         <th scope="row" class="fw-medium">File Formats</th>
                         <td class="d-flex">
                             <div *ngFor="let tool of fileFormats; let last = last">
-                                {{tool}}{{last ? '' : ', &nbsp;'}}  
+                                {{tool}}{{last ? '' : ', &nbsp;'}}
                             </div>
                         </td>
                       </tr>
@@ -109,7 +109,7 @@
                         <mat-chip>#Landscape</mat-chip>
                     </mat-chip-listbox>
                 </div>
-            </div>    
+            </div>
         </div>
         <div class="col-sm-4 gx-0">
             <div class="artist-details">
@@ -150,7 +150,7 @@
                             </div>
                             <p class="fs-6 fw-medium">Artworks</p>
                         </div>
-                    </div>  
+                    </div>
                     <div class="col-4 justify-content-center d-flex">
                         <div class="rating">
                             <div class="d-flex" >
@@ -160,7 +160,7 @@
                             </div>
                             <p class="fs-6 fw-medium">Rating</p>
                         </div>
-                    </div>  
+                    </div>
                     <div class="col-4 justify-content-center d-flex">
                         <div class="followers">
                             <div class="d-flex">
@@ -187,7 +187,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 
 <div class="container bg-light mt-5" style="height: 100px;">
@@ -219,7 +219,7 @@
                 <div>
                     <button class="btn btn-primary" type="button">Add To Cart</button>
                 </div>
-            </div>      
+            </div>
         </div>
     </div>
 
@@ -245,5 +245,5 @@
             <button class="btn btn-primary w-50" type="button">Add To Cart</button>
         </div>
     </div>
-    
+
 </div>

@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+
+
+</head>
+<body>
+    <div class="blur-background"></div>
+    <div class="upload-box">
+        <h2>Edit Profile</h2>
+        <img src="https://th.bing.com/th/id/OIP.Zv6Gj8Lnhq4jy3rktcst1gHaKh?w=197&h=280&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Profile Photo" class="profile-photo">
+        <button class="profile-photo-button">Change Profile Photo</button>
+        <form action="#" method="post" id="edit-profile-form"> <!-- Replace "#" with your form handler URL -->
+            <div class="form-field">
+                <label for="artist-name">Artist Name:</label>
+                <input type="text" id="artist-name" name="artist-name" value="John Hottes">
+            </div>
+            <div class="form-field">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" value="Australia">
+            </div>
+            <div class="form-field">
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" rows="4">John Hottes is a professional artist dedicated to capturing the essence of life through his creative expressions. With a passion for digital illustration, he strives to evoke emotions, provoke thoughts, and inspire others through his work.</textarea>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="upload-button">Submit</button>
+                <button type="button" class="cancel-button" onclick="cancelEdit()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function cancelEdit() {
+            // Redirect or close the edit profile page
+            alert("Edit profile cancelled.");
+            // Example: window.location.href = "profile.php";
+        }
+    </script>
+</body>
+
+<app-footer></app-footer>
