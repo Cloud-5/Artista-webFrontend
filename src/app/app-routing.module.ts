@@ -28,43 +28,32 @@ import { ArtsComponent } from './shared/components/cards/arts/arts.component';
 import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/purchase-img-card.component';
 
+import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ForyouComponent } from './pages/foryou/foryou.component';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+
+
 
 const routes: Routes = [
-  {
-    path: '', component: HomeComponent
-  },
-  {
-    path: 'login', component: SignInComponent
-  },
-  {
-    path: 'st1', component: St1Component
-  },
-  {
-    path: 'st01', component: St01Component
-  },
-  {
-    path: 'st2', component: St2Component
-  },
-  {
-    path: 'st02', component: St02Component
-  },
-  {
-    path: 'helpCenter', component: HelpCenterComponent
-  },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: SignInComponent },
+  { path: 'st1', component: St1Component },
+  { path: 'st01', component: St01Component },
+  { path: 'st2', component: St2Component },
+  { path: 'st02', component: St02Component },
+  { path: 'helpCenter', component: HelpCenterComponent },
 
-  {
-    path: 'reset', component: ResetPasswordComponent
-  },
-  {
-    path: 'new', component: NewPasswordComponent
-  },
+  { path: 'reset', component: ResetPasswordComponent },
+  { path: 'new', component: NewPasswordComponent },
 
-  {
-    path: 'message', component: MessageComponent
-  },
+  { path: 'message', component: MessageComponent },
 
   { path: 'art-p', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
+  
   {
     path: 'admin', component: DefaultLayoutComponent,
     children: [
@@ -97,12 +86,6 @@ const routes: Routes = [
   { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 
 ];
-import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { ForyouComponent } from './pages/foryou/foryou.component';
-import { ArtistComponent } from './pages/artist/artist.component';
-import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 @NgModule({
