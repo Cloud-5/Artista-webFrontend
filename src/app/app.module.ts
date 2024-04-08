@@ -7,7 +7,6 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
-import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SignInComponent } from './pages/sign-in/sign-in.component';

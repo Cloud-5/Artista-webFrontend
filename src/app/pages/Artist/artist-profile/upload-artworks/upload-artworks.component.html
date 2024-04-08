@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+< lang="en">
+
+
+
+<body>
+    <div class="blur-background"></div>
+    <div class="upload-box">
+        <h2>Upload Artwork</h2>
+        <form action="#" method="post"> <!-- Replace "#" with your upload handler URL -->
+            <div class="form-field">
+                <label for="artwork-image">Upload Picture:</label>
+                <input type="file" id="artwork-image" name="artwork-image" accept="image/*">
+            </div>
+            <div class="form-field">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price">
+            </div>
+            <div class="form-field">
+                <label for="artwork-name">Artwork Name:</label>
+                <input type="text" id="artwork-name" name="artwork-name">
+            </div>
+            <div class="form-field">
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="none">None</option>
+                    <option value="landscape">Landscape</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="abstract">Abstract</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="upload-button">Upload Files</button>
+                <button type="button" class="cancel-button">Cancel</button>
+            </div>
+        </form>
+        <div class="having-problems">
+            <p>Having problems? Try the basic uploader.</p>
+        </div>
+    </div>
+</body>
+
+<app-footer></app-footer>
+
+  
