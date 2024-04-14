@@ -15,9 +15,6 @@ import { CommentListComponent } from './shared/components/comments/comment-list/
 import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
 import { CommentsService } from './shared/services/comments.service';
 
-import { HighchartsChartModule } from 'highcharts-angular';
-
-import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
 import { ModelComponent } from './shared/components/model/model.component';
 import { FormsModule } from '@angular/forms';
 
@@ -40,8 +37,6 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DefaultLayoutModule,
-    HighchartsChartModule,
     FormsModule
   ],
   providers: [
