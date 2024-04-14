@@ -28,9 +28,6 @@ import { CommentListComponent } from './shared/components/comments/comment-list/
 import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
 import { CommentsService } from './shared/services/comments.service';
 
-import { HighchartsChartModule } from 'highcharts-angular';
-
-import { DefaultLayoutModule } from './pages/adminPanel/default-layout/default-layout.module';
 import { ModelComponent } from './shared/components/model/model.component';
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
@@ -52,20 +49,19 @@ import { ArtistsComponent } from './shared/cards/artists/artists.component';
 import { ArtsComponent } from './shared/cards/arts/arts.component';
 import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
 import { CategoryComponent } from './shared/cards/category/category.component';
-import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtistComponent } from './pages/Artist/artist.component';
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 
-import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
-import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
-import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
-import { TestComponent } from './test/test.component';
-import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
-import { NotificationComponent } from './pages/artist/artist-profile/notification/notification.component';
+import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
+import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
+import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { NotificationComponent } from './pages/Artist/artist-profile/notification/notification.component';
 
 
 
@@ -91,7 +87,6 @@ import { NotificationComponent } from './pages/artist/artist-profile/notificatio
     CommentComponent,
     CommentFormComponent,
     CommentListComponent,
-    ModelComponent,
     EditCustomerProfileComponent,
     CustomerProfileGalleryComponent,
     FollowingArtistsComponent,
@@ -112,13 +107,13 @@ import { NotificationComponent } from './pages/artist/artist-profile/notificatio
     ForyouComponent,
     CheckoutFormComponent,
     CategoriesComponent,
+
     HighResArtworkComponent,
 
     ArtistNewHomeComponent,
     ArtistFeedbackComponent,
     EditArtistProfileComponent,
     ArtistFollowersComponent,
-    TestComponent,
     UploadArtworksComponent,
     NotificationComponent,
 
@@ -129,9 +124,7 @@ import { NotificationComponent } from './pages/artist/artist-profile/notificatio
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    DefaultLayoutModule,
-    HighchartsChartModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(),

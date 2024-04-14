@@ -13,11 +13,6 @@ import { MessageComponent } from './pages/message/message/message.component';
 import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
-import { DefaultLayoutComponent } from './pages/adminPanel/default-layout/default-layout.component';
-import { DashboardComponent } from './pages/adminPanel/modules/dashboard/dashboard.component';
-import { ArtCategoriesComponent } from './pages/adminPanel/modules/art-categories/art-categories.component';
-import { UserManagementComponent } from './pages/adminPanel/modules/user-management/user-management.component';
-import { ArtistRequestsComponent } from './pages/adminPanel/modules/artist-requests/artist-requests.component';
 import { ModelComponent } from './shared/components/model/model.component';
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
@@ -32,16 +27,15 @@ import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/pur
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
-import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtistComponent } from './pages/Artist/artist.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { TestComponent } from './test/test.component';
+import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
 
-import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
-import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
+import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
 
-import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
+import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
 
 
 
@@ -62,18 +56,6 @@ const routes: Routes = [
 
   { path: 'art-p', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
-
-  {
-    path: 'admin', component: DefaultLayoutComponent,
-    children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'art-categories', component: ArtCategoriesComponent },
-      { path: 'user-management', component: UserManagementComponent },
-      { path: 'artist-requests', component: ArtistRequestsComponent },
-    ],
-  },
-
 
   { path: 'customer-profile-gallery', component: CustomerProfileGalleryComponent },
   { path: 'edit-customer-profile', component: EditCustomerProfileComponent },
@@ -96,11 +78,10 @@ const routes: Routes = [
   { path: 'artist-feedback', component: ArtistFeedbackComponent },
   { path: 'artist-followers', component: ArtistFollowersComponent },
   { path: 'arts', component: ArtsComponent },
-  { path: 'test', component: TestComponent },
 
 
-  { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
-  { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
+  // { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
+  // { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 
 ];
 
