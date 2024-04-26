@@ -10,6 +10,7 @@ import { SearchArtComponent } from './pages/Customer/search-art/search-art.compo
 import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/purchase-img-card.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/artist-portfolio', pathMatch: 'full'},
   { path: 'customer-profile-gallery', component: CustomerProfileGalleryComponent },
   { path: 'edit-customer-profile', component: EditCustomerProfileComponent },
   { path: 'following-artists', component: FollowingArtistsComponent},

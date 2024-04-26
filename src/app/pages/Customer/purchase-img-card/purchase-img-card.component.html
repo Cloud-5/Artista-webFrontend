@@ -1,18 +1,22 @@
-<div *ngFor="let artwork of artworks" class="card request-card" style="width: 720px;">
+<div *ngFor="let purchase of purchaseHistory" class="card request-card" style="width: 720px;">
   <div class="d-flex" style="height: 100%;">
-    <div class="profile-pic">
-      <img src="{{artwork.artwork_image}}" alt="Artwork" style="width: 180px; height: 180px;">
-    </div>
     <div class="card-body">
-      <div class="d-flex" style="justify-content: space-between;">
-        <div class="d-flex">
-            <span style="font-size: large;">{{ artwork.artwork_name}} |</span>&nbsp;
-          <span class="fs-6 fw-medium mr-2 text-secondary">{{ artwork.artist_name }} |</span>&nbsp;
-          <span class="fs-6 fw-medium text-info">Date: {{ artwork.purchase_datetime | date:'yyyy-mm-dd'}}</span>
+      <div class="d-flex justify-content-between">
+        <div>
+          <span class="fw-bold">Purchase ID: </span>{{ purchase.purchaseId }} |
+          <span class="fw-bold">Date: </span>{{ purchase.purchaseDatetime | date:'yyyy-MM-dd HH:mm' }}
         </div>
       </div>
-      <div style="margin: auto; text-align: left;">
-        <a href="" class="fs-6">More Details</a>
+      <div *ngFor="let artwork of purchase.artworks" style="margin-top: 10px;">
+        <div class="d-flex align-items-center">
+          <div class="profile-pic">
+            <img [src]="artwork.artwork_image" alt="Artwork" style="width: 80px; height: 80px;">
+          </div>
+          <div style="margin-left: 10px;">
+            <div>{{ artwork.artwork_name }}</div>
+            <div>{{ artwork.artist_name }}</div>
+          </div>
+        </div>
       </div>
       <div class="buttons d-flex flex-column align-items-end mt-2">
         <button class="btn btn-success">Comment</button>

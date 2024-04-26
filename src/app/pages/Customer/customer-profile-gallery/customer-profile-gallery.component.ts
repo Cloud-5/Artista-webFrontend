@@ -13,6 +13,9 @@ export class CustomerProfileGalleryComponent implements OnInit{
 
   galleryArtData: any[] = [];
 
+  artsData: any[] = [];
+  filteredArts: any[] = [];
+
   constructor(
     public customerService: CustomerServiceService
   ) { }
@@ -45,6 +48,20 @@ export class CustomerProfileGalleryComponent implements OnInit{
         console.log(error);
       }
     );
+  }
+
+  searchByKeyword(searchKeyword: string): void {
+    searchKeyword = searchKeyword.toLowerCase().trim();
+    console.log(searchKeyword);
+
+    if (searchKeyword === '') {
+      this.filteredArts = this.artsData;
+    } else {
+      this.filteredArts = this.artsData.filter((art) =>
+        art.artwork_name.toLowerCase().includes(searchKeyword) ||
+        art.artist_name.toLowerCase().includes(searchKeyword)
+      );
+    }
   }
 
 

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
 import { FollowingArtistsComponent } from './pages/Customer/following-artists/following-artists.component';
@@ -13,8 +15,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { ArtsComponent } from './shared/components/cards/arts/arts.component';
 import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service'
-//import { FeedbackListCardComponent } from './pages/Customer/feedback-list-card/feedback-list-card.component'; // Import the FeedbackListCardComponent class
+import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
 
 
 @NgModule({
@@ -29,12 +30,15 @@ import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist
     FooterComponent,
     ArtsComponent,
     SearchArtComponent,
-    FeedbackListComponent
+    FeedbackListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxStarRatingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),
