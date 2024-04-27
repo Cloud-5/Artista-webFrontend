@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ArtworkPreviewService } from './artwork-preview.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,19 +24,26 @@ import { ArtworkPreviewService } from './artwork-preview.service';
 })
 export class ArtworkPreviewComponent implements OnInit {
 
-    selectedArtworkType: string = '';
-    selectedArtworkUrl: string = '';
-  
-    constructor(private artworkService: ArtworkPreviewService) { }
-  
-    ngOnInit() {
-        this.loadArtworkDetails('3');
-    }
-
+    artworkId: string = '3';
+    is3D: boolean = true;
     artworkDetails: any = {};
-
     tags: string = ''
     tagsArray: string[] = [];
+
+    imageUrl: string = 'https://test-artista.s3.ap-south-1.amazonaws.com/ford/scene.gltf'
+  
+    constructor(
+        // private route: ActivatedRoute,
+        private artworkService: ArtworkPreviewService
+    ) { }
+  
+    ngOnInit() {
+        // this.route.params.subscribe(params => {
+        //     this.artworkId = params['id'];
+        //     this.loadArtworkDetails(this.artworkId);
+        // })
+        this.loadArtworkDetails(this.artworkId);
+    }
 
 
     loadArtworkDetails(artworkId: string): void {

@@ -3,6 +3,7 @@ import { CommentInterface } from '../../../interfaces/comment.interface';
 import { ActiveCommentInterface } from '../../../interfaces/activeComment.interface';
 import { CommentsService } from '../../../services/comments.service';
 
+
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',

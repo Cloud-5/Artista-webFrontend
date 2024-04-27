@@ -12,6 +12,8 @@ import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 export class ModelComponent implements OnInit, AfterViewInit {
 
+  @Input() objectUrl: string = '';
+
   @ViewChild('canvas') private canvasRef: ElementRef | undefined;
 
   // Stage Properties
@@ -84,7 +86,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
     plane.castShadow = false;
     plane.receiveShadow = true;
 
-    this.loaderGLTF.load('assets/car/scene.gltf', (gltf: GLTF):void => {
+    this.loaderGLTF.load(this.objectUrl, (gltf: GLTF):void => {
       this.model = gltf.scene.children[0];
       console.log(this.model);
 

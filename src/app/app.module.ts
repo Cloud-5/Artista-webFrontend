@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
-import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './shared/components/comments/comment/comment.component';
@@ -25,7 +24,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     ArtworkPreviewComponent,
-    HighResArtworkComponent,
     CommentComponent,
     CommentFormComponent,
     CommentListComponent,

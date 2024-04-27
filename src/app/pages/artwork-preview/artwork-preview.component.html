@@ -4,8 +4,13 @@
             <div class="artwork-layout">
                 <section class="artwork-with-likes-published">
                     <div class="artwork">
-                        <app-high-res-artwork [artworkType]="selectedArtworkType"
-                            [artworkUrl]="selectedArtworkUrl"></app-high-res-artwork>
+                         <div *ngIf="!is3D">
+                            <img [src]="artworkDetails.imageUrl" alt="Artwork">
+                          </div>
+                          <div *ngIf="is3D">
+                            <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
+                            <app-model [objectUrl]="imageUrl"></app-model>
+                          </div>
                     </div>
                     <div class="likes-published mt-3 d-flex justify-content-around">
                         <div class="likes d-flex">
