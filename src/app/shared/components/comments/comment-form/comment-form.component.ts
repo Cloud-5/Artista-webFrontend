@@ -4,22 +4,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
-  styleUrl: './comment-form.component.css'
+  styleUrls: ['./comment-form.component.css']
 })
 export class CommentFormComponent implements OnInit {
   @Input() submitLabel!: string;
   @Input() hasCancelButton: boolean = false;
   @Input() initialText: string = '';
 
-  @Output()
-  handleSubmit = new EventEmitter<string>();
-
-  @Output()
-  handleCancel = new EventEmitter<void>();
+  @Output() handleSubmit = new EventEmitter<string>();
+  @Output() handleCancel = new EventEmitter<void>();
 
   form!: FormGroup;
-
-  commentCount: number = 10;
 
   constructor(private fb: FormBuilder) {}
 
@@ -31,8 +26,7 @@ export class CommentFormComponent implements OnInit {
 
   onSubmit(): void {
     this.handleSubmit.emit(this.form.value.title);
-    console.log('Comment form works',this.form.value.title);
     this.form.reset();
+    
   }
 }
-

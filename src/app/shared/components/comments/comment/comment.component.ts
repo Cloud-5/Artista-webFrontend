@@ -36,16 +36,20 @@ export class CommentComponent implements OnInit{
   ngOnInit(): void {
     const fiveMinutes = 300000;
     const timePassed =
-      new Date().getMilliseconds() -
-        new Date(this.comment.created_at).getMilliseconds() >
-      fiveMinutes;
+      new Date().getTime() - new Date(this.comment.created_at).getTime() > fiveMinutes;
+  
     this.createdAt = new Date(this.comment.created_at).toLocaleDateString();
     this.canReply = Boolean(this.currentUserId);
-    this.canEdit = this.currentUserId === this.comment.user_id && !timePassed;
-    this.canDelete =
-      this.currentUserId === this.comment.user_id &&
-      this.replies.length === 0 &&
-      !timePassed;
+
+    this.canEdit = true;
+      // this.currentUserId === this.comment.user_id &&
+      // !timePassed &&
+      // !this.isReplying(); 
+    this.canDelete = true;
+      // this.currentUserId === this.comment.user_id &&
+      // this.replies.length === 0 && 
+      // !timePassed &&
+      // !this.isReplying(); 
     this.replyId = this.parentId ? this.parentId : this.comment.comment_id;
   }
   
@@ -65,7 +69,7 @@ export class CommentComponent implements OnInit{
     }
     return (
       this.activeComment.id === this.comment.comment_id &&
-      this.activeComment.type === 'editing'
+      this.activeComment.type === this.activeCommentType.editing
     );
   }
 }

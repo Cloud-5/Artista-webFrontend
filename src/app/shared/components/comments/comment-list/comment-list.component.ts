@@ -20,10 +20,13 @@ export class CommentListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.fetchComments();
+  }
+
+  fetchComments(){
     const artworkId = '3';
     this.commentsService.getComments(artworkId).subscribe((comments: CommentInterface[]) => {
       this.comments = comments;
-      console.log('Comments:', this.comments);
     });
     (error: any)=>{
       console.error('Error fetching comments:', error);
@@ -34,62 +37,60 @@ export class CommentListComponent implements OnInit {
     return this.comments.filter((comment) => comment.parent_comment_id === null);
   }
 
-  updateComment({
-    text,
-    commentId,
-  }: {
-    text: string;
-    commentId: string;
-  }): void {
-    this.commentsService
-      .updateComment(commentId, text)
-      .subscribe((updatedComment) => {
+  updateComment(text: string, commentId: string): void {
+    this.commentsService.updateComment(commentId, text).subscribe(
+      (updatedComment: CommentInterface) => {
         this.comments = this.comments.map((comment) => {
           if (comment.comment_id === commentId) {
             return updatedComment;
           }
           return comment;
         });
-
         this.activeComment = null;
-      });
+      },
+      (error: any) => {
+        console.error('Error updating comment:', error);
+      }
+    );
   }
 
   deleteComment(commentId: string): void {
-    this.commentsService.deleteComment(commentId).subscribe(() => {
-      this.comments = this.comments.filter(
-        (comment) => comment.comment_id !== commentId
-      );
-    });
+    this.commentsService.deleteComment(commentId).subscribe(
+      () => {
+        this.comments = this.comments.filter(
+          (comment) => comment.comment_id !== commentId
+        );
+      },
+      (error: any) => {
+        console.error('Error deleting comment:', error);
+      }
+    );
   }
 
   setActiveComment(activeComment: ActiveCommentInterface | null): void {
     this.activeComment = activeComment;
   }
 
-  addComment({
-    text,
-    parentId,
-  }: {
-    text: string;
-    parentId: string | null;
-  }): void {
-    const artworkId = '3';
-    this.commentsService
-      .createComment(text, artworkId, parentId)
-      .subscribe((createdComment) => {
+  addComment({ text, parentId }: { text: string; parentId: string | null }): void {
+    const artworkId = '3'; 
+    const userId = this.currentUserId; 
+    
+    this.commentsService.createComment(text, artworkId, userId, parentId).subscribe(
+      (createdComment: CommentInterface) => {
         this.comments = [...this.comments, createdComment];
         this.activeComment = null;
-      });
+      },
+      (error: any) => {
+        console.error('Error adding comment:', error);
+      }
+    );
   }
+  
+  
   
 
   getReplies(commentId: string): CommentInterface[] {
-    return this.comments
-      .filter((comment) => comment.parent_comment_id === commentId)
-      .sort(
-        (a, b) =>
-          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-      );
+    return this.comments.filter((comment) => comment.parent_comment_id === commentId)
+      .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
   }
 }

@@ -24,6 +24,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ArtworkPreviewComponent implements OnInit {
 
+    userId: string = '1';
     artworkId: string = '3';
     is3D: boolean = true;
     artworkDetails: any = {};

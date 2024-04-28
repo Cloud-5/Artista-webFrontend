@@ -21,30 +21,44 @@ export class CommentsService {
   createComment(
     text: string,
     artworkId: string,
+    userId: string,
     parentId: string | null = null
   ): Observable<CommentInterface> {
+    let url = `${this.apiUrl}/${artworkId}/comment`; 
+    
+    if (parentId !== null) {
+      url = `${this.apiUrl}/${artworkId}/comment/${parentId}/reply`;
+    }
+    
     return this.httpClient.post<CommentInterface>(
-      `${this.apiUrl}/${artworkId}/comments`,
+      url,
       {
-        body: text,
+        content: text,
         artwork_id: artworkId,
+        userId: userId,
         parent_comment_id: parentId,
       }
     );
   }
   
+  
 
-  updateComment(id: string, text: string): Observable<CommentInterface> {
-    return this.httpClient.patch<CommentInterface>(
-      `${this.apiUrl}/${id}`,
-      {
-        body: text,
-      }
-    );
+  updateComment(commentId: string, text: string): Observable<CommentInterface> {
+    return this.httpClient.put<CommentInterface>(`${this.apiUrl}/comment/${commentId}`, {
+      content: text
+    });
   }
-  
-  deleteComment(id: string): Observable<{}> {
-    return this.httpClient.delete(`${this.apiUrl}/${id}`);
+
+  deleteComment(commentId: string): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiUrl}/comment/${commentId}`);
   }
-  
+
+  replyToComment(text: string, artworkId: string, parentId: string): Observable<CommentInterface> {
+    return this.httpClient.post<CommentInterface>(`${this.apiUrl}/${artworkId}/comment/${parentId}/reply`, {
+      content: text,
+      artworkId: artworkId,
+      parentId: parentId
+    });
+  }
 }
+

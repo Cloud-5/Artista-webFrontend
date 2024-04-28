@@ -13,7 +13,7 @@
         (setActiveComment)="setActiveComment($event)"
         (addComment)="addComment($event)"
         (deleteComment)="deleteComment($event)"
-        (updateComment)="updateComment($event)"
+        (updateComment)="updateComment($event.text, $event.commentId)"
         [currentUserId]="currentUserId"
       >
       </app-comment>
