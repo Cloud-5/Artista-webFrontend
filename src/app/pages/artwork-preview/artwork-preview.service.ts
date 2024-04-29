@@ -12,9 +12,33 @@ export class ArtworkPreviewService {
 
   constructor(private http: HttpClient) { }
 
-  getArtworkDetails(artworkId: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${artworkId}`);
+  getArtworkDetails(artworkId: string, userId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${artworkId}?userId=${userId}`);
   }
 
+  toggleLike(artworkId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/like`, { userId });
+  }
+
+  unlike(artworkId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/unlike`, { userId });
+  }
+
+  toggleFollow(artistId: string, userId: string): Observable<any> {
+    console.log('in the service Following artist', artistId, 'as user', userId);
+    return this.http.post<any>(`${this.apiUrl}/${artistId}/follow`, { userId });
+  }
+
+  unfollow(artistId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artistId}/unfollow`, { userId });
+  }
+
+  toggleAddToGallery(artworkId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/addtogallery`, { userId });
+  }
+
+  removeFromGallery(artworkId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/removefromgallery`, { userId });
+  }
   
 }

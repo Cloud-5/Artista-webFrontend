@@ -11,8 +11,8 @@ export class CommentsService {
   private apiUrl: string = environment.apiUrl + '/artwork-preview';
 
 
-  getComments(artId: string): Observable<CommentInterface[]> {
-    return this.httpClient.get<CommentInterface[]>(`${this.apiUrl}/${artId}`)
+  getComments(artId: string, userId: string): Observable<CommentInterface[]> {
+    return this.httpClient.get<CommentInterface[]>(`${this.apiUrl}/${artId}?userId=${userId}`)
     .pipe(
       map((response: any) => response.comments)
     );

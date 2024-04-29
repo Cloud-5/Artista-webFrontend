@@ -25,7 +25,7 @@ export class CommentListComponent implements OnInit {
 
   fetchComments(){
     const artworkId = '3';
-    this.commentsService.getComments(artworkId).subscribe((comments: CommentInterface[]) => {
+    this.commentsService.getComments(artworkId, this.currentUserId).subscribe((comments: CommentInterface[]) => {
       this.comments = comments;
     });
     (error: any)=>{
