@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerServiceService } from './customer-service.service';
+import { CustomerDataService } from '../../../shared/services/customerData.service';
 
 
 @Component({
@@ -10,14 +11,15 @@ import { CustomerServiceService } from './customer-service.service';
 export class CustomerProfileGalleryComponent implements OnInit{
 
   CustomerData: any = {};
-
+  userId: string = '3';
   galleryArtData: any[] = [];
 
   artsData: any[] = [];
   filteredArts: any[] = [];
 
   constructor(
-    public customerService: CustomerServiceService
+    public customerService: CustomerServiceService,
+    private customerDataService: CustomerDataService
   ) { }
 
   ngOnInit(): void {
@@ -29,8 +31,8 @@ export class CustomerProfileGalleryComponent implements OnInit{
   getCustomerDetails(userId: number): void {
     this.customerService.getCustomerDetails(userId).subscribe(
       (data: any[]) => {
-        console.log(data[0])
         this.CustomerData = data[0];
+        this.customerDataService.setCustomerData(data[0]);
       },
       (error: any) => {
         console.log(error);

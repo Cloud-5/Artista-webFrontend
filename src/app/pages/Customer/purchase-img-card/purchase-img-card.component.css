@@ -29,6 +29,7 @@
 .request-card {
   transition: transform 0.3s ease;
   cursor: pointer;
+  width: 100%;
 }
 
 .request-card:hover {

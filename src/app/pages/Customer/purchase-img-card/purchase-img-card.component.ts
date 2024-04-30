@@ -5,7 +5,6 @@ import { PurchaseHistoryService } from './purchase-history.service';
   selector: 'app-purchase-img-card',
   templateUrl: './purchase-img-card.component.html',
   styleUrls: ['./purchase-img-card.component.css']
-
 })
 export class PurchaseImgCardComponent implements OnInit {
 
