@@ -30,8 +30,29 @@
 .request-card {
   transition: transform 0.3s ease;
   cursor: pointer;
+  width: 100%;
 }
 
 .request-card:hover {
   transform: scale(1.05);
+}
+
+.artwork-card {
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.artwork-card .card-body {
+  padding: 10px;
+}
+
+.profile-pic img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.artwork-details {
+  margin-left: 10px;
 }

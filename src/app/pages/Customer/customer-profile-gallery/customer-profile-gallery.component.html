@@ -20,14 +20,13 @@
       </ul>
 
       <div class="content">
-        <p>
+        <p style="max-height: 300px; overflow-y: scroll;">
           {{CustomerData.description}}
-        </p>
         <br />
         <br />
         <div class="row" style="margin: 0">
           <div class="d-flex" style="justify-content: space-between">
-            <a routerLink="/edit-customer-profile" class="btn btn-primary" style="width: 48%">Edit Profile</a>
+            <a [routerLink]="['/edit-customer-profile',userId]" class="btn btn-primary" style="width: 48%">Edit Profile</a>
             <button type="button" class="btn btn-secondary" style="width: 48%">
               Delete Profile
             </button>
