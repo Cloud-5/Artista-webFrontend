@@ -11,13 +11,14 @@ export class ArtistPortfolioComponent implements OnInit {
   artistData: any = {};
   artistCreations: any[] = [];
   rating3: number;
+  filteredArts: any[] = [];
 
   ngOnInit(): void {
     const artistId = 1;
     this.getArtistDetails(artistId);
     this.getArtistCreations(artistId);
   }
-  
+
 
   constructor(
     public artistportfolioService: ArtistPortfolioService,
@@ -33,7 +34,6 @@ export class ArtistPortfolioComponent implements OnInit {
   getArtistDetails(artistId: number): void {
     this.artistportfolioService.getArtistDetails(artistId).subscribe(
       (data: any[]) => {
-        console.log(data[0]);
         this.artistData = data[0];
       },
       (error: any) => {
@@ -46,8 +46,8 @@ export class ArtistPortfolioComponent implements OnInit {
     // Renamed method
     this.artistportfolioService.getArtistCreations(artistId).subscribe(
       (data: any[]) => {
-        console.log(data);
         this.artistCreations = data;
+        this.filteredArts = this.artistCreations;
       },
       (error: any) => {
         console.log(error);
@@ -55,13 +55,20 @@ export class ArtistPortfolioComponent implements OnInit {
     );
   }
 
-onSubmit(): void {
-  const ratingValue = this.ratingForm.value.rating;
-  const feedbackValue = this.ratingForm.value.feedback;
-  console.log("Rating:", ratingValue);
-  console.log("Feedback:", feedbackValue);
-  // You can proceed to submit the form data or perform any other actions here
-}
+  searchByKeyword(searchKeyword: string): void {
+    searchKeyword = searchKeyword.toLowerCase().trim();
+    console.log(searchKeyword);
+
+    if (searchKeyword === '') {
+      this.filteredArts = this.artistCreations;
+    } else {
+      this.filteredArts = this.artistCreations.filter((art) =>
+        art.artwork_name.toLowerCase().includes(searchKeyword) ||
+        art.artist_name.toLowerCase().includes(searchKeyword)
+      );
+    }
+  }
+
 
 
 

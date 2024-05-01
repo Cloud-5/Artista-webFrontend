@@ -27,7 +27,6 @@ export class EditCustomerProfileComponent implements OnInit {
       this.editingCustomer = params['userId'];
       this.customerDataService.currentCustomerData$.subscribe((data) => {
         this.customer = data;
-        console.log('SELECTED CUSTOMER', this.customer);
       });
     });
   }
@@ -35,8 +34,8 @@ export class EditCustomerProfileComponent implements OnInit {
   editDetails(editCustomerProfileForm: any) {
     if (editCustomerProfileForm.valid) {
       if (this.customer.newPassword && this.confirmPassword !== this.customer.newPassword) {
-        console.log('Passwords do not match');
-        return; 
+
+        return;
       }
 
       const customerDetails = {
@@ -48,13 +47,11 @@ export class EditCustomerProfileComponent implements OnInit {
         location: this.customer.location,
       };
 
-      console.log('customer new data', customerDetails);
 
       this.editCustomerProfileService
         .EditCustomerProfile(this.editingCustomer, customerDetails)
         .subscribe(
           () => {
-            console.log('edited successfully');
           },
           (error) => {
             console.log('error editing customer', error);

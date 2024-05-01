@@ -12,10 +12,11 @@ export class CustomerProfileGalleryComponent implements OnInit{
 
   CustomerData: any = {};
   userId: string = '3';
-  galleryArtData: any[] = [];
+  // galleryArtData: any[] = [];
 
   artsData: any[] = [];
   filteredArts: any[] = [];
+
 
   constructor(
     public customerService: CustomerServiceService,
@@ -43,8 +44,15 @@ export class CustomerProfileGalleryComponent implements OnInit{
   getCustomerGalleryArts(userId: number): void {
     this.customerService.getCustomerGalleryArts(userId).subscribe(
       (data: any[]) => {
-        console.log(data)
-        this.galleryArtData = data;
+        this.artsData = data.map((artwork: any) => ({
+          artwork_image_url: artwork.artwork_image_url,
+          artwork_name: artwork.artwork_name,
+          artwork_price: artwork.artwork_price,
+          artist_name: artwork.artist_name,
+          total_likes: artwork.total_likes,
+        }));
+        this.filteredArts = this.artsData;
+        console.log(this.filteredArts);
       },
       (error: any) => {
         console.log(error);
@@ -65,6 +73,8 @@ export class CustomerProfileGalleryComponent implements OnInit{
       );
     }
   }
+
+
 
 
 
