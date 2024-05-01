@@ -33,7 +33,7 @@
 }
 
 .request-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .gray-background {
@@ -51,8 +51,8 @@
 }
 
 .artwork-image {
-  width: 80px;
-  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   border-radius: 5px; /* Rounded corners for the image */
 }
 
