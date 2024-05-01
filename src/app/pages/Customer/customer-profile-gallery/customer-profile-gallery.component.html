@@ -9,9 +9,9 @@
         <img src="{{CustomerData.profile_photo_url}}" alt="Anna Smith" />
         <span></span>
       </div>
-      <h2>{{CustomerData.name}}</h2>
+      <h2>{{CustomerData.fName}} {{CustomerData.LName}}</h2>
       <p><b>{{CustomerData.location}}</b></p>
-      <p><b>Member Since : </b>{{CustomerData.joined_date | date:'yyyy-mm-dd'}}</p>
+      <p><b>Member Since : </b>{{CustomerData.joined_date | date:'yyyy-MM-dd'}}</p>
 
       <ul class="about">
         <li>{{CustomerData.total_gallery_items}}<span></span>Gallery</li>
@@ -19,12 +19,13 @@
         <li>{{CustomerData.total_purchases}}<span></span>Purchases</li>
       </ul>
 
-      <div class="content">
-        <p style="max-height: 400px; overflow-y: scroll;">
+      <div class="content" style="margin: 50px 0 0 0">
+        <p style="max-height: 420px; overflow-y: scroll;">
           {{CustomerData.description}}
         <br />
         <br />
-        <div class="row" style="margin: 0">
+
+        <div class="row" style="margin: 100px 0 0 0">
           <div class="d-flex" style="justify-content: space-between">
             <a [routerLink]="['/edit-customer-profile',userId]" class="btn btn-primary" style="width: 48%">Edit Profile</a>
             <button type="button" class="btn btn-secondary" style="width: 48%">
@@ -57,31 +58,20 @@
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
               <form class="d-flex" role="search" style="width: 100%">
-                <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
+                <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
                   aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-
               </form>
             </div>
           </nav>
           <div class="Gallery">
-            <div class="col mb-3" *ngFor="let art of galleryArtData">
+            <div class="col mb-3" *ngFor="let art of filteredArts">
               <app-arts [art]="art"></app-arts>
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel">
-          <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-              <form class="d-flex" role="search" style="width: 100%">
-                <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
-                  aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
+        <div class="tab-pane fade" id="profile" role="tabpanel" style="width: 100%;">
+          <nav class="navbar bg-body-tertiary" style="width: 100%;">
+            <div class="container-fluid" style="width: 100%;">
               <app-following-artists></app-following-artists>
             </div>
           </nav>
@@ -90,13 +80,6 @@
           <div class="tab-pane fade" id="history" role="tabpanel">
             <nav class="navbar bg-body-tertiary">
               <div class="container-fluid">
-                <form class="d-flex" role="search" style="width: 100%">
-                  <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
-                    aria-label="Search" />
-                  <button class="btn btn-outline-success" type="submit">
-                    Search
-                  </button>
-                </form>
                 <app-purchase-img-card></app-purchase-img-card>
               </div>
             </nav>

@@ -19,7 +19,7 @@
         <b>{{ artistData.artist_location }}</b>
       </p>
       <p>
-        <b>Member Since : </b>{{ artistData.joined_date | date : "yyyy-mm-dd" }}
+        <b>Member Since : </b>{{ artistData.joined_date | date:'yyyy-MM-dd' }}
       </p>
 
       <br />
@@ -52,17 +52,19 @@
             {{ artistData.description }}
           </p>
         </div>
-
+        <div class="col-auto" style="margin: 50px 0 0 0">
+          <div class="d-flex flex-row flex-wrap justify-content-center">
+              <a href="#" class="btn btn-link text-dark"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="btn btn-link text-dark"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="btn btn-link text-dark"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="btn btn-link text-dark"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="btn btn-link text-dark"><i class="bi bi-pinterest"></i></a>
+          </div>
+      </div>
         <br />
-        <h6 style="margin-top: 20px">Rating Overview</h6>
 
-        <form [formGroup]="ratingForm" (ngSubmit)="onSubmit()" >
-          <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
-          <div>Rating: {{ ratingForm.value.rating }}</div>
-          <button type="submit">Submit</button>
-        </form>
          <form>
-          <div class="form-group">
+          <div class="form-group" style="margin: 50px 0 0 0">
             <label for="feedback"><b>Give a feedback:</b></label>
             <br />
             <textarea
@@ -109,40 +111,22 @@
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
               <form class="d-flex" role="search" style="width: 100%">
-                <input
+                <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)"
                   class="form-control me-2 rounded-pill border border-primary"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
               </form>
             </div>
           </nav>
           <div class="Creations">
-            <div class="col mb-3" *ngFor="let art of artistCreations">
+            <div class="col mb-3" *ngFor="let art of filteredArts">
               <app-arts [art]="art"></app-arts>
             </div>
           </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel">
-          <nav class="navbar bg-body-tertiary">
-            <div class="container">
-              <form class="d-flex" role="search" style="width: 100%">
-                <input
-                  class="form-control me-2 rounded-pill border border-primary"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
-            </div>
-          </nav>
           <app-feedback-list-card></app-feedback-list-card>
         </div>
       </div>

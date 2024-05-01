@@ -19,7 +19,6 @@ export class FeedbackListComponent implements OnInit {
     this.FeedbackListService.getFeedbackList(1)
       .subscribe((data: any[]) => {
         this.feedbackList = data;
-        //console.log('Feedback list:', this.feedbackList);
       }, (error: any) => {
         console.error('Error fetching feedback list:', error);
       });
