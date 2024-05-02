@@ -12,11 +12,26 @@ export class ArtistPortfolioComponent implements OnInit {
   artistCreations: any[] = [];
   rating3: number;
   filteredArts: any[] = [];
+  customerId:number = 1;
+
+  artistId: string = "1";
+  userId: string = "1";
+
+  isFollowing: boolean = false;
+  followButtonText: string = "";
+  followButtonClass: string = "";
 
   ngOnInit(): void {
     const artistId = 1;
     this.getArtistDetails(artistId);
     this.getArtistCreations(artistId);
+    if(this.isFollowing){
+      this.followButtonText = "Following";
+      this.followButtonClass = "following";
+    } else {
+      this.followButtonText = "Follow";
+      this.followButtonClass = "follow";
+    }
   }
 
 
@@ -35,6 +50,8 @@ export class ArtistPortfolioComponent implements OnInit {
     this.artistportfolioService.getArtistDetails(artistId).subscribe(
       (data: any[]) => {
         this.artistData = data[0];
+        this.isFollowing = this.artistData.is_following;
+        console.log(this.artistData.is_following);
       },
       (error: any) => {
         console.log(error);
@@ -68,6 +85,28 @@ export class ArtistPortfolioComponent implements OnInit {
       );
     }
   }
+
+  toggleFollow(): void {
+    if (this.isFollowing) {
+        this.artistportfolioService.unfollow(this.artistId, this.userId).subscribe(() => {
+            console.log('Following artist', this.artistId, 'as user', this.userId)
+            this.isFollowing = false;
+            this.followButtonText = "Follow";
+            this.followButtonClass = "follow";
+        }, (error) => {
+            console.error('Error unfollowing artist:', error);
+        });
+    } else {
+        this.artistportfolioService.toggleFollow(this.artistId, this.userId).subscribe(() => {
+            console.log('Following artist', this.artistId, 'as user', this.userId)
+            this.isFollowing = true;
+            this.followButtonText = "Following";
+            this.followButtonClass = "following";
+        }, (error) => {
+            console.error('Error following artist:', error);
+        });
+    }
+}
 
 
 

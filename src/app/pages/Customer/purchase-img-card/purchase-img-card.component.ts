@@ -28,4 +28,11 @@ export class PurchaseImgCardComponent implements OnInit {
       console.log('purchase data',this.purchaseData);
     });
   }
+
+  deletePurchase(purchaseId: number): void {
+    this.purchaseHistoryService.deletePurchase(purchaseId)
+    .subscribe(() => {
+      this.loadPurchseHistory(this.userId);
+    });
+  }
 }

@@ -21,4 +21,14 @@ export class ArtistPortfolioService {
   getArtistCreations(artistId: number): Observable<any> {
     return this.http.get(`${this.apiUrlCreations}/${artistId}`);
   }
+
+  toggleFollow(artistId: string, userId: string): Observable<any> {
+    console.log('in the service Following artist', artistId, 'as user', userId);
+    return this.http.post<any>(`${this.apiUrl}/${artistId}/follow`, { userId });
+  }
+
+  unfollow(artistId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artistId}/unfollow`, { userId });
+  }
+
 }

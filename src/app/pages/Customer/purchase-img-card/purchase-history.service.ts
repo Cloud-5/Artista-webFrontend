@@ -15,4 +15,8 @@ export class PurchaseHistoryService {
   getPurchaseHistory(userId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
+
+  deletePurchase(purchaseId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${purchaseId}`);
+  }
 }

@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-<div class="header__wrapper" >
+<div class="header__wrapper">
   <img
     src="{{ artistData.banner_img_url }}"
     alt="Banner Image"
@@ -19,14 +19,29 @@
         <b>{{ artistData.artist_location }}</b>
       </p>
       <p>
-        <b>Member Since : </b>{{ artistData.joined_date | date:'yyyy-MM-dd' }}
+        <b>Member Since : </b>{{ artistData.joined_date | date : "yyyy-MM-dd" }}
       </p>
 
       <br />
 
       <div class="row" style="margin: 0">
         <div class="d-flex" style="justify-content: space-between">
-          <a routerLink="" class="btn btn-primary" style="width: 48%">Follow</a>
+          <div class="follow-button">
+            <button
+              [ngClass]="[
+                'btn',
+                'btn-outline-info',
+                followButtonClass,
+                'rounded'
+              ]"
+              type="button"
+              (click)="toggleFollow()"
+              style="width:150px; height: 50px;"
+              
+            >
+              {{ followButtonText }}
+            </button>
+          </div>
           <button type="button" class="btn btn-secondary" style="width: 48%">
             Message
           </button>
@@ -54,16 +69,26 @@
         </div>
         <div class="col-auto" style="margin: 50px 0 0 0">
           <div class="d-flex flex-row flex-wrap justify-content-center">
-              <a href="#" class="btn btn-link text-dark"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="btn btn-link text-dark"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="btn btn-link text-dark"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="btn btn-link text-dark"><i class="bi bi-linkedin"></i></a>
-              <a href="#" class="btn btn-link text-dark"><i class="bi bi-pinterest"></i></a>
+            <a href="#" class="btn btn-link text-dark"
+              ><i class="bi bi-twitter"></i
+            ></a>
+            <a href="#" class="btn btn-link text-dark"
+              ><i class="bi bi-facebook"></i
+            ></a>
+            <a href="#" class="btn btn-link text-dark"
+              ><i class="bi bi-instagram"></i
+            ></a>
+            <a href="#" class="btn btn-link text-dark"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a href="#" class="btn btn-link text-dark"
+              ><i class="bi bi-pinterest"></i
+            ></a>
           </div>
-      </div>
+        </div>
         <br />
 
-         <form>
+        <form>
           <div class="form-group" style="margin: 50px 0 0 0">
             <label for="feedback"><b>Give a feedback:</b></label>
             <br />
@@ -111,7 +136,9 @@
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
               <form class="d-flex" role="search" style="width: 100%">
-                <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)"
+                <input
+                  #searchkeyword
+                  (keyup)="searchByKeyword(searchkeyword.value)"
                   class="form-control me-2 rounded-pill border border-primary"
                   type="search"
                   placeholder="Search"

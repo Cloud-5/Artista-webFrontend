@@ -190,3 +190,20 @@ a {
 }
 
 
+.following {
+  background-color: #000000 !important;
+  color: rgb(255, 255, 255) !important;
+  border: #000000 solid 1px !important;
+}
+
+.follow{
+  background-color: #ffffff !important;
+  color: black !important;
+  border: #000000 solid 1px !important;
+}
+
+.follow:hover {
+  background-color: #000000 !important;
+  color: white !important;
+  border: #000000 solid 1px !important;
+}
