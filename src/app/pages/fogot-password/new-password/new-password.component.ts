@@ -1,30 +1,7 @@
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder } from '@angular/forms';
-// @Component({
-//   selector: 'app-new-password',
-//   templateUrl: './new-password.component.html',
-//   styleUrl: './new-password.component.css'
-// })
-// export class NewPasswordComponent implements OnInit {
-//   LoginForm: any;
-//   constructor(private fb: FormBuilder)
-//   {
-//     this.LoginForm = this.fb.group({
-//       Email:[""],
-//       Password:[""]
-//     })
-//   }
-//   ngOnInit(): void {
-//
-//   }
-//
-//   signForm()
-//   {
-//     console.log("loginform",this.LoginForm)
-//   }
-// }
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-new-password',
@@ -34,10 +11,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NewPasswordComponent implements OnInit {
   newPasswordForm!: FormGroup; // Adding ! operator to indicate that this will be initialized in ngOnInit
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.newPasswordForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
     });
@@ -45,8 +23,17 @@ export class NewPasswordComponent implements OnInit {
 
   submitForm(): void {
     if (this.newPasswordForm && this.newPasswordForm.valid) {
-      // Submit logic here
-      console.log('Form submitted');
+      const { email, password, confirmPassword } = this.newPasswordForm.value;
+      this.userService.resetPassword(email, password, confirmPassword).subscribe(
+        (response) => {
+          console.log('Password reset successfully');
+          // Handle success response
+        },
+        (error) => {
+          console.error('Error resetting password:', error);
+          // Handle error response
+        }
+      );
     }
   }
 }
