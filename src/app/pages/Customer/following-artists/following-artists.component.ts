@@ -11,6 +11,8 @@ export class FollowingArtistsComponent implements OnInit{
 
   FollowingArtistsData: any[] = [];
   filteredArtists: any[] = [];
+  artistId: string = '2';
+
 
   constructor(
     public followingArtistsService: FollowingArtistsServiceService
@@ -54,5 +56,24 @@ export class FollowingArtistsComponent implements OnInit{
       );
     }
   }
+  unfollow(artistId: string): void {
+    console.log('Unfollowing artist with ID:', artistId); // Debug log
+    console.log('Current FollowingArtistsData:', this.FollowingArtistsData); // Debug log
+    const userId: string = '3';
+    this.followingArtistsService.unfollow(artistId,userId).subscribe(
+      (response: any) => {
+        console.log(response.message);
+        // Remove the artist from the FollowingArtistsData and filteredArtists arrays
+        this.FollowingArtistsData = this.FollowingArtistsData.filter(artist => artist.artistId !== artistId);
+        this.filteredArtists = this.filteredArtists.filter(artist => artist.artistId !== artistId);
 
+        // Log the updated arrays
+        console.log('Updated FollowingArtistsData:', this.FollowingArtistsData);
+        console.log('Updated filteredArtists:', this.filteredArtists);
+      },
+      (error: any) => {
+        console.log('Error unfollowing artist:', error);
+      }
+    );
+  }
 }
