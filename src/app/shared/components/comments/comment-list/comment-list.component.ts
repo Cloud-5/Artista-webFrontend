@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommentInterface } from '../../../interfaces/comment.interface';
 import { ActiveCommentInterface } from '../../../interfaces/activeComment.interface';
 import { CommentsService } from '../../../services/comments.service';
@@ -12,8 +12,10 @@ import { CommentsService } from '../../../services/comments.service';
 export class CommentListComponent implements OnInit {
 
   @Input() currentUserId!: string;
+  @Input() comments: CommentInterface[] = [];
+  @Output() commentsCount = new EventEmitter<number>();
 
-  comments: CommentInterface[] = [];
+  //comments: CommentInterface[] = [];
   activeComment: ActiveCommentInterface | null = null;
 
   constructor(private commentsService: CommentsService) {}
@@ -27,6 +29,8 @@ export class CommentListComponent implements OnInit {
     const artworkId = '3';
     this.commentsService.getComments(artworkId, this.currentUserId).subscribe((comments: CommentInterface[]) => {
       this.comments = comments;
+      this.commentsCount.emit(this.comments.length);
+      console.log('init',this.commentsCount);
     });
     (error: any)=>{
       console.error('Error fetching comments:', error);
@@ -40,12 +44,12 @@ export class CommentListComponent implements OnInit {
   updateComment(text: string, commentId: string): void {
     this.commentsService.updateComment(commentId, text).subscribe(
       (updatedComment: CommentInterface) => {
-        this.comments = this.comments.map((comment) => {
-          if (comment.comment_id === commentId) {
-            return updatedComment;
-          }
-          return comment;
-        });
+        // Update the local comments array
+        this.comments = this.comments.map((comment) => 
+          comment.comment_id === commentId ? updatedComment : comment
+        );
+        this.commentsCount.emit(this.comments.length);
+        console.log('after update',this.commentsCount);
         this.activeComment = null;
       },
       (error: any) => {
@@ -53,6 +57,9 @@ export class CommentListComponent implements OnInit {
       }
     );
   }
+  
+  
+  
 
   deleteComment(commentId: string): void {
     this.commentsService.deleteComment(commentId).subscribe(
@@ -60,6 +67,8 @@ export class CommentListComponent implements OnInit {
         this.comments = this.comments.filter(
           (comment) => comment.comment_id !== commentId
         );
+        this.commentsCount.emit(this.comments.length);
+        console.log('after delete',this.commentsCount);
       },
       (error: any) => {
         console.error('Error deleting comment:', error);
@@ -74,10 +83,19 @@ export class CommentListComponent implements OnInit {
   addComment({ text, parentId }: { text: string; parentId: string | null }): void {
     const artworkId = '3'; 
     const userId = this.currentUserId; 
-    
+  
     this.commentsService.createComment(text, artworkId, userId, parentId).subscribe(
-      (createdComment: CommentInterface) => {
-        this.comments = [...this.comments, createdComment];
+      (response: any) => {
+        const createdComment: CommentInterface = response.comment;
+
+        if (parentId) {
+          this.comments.push(createdComment);
+        } else {
+          // Append the new root comment
+          this.comments.push(createdComment);
+        }
+        this.commentsCount.emit(this.comments.length);
+        console.log('after adding',this.commentsCount);
         this.activeComment = null;
       },
       (error: any) => {
@@ -85,7 +103,6 @@ export class CommentListComponent implements OnInit {
       }
     );
   }
-  
   
   
 

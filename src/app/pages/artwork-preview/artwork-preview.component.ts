@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input, SimpleChanges } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ArtworkPreviewService } from './artwork-preview.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommentInterface } from '../../shared/interfaces/comment.interface';
 
 
 @Component({
@@ -42,6 +43,12 @@ export class ArtworkPreviewComponent implements OnInit {
 
     imageUrl: string = 'https://test-artista.s3.ap-south-1.amazonaws.com/ford/scene.gltf'
 
+    //@Input() comments: CommentInterface[] = [];
+    
+    TotalComments:number = 0;
+
+    
+
     constructor(
         // private route: ActivatedRoute,
         private artworkService: ArtworkPreviewService
@@ -62,6 +69,11 @@ export class ArtworkPreviewComponent implements OnInit {
             this.addToGalleryButtonClass = "added-to-gallery";
         }
     }
+
+    oncommentsCount(count: number):void {
+        this.TotalComments = count;
+    }
+    
 
 
     loadArtworkDetails(artworkId: string, userId: string): void {
@@ -89,12 +101,14 @@ export class ArtworkPreviewComponent implements OnInit {
         if (this.isFavorite) {
             this.artworkService.unlike(this.artworkId, this.userId).subscribe(() => {
                 this.isFavorite = false;
+                this.artworkDetails.total_likes -= 1;
             }, (error) => {
                 console.error('Error unliking artwork:', error);
             });
         } else {
             this.artworkService.toggleLike(this.artworkId, this.userId).subscribe(() => {
                 this.isFavorite = true;
+                this.artworkDetails.total_likes += 1;
             }, (error) => {
                 console.error('Error liking artwork:', error);
             });
@@ -111,6 +125,7 @@ export class ArtworkPreviewComponent implements OnInit {
                 this.isFollowing = false;
                 this.followButtonText = "Follow";
                 this.followButtonClass = "follow";
+                this.artworkDetails.followers_count -= 1;
             }, (error) => {
                 console.error('Error unfollowing artist:', error);
             });
@@ -120,6 +135,7 @@ export class ArtworkPreviewComponent implements OnInit {
                 this.isFollowing = true;
                 this.followButtonText = "Following";
                 this.followButtonClass = "following";
+                this.artworkDetails.followers_count += 1;
             }, (error) => {
                 console.error('Error following artist:', error);
             });

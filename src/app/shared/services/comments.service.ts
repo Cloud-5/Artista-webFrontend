@@ -41,24 +41,18 @@ export class CommentsService {
     );
   }
   
-  
-
   updateComment(commentId: string, text: string): Observable<CommentInterface> {
+    console.log('commentId:', commentId, 'text:', text)
     return this.httpClient.put<CommentInterface>(`${this.apiUrl}/comment/${commentId}`, {
       content: text
-    });
+    }).pipe(
+      map((response: any) => response.comment)
+    );
   }
 
   deleteComment(commentId: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.apiUrl}/comment/${commentId}`);
   }
 
-  replyToComment(text: string, artworkId: string, parentId: string): Observable<CommentInterface> {
-    return this.httpClient.post<CommentInterface>(`${this.apiUrl}/${artworkId}/comment/${parentId}/reply`, {
-      content: text,
-      artworkId: artworkId,
-      parentId: parentId
-    });
-  }
 }
 

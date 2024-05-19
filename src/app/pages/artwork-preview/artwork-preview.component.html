@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="col-sm-4 gx-0 mt-3 mt-sm-0 mt-xl-0 pt-3">
-            <div class="artwork-details">
+            <div class="artwork-details" >
                 <div class="artwork-details-content">
                     <div class="artwork-details-content-name">
                         <div class="artwork-details-content-name-info">
@@ -119,7 +119,7 @@
             </div>
         </div>
         <div class="col-sm-4 gx-0">
-            <div class="artist-details" style="border: 0.5px solid rgb(207, 207, 207); padding: 20px;">
+            <div class="artist-details" style="border: 0.5px solid rgb(207, 207, 207); padding: 20px; background-color: rgb(242, 242, 242);">
                 <div class="row text-center align-items-center d-flex">
                     <div class="col-3 gx-0 col-lg-3">
                         <div class="profile-pic">
@@ -211,13 +211,13 @@
                             <i class="bi bi-chat-square-text-fill fs-5"></i>
                             &nbsp;
                             <p class="fw-medium">Comments</p>
-                            <p class="fw-medium">&nbsp;:&nbsp;{{artworkDetails.total_comments}}</p>
+                            <p class="fw-medium">&nbsp;:&nbsp;{{TotalComments}}</p>
                         </div>
                     </div>
                     <hr>
                 </div>
                 <div class="row border">
-                    <app-comment-list [currentUserId]="userId"></app-comment-list>
+                    <app-comment-list [currentUserId]="userId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
                 </div>
             </div>
         </div>
@@ -229,30 +229,30 @@
     </div>
 </div>
 
-<div class="sticky-bar" [ngClass]="{'show': showStickyBar}">
-    <div class="d-sm-flex">
+<div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
+    <div class="d-sm-flex justify-content-between align-items-center">
         <div class="d-flex">
-            <div class="float-left">
+            <div class="float-left" style="margin-left: 20px;">
                 <h3 class="title fs-4 fw-bolder fst-italic">{{artworkDetails.artwork_name}}</h3>
                 <p>by {{artworkDetails.artist}}</p>
             </div>
-            <div class="d-flex justify-content-end align-items-center flex-grow-1 gap-3">
-                <div class="price">
-                    <p class="fs-3 fw-medium">{{artworkDetails.price | currency}}</p>
-                </div>
-                <div>
-                    <button (click)="toggleFavorite()" class="favorite-button">
-                        <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon"
-                            [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
-                    </button>
-                </div>
-                <div>
-                    <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button"
-                        (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
-                </div>
-                <div>
-                    <button class="btn btn-primary" type="button">Add To Cart</button>
-                </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <div class="price">
+                <p class="fs-3 fw-medium">{{artworkDetails.price | currency}}</p>
+            </div>
+            <div>
+                <button (click)="toggleFavorite()" class="favorite-button">
+                    <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon"
+                        [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
+                </button>
+            </div>
+            <div>
+                <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button"
+                    (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="button">Add To Cart</button>
             </div>
         </div>
     </div>
