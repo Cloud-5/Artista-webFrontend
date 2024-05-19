@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import * as THREE from "three";
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-model',
@@ -52,11 +53,11 @@ export class ModelComponent implements OnInit, AfterViewInit {
   // Create the controls
   private createControls = () => {
     const renderer = new CSS2DRenderer();
-    renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+    //renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.top = '0px';
-    renderer.domElement.style.width = '100%';
-    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.width = 'auto';
+    renderer.domElement.style.height = 'auto';
     const container = this.canvas.parentElement;
     if(container) {
       container.appendChild(renderer.domElement);
@@ -163,15 +164,20 @@ export class ModelComponent implements OnInit, AfterViewInit {
     }());
   }
 
-  constructor() { }
+  private isBrowser: boolean;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
 
   }
 
   ngAfterViewInit() {
-    this.createScene();
-    this.startRenderingLoop();
-    this.createControls();
+    if (this.isBrowser) {
+      this.createScene();
+      this.startRenderingLoop();
+      this.createControls();
+    }
   }
 }
