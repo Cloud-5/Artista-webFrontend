@@ -14,15 +14,15 @@ export class ArtistPortfolioComponent implements OnInit {
   filteredArts: any[] = [];
   customerId:number = 1;
 
-  artistId: string = "1";
-  userId: string = "1";
+  artistId: string = "25";
+  userId: string = "25";
 
   isFollowing: boolean = false;
   followButtonText: string = "";
   followButtonClass: string = "";
 
   ngOnInit(): void {
-    const artistId = 1;
+    const artistId = 25;
     this.getArtistDetails(artistId);
     this.getArtistCreations(artistId);
     if(this.isFollowing){

@@ -24,7 +24,7 @@ export class CustomerProfileGalleryComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    const userId = 3;
+    const userId = 24;
     this.getCustomerDetails(userId);
     this.getCustomerGalleryArts(userId);
   }

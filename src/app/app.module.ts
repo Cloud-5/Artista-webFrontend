@@ -15,6 +15,7 @@ import { ArtsComponent } from './shared/components/cards/arts/arts.component';
 import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist
     ArtsComponent,
     SearchArtComponent,
     FeedbackListComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
