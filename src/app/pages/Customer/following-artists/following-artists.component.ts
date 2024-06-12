@@ -11,7 +11,7 @@ export class FollowingArtistsComponent implements OnInit{
 
   FollowingArtistsData: any[] = [];
   filteredArtists: any[] = [];
-  artistId: string = '2';
+  artistId: string = '';
 
 
   constructor(
@@ -27,13 +27,17 @@ export class FollowingArtistsComponent implements OnInit{
       (data: any) => {
         // this.FollowingArtistsData = data.map((artist: any) => ({
         //   fName: artist.fName,
-        // LName: artist.LName,
-        //   profession: artist.profession,
+        //  LName: artist.LName,
+        //    profession: artist.profession,
         //  artist_image_url: artist.artist_image_url,
         //   total_followers: artist.total_followers
         //  }));
         this.FollowingArtistsData = data;
         this.filteredArtists = this.FollowingArtistsData;
+
+
+        console.log('FollowingArtistsData:', this.FollowingArtistsData);
+        console.log('FilteredArtists:', this.filteredArtists);
       },
       (error: any) => {
         console.log(error);

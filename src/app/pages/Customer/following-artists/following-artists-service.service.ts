@@ -13,7 +13,7 @@ export class FollowingArtistsServiceService {
   constructor(private http: HttpClient) { }
 
   getFollowingArtistsList(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${3}`);
+    return this.http.get(`${this.apiUrl}/${24}`);
   }
 
   unfollow(artistId: string, userId: string): Observable<any> {

@@ -12,10 +12,10 @@ export class PurchaseImgCardComponent implements OnInit {
     private purchaseHistoryService: PurchaseHistoryService
   ){}
 
-  userId:number = 3
+  userId:number = 24
   purchaseData: any[] =[];
 
-  
+
   ngOnInit(): void {
     this.loadPurchseHistory(this.userId);
     console.log(this.purchaseData);
