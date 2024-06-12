@@ -27,11 +27,11 @@ export class FollowingArtistsComponent implements OnInit{
       (data: any) => {
         // this.FollowingArtistsData = data.map((artist: any) => ({
         //   fName: artist.fName,
-        //   LName: artist.LName,
+        // LName: artist.LName,
         //   profession: artist.profession,
-        //   artist_image_url: artist.artist_image_url,
+        //  artist_image_url: artist.artist_image_url,
         //   total_followers: artist.total_followers
-        // }));
+        //  }));
         this.FollowingArtistsData = data;
         this.filteredArtists = this.FollowingArtistsData;
       },
@@ -59,7 +59,7 @@ export class FollowingArtistsComponent implements OnInit{
   unfollow(artistId: string): void {
     console.log('Unfollowing artist with ID:', artistId); // Debug log
     console.log('Current FollowingArtistsData:', this.FollowingArtistsData); // Debug log
-    const userId: string = '3';
+    const userId: string = '24';
     this.followingArtistsService.unfollow(artistId,userId).subscribe(
       (response: any) => {
         console.log(response.message);
