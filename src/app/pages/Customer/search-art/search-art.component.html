@@ -1,25 +1,33 @@
 <app-navbar></app-navbar>
 <div class="container">
+
   <div class="find-art-column">
     <h3>Find An Art</h3>
-     <br>
+    <br>
     <h5>Category</h5>
     <ul>
-      <li>3D Art</li>
-      <li>Digital Arts</li>
-      <li>Generative Arts</li>
-      <li>Motion Arts</li>
-      <li>Pixel Art</li>
-      <li>Vector Art</li>
-      <li>Anime</li>
+        <li><input type="checkbox" id="3d-art" name="category" value="3d-art"><label for="3d-art">  3D Art</label></li>
+        <li><input type="checkbox" id="digital-arts" name="category" value="digital-arts"><label for="digital-arts">  Digital Arts</label></li>
+        <li><input type="checkbox" id="generative-arts" name="category" value="generative-arts"><label for="generative-arts">   Generative Arts</label></li>
+        <li><input type="checkbox" id="motion-arts" name="category" value="motion-arts"><label for="motion-arts">  Motion Arts</label></li>
+        <li><input type="checkbox" id="pixel-art" name="category" value="pixel-art"><label for="pixel-art">  Pixel Art</label></li>
+        <li><input type="checkbox" id="vector-art" name="category" value="vector-art"><label for="vector-art">  Vector Art</label></li>
+        <li><input type="checkbox" id="anime" name="category" value="anime"><label for="anime">  Anime</label></li>
     </ul>
 
-    <h5>Price</h5>
-    <ul>
-      <li>Min</li>
-      <li>Max</li>
-     </ul>
-  </div>
+    <div class="dropdown-container">
+      <label for="sort-options"><b>Sort by: </b></label>
+      <br>
+      <select id="sort-options" name="sort-options" [(ngModel)]="selectedOption" (change)="onSortChange($event)">
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+          <option value="date-asc">Date (Oldest to Newest)</option>
+          <option value="date-desc">Date (Newest to Oldest)</option>
+          <option value="price-asc">Price (Low to High)</option>
+          <option value="price-desc">Price (High to Low)</option>
+      </select>
+    </div>
+</div>
 
   <div class="art-gallery-column">
 <section class="head-title-section">

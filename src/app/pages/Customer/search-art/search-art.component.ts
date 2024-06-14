@@ -10,6 +10,7 @@ import { SearchArtService } from './search-art.service';
 export class SearchArtComponent implements OnInit {
   artsData: any[] = [];
   filteredArts: any[] = [];
+  selectedOption: string = 'name-asc';
 
   constructor(private searchArtService: SearchArtService) {}
 
@@ -28,6 +29,7 @@ export class SearchArtComponent implements OnInit {
           total_likes: artwork.total_likes,
         }));
         this.filteredArts = this.artsData;
+        this.sortArts();
         console.log(this.filteredArts);
       },
       (error: any) => {
@@ -47,6 +49,38 @@ export class SearchArtComponent implements OnInit {
         art.artwork_name.toLowerCase().includes(searchKeyword) ||
         art.artist_name.toLowerCase().includes(searchKeyword)
       );
+    }
+    this.sortArts();
+  }
+
+  onSortChange(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value;
+    this.selectedOption = value;
+    this.sortArts();
+  }
+
+  sortArts(): void {
+    switch (this.selectedOption) {
+      case 'name-asc':
+        this.filteredArts.sort((a, b) => a.artwork_name.localeCompare(b.artwork_name));
+        break;
+      case 'name-desc':
+        this.filteredArts.sort((a, b) => b.artwork_name.localeCompare(a.artwork_name));
+        break;
+      case 'date-asc':
+        this.filteredArts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        break;
+      case 'date-desc':
+        this.filteredArts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        break;
+      case 'price-asc':
+        this.filteredArts.sort((a, b) => a.artwork_price - b.artwork_price);
+        break;
+      case 'price-desc':
+        this.filteredArts.sort((a, b) => b.artwork_price - a.artwork_price);
+        break;
+      default:
+        break;
     }
   }
 }
