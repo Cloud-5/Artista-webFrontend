@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="chat-container card">
+      <div class="card-header bg-primary text-white text-center">
+        Chat with  {{ userRole === 'artist' ? ('a Customer') : 'Artist'+  artistName }}
+      </div>
+  
+      <div class="row no-gutters">
+        <!-- Sidebar for customer selection, visible only to artists -->
+        <div *ngIf="userRole === 'artist'" class="col-md-3 customer-sidebar">
+          <div class="customer-selection">
+            <label for="selectCustomer">Select Customer</label>
+            <ul class="list-group">
+              <li *ngFor="let customer of customers$ | async" 
+                  (click)="onCustomerSelect(customer)" 
+                  [class.active]="customer.firebaseUid === recipientId" 
+                  class="list-group-item">
+                {{ customer.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Chat messages area, full width for customers -->
+        <div [ngClass]="{'col-md-9': userRole === 'artist', 'col-md-12': userRole !== 'artist'}" class="d-flex flex-column">
+          <div class="messages-container flex-grow-1">
+            <div class="messages overflow-auto">
+              <div *ngFor="let message of messages$ | async" class="message" 
+                   [ngClass]="{ 'sent-message': message.senderId === senderId, 'received-message': message.senderId !== senderId }">
+                <div class="sender">{{ message.senderId === senderId ? 'You' : (userRole === 'artist' ? 'Customer' : 'Artist') }}:</div>
+                <div class="content">{{ message.message }}</div>
+                <div class="timestamp">{{ message.timestamp?.toDate() | date:'short' }}</div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card-footer input-container">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Type a message" [(ngModel)]="newMessage">
+              <div class="input-group-append">
+                <button class="btn btn-primary" (click)="sendMessage()">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

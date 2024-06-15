@@ -34,16 +34,44 @@
       <p class="title">
         Dicover<br> a World of Digital Artistry
       </p>
-      <div class="input-group">
-        <div class="form-outline" data-mdb-input-init>
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit" class="btn-primary"><i class="fa fa-search"></i></button>
-        </div>
+      
 
-      </div>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button id="search-button">Search</button>
     </div>
+
+   
+    </div>
+
+    <script>
+      document.getElementById('search-button').addEventListener('click', function() {
+          const query = document.getElementById('search-input').value.toLowerCase();
+          const items = document.querySelectorAll('#content h1');
+
+          let hasResults = false;
+          items.forEach(item => {
+              if (item.textContent.toLowerCase().includes(query)) {
+                  item.style.display = 'block'; // Show matching item
+                  hasResults = true;
+              } else {
+                  item.style.display = 'none'; // Hide non-matching item
+              }
+          });
+
+          if (!hasResults) {
+              document.getElementById('results-list').innerHTML = '<li>No results found</li>';
+          } else {
+              document.getElementById('results-list').innerHTML = ''; // Clear "No results found" message
+          }
+      });
+  </script>
+
   </section><br>
-  <div><h1>Trending Artworks</h1></div><br>
+
+
+  <div>
+    <h1>Trending Artworks</h1></div><br>
   <div class="card-container p-4">
 
         <div  *ngFor="let art of artsData" >
@@ -53,6 +81,7 @@
 </div>
    <br>
 
+   
   <div><h1>Trending Artist</h1></div><br>
 
   <div class="card-container p-4">

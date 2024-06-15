@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artist-card',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './artist-card.component.css'
 })
 export class ArtistCardComponent implements OnInit{
-  constructor(){}
+  constructor(private router: Router){}
   ngOnInit(): void {
 
   }
@@ -31,5 +32,13 @@ export class ArtistCardComponent implements OnInit{
     } else {
       return (creationCount / 1000000).toFixed(1) + 'M';
     }
+  }
+
+  messageArtist(firebase_uid: string, artistName: string): void {
+    // Save the firebase_uid to local storage
+    localStorage.setItem('artistFirebaseUid', firebase_uid);
+    localStorage.setItem('artistName', artistName);
+    // Navigate to the chat route
+    this.router.navigate(['/chat']);
   }
 }

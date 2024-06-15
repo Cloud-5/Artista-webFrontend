@@ -1,7 +1,8 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './Service/auth.service';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +12,7 @@ import { AuthService } from './Service/auth.service';
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -27,8 +28,13 @@ export class SignInComponent implements OnInit {
       if (email && password) {
         this.authService.login(email, password).subscribe(
           (response: any) => {
-            console.log( response);
-            // Handle successful login here
+            console.log(response);
+            // Decode the JWT token
+            const decodedToken: any = jwtDecode(response.accessToken);
+            // Store the uid and role in local storage
+            localStorage.setItem('uid', decodedToken.uid);
+            localStorage.setItem('role', decodedToken.role);
+            this.router.navigate(['/']);
           },
           (error: any) => {
             console.error('Login failed', error);
@@ -42,4 +48,3 @@ export class SignInComponent implements OnInit {
     } 
   }
 }
-

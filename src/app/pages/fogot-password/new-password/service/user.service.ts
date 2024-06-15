@@ -11,7 +11,7 @@ export class UserService {
   private apiUrl: String = environment.apiUrl +'/user'
   constructor(private http: HttpClient) {}
 
-  resetPassword(email: string, newPassword: string, confirmNewPassword: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/resetPassword`, { email, newPassword, confirmNewPassword });
+  resetPassword( newPassword: string, confirmNewPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/resetPassword`, { newPassword, confirmNewPassword });
   }
 }

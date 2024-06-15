@@ -11,6 +11,7 @@ import { NewPasswordComponent } from './pages/fogot-password/new-password/new-pa
 
 import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
   },
   {
     path:'new', component: NewPasswordComponent
+  },
+  {
+    path: 'chat', component: ChatScreenComponent
   },
   
   

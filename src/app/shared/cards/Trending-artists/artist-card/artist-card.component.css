@@ -1,9 +1,69 @@
-h6{
-  font-weight: bold;
+.card {
+  height: 250px;
+  width: 225px;
+ 
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
 }
 
 
-.card img {
-  height: 100px; /* Set the desired height for the image */
+.card-img-top {
   object-fit: cover;
+  height: 35%;
 }
+
+.profile-picture{
+  width:100px;
+  height: 100px;
+  margin-top: 0px;
+ margin-left: 35px;
+  border-radius: 50%;
+}
+
+
+
+.card-title {
+  margin-top: 5px;
+  font-size: 17px;
+ 
+}
+
+.job-title {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: rgb(107, 107, 107);
+}
+
+.btn-primary{
+  padding: 6px;
+  width: 90%;
+  align-items: center;
+}
+
+
+.artist-card:hover {
+  transform: scale(1.05); /* Scale up the card size on hover */
+  box-shadow: 0px 0px 40px -10px rgba(71, 114, 254, 2); /* Darker shadow on hover */
+ 
+}
+
+.zoom-in-out-on-hover {
+  transition: transform 0.3s ease;
+}
+
+.zoom-in-out-on-hover:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.zoom-in-out-on-hover:active {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+
