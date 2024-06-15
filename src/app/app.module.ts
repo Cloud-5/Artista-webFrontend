@@ -1,5 +1,6 @@
 import { NgModule, inject } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,42 @@ import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { ArtistsComponent } from './shared/cards/artists/artists.component';
+import { ArtsComponent } from './shared/cards/arts/arts.component';
+import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
+import { CategoryComponent } from './shared/cards/category/category.component';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ForyouComponent } from './pages/foryou/foryou.component';
+import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ArtworkPreviewComponent,
+    HighResArtworkComponent,
+    FooterComponent,
+    NavbarComponent,
+    ArtistsComponent,
+    ArtsComponent,
+    CartCardComponent,
+    CategoryComponent,
+    ArtistComponent,
+    CartComponent,
+    FirstForyouComponent,
+    ForyouComponent,
+    CheckoutFormComponent,
+    CategoriesComponent
+
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -59,6 +96,13 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+
+    MatIconModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatButtonModule,
+    HttpClientModule
+
     MatInputModule,
     MatIconModule,
     MatCardModule,
@@ -69,6 +113,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
+
   ],
   providers: [
     provideClientHydration(),

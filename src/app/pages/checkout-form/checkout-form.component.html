@@ -1,0 +1,170 @@
+<section class="head-title-section section-margin">
+  <div class="container-fluid">
+    <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="text-center mt-5">      
+            <h3 class="text-color">Checkout Form</h3>
+          </div>
+
+          <!--form content -->
+
+
+          <fieldset>  	
+            <legend class="mt-4">Personal Details</legend>
+            <div class="form-group">
+              <label for="firstNameInput" class="form-label mt-4">First Name</label>
+              <input type="text" class="form-control" id="firstNameInput" name="firstNameInput"
+                     aria-describedby="firstNameHelp" placeholder="Enter your first name"
+                     formControlName="firstNameInput" [(ngModel)]="fiName">
+              <div class="error" *ngIf="submitted && f['firstNameInput'].errors">
+                <div *ngIf="f['firstNameInput'].errors?.['required']">First Name is Required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastNameInput" class="form-label mt-4">Last Name</label>
+              <input type="text" class="form-control" id="lastNameInput" name="lastNameInput"
+                     aria-describedby="lastNameHelp" placeholder="Enter your last name" formControlName="lastNameInput" [ngModel]="lastName">
+              <div class="error" *ngIf="submitted && f['lastNameInput'].errors">
+                <div *ngIf="f['lastNameInput'].errors?.['required']">Last Name is Required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                     placeholder="Enter email" formControlName="emailInput" [ngModel]="email">
+              <!-- Error message for required validation -->
+              <div class="error" *ngIf="submitted && f['emailInput'].errors">
+                <div *ngIf="f['emailInput'].errors?.['required']">Email address is required</div>
+                <div *ngIf="f['emailInput'].errors?.['email']">Enter a valid email address</div>
+              </div>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="locationInput" class="form-label mt-4">Location</label>
+              <input type="text" class="form-control" id="locationInput" aria-describedby="locationHelp"
+                     placeholder="Enter your location" formControlName="locationInput">
+              <!-- Error message for required validation -->
+              <div class="error" *ngIf="submitted && f['locationInput'].errors">
+                <div *ngIf="f['locationInput'].errors?.['required']">Location is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumberInput" class="form-label mt-4">Phone Number</label>
+              <input type="tel" class="form-control" id="phoneNumberInput" aria-describedby="phoneNumberHelp"
+                     placeholder="Enter your phone number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                     title="Phone number should be in the format XXX-XXX-XXXX" formControlName="phoneNumberInput"
+                     required>
+              <!-- Error message for required validation -->
+              <div class="error" *ngIf="submitted && f['phoneNumberInput'].errors">
+                <div *ngIf="f['phoneNumberInput'].errors?.['required']">Phone number is required</div>
+                <div *ngIf="f['phoneNumberInput'].errors?.['pattern']">Enter a valid phone number</div>
+              </div>
+              <small id="phoneNumberHelp" class="form-text text-muted">We'll never share your phone number with anyone
+                else.</small>
+            </div>
+            <div class="form-group">
+              <label for="descriptionInput" class="form-label mt-4">Description</label>
+              <textarea class="form-control" id="descriptionInput" rows="4" maxlength="200"
+                        placeholder="Enter your description" formControlName="descriptionInput"></textarea>
+              <!-- The rows attribute specifies the visible number of lines in the textarea -->
+              <!-- The maxlength attribute limits the number of characters allowed in the textarea -->
+              <small class="form-text text-muted">Maximum 200 characters allowed.</small>
+            </div>
+            <div class="form-group">
+              <fieldset class="form-group">
+                <legend class="mt-4">Payment Method</legend>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="paymentOption" id="visaMasterCardOption"
+                         value="visaMasterCard" formControlName="paymentOption">
+                  <label class="form-check-label" for="visaMasterCardOption">
+                    Visa/Master Cards
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="paymentOption" id="paypalOption" value="paypal"
+                         formControlName="paymentOption">
+                  <label class="form-check-label" for="paypalOption">
+                    PayPal
+                  </label>
+                </div>
+                <!-- Error message for payment option selection -->
+                <div class="error" *ngIf="submitted && f['paymentOption'].errors">
+                  <div *ngIf="f['paymentOption'].errors?.['required']">Please select a payment option</div>
+                </div>
+              </fieldset>
+            </div>
+            <fieldset class="form-group">
+              <legend class="mt-4">Conditions</legend>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agreeTermsCheckbox"
+                       formControlName="agreeTermsCheckbox">
+                <label class="form-check-label" for="agreeTermsCheckbox">I have read and agree to the Terms and
+                  Conditions.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agreePrivacyCheckbox"
+                       formControlName="agreePrivacyCheckbox">
+                <label class="form-check-label" for="agreePrivacyCheckbox">I have read and agree to the Privacy
+                  Policy.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agreeMarketingCheckbox"
+                       formControlName="agreeMarketingCheckbox">
+                <label class="form-check-label" for="agreeMarketingCheckbox">I agree to receive marketing
+                  communications.</label>
+              </div>
+
+              <div class="error"
+                   *ngIf="submitted && reactiveForm.errors && reactiveForm.errors['checkboxesNotChecked']">
+                <div>You should be agreed to all the conditions above.</div>
+              </div>
+
+            </fieldset>
+
+
+          </fieldset>
+
+
+        </div>
+
+        <div class="col-md-3 ">
+          <div class="order-summary">
+            <!-- Your card content goes here -->
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Order Summary</h5>
+                <div class="row">
+                  <div class="col-md-7">
+                    <p class="card-text">Total Quantity : </p>
+                  </div>
+                  <div class="col-md-5">
+                    <p class="card-text">{{ quantity }} </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7">
+                    <p class="card-text">Sub Total : </p>
+                  </div>
+                  <div class="col-md-5">
+                    <p class="card-text">{{ price | currency:'USD':'symbol':'1.2-2' }} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-success btn-change mt-3 shadow" type="submit">Proceed to Checkout
+            </button>
+            <button type="button" class="btn btn-danger btn-customize mt-3 shadow" routerLink="/cart">Cancel Order
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+</section>
