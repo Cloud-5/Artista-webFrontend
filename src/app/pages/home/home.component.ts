@@ -1,50 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { ArtServiceService } from './service/art-service.service';
-import { ArtistServieService } from './service/artist-servie.service';
+// import { Component, OnInit } from '@angular/core';
+// import { ArtServiceService } from './service/art-service.service';
+// import { ArtistServieService } from './service/artist-servie.service';
 
 
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
-})
-export class HomeComponent implements OnInit {
+// @Component({
+//   selector: 'app-home',
+//   templateUrl: './home.component.html',
+//   styleUrl: './home.component.css'
+// })
+// export class HomeComponent implements OnInit {
 
-  artsData :any ={};
-  artistsData : any = {};
-  constructor(private ArtServiceService :ArtServiceService, private ArtistServieService : ArtistServieService) {  }
-  ngOnInit(): void {
+//   artsData :any ={};
+//   artistsData : any = {};
+//   constructor(private ArtServiceService :ArtServiceService, private ArtistServieService : ArtistServieService) {  }
+//   ngOnInit(): void {
 
     
-    this.getArtwork();
-    this.loadArtistData();
+//     this.getArtwork();
+//     this.loadArtistData();
 
-  }
+//   }
 
-  loadArtistData(): void{
-    this.ArtistServieService.getArtist().subscribe((data: any[]) => {
-      console.log('Artist data: ', data);
-      this.artistsData = data;
+//   loadArtistData(): void{
+//     this.ArtistServieService.getArtist().subscribe((data: any[]) => {
+//       console.log('Artist data: ', data);
+//       this.artistsData = data;
      
-    }, (error) => {
-      console.error('Error fetching artist data: ', error);
-    });
-  }
+//     }, (error) => {
+//       console.error('Error fetching artist data: ', error);
+//     });
+//   }
 
-  getArtwork(): void {
-    this.ArtServiceService.getArtwork().subscribe(
-      (data: any[]) => {
-        console.log(data)
-        this.artsData = data;
-      },
-      (error: any) => {
-        console.log(error);
-      }
-);}
+//   getArtwork(): void {
+//     this.ArtServiceService.getArtwork().subscribe(
+//       (data: any[]) => {
+//         console.log(data)
+//         this.artsData = data;
+//       },
+//       (error: any) => {
+//         console.log(error);
+//       }
+// );}
 
 
 
-}
+// }
 //   artistsData = [
     
 //     { 
@@ -180,4 +180,74 @@ export class HomeComponent implements OnInit {
 // ];
 
 
+import { Component, OnInit } from '@angular/core';
+import { ArtServiceService } from './service/art-service.service';
+import { ArtistServieService } from './service/artist-servie.service';
 
+@Component({
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
+})
+export class HomeComponent implements OnInit {
+    artsData: any = {};
+    artistsData: any = {};
+    trendingArtists: any = [];
+    trendingArtworks: any = [];
+  artService: any;
+    constructor(private ArtServiceService: ArtServiceService, private ArtistServieService: ArtistServieService) { }
+
+    ngOnInit(): void {
+        this.getArtwork();
+        this.loadArtistData();
+        this.loadTrendingArtists(7); // Load trending artists for the past 7 days
+        this.loadTrendingArtworks(7); // Load trending artworks for the past 7 days
+      }
+
+    loadArtistData(): void {
+        this.ArtistServieService.getArtist().subscribe(
+            (data: any[]) => {
+                console.log('Artist data: ', data);
+                this.artistsData = data;
+            },
+            (error) => {
+                console.error('Error fetching artist data: ', error);
+            }
+        );
+    }
+
+    loadTrendingArtworks(duration: number): void {
+      this.artService.getTrendingArtwork(duration).subscribe(
+        (data: any[]) => {
+          console.log('Trending artworks: ', data);
+          this.trendingArtworks = data;
+        },
+        (error: any) => {
+          console.error('Error fetching trending artworks: ', error);
+        }
+      );
+    }
+    loadTrendingArtists(duration: number): void {
+        this.ArtistServieService.getTrendingArtists(duration).subscribe(
+            (data: any[]) => {
+                console.log('Trending artists: ', data);
+                this.trendingArtists = data;
+            },
+            (error) => {
+                console.error('Error fetching trending artists: ', error);
+            }
+        );
+    }
+
+    getArtwork(): void {
+        this.ArtServiceService.getArtwork().subscribe(
+            (data: any[]) => {
+                console.log(data);
+                this.artsData = data;
+            },
+            (error: any) => {
+                console.log(error);
+            }
+        );
+    }
+}

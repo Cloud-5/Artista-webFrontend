@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="card artist-card shadow zoom-in-out-on-hover">
     <div class="card-body">
       <div class="profile-pic">
@@ -19,5 +19,29 @@
         <button type="button" class="btn btn-primary mx-auto" (click)="messageArtist(artist.firebase_uid, artist.artist_name  )">Message</button>
       </div>
     </div>
+  </div>
+</div> -->
+
+
+<div class="container">
+  <div class="card artist-card shadow zoom-in-out-on-hover">
+      <div class="card-body">
+          <div class="profile-pic">
+              <img [src]="artist.thumbnail_url" class="profile-picture rounded-circle shadow" alt="Profile Picture">
+          </div>
+          <div class="artist-detail">
+              <p class="card-title"><strong>{{ artist.artist_name }}</strong></p>
+              <p class="job-title">{{ artist.artwork_title }}</p>
+              <div class="row follower-count">
+                <div class="col-auto">
+                  <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="col">
+                  <p class="follower-count"><strong>{{ formatFollowerCount(artist.total_followers) }} Followers</strong></p>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary mx-auto" (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
+          </div>
+      </div>
   </div>
 </div>

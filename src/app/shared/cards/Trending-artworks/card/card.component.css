@@ -62,3 +62,43 @@
   padding-right: 0%;
  
 }
+
+
+
+
+
+
+
+
+
+
+.container {
+  display: flex;
+  overflow: hidden;
+  width: 100%; /* Adjust width as needed */
+  position: relative;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  animation: none; /* Initially no animation */
+}
+
+.card {
+  flex: 0 0 auto;
+  min-width: 300px; /* Adjust card width */
+  margin-right: 10px; /* Adjust spacing between cards */
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes scrollCards {
+  0% {
+      transform: translateX(0%);
+  }
+  100% {
+      transform: translateX(-400%);
+  }
+}
+
+.container{
+  animation: scrollCards 20s linear infinite; /* Apply animation on hover */
+}

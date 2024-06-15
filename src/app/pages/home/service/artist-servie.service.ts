@@ -1,18 +1,67 @@
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { environment } from '../../../../environments/environment';
+// import { Observable } from 'rxjs';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class ArtistServieService {
+//   private apiUrl: string = environment.apiUrl + '/artist';
+
+//   constructor(private http:  HttpClient) { }
+//  getArtist(): Observable<any> {
+//     return this.http.get(`${this.apiUrl}/`);
+// }
+
+
+// }
+
+
+// artist-servie.service.ts
+
+
+
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { environment } from '../../../../environments/environment';
+// import { Observable } from 'rxjs';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class ArtistServieService {
+//   private apiUrl: string = environment.apiUrl + '/artist';
+
+//   constructor(private http: HttpClient) { }
+
+//   getArtist(): Observable<any> {
+//     return this.http.get(`${this.apiUrl}/`);
+//   }
+
+//   getTrendingArtists(duration: number): Observable<any> {
+//     return this.http.get(`${this.apiUrl}/trending?duration=${duration}`);
+//   }
+// }
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ArtistServieService {
-  private apiUrl: string = environment.apiUrl + '/artist';
+    private apiUrl: string = environment.apiUrl + '/artist';
 
-  constructor(private http:  HttpClient) { }
- getArtist(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/`);
-}
+    constructor(private http: HttpClient) { }
 
+    getArtist(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/`);
+    }
 
+    getTrendingArtists(duration: number): Observable<any> {
+        return this.http.get(`${this.apiUrl}/trending?duration=${duration}`);
+    }
 }

@@ -70,27 +70,35 @@
   </section><br>
 
 
+
+
+  
   <div>
     <h1>Trending Artworks</h1></div><br>
-  <div class="card-container p-4">
-
-        <div  *ngFor="let art of artsData" >
-            <app-card [art]="art"></app-card>
-
+    <div class="card-container p-4">
+      <div class="d-flex flex-nowrap">
+        <div *ngFor="let art of artsData">
+          <app-card [art]="art"></app-card>
+        </div>
+      </div>
     </div>
-</div>
+    
    <br>
 
    
   <div><h1>Trending Artist</h1></div><br>
 
-  <div class="card-container p-4">
+  <div class="card-container-artist">
 
         <div *ngFor="let artist of artistsData" >
             <app-artist-card [artist]="artist"></app-artist-card>
         </div>
 
 </div>
+<script></script>
+
+
+
    <br>
    <div><h1>3D Models</h1></div><br>
   <div>
