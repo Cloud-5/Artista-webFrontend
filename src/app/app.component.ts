@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 
 @Component({
   selector: 'app-root',
