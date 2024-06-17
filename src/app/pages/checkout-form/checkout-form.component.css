@@ -1,0 +1,53 @@
+.text-color{
+    color: var(--body-text-color);
+    font-size: 130%;
+    font-weight: bold;
+    margin-bottom: 25px;
+    margin-top: -25px;
+}
+
+.container-fluid {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
+.section-margin{
+    margin-left: 100px;
+    margin-right: 100px;
+ 
+}
+
+.btn-customize{
+    width: 70%;
+    margin-top: 5%;
+
+}
+.btn-change{
+    width: 70%;
+    margin-top: 5%;
+  
+}
+
+.card-text{
+    color: var(--body-text-color);
+    font-size: 100%;
+    font-weight:500;
+   
+}
+
+.order-summary{
+    margin-top: 50%;
+}
+
+
+.error{
+    color: red;
+}
+
+.alert{
+    margin-top: 10px;
+    background-color: green;
+    padding: 10px 20px;
+    color: aliceblue;
+    border-radius: 5px;
+}

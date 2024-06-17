@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card   shadow mb-4 zoom-in-out-on-hover">
+        <img [src]="art.thumbnail_url" class="card-img-top" alt="Artwork Image">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="card-title"><strong>{{art.artwork_title}}</strong></p>
+                <div class="cart-container">
+                    
+                    <p class="card-text price-text"  ><strong>
+                        {{art.price | currency:'USD':'symbol':'1.2-2'}}
+                    </strong>
+                    <button class="btn cart-icon-btn" (click)="addCart(art)">
+                
+                        
+                            <i class="bi bi-cart-plus-fill"></i>
+                      
+                    
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Additional texts in the same row -->
+            <div class="d-flex justify-content-between additional-texts">
+                <p class="artist-name"><strong>{{art.artist_name}}</strong></p>
+                <p class="like-count"><strong>{{art.total_likes}}</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
