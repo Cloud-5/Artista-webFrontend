@@ -1,0 +1,20 @@
+.container
+{
+    background-image: linear-gradient(to right,#006ca5,#006ca5);
+
+
+}
+.row g-3
+{
+  
+    height: 800px;   
+
+}
+
+p{
+    font-weight: bold;
+}
+label
+{
+    font-weight: bold;
+}
