@@ -51,25 +51,37 @@ export class ModelComponent implements OnInit, AfterViewInit {
   }
 
   // Create the controls
-  private createControls = () => {
-    const renderer = new CSS2DRenderer();
-    //renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-    renderer.domElement.style.position = 'absolute';
-    renderer.domElement.style.top = '0px';
-    renderer.domElement.style.width = 'auto';
-    renderer.domElement.style.height = 'auto';
-    const container = this.canvas.parentElement;
-    if(container) {
-      container.appendChild(renderer.domElement);
-    }
-    if (this.camera && this.scene) {
-      this.controls = new OrbitControls(this.camera, renderer.domElement);
+  // private createControls = () => {
+  //   const renderer = new CSS2DRenderer();
+  //   renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+  //   renderer.domElement.style.position = 'absolute';
+  //   renderer.domElement.style.top = '0px';
+  //   renderer.domElement.style.width = 'auto';
+  //   renderer.domElement.style.height = 'auto';
+  //   const container = this.canvas.parentElement;
+  //   if(container) {
+  //     container.appendChild(renderer.domElement);
+  //   }
+  //   if (this.camera && this.scene) {
+  //     this.controls = new OrbitControls(this.camera,renderer.domElement);
+  //     this.controls.autoRotate = true;
+  //     this.controls.enableZoom = true;
+  //     this.controls.enablePan = true;
+  //     console.log("controls")
+  //     this.controls.update();
+  //     console.log("controles updated",this.controls)
+
+  //   }
+  // };
+  private createControls() {
+    if (this.camera && this.renderer) {
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
       this.controls.autoRotate = true;
       this.controls.enableZoom = true;
       this.controls.enablePan = true;
       this.controls.update();
     }
-  };
+  }
 
   // Create the scene
   private createScene() {
@@ -87,7 +99,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
     plane.castShadow = false;
     plane.receiveShadow = true;
 
-    this.loaderGLTF.load(this.objectUrl, (gltf: GLTF):void => {
+    this.loaderGLTF.load('assets/car/scene.gltf', (gltf: GLTF):void => {
       this.model = gltf.scene.children[0];
       console.log(this.model);
 
@@ -159,7 +171,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
       if (component.scene && component.camera && component.renderer) {
         component.renderer.render(component.scene, component.camera);
       }
-     //component.animateModel();
+      //component.animateModel();
       requestAnimationFrame(render);
     }());
   }

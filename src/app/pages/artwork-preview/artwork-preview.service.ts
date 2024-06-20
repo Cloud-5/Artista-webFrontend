@@ -25,7 +25,6 @@ export class ArtworkPreviewService {
   }
 
   toggleFollow(artistId: string, userId: string): Observable<any> {
-    console.log('in the service Following artist', artistId, 'as user', userId);
     return this.http.post<any>(`${this.apiUrl}/${artistId}/follow`, { userId });
   }
 
@@ -34,7 +33,7 @@ export class ArtworkPreviewService {
   }
 
   toggleAddToGallery(artworkId: string, userId: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${artworkId}/addtogallery`, { userId });
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/  `, { userId });
   }
 
   removeFromGallery(artworkId: string, userId: string): Observable<any> {
