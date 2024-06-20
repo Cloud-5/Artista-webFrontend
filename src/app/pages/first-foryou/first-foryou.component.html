@@ -1,0 +1,23 @@
+<section class="head-title-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5">
+                <h3 class="text-color">Step into your personalized art sanctuary! Enhance your feed by exploring and following more digital art categories that pique your interest. Your journey to a curated art experience begins now!</h3>
+            </div>
+        </div>
+        <div class="container mt-5 mb-3 ">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" >
+                <div class="col mb-3" *ngFor="let category of categoryData" >
+                    <app-category [imageUrl]="category.banner" [title]="category.name" [categoryId]="category.category_id" (selectionChange)="handleSelectionChange($event)" ></app-category>                
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <button type="button" class="btn btn-primary btn-lg custom-button" (click)="postPreferences()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  

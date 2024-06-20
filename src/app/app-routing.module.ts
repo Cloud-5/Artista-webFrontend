@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+
+
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
 import { FollowingArtistsComponent } from './pages/Customer/following-artists/following-artists.component';
@@ -9,8 +10,67 @@ import { ArtsComponent } from './shared/components/cards/arts/arts.component';
 import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/purchase-img-card.component';
 
+
+import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ForyouComponent } from './pages/foryou/foryou.component';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { RouterModule,Routes} from '@angular/router';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { St01Component } from './pages/sign-up/sign-up-art enthusiast/st01/st01.component';
+import { St02Component } from './pages/sign-up/sign-up-art enthusiast/st02/st02.component';
+import { St1Component } from './pages/sign-up/sign-up-artist/st1/st1.component';
+import { St2Component } from './pages/sign-up/sign-up-artist/st2/st2.component';
+import { ResetPasswordComponent } from './pages/fogot-password/reset-password/reset-password.component';
+import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
+import { HelpCenterComponent } from './pages/help-center/help-center.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/customer-profile-gallery', pathMatch: 'full'},
+  {
+    path:'', component: HomeComponent
+  },
+  {
+    path:'login', component :SignInComponent
+  },
+  {
+    path:'st1', component: St1Component
+  },
+  {
+    path:'st01', component: St01Component
+  },
+  {
+    path:'st2', component: St2Component
+  },
+  {
+    path:'st02', component: St02Component
+  },
+  {
+    path:'helpCenter', component: HelpCenterComponent
+  },
+
+
+  {
+    path:'reset', component: ResetPasswordComponent
+  },
+  {
+    path:'new', component: NewPasswordComponent
+  },
+  {
+    path: 'chat', component: ChatScreenComponent
+  },
+  
+   { path: '', component: FirstForyouComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'foryou', component: ForyouComponent },
+  { path: 'artist', component: ArtistComponent },
+  { path: 'checkout', component: CheckoutFormComponent},
+  { path: 'categories', component: CategoriesComponent},
+    
+   { path: '', redirectTo: '/customer-profile-gallery', pathMatch: 'full'},
   { path: 'customer-profile-gallery', component: CustomerProfileGalleryComponent },
   { path: 'edit-customer-profile/:userId', component: EditCustomerProfileComponent },
   { path: 'following-artists', component: FollowingArtistsComponent},
@@ -20,8 +80,8 @@ const routes: Routes = [
   { path:'search-art',component: SearchArtComponent},
   { path:'purchase-img-card',component:PurchaseImgCardComponent}
 
-];
 
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

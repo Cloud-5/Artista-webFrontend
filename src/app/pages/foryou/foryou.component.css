@@ -1,0 +1,25 @@
+.container-fluid {
+    position: relative; /* Ensure the container serves as the positioning context */
+    z-index:1; 
+ /* Set a lower z-index for the container */
+}
+
+.custom-button {
+    position: absolute; /* Position the button relative to the container */
+    top: -90%; /* Adjust positioning as needed */
+    right: 390%; /* Adjust positioning as needed */
+    z-index: 2; /* Set a higher z-index value for the button */
+    font-weight: bold;
+    width: 700%;
+}
+
+.z-custom-button {
+    z-index: 999; /* Set a higher z-index for the button wrapper */
+}
+
+
+@media (max-width: 576px) {
+    .custom-button {
+        font-size: 80%;
+    }
+}
