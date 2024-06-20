@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { ModelComponent } from './shared/components/model/model.component';
 
-
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
 import { FollowingArtistsComponent } from './pages/Customer/following-artists/following-artists.component';
@@ -12,7 +11,6 @@ import { FeedbackListComponent } from './pages/Customer/feedback-list-card/feedb
 import { ArtsComponent } from './shared/components/cards/arts/arts.component';
 import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
 import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/purchase-img-card.component';
-
 
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
@@ -32,66 +30,43 @@ import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 
 const routes: Routes = [
-  {
-    path:'', component: HomeComponent
-  },
-  {
-    path:'login', component :SignInComponent
-  },
-  {
-    path:'st1', component: St1Component
-  },
-  {
-    path:'st01', component: St01Component
-  },
-  {
-    path:'st2', component: St2Component
-  },
-  {
-    path:'st02', component: St02Component
-  },
-  {
-    path:'helpCenter', component: HelpCenterComponent
-  },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: SignInComponent },
+  { path: 'st1', component: St1Component },
+  { path: 'st01', component: St01Component },
+  { path: 'st2', component: St2Component },
+  { path: 'st02', component: St02Component },
+  { path: 'helpCenter', component: HelpCenterComponent },
 
+  { path: 'reset', component: ResetPasswordComponent },
+  { path: 'new', component: NewPasswordComponent },
+  { path: 'chat', component: ChatScreenComponent },
 
-  {
-    path:'reset', component: ResetPasswordComponent
-  },
-  {
-    path:'new', component: NewPasswordComponent
-  },
-  {
-    path: 'chat', component: ChatScreenComponent
-  },
-  
-   { path: '', component: FirstForyouComponent },
+  { path: 'firstforyou', component: FirstForyouComponent },
   { path: 'cart', component: CartComponent },
   { path: 'foryou', component: ForyouComponent },
   { path: 'artist', component: ArtistComponent },
-  { path: 'checkout', component: CheckoutFormComponent},
-  { path: 'categories', component: CategoriesComponent},
-    
-   { path: '', redirectTo: '/customer-profile-gallery', pathMatch: 'full'},
-  { path: 'customer-profile-gallery', component: CustomerProfileGalleryComponent },
-  { path: 'edit-customer-profile/:userId', component: EditCustomerProfileComponent },
-  { path: 'following-artists', component: FollowingArtistsComponent},
-  { path: 'artist-portfolio', component: ArtistPortfolioComponent},
-  { path: 'feedback-list-card',component: FeedbackListComponent},
-  { path: 'arts',component: ArtsComponent},
-  { path:'search-art',component: SearchArtComponent},
-  { path:'purchase-img-card',component:PurchaseImgCardComponent},
+  { path: 'checkout', component: CheckoutFormComponent },
+  { path: 'categories', component: CategoriesComponent },
 
-  { path: 'art-p', component: ArtworkPreviewComponent },
-  { path: 'model', component: ModelComponent},
-  { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
-  { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
+  //{ path: '', redirectTo: '/customer-profile-gallery', pathMatch: 'full' },
+  { path: 'customer-profile-gallery',component: CustomerProfileGalleryComponent, },
+  { path: 'edit-customer-profile/:userId',component: EditCustomerProfileComponent, },
+  { path: 'following-artists', component: FollowingArtistsComponent },
+  { path: 'artist-portfolio', component: ArtistPortfolioComponent },
+  { path: 'feedback-list-card', component: FeedbackListComponent },
+  { path: 'arts', component: ArtsComponent },
+  { path: 'search-art', component: SearchArtComponent },
+  { path: 'purchase-img-card', component: PurchaseImgCardComponent },
+
+  { path: 'preview', component: ArtworkPreviewComponent },
+  { path: 'model', component: ModelComponent },
+  //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
+  //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-
- }
+export class AppRoutingModule {}

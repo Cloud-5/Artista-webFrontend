@@ -1,11 +1,9 @@
 import { NgModule, inject } from '@angular/core';
-import {
-  BrowserModule,
-  provideClientHydration,
-} from '@angular/platform-browser';
-
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
+
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
@@ -142,6 +140,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
   providers: [
     provideClientHydration(),
     ArtistPortfolioService,
+    CommentsService,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'angular-chat-c21c3',
