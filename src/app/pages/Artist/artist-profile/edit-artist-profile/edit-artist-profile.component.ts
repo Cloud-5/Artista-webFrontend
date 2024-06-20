@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './edit-artist-profile.component.css'
 })
 export class EditArtistProfileComponent {
-  
+userData: any;
+
 }

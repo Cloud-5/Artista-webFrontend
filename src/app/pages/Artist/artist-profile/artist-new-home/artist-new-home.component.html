@@ -5,9 +5,9 @@
   <div class="cols__container">
 
 
-    <div class="left__col">
+    <div class="left__col artist-details">
       <div class="img__container">
-        <img src={{userData.profile_photo_url}} alt="Anna Smith" />
+        <img src={{userData.profile_photo_url}} alt={{userData.name}} />
         <span></span>
       </div>
       <h2>{{userData.fName + " " + userData.LName}}</h2>
@@ -16,7 +16,7 @@
 
       <ul class="about">
         <li><span>{{userData.gallery}}</span>Gallery</li>
-        <li><span>{{userData.followers}}</span>Following</li>
+        <li><span>{{userData.followers}}</span>Followers</li>
         <li><span>{{0}}</span>Purchases</li>
       </ul>
 
@@ -28,11 +28,11 @@
           <div class="d-flex" style="justify-content: space-between">
 
 
-            <button class="btn btn-primary" style="width: 48%" routerLink="/edit-artist-profile-component">
+            <button class="btn btn-primary" style="width: 48%" routerLink="/edit">
              Edit profile
             </button>
 
-            <button type="button" class="btn btn-primary uploadArtworks"  routerLink="test"     style="width: 48%">
+            <button type="button" class="btn btn-primary uploadArtworks"  routerLink="/upload"     style="width: 48%">
               Upload Artwoks
             </button>
 

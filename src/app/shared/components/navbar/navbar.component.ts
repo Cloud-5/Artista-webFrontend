@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
 
+  constructor(private router: Router) { }
+
+  toggleNotification(): void {
+    // Navigate to the notification route
+    this.router.navigate(['/notification']);
+  }
 
 }

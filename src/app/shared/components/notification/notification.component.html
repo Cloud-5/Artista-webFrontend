@@ -1,0 +1,21 @@
+<div class="icon" (click)="toggleNotiFi()">
+  <img src="../../../../assets/bell.jpg" alt="">
+  <div class="notifi-count"><span>{{ countUnreadMessages() }}</span></div>
+</div>
+
+<div id="box" class="notifi-box">
+  <h2>Notifications <span>{{ countUnreadMessages() }}</span></h2>
+
+  <div class="noti-item" *ngFor="let notification of notifications">
+    <img [src]="notification.profilePic" alt="Profile Picture">
+    <div class="text">
+      <h4>{{ notification.message }}</h4>
+      <p>{{ notification.time }}</p>
+    </div>
+  </div>
+
+  <div class="notification-footer">
+    <button class="btn btn-sm btn-secondary" (click)="markAllAsRead()">Mark All as Read</button>
+    <button class="btn btn-sm btn-danger" (click)="clearAllNotifications()">Clear All Notifications</button>
+  </div>
+</div>

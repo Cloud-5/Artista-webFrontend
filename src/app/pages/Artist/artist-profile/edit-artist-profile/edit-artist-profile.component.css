@@ -1,32 +1,14 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-
-}
-
-.blur-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://th.bing.com/th/id/OIP.2HIX184r17IvA1VRuXdtbAHaFL?w=207&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7'); /* Replace 'background.jpg' with your background image URL */
-  background-size: cover;
-  filter: blur(10px);
-}
-
 .upload-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.5);
+
+  justify-content: center;
+  margin: 50px;
+  background-color: rgb(80, 137, 235);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  width: 400px; /* Set the width as needed */
+  width: 800px;
+  left: 400px;
+
 }
 
 .upload-box h2 {
@@ -44,7 +26,7 @@ body {
   display: block;
   margin: 0 auto;
   padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #b3e002;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -101,38 +83,48 @@ body {
   font-size: 14px;
   color: #333;
 }
+.container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container-row{
+  background-color: #007bff;
+  margin: 40px;
+  border-radius: 20px;
 
 
-
-
-
-
-
-
-
-
-
-app-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1001; /* Ensure the navbar is on top */
+}
+.container-logo{
+  /* background: url("/src/assets/imgs/creations\ \(6\).jpeg") no-repeat 50% 20% / cover; */
 }
 
-.blur-background {
-  /* Existing styles */
-  z-index: 1000; /* Ensure the blur background is below the navbar */
+.upload-button {
+  display: inline-block;
+  padding: 10px;
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.upload-box {
-  /* Existing styles */
-  z-index: 1000; /* Ensure the upload box is below the navbar */
+.upload-button:hover {
+  background-color: #0056b3; /* Darker blue background color on hover */
 }
-app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1001; /* Ensure the footer is on top of other content */
+
+.upload-button {
+  background-color: yellow;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+  justify-content: center;
 }

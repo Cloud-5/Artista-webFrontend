@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
-
 import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
 import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
 import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
@@ -19,8 +16,8 @@ import { ArtsComponent } from './shared/components/arts/arts.component';
 import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
 import { TestComponent } from './test/test.component';
 import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
-import { NotificationComponent } from './pages/Artist/artist-profile/notification/notification.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificationComponent } from './shared/components/notification/notification.component';
 
 
 @NgModule({
@@ -37,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     TestComponent,
     UploadArtworksComponent,
     NotificationComponent,
+
   ],
   imports: [
     BrowserModule,
