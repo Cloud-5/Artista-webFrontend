@@ -16,7 +16,6 @@ import { SearchArtComponent } from './pages/Customer/search-art/search-art.compo
 
 import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
 
-import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
