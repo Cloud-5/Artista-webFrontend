@@ -3,6 +3,19 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
+import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
+import { FollowingArtistsComponent } from './pages/Customer/following-artists/following-artists.component';
+import { ArtistPortfolioComponent } from './pages/Customer/artist-portfolio/artist-portfolio.component';
+import { FeedbackListComponent } from './pages/Customer/feedback-list-card/feedback-list-card.component';
+import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/purchase-img-card.component';
+
+import { FooterComponent } from './shared/components/footer/footer.component';
+
+import { SearchArtComponent } from './pages/Customer/search-art/search-art.component';
+
+import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
+
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
-import { FooterComponent } from './shared/components/footer/footer.component';
+
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ArtistsComponent } from './shared/cards/artists/artists.component';
 import { ArtsComponent } from './shared/cards/arts/arts.component';
@@ -56,7 +69,13 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 @NgModule({
   declarations: [
     AppComponent,
-
+    EditCustomerProfileComponent,
+    CustomerProfileGalleryComponent,
+    FollowingArtistsComponent,
+    ArtistPortfolioComponent,
+    PurchaseImgCardComponent,
+    SearchArtComponent,
+    FeedbackListComponent,
     ArtworkPreviewComponent,
     HighResArtworkComponent,
     FooterComponent,
@@ -70,8 +89,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     FirstForyouComponent,
     ForyouComponent,
     CheckoutFormComponent,
-    CategoriesComponent
-
+    CategoriesComponent,
     SignInComponent,
     St01Component,
     St02Component,
@@ -85,18 +103,13 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     ArtistCardComponent,
     CardComponent,
     ChatScreenComponent, 
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    
     MatChipsModule,
     MatTooltipModule,
     MatButtonModule,
-    
-
     FormsModule,
     ReactiveFormsModule, 
     HttpClientModule,
@@ -113,10 +126,11 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-
-  ],
+],
+  
   providers: [
     provideClientHydration(),
+     ArtistPortfolioService,
     provideFirebaseApp(() => initializeApp({"projectId":"angular-chat-c21c3","appId":"1:455184474056:web:cfa6398676083f316f6afd","storageBucket":"angular-chat-c21c3.appspot.com","apiKey":"AIzaSyDY2HU0m1AOkAbrydWIocDS9TRlD7lH93s","authDomain":"angular-chat-c21c3.firebaseapp.com","messagingSenderId":"455184474056"})),
     provideFirestore(() => getFirestore()),  
   ],

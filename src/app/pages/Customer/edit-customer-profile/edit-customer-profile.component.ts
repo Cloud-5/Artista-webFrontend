@@ -1,0 +1,62 @@
+import { Component, OnInit } from '@angular/core';
+import { EditCustomerProfileService } from './edit-customer-profile.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CustomerDataService } from '../../../shared/services/customerData.service';
+
+@Component({
+  selector: 'app-edit-customer-profile',
+  templateUrl: './edit-customer-profile.component.html',
+  styleUrl: './edit-customer-profile.component.css',
+})
+export class EditCustomerProfileComponent implements OnInit {
+
+  confirmPassword: any;
+
+  constructor(
+    private editCustomerProfileService: EditCustomerProfileService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private customerDataService: CustomerDataService
+  ) {}
+
+  editingCustomer: string = '';
+  customer: any = {};
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.editingCustomer = params['userId'];
+      this.customerDataService.currentCustomerData$.subscribe((data) => {
+        this.customer = data;
+      });
+    });
+  }
+
+  editDetails(editCustomerProfileForm: any) {
+    if (editCustomerProfileForm.valid) {
+      if (this.customer.newPassword && this.confirmPassword !== this.customer.newPassword) {
+
+        return;
+      }
+
+      const customerDetails = {
+        firstName: this.customer.fName,
+        lastName: this.customer.LName,
+        description: this.customer.description,
+        email: this.customer.email,
+        newPassword: this.customer.newPassword,
+        location: this.customer.location,
+      };
+
+
+      this.editCustomerProfileService
+        .EditCustomerProfile(this.editingCustomer, customerDetails)
+        .subscribe(
+          () => {
+          },
+          (error) => {
+            console.log('error editing customer', error);
+          }
+        );
+    }
+  }
+}

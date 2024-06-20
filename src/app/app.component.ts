@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,13 @@ import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend';
+  public form: FormGroup;
+  rating3: number;
+
+  constructor(private fb: FormBuilder){
+    this.rating3 = 0;
+    this.form = this.fb.group({
+      rating: ['', Validators.required],
+    })
+  }
 }

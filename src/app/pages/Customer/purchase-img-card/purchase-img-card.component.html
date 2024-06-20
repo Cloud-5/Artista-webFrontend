@@ -1,0 +1,35 @@
+<div *ngFor="let purchase of purchaseData" class="card request-card" style="width: 720px;">
+  <div class="d-flex" style="height: auto">
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <div>
+          <span class="fs-6">Purchase ID: </span> <span class="fs-6"> {{ purchase.purchase_id }} </span> |
+          <span class="fs-6">Date: </span> <span class="fs-6"> {{ purchase.purchase_datetime | date:'yyyy-MM-dd HH:mm'
+            }} </span>
+        </div>
+        <div>
+          <span class="fs-6">Payment Method: {{purchase.paymentMethod}}</span>
+        </div>
+      </div>
+      <div *ngFor="let artwork of purchase.cartItems" style="margin-top: 10px;" class="item-card">
+        <div class="d-flex">
+          <div class="card d-flex gray-background" style="width: 100%;">
+            <div class="row">
+              <div class="col-3 profile-pic">
+                <img [src]="artwork.artwork_url" alt="Artwork" class="artwork-image" style="width:80px">
+              </div>
+              <div class="col-6 artwork-details text-left">
+                <div><span class="detail-label">Artwork: </span>{{ artwork.artwork_title }}</div>
+                <div><span class="detail-label">Artist: </span>{{ artwork.artist_name }}</div>
+                <div><span class="detail-label">Price: </span>{{ artwork.artwork_price }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttons d-flex flex-column align-items-end mt-2">
+        <button class="btn btn-danger" type="button" (click)="deletePurchase(purchase.purchase_id)">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
