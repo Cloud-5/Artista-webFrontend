@@ -67,12 +67,12 @@ export class SearchArtComponent implements OnInit {
       case 'name-desc':
         this.filteredArts.sort((a, b) => b.artwork_name.localeCompare(a.artwork_name));
         break;
-      case 'date-asc':
-        this.filteredArts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        break;
-      case 'date-desc':
-        this.filteredArts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        break;
+      // case 'date-asc':
+      //   this.filteredArts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      //   break;
+      // case 'date-desc':
+      //   this.filteredArts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      //   break;
       case 'price-asc':
         this.filteredArts.sort((a, b) => a.artwork_price - b.artwork_price);
         break;

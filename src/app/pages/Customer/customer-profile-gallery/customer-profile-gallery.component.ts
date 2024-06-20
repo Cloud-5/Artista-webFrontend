@@ -11,7 +11,7 @@ import { CustomerDataService } from '../../../shared/services/customerData.servi
 export class CustomerProfileGalleryComponent implements OnInit{
 
   CustomerData: any = {};
-  userId: string = '3';
+  userId: string = '24';
   // galleryArtData: any[] = [];
 
   artsData: any[] = [];
