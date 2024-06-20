@@ -1,0 +1,66 @@
+<div class="container d-flex">
+  <div class="comment-image-container">
+    <img src="/assets/user-icon.png" class="rounded-circle"/>
+  </div>
+  <div class="comment-right-part">
+    <div class="comment-name-content">
+      <div class="comment-content">
+        <div class="fw-medium">{{ comment.username }}</div>
+        &nbsp;&bull;
+        &nbsp;
+        <div class="fw-medium">{{ createdAt }}</div>
+      </div>
+      <div class="comment-text" *ngIf="!isEditing()">{{ comment.content }}</div>
+      <app-comment-form
+        *ngIf="isEditing()"
+        submitLabel="Update"
+        [hasCancelButton]="true"
+        [initialText]="comment.content"
+        (handleSubmit)="updateComment.emit({ text: $event, commentId: comment.comment_id})"
+        (handleCancel)="setActiveComment.emit(null)"
+      ></app-comment-form>
+    </div>
+    <div class="comment-actions">
+      <div
+        *ngIf="canReply"
+        class="comment-action"
+        (click)="setActiveComment.emit({ id: comment.comment_id, type: activeCommentType.replying })"
+      >
+        Reply
+      </div>
+      <div
+        *ngIf="canEdit"
+        class="comment-action"
+        (click)="setActiveComment.emit({ id: comment.comment_id, type: activeCommentType.editing })"
+      >
+        Edit
+      </div>
+      <div
+        *ngIf="canDelete"
+        class="comment-action"
+        (click)="deleteComment.emit(comment.comment_id)"
+      >
+        Delete
+      </div>
+    </div>
+    <app-comment-form
+      *ngIf="isReplying()"
+      submitLabel="Reply"
+      (handleSubmit)="addComment.emit({ text: $event, parentId: replyId })"
+    ></app-comment-form>
+    <div class="replies" *ngIf="replies.length > 0">
+      <app-comment
+        *ngFor="let reply of replies"
+        [comment]="reply"
+        [replies]="[]"
+        [activeComment]="activeComment"
+        [currentUserId]="currentUserId"
+        [parentId]="comment.comment_id"
+        (setActiveComment)="setActiveComment.emit($event)"
+        (deleteComment)="deleteComment.emit($event)"
+        (addComment)="addComment.emit($event)"
+        (updateComment)="updateComment.emit($event)"
+      ></app-comment>
+    </div>
+  </div>
+</div>

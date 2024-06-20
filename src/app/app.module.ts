@@ -6,6 +6,7 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
 import { FollowingArtistsComponent } from './pages/Customer/following-artists/following-artists.component';
@@ -20,6 +21,13 @@ import { SearchArtComponent } from './pages/Customer/search-art/search-art.compo
 import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommentComponent } from './shared/components/comments/comment/comment.component';
+import { CommentListComponent } from './shared/components/comments/comment-list/comment-list.component';
+import { CommentFormComponent } from './shared/components/comments/comment-form/comment-form.component';
+import { CommentsService } from './shared/services/comments.service';
+
+import { ModelComponent } from './shared/components/model/model.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -51,7 +59,7 @@ import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -101,6 +109,11 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     ArtistCardComponent,
     CardComponent,
     ChatScreenComponent,
+    ArtworkPreviewComponent,
+    CommentComponent,
+    CommentFormComponent,
+    CommentListComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,

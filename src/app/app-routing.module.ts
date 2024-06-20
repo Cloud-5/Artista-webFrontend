@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
+import { ModelComponent } from './shared/components/model/model.component';
 
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
@@ -17,7 +20,6 @@ import { ForyouComponent } from './pages/foryou/foryou.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-import { RouterModule,Routes} from '@angular/router';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { St01Component } from './pages/sign-up/sign-up-art enthusiast/st01/st01.component';
 import { St02Component } from './pages/sign-up/sign-up-art enthusiast/st02/st02.component';
@@ -78,10 +80,14 @@ const routes: Routes = [
   { path: 'feedback-list-card',component: FeedbackListComponent},
   { path: 'arts',component: ArtsComponent},
   { path:'search-art',component: SearchArtComponent},
-  { path:'purchase-img-card',component:PurchaseImgCardComponent}
+  { path:'purchase-img-card',component:PurchaseImgCardComponent},
 
-
+  { path: 'art-p', component: ArtworkPreviewComponent },
+  { path: 'model', component: ModelComponent},
+  { path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
+  { path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
