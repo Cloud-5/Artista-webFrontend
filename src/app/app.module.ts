@@ -16,6 +16,7 @@ import { SearchArtComponent } from './pages/Customer/search-art/search-art.compo
 
 import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
 
+
 import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
@@ -75,7 +76,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     PurchaseImgCardComponent,
     SearchArtComponent,
     FeedbackListComponent,
-    ArtworkPreviewComponent,
+   
     HighResArtworkComponent,
     FooterComponent,
     NavbarComponent,
