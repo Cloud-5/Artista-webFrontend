@@ -1,5 +1,8 @@
 import { NgModule, inject } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,13 +19,11 @@ import { SearchArtComponent } from './pages/Customer/search-art/search-art.compo
 
 import { ArtistPortfolioService } from './pages/Customer/artist-portfolio/artist-portfolio-service.service';
 
-
-import { HighResArtworkComponent } from './shared/components/high-res-artwork/high-res-artwork.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ArtistsComponent } from './shared/cards/artists/artists.component';
@@ -35,7 +36,6 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
-
 
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { St01Component } from './pages/sign-up/sign-up-art enthusiast/st01/st01.component';
@@ -51,7 +51,7 @@ import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -63,7 +63,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 @NgModule({
@@ -76,8 +76,6 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     PurchaseImgCardComponent,
     SearchArtComponent,
     FeedbackListComponent,
-   
-    HighResArtworkComponent,
     FooterComponent,
     NavbarComponent,
     ArtistsComponent,
@@ -102,7 +100,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     HelpCenterComponent,
     ArtistCardComponent,
     CardComponent,
-    ChatScreenComponent, 
+    ChatScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +109,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatTooltipModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -126,14 +124,23 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-],
-  
+  ],
+
   providers: [
     provideClientHydration(),
-     ArtistPortfolioService,
-    provideFirebaseApp(() => initializeApp({"projectId":"angular-chat-c21c3","appId":"1:455184474056:web:cfa6398676083f316f6afd","storageBucket":"angular-chat-c21c3.appspot.com","apiKey":"AIzaSyDY2HU0m1AOkAbrydWIocDS9TRlD7lH93s","authDomain":"angular-chat-c21c3.firebaseapp.com","messagingSenderId":"455184474056"})),
-    provideFirestore(() => getFirestore()),  
+    ArtistPortfolioService,
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'angular-chat-c21c3',
+        appId: '1:455184474056:web:cfa6398676083f316f6afd',
+        storageBucket: 'angular-chat-c21c3.appspot.com',
+        apiKey: 'AIzaSyDY2HU0m1AOkAbrydWIocDS9TRlD7lH93s',
+        authDomain: 'angular-chat-c21c3.firebaseapp.com',
+        messagingSenderId: '455184474056',
+      })
+    ),
+    provideFirestore(() => getFirestore()),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

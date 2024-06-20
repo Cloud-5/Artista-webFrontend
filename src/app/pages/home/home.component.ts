@@ -207,7 +207,6 @@ export class HomeComponent implements OnInit {
     loadArtistData(): void {
         this.ArtistServieService.getArtist().subscribe(
             (data: any[]) => {
-                console.log('Artist data: ', data);
                 this.artistsData = data;
             },
             (error) => {
@@ -219,7 +218,6 @@ export class HomeComponent implements OnInit {
     loadTrendingArtworks(duration: number): void {
       this.artService.getTrendingArtwork(duration).subscribe(
         (data: any[]) => {
-          console.log('Trending artworks: ', data);
           this.trendingArtworks = data;
         },
         (error: any) => {
@@ -230,7 +228,6 @@ export class HomeComponent implements OnInit {
     loadTrendingArtists(duration: number): void {
         this.ArtistServieService.getTrendingArtists(duration).subscribe(
             (data: any[]) => {
-                console.log('Trending artists: ', data);
                 this.trendingArtists = data;
             },
             (error) => {
@@ -242,7 +239,6 @@ export class HomeComponent implements OnInit {
     getArtwork(): void {
         this.ArtServiceService.getArtwork().subscribe(
             (data: any[]) => {
-                console.log(data);
                 this.artsData = data;
             },
             (error: any) => {
