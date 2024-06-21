@@ -22,6 +22,7 @@ import { CommentInterface } from '../../shared/interfaces/comment.interface';
             ]),
         ]),
     ],
+    
 })
 export class ArtworkPreviewComponent implements OnInit {
 
@@ -47,8 +48,6 @@ export class ArtworkPreviewComponent implements OnInit {
     
     TotalComments:number = 0;
 
-    
-
     constructor(
         // private route: ActivatedRoute,
         private artworkService: ArtworkPreviewService
@@ -63,22 +62,28 @@ export class ArtworkPreviewComponent implements OnInit {
         if(this.isFollowing){
             this.followButtonText = "Following";
             this.followButtonClass = "following";
+        } else {
+            this.followButtonText = "Follow";
+            this.followButtonClass = "follow";
         }
         if(this.isAddedToGallery){
             this.addToGalleryButtonText = "Added to Gallery";
             this.addToGalleryButtonClass = "added-to-gallery";
+        } else {
+            this.addToGalleryButtonText = "Add to Gallery";
+            this.addToGalleryButtonClass = "add-to-gallery";
         }
+        this.checkScreenSize();
     }
 
     oncommentsCount(count: number):void {
         this.TotalComments = count;
     }
     
-
-
     loadArtworkDetails(artworkId: string, userId: string): void {
         this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
             (data: any) => {
+                console.log('Artwork details:', data);
                 this.artworkDetails = data.artworkDetails[0];
                 this.tags = this.artworkDetails.tags;
                 this.tagsArray = this.tags.split(',');
@@ -174,4 +179,24 @@ export class ArtworkPreviewComponent implements OnInit {
 
         this.showStickyBar = scrollPosition > screenHeight;
     }
+
+    isDescriptionCollapsed = false;
+    isTagsCollapsed = false;
+    isSmallScreen = false;
+    @HostListener('window:resize', ['$event'])
+    onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth < 991;
+  }
+
+  toggleCollapse(section: string): void {
+    if (section === 'description') {
+      this.isDescriptionCollapsed = !this.isDescriptionCollapsed;
+    } else if (section === 'tags') {
+      this.isTagsCollapsed = !this.isTagsCollapsed;
+    }
+  }
 }

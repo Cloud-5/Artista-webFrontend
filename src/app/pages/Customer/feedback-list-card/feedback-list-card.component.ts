@@ -16,7 +16,7 @@ export class FeedbackListComponent implements OnInit {
   }
 
   loadFeedbackList() {
-    this.FeedbackListService.getFeedbackList(1)
+    this.FeedbackListService.getFeedbackList(25)
       .subscribe((data: any[]) => {
         this.feedbackList = data;
       }, (error: any) => {
