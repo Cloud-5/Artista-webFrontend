@@ -1,149 +1,319 @@
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+section {
+  padding-top: 42px;
+  padding-bottom: 42px;
+  overflow: hidden;
+}
+
+.likeCount-pubDate {
+  margin-top: 0.3125rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 32px;
+}
+
+.like {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3px;
+}
+.count {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+.ratings {
+  display: flex;
+  align-items: flex-start;
+  gap: 3px;
+}
+.pub-date-style {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+.header-art {
+  margin-bottom: 0.625rem;
+  margin-top: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.563rem;
+  color: #150734;
+}
+.body1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.625rem;
+  color: #150734;
+}
+.artwork-details {
+  margin-top: 2.5rem;
+}
+
+.btn-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
 
 .favorite-button {
-    border: none;
-    background: none;
-    cursor: pointer;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.collapsible {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-out;
+}
+
+.collapsible.expanded {
+  height: auto;
+  transition: height 0.5s ease-in;
+}
+
+.btn-link {
+  font-size: 1rem;
+  padding: 0;
+}
+
+.thick-icon {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.header-section {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.188rem;
+  color: #150734;
+}
+
+.artist-info {
+  background-color: #c0ccff;
+}
+.artist-info .container .artist-menu {
+  margin-bottom: 40px;
+  justify-content: flex-start;
+}
+.artist-info .container .artist-avatar {
+  margin-left: -5px;
+}
+.artist-menu .artist-avatar {
+  margin-right: 22px;
+  padding: 4px;
+  width: 161px;
+  height: 161px;
+  border: 1px solid transparent;
+}
+.artist-page-link .artist-avatar {
+  cursor: pointer;
+}
+section .container > p,
+section .header-section {
+  margin-bottom: 0.625rem;
+}
+.artist-menu a {
+  text-decoration: none;
+}
+.artist-summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 5px;
+}
+.message-btn {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.artist-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 @keyframes scaleIn {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeInOut {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .filled {
-    animation: scaleIn 0.5s ease-out, rotate 0.5s ease-out;
+  animation: scaleIn 0.5s ease-out, rotate 0.5s ease-out;
 }
 
 .border {
-    animation: fadeInOut 0.5s ease-out;
+  animation: fadeInOut 0.5s ease-out;
 }
 
 .custom-icon-color {
-    color: #ffD700;
-  }
-
-.following {
-    background-color: #000000 !important;
-    color: rgb(255, 255, 255) !important;
-    border: #000000 solid 1px !important;
+  color: #ffd700;
 }
 
-.follow{
-    background-color: #ffffff !important;
-    color: black !important;
-    border: #000000 solid 1px !important;
+.following {
+  background-color: #000000 !important;
+  color: rgb(255, 255, 255) !important;
+  border: #000000 solid 2px !important;
+  width: 50%;
+}
+
+.follow {
+  background-color: #c0ccff !important;
+  color: black !important;
+  border: #000000 solid 2px !important;
+  width: 50%;
 }
 
 .follow:hover {
-    background-color: #000000 !important;
-    color: white !important;
-    border: #000000 solid 1px !important;
+  background-color: #000000 !important;
+  color: white !important;
+  border: #000000 solid 2px !important;
+  width: 50%;
 }
 .add-to-gallery {
-    background-color: #ffffff !important;
-
+  background-color: #ffffff !important;
+  color: black !important;
+  border: #000000 solid 2px !important;
 }
 .add-to-gallery:hover {
-    background-color: #0dcaf0 !important;
-
+  background-color: #000000 !important;
+  color: white !important;
+  border: #000000 solid 2px !important;
 }
 
 .added-to-gallery {
-    background-color:  #0dcaf0 !important;
-    color: black !important;
+  background-color: #000000 !important;
+  color: rgb(255, 255, 255) !important;
+  border: #000000 solid 2px !important;
 }
-.artwork-layout{
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 100%;
-    width: 100%;
-    position: relative !important;
+.artwork-layout {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 100%;
+  width: 100%;
+  position: relative !important;
 }
 
 .artwork-layout .mat-card {
-    margin: 10px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
+  margin: 10px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
 }
 
-.artwork{
+.artwork {
   width: 100%;
   height: auto;
 }
 
-.artwork-details-content-name{
-    padding-left: 40px;
-    padding-right: 24px;
-    margin-right: 16px;
-}
-
-.artwork-details-content-pricing{
-    padding-left: 40px;
-    padding-right: 24px;
-    padding-top: 24px;
-    margin-right: 16px;
-}
-
-.artwork-details-content-name-info-box{
-    margin-right: 32px;
-}
-
-.artwork-details-content-name-info-box .title{
-    margin-bottom: 20px;
-}
-.artwork-details-content-name-info-box .body{
-    margin-bottom: 2px;
-}
-
 .sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa; /* Adjust background color as needed */
+  padding: 10px;
+  z-index: 1000;
+  transition: top 0.3s; /* Add smooth transition for a better visual effect */
+}
+
+.sticky-bar.show {
+  display: block;
+}
+
+.artist-details {
+  padding-left: 40px;
+  padding-right: 24px;
+}
+
+.artwork-details-content-pricing-buttons {
+  bottom: 0;
+  margin-top: 2rem;
+}
+
+@media (min-width: 992px) {
+  section {
+    padding-bottom: 80px;
+    padding-top: 80px;
+  }
+
+  .collapsible {
+    height: auto !important;
+  }
+  .btn-link {
     display: none;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #f8f9fa; /* Adjust background color as needed */
-    padding: 10px;
-    z-index: 1000;
-    transition: top 0.3s; /* Add smooth transition for a better visual effect */
+  }
+  .artist-info .container .artist-menu {
+    margin-bottom: 0;
+  }
+  .header-section {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.188rem;
+    color: #150734;
   }
 
-  .sticky-bar.show {
-    display: block;
+  .artist-introduction {
+    border-left: 1px solid black;
+    padding-left: 30px;
   }
-
-  .artist-details{
-    padding-left: 40px;
-    padding-right: 24px;
+}
+@media (min-width: 576px) {
+  .artist-menu {
+    flex-direction: row;
+    align-items: center;
   }
-
-  .artwork-details-content-pricing-buttons{
-    bottom: 0;
-  }
+}

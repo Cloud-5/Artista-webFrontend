@@ -1,235 +1,4 @@
-<div class="container mt-0" style="word-wrap: anywhere;">
-    <div class="row">
-        <div class="col-sm-8 gx-0 pt-3">
-            <div class="artwork-layout">
-                <section class="artwork-with-likes-published">
-                    <div class="artwork">
-                         <div *ngIf="!is3D">
-                            <img [src]="artworkDetails.imageUrl" alt="Artwork">
-                          </div>
-                          <div *ngIf="is3D">
-                            <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
-                            <app-model [objectUrl]="imageUrl"></app-model>
-                          </div>
-                    </div>
-                    <div class="likes-published mt-3 d-flex justify-content-around">
-                        <div class="likes d-flex">
-                            <div class="favourite-icon">
-                                <i class="bi bi-heart-fill fs-5" style="color: blue;"></i>
-                            </div>
-                            &nbsp;
-                            <div class="count">
-                                <p class="fw-medium">{{artworkDetails.total_likes}}</p>
-                            </div>
-                        </div>
-                        <div class="published">
-                            <p class="fw-medium">Publshed On: {{ artworkDetails.published_date | date }}</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="col-sm-4 gx-0 mt-3 mt-sm-0 mt-xl-0 pt-3">
-            <div class="artwork-details" >
-                <div class="artwork-details-content">
-                    <div class="artwork-details-content-name">
-                        <div class="artwork-details-content-name-info">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="artwork-details-content-name-info-box">
-                                        <h3 class="title fs-4 fw-bolder">{{artworkDetails.artwork_name}}</h3>
-                                        <p class="body fs-6">
-                                            <span class="fw-medium">{{artworkDetails.artist}}</span><span>,
-                                                {{artworkDetails.location}}</span>
-                                        </p>
-                                        <!-- <p class="fs-6 mt-4" style="margin-bottom: 2px;">Dimensions: {{dimensions}}</p> -->
-                                        <p class="fs-6 mt-4" style="margin-bottom: 2px;">Category:
-                                            {{artworkDetails.category}}</p>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <button (click)="toggleFavorite()" class="favorite-button">
-                                        <i class="bi fs-5" style="color: blue;" aria-hidden="false"
-                                            aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite"
-                                            [class.bi-heart]="!isFavorite"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="artwork-details-content-pricing">
-                        <div class="price">
-                            <p class="fs-3 fw-medium">{{artworkDetails.price | currency}}</p>
-                        </div>
-                        <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
-                            <div class="d-grid gap-2">
-                                <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button"
-                                    (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
-                                <button class="btn btn-primary" type="button">Add To Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-8 gx-0 p-4">
-            <div class="description">
-                <p>
-                    {{artworkDetails.description}}
-                </p>
-            </div>
-            <div class="details-table mt-5">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row" class="fw-medium">Tools</th>
-                            <td class="d-flex">
-                                <p>
-                                    {{artworkDetails.tools}}
-                                </p>
-                                <!-- <div *ngFor="let tool of artworkTools; let last = last">
-                                {{tool}}{{last ? '' : ', &nbsp;'}}
-                            </div> -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="fw-medium">File Formats</th>
-                            <td class="d-flex">
-                                <p>
-                                    {{artworkDetails.formats}}
-                                </p>
-                                <!-- <div *ngFor="let tool of fileFormats; let last = last">
-                                {{tool}}{{last ? '' : ', &nbsp;'}}
-                            </div> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="tags mt-5">
-                <div>
-                    <p class="fs-5 fw-medium">Tags</p>
-                </div>
-                <div>
-                    <div class="d-flex flex-wrap">
-                        <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium"
-                            style="background-color: rgb(233, 233, 233);">#{{ tag }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 gx-0">
-            <div class="artist-details" style="border: 0.5px solid rgb(207, 207, 207); padding: 20px; background-color: rgb(242, 242, 242);">
-                <div class="row text-center align-items-center d-flex">
-                    <div class="col-3 gx-0 col-lg-3">
-                        <div class="profile-pic">
-                            <button class="btn">
-                                <img [src]="artworkDetails.artist_profile_photo" class="rounded-circle"
-                                    style="height: 80px; width: 80px;">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-5 gx-0 justify-content-around col-lg-9 col-xl-5">
-                        <div>
-                            <p class="fs-6" style="margin-bottom: 0;">
-                                <span class="fw-medium fs-5">{{artworkDetails.artist}}</span>
-                            </p>
-                            <p class="fs-6" style="margin-bottom: 0;">
-                                <span>{{artworkDetails.location}}</span>
-                            </p>
-                            <p class="fs-6" style="margin-bottom: 0;">
-                                <span>{{artworkDetails.profession}}</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col gx-0 ">
-                        <div class="follow-button">
-                            <button [ngClass]="['btn', 'btn-outline-info', followButtonClass,'rounded-pill']"
-                                type="button" (click)="toggleFollow()">{{followButtonText}}</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-4 justify-content-center d-flex">
-                        <div class="artworks">
-                            <div class="d-flex">
-                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artworkDetails.total_creations}}
-                                </p>
-                                &nbsp;
-                                <i class="bi bi-palette-fill"></i>
-                            </div>
-                            <p class="fs-6 fw-medium">Artworks</p>
-                        </div>
-                    </div>
-                    <div class="col-4 justify-content-center d-flex">
-                        <div class="rating">
-                            <div class="d-flex">
-                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artworkDetails.avg_rating |
-                                    number: '1.0-0'}}</p>
-                                &nbsp;
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            <p class="fs-6 fw-medium">Rating</p>
-                        </div>
-                    </div>
-                    <div class="col-4 justify-content-center d-flex">
-                        <div class="followers">
-                            <div class="d-flex">
-                                <p class="fs-6 fw-medium" style="margin-bottom: 0;">{{artworkDetails.followers_count}}
-                                </p>
-                                &nbsp;
-                                <i class="bi bi-people-fill"></i>
-                            </div>
-                            <p class="fs-6 fw-medium">Followers</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="artist-des" style="max-height: 200px; overflow-y: auto;">
-                        <p>
-                            {{artworkDetails.artist_description}}
-                        </p>
-
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <p><a href="#"
-                            class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Visit
-                            Profile</a></p>
-                    <div class="message-button d-grid">
-                        <button class="btn btn-primary" type="button">Message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="container mt-5">
-                <div class="row">
-                    <hr>
-                    <div class="row">
-                        <div class="col d-flex justify-content-center">
-                            <i class="bi bi-chat-square-text-fill fs-5"></i>
-                            &nbsp;
-                            <p class="fw-medium">Comments</p>
-                            <p class="fw-medium">&nbsp;:&nbsp;{{TotalComments}}</p>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <div class="row border">
-                    <app-comment-list [currentUserId]="userId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="container bg-light" style="height: 250px; bottom: 0;">
-                <p></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
+<!-- <div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
     <div class="d-sm-flex justify-content-between align-items-center">
         <div class="d-flex">
             <div class="float-left" style="margin-left: 20px;">
@@ -279,4 +48,177 @@
             <button class="btn btn-primary w-50" type="button">Add To Cart</button>
         </div>
     </div>
-</div>
+</div> -->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="preview-container">
+                    <div class="artwork">
+                        <div *ngIf="!is3D">
+                           <img [src]="artworkDetails.imageUrl" alt="Artwork">
+                         </div>
+                         <div *ngIf="is3D">
+                           <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
+                           <app-model [objectUrl]="imageUrl"></app-model>
+                         </div>
+                   </div>
+                </div>
+                <div class="likeCount-pubDate">
+                    <div class="like">
+                        <button (click)="toggleFavorite()" class="favorite-button">
+                            <i class="bi fs-5" style="color: blue;" aria-hidden="false"
+                                aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite"
+                                [class.bi-heart]="!isFavorite"></i>
+                        </button>
+                        <p class="count">{{artworkDetails.total_likes}}</p>
+                    </div>
+                    <div class="pub-date">
+                        <p class="pub-date-style">Published On: {{ artworkDetails.published_date | date }}</p>
+                    </div>
+                </div>
+                <div class="artwork-details">
+                    <h5 class="header-art">
+                        Artwork description:
+                        <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('description')">
+                            <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isDescriptionCollapsed, 'bi-caret-up-square-fill': isDescriptionCollapsed}"></i>
+                        </button>
+                    </h5>
+                    <div class="collapsible" [class.expanded]="isDescriptionCollapsed || !isSmallScreen">
+                        <p class="body1" style="text-align: justify;">
+                            {{artworkDetails.description}}
+                        </p>
+                    </div>
+                
+                    <h5 class="header-art">
+                        Tags:
+                        <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
+                            <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isTagsCollapsed, 'bi-caret-up-square-fill': isTagsCollapsed}"></i>
+                        </button>
+                    </h5>
+                    <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">  
+                        <div class="d-flex flex-wrap">
+                            <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: #c0ccff;">#{{ tag }}</span>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-lg-4">
+                <div class="tab-content">
+                    <h1 class="header-art header-margin">
+                        {{artworkDetails.artwork_name}}
+                    </h1>
+                    <h2 class="body1">
+                        {{artworkDetails.category}}&nbsp;
+                        <br>
+                        <span>by</span>&nbsp;
+                        {{artworkDetails.artist}}
+                    </h2>
+                    &nbsp;
+                    <p class="body1">
+                        <span class="header-art">{{artworkDetails.price | currency}}</span>
+                    </p>
+                    <table class="body1">
+                        <tbody>
+                            <tr>
+                                <th>Tools:</th>
+                            </tr>
+                            <tr>
+                                <td>{{artworkDetails.tools}}</td>
+                            </tr>
+                            <tr>
+                                <th>File Formats:</th>
+                            </tr>
+                            <tr>
+                                <td>{{artworkDetails.formats}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
+                        <div class="d-grid gap-2">
+                            <button [ngClass]="['btn', addToGalleryButtonClass]" type="button"
+                                (click)="toggleAddToGallery()"><span class="pub-date-style">{{addToGalleryButtonText}}</span></button>
+                            <button class="btn" style="background: #c0ccff;" type="button"><span class="pub-date-style">Add To Cart</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="artist-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="artist-menu">
+                    <div class="avatar-container">
+                        <a class="artist-page-link"><img [src]="artworkDetails.artist_profile_photo" class="artist-avatar rounded-circle" alt="visit artist profile">
+                        </a>
+                    </div>
+                    <div>
+                        <a class="artist-page-link">
+                            <h2 class="header-section">
+                                {{artworkDetails.artist}}
+                            </h2>
+                        </a>
+                        <div class="artist-summary">
+                            <div class="ratings">
+                                <i class="bi bi-star-fill fs-5" style="color: blue; "></i>&nbsp;
+                                <p class="count" style="margin-bottom: 0;">{{artworkDetails.avg_rating |
+                                    number: '1.0-0'}}</p>
+                            </div>
+                            <div class="ratings">
+                                <i class="bi bi-palette-fill fs-5" style="color: blue; "></i>&nbsp;
+                                <p class="count" style="margin-bottom: 0;">{{artworkDetails.total_creations |
+                                    number: '1.0-0'}}</p>
+                            </div>
+                            <div class="ratings">
+                                <i class="bi bi-people-fill fs-5" style="color: blue; "></i>&nbsp;
+                                <p class="count" style="margin-bottom: 0;">{{artworkDetails.followers_count |
+                                    number: '1.0-0'}}</p>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button [ngClass]="['btn', followButtonClass,'rounded']"
+                            type="button" (click)="toggleFollow()">{{followButtonText}}</button>
+                            <button class="btn message-btn" type="button">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="artist-introduction col-lg-7">
+                <p class="body1" style="text-align: justify;">
+                    <i class="bi bi-geo-alt-fill fs-5" style="color: blue;"></i>&nbsp;{{artworkDetails.location}} <br><br>
+                    <strong>About artist</strong><br>
+                    {{artworkDetails.artist_description}}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="comments">
+    <div class="col-12">
+        <div class="container mt-5">
+            <div class="row">
+                <hr>
+                <div class="row">
+                    <div class="col d-flex justify-content-center gap-3">
+                        <i class="bi bi-chat-square-text-fill fs-4"></i>
+                        <p class="pub-date-style">Comments  :</p>
+                        <p class="pub-date-style">{{TotalComments}}</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="row border">
+                <app-comment-list [currentUserId]="userId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="container" style="height: 150px; bottom: 0;">
+            <p></p>
+        </div>
+    </div>
+</section>
