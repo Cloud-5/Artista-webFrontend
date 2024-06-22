@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, query, where, addDoc, orderBy, Timestamp } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Firestore, collection, query, where, addDoc, orderBy, Timestamp, getDoc, doc, deleteDoc } from '@angular/fire/firestore';
+import { Observable, from } from 'rxjs';
 import { collectionData } from 'rxfire/firestore';
 import { map } from 'rxjs/operators';
 
@@ -26,6 +26,12 @@ export class ChatServiceService {
     }) as unknown as Promise<void>;
   }
 
+  getCustomerDetailsByUid(uid: string): Observable<any> {
+    const userDocRef = doc(this.firestore, `users/${uid}`);
+    return from(getDoc(userDocRef)).pipe(
+      map(doc => doc.exists() ? doc.data() : null)
+    );
+  }
   getMessages(senderId: string, recipientId: string): Observable<any[]> {
     const messagesQuery = query(
       this.messagesCollection,
@@ -45,6 +51,11 @@ export class ChatServiceService {
     );
 
     return collectionData(messagesQuery, { idField: 'id' });
+  }
+
+  deleteMessage(messageId: string): Promise<void> {
+    const messageDocRef = doc(this.firestore, `messages/${messageId}`);
+    return deleteDoc(messageDocRef);
   }
 
   getUniqueCustomersForArtist(artistId: string): Observable<string[]> {

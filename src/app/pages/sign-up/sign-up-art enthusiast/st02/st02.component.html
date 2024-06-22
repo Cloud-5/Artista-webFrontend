@@ -44,7 +44,7 @@
                 <select class="form-select" [(ngModel)]="role" formControlName="role">
                   <option value="" disabled selected>Select your role</option>
                   <option value="artist">Artist</option>
-                  <option value="enthusiast">Art Enthusiast</option>
+                  <option value="enthusiast">Customer</option>
                 </select>
                 <div *ngIf="signupForm.get('role')?.invalid && (signupForm.get('role') || signupForm.get('role'))" class="text-danger">
                   Role is required

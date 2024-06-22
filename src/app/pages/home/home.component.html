@@ -37,44 +37,27 @@
       
 
       <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button id="search-button">Search</button>
-    </div>
-
+        <input type="text" id="search-input" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()">
+        <button id="search-button" type="button" class="btn btn-primary button-search" (click)="onSearch()">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
    
     </div>
 
-    <script>
-      document.getElementById('search-button').addEventListener('click', function() {
-          const query = document.getElementById('search-input').value.toLowerCase();
-          const items = document.querySelectorAll('#content h1');
-
-          let hasResults = false;
-          items.forEach(item => {
-              if (item.textContent.toLowerCase().includes(query)) {
-                  item.style.display = 'block'; // Show matching item
-                  hasResults = true;
-              } else {
-                  item.style.display = 'none'; // Hide non-matching item
-              }
-          });
-
-          if (!hasResults) {
-              document.getElementById('results-list').innerHTML = '<li>No results found</li>';
-          } else {
-              document.getElementById('results-list').innerHTML = ''; // Clear "No results found" message
-          }
-      });
-  </script>
+   
 
   </section><br>
 
 
 
-
-  
   <div>
-    <h1>Trending Artworks</h1></div><br>
+    <h1> Our Trending Original Art for Sale
+      </h1></div> <br>
+  <div><h3>Our online art gallery favorites. Don't miss your chance - shop original artwork now!</h3></div>
+  <div><br>
+    <h2> SEE ALL TRENDING ARTWORKS</h2></div>
+    <br>
     <div class="card-container p-4">
       <div class="d-flex flex-nowrap">
         <div *ngFor="let art of artsData">
@@ -85,8 +68,8 @@
     
    <br>
 
-   
-  <div><h1>Trending Artist</h1></div><br>
+   <div><h1>Discover the Future of Creativity: Meet the Trendsetters in Digital Art!</h1></div><br>
+  <div><h2> SEE ALL TRENDING ARTIST</h2></div><br>
 
   <div class="card-container-artist">
 
@@ -100,7 +83,7 @@
 
 
    <br>
-   <div><h1>3D Models</h1></div><br>
+   <div><h2>3D MODELS</h2></div><br>
   <div>
     <footer class="footer bg-primary text-light">
       <div class="container">

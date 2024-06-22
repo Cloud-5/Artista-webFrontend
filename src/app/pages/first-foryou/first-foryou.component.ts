@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class FirstForyouComponent implements OnInit {
 
   categoryData: any[] = [];
-  userId: number = 2;
+  userId: number = 75;
   selectedCategoryIds: number[] = [];
 
 

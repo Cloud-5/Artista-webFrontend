@@ -63,7 +63,7 @@ export class St02Component implements OnInit {
        (response) => {
          console.log('User created successfully:', response);
          // Redirect to next step after successful signup
-         this.router.navigate(['/']); 
+         this.router.navigate(['/login']); 
        },
        (error) => {
         

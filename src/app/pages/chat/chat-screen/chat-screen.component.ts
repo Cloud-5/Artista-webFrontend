@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ChatServiceService } from '../../caht/chat-service.service';
-import { Observable, of } from 'rxjs';
-import {  map } from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
+import {  map, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 interface Customer {
   firebaseUid: string;
@@ -22,7 +22,7 @@ export class ChatScreenComponent implements OnInit {
   userRole: string = '';
   customers$: Observable<Customer[]> = of([]); // List of customers who have sent messages
   selectedCustomerMessages$!: Observable<any[]>; // Messages from selected customer
-
+  selectedMessageId: string = '';
   constructor(private chatService: ChatServiceService) {}
 
   ngOnInit(): void {
@@ -49,15 +49,20 @@ export class ChatScreenComponent implements OnInit {
 
   loadCustomersWhoSentMessages(): void {
     this.customers$ = this.chatService.getUniqueCustomersForArtist(this.senderId).pipe(
-      map((customerIds, index) => {
-        // Create customer list with generic names
-        return customerIds.map((id, index) => ({
-          firebaseUid: id,
-          name: `Customer ${index + 1}`
-        }));
-      })
-    );
-  }
+      switchMap((customerIds: string[]) =>
+        from(customerIds).pipe(
+          mergeMap(id =>
+            this.chatService.getCustomerDetailsByUid(id).pipe(
+              map(customerDetails => ({
+                firebaseUid: id,
+                name: customerDetails ? customerDetails.displayName : `Customer`
+              }))
+            )
+          ),
+          toArray()
+        )
+  )
+);}
 
   onCustomerSelect(customer: Customer): void {
     this.recipientId = customer.firebaseUid;
@@ -83,4 +88,42 @@ export class ChatScreenComponent implements OnInit {
         });
     }
   }
+
+  deleteMessage(messageId: string): void {
+    this.chatService.deleteMessage(messageId)
+      .then(() => {
+        console.log('Message deleted successfully');
+        this.loadMessages(); // Refresh the message list after deletion
+      })
+      .catch(error => {
+        console.error('Error deleting message:', error);
+      });
+  }
+
+  onRightClick(event: MouseEvent, message: any): void {
+    event.preventDefault();
+    this.selectedMessageId = message.id; // Assuming message has an 'id' field
+    const contextMenu = document.getElementById('context-menu');
+    if (contextMenu) {
+      contextMenu.style.display = 'block';
+      contextMenu.style.left = `${event.clientX}px`;
+      contextMenu.style.top = `${event.clientY}px`;
+    }
+  }
+
+  @HostListener('document:click')
+  closeContextMenu(): void {
+    const contextMenu = document.getElementById('context-menu');
+    if (contextMenu) {
+      contextMenu.style.display = 'none';
+    }
+  }
+
+  deleteSelectedMessage(): void {
+    if (this.selectedMessageId) {
+      this.deleteMessage(this.selectedMessageId);
+      this.selectedMessageId = '';
+    }
+    this.closeContextMenu();
+}
 }

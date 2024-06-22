@@ -159,9 +159,18 @@
 
   h1{
     font-weight: bold;
+    font-size: 40px;
+    color:blue
   }
 
-
+  h3{
+   
+    font-size: 20px;
+  }
+  h2{
+    font-weight: bold;
+    font-size: 20px;
+  }
 /* Add any additional styles for your footer here */
 
 .footer {

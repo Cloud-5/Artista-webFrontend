@@ -34,7 +34,25 @@ export class SignInComponent implements OnInit {
             // Store the uid and role in local storage
             localStorage.setItem('uid', decodedToken.uid);
             localStorage.setItem('role', decodedToken.role);
-            this.router.navigate(['/']);
+  
+            // Navigate based on role
+            if (decodedToken.role === 'artist') {
+              this.router.navigate(['/']);
+            } else {
+              this.authService.checkPreferences(decodedToken.uid).subscribe(
+                (prefResponse: any) => {
+                  if (prefResponse.hasPreferences) {
+                    this.router.navigate(['/foryou']);
+                  } else {
+                    this.router.navigate(['/firstforyou']);
+                  }
+                },
+                (prefError: any) => {
+                  console.error('Error checking preferences', prefError);
+                  // this.router.navigate(['/firstforyou']); // Default to firstforyou on error
+                }
+              );
+            }
           },
           (error: any) => {
             console.error('Login failed', error);
@@ -45,6 +63,6 @@ export class SignInComponent implements OnInit {
       } else {
         console.error('Email or password is null');
       }
-    } 
+    }
   }
 }

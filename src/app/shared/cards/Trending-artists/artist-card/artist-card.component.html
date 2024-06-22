@@ -40,8 +40,13 @@
                   <p class="follower-count"><strong>{{ formatFollowerCount(artist.total_followers) }} Followers</strong></p>
                 </div>
               </div>
-              <button type="button" class="btn btn-primary mx-auto" (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
+              <button type="button" class="btn btn-primary mx-auto" routerLink="/st01">Message</button>
           </div>
       </div>
   </div>
 </div>
+
+
+
+<!-- 
+(click)="messageArtist(artist.firebase_uid, artist.artist_name)" -->

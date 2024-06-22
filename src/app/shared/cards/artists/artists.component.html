@@ -29,7 +29,7 @@
            <div class="col">
              <p class="creation text-right"><strong>Creation: {{ (artist.total_creations[0]['COUNT(artwork_id)'])}}</strong></p>
            </div>
-           <button type="button" class="btn btn-primary mx-auto">Message</button>
+           <button type="button" class="btn btn-primary mx-auto" (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
          </div>
     </div>
     

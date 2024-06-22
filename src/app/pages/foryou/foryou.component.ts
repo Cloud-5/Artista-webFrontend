@@ -10,7 +10,7 @@ import { ForyouServiceService } from './foryou-service.service';
 export class ForyouComponent {
 
   artsData: any[]= [];
-  userId: number = 2;
+  userId: number = 75;
 
   constructor(private foryouService: ForyouServiceService) { }
 

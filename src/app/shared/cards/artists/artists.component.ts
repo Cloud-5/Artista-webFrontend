@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artists',
@@ -10,8 +10,9 @@ export class ArtistsComponent  {
 
 
   @Input() artist: any ;
+ 
   
-  constructor() { }
+  constructor(private router: Router) { }
  
   
 
@@ -27,4 +28,12 @@ export class ArtistsComponent  {
       }
   }
 
+
+  messageArtist(firebase_uid: string, artistName: string): void {
+    // Save the firebase_uid to local storage
+    localStorage.setItem('artistFirebaseUid', firebase_uid);
+    localStorage.setItem('artistName', artistName);
+    // Navigate to the chat route
+    this.router.navigate(['/chat']);
+  }
 }
