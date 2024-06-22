@@ -33,7 +33,7 @@ export class ArtworkPreviewService {
   }
 
   toggleAddToGallery(artworkId: string, userId: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${artworkId}/  `, { userId });
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/addtogallery`, { userId });
   }
 
   removeFromGallery(artworkId: string, userId: string): Observable<any> {
