@@ -14,6 +14,15 @@
       <p class="sub-title"><b>{{userData.location}}</b></p>
       <p><b>Member Since : </b>{{userData.registered_at.split("T")[0]}}</p>
 
+
+      <!-- <div class="rating">
+        <span class="star" [class.filled]="averageRating >= 1">★</span>
+        <span class="star" [class.filled]="averageRating >= 2">★</span>
+        <span class="star" [class.filled]="averageRating >= 3">★</span>
+        <span class="star" [class.filled]="averageRating >= 4">★</span>
+        <span class="star" [class.filled]="averageRating >= 5">★</span>
+      </div> -->
+
       <ul class="about">
         <li><span>{{userData.gallery}}</span>Gallery</li>
         <li><span>{{userData.followers}}</span>Followers</li>

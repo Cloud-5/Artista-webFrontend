@@ -18,6 +18,7 @@ import { TestComponent } from './test/test.component';
 import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationComponent } from './shared/components/notification/notification.component';
+import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { NotificationComponent } from './shared/components/notification/notifica
     TestComponent,
     UploadArtworksComponent,
     NotificationComponent,
+    HelpCenterComponent,
 
   ],
   imports: [

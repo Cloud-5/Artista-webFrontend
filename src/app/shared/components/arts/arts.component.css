@@ -80,3 +80,16 @@
 } */
 
 
+.likeBotton{
+ width: 70px;
+ max-height: 28px;
+ justify-content: center;
+}
+
+
+
+
+.deleteButton{
+  width: 70px;
+  justify-content: end;
+}

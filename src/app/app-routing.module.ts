@@ -10,6 +10,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { TestComponent } from './test/test.component';
 import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
+import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
 
 const routes: Routes = [
   { path: '', component: ArtistNewHomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'artist-followers', component: ArtistFollowersComponent },
   { path: 'arts', component: ArtsComponent },
   {path:'upload',component:UploadArtworksComponent},
-  {path:'notification',component:NotificationComponent}
+  {path:'notification',component:NotificationComponent},
+  {path:'help',component:HelpCenterComponent}
 
 
   // { path: 'edit-customer-profile', component: EditCustomerProfileComponent },
