@@ -7,5 +7,19 @@
 
 .comment-form{
     margin: 2vw;
+}
 
+.write-btn{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.write-btn:hover{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
