@@ -180,153 +180,153 @@
 // // ];
 
 // ------------------------------------------------------------------------------------------
-// import { Component, OnInit } from '@angular/core';
-// import { ArtServiceService } from './service/art-service.service';
-// import { ArtistServieService } from './service/artist-servie.service';
-
-// @Component({
-//     selector: 'app-home',
-//     templateUrl: './home.component.html',
-//     styleUrl: './home.component.css'
-// })
-// export class HomeComponent implements OnInit {
-//     artsData: any = {};
-//     artistsData: any = {};
-//     trendingArtists: any = [];
-//     trendingArtworks: any = [];
-//   artService: any;
-//     constructor(private ArtServiceService: ArtServiceService, private ArtistServieService: ArtistServieService) { }
-
-//     ngOnInit(): void {
-//         this.getArtwork();
-//         this.loadArtistData();
-//         this.loadTrendingArtists(7); // Load trending artists for the past 7 days
-//         this.loadTrendingArtworks(7); // Load trending artworks for the past 7 days
-//       }
-
-//     loadArtistData(): void {
-//         this.ArtistServieService.getArtist().subscribe(
-//             (data: any[]) => {
-//                 this.artistsData = data;
-//             },
-//             (error) => {
-//                 console.error('Error fetching artist data: ', error);
-//             }
-//         );
-//     }
-
-//     loadTrendingArtworks(duration: number): void {
-//       this.artService.getTrendingArtwork(duration).subscribe(
-//         (data: any[]) => {
-//           this.trendingArtworks = data;
-//         },
-//         (error: any) => {
-//           console.error('Error fetching trending artworks: ', error);
-//         }
-//       );
-//     }
-//     loadTrendingArtists(duration: number): void {
-//         this.ArtistServieService.getTrendingArtists(duration).subscribe(
-//             (data: any[]) => {
-//                 this.trendingArtists = data;
-//             },
-//             (error) => {
-//                 console.error('Error fetching trending artists: ', error);
-//             }
-//         );
-//     }
-
-//     getArtwork(): void {
-//         this.ArtServiceService.getArtwork().subscribe(
-//             (data: any[]) => {
-//                 this.artsData = data;
-//             },
-//             (error: any) => {
-//                 console.log(error);
-//             }
-//         );
-//     }
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { ArtServiceService } from './service/art-service.service';
 import { ArtistServieService } from './service/artist-servie.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'] // Fixed typo: styleUrl -> styleUrls
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  artsData: any[] = [];
-  artistsData: any[] = [];
-  trendingArtists: any[] = [];
-  trendingArtworks: any[] = [];
-  filteredArtists: any[] = [];
-  searchTerm: string = '';
+    artsData: any = {};
+    artistsData: any = {};
+    trendingArtists: any = [];
+    trendingArtworks: any = [];
+  artService: any;
+    constructor(private ArtServiceService: ArtServiceService, private ArtistServieService: ArtistServieService) { }
 
-  constructor(private artService: ArtServiceService, private artistService: ArtistServieService) { }
-
-  ngOnInit(): void {
-    this.getArtwork();
-    this.loadArtistData();
-    this.loadTrendingArtists(7); // Load trending artists for the past 7 days
-    this.loadTrendingArtworks(7); // Load trending artworks for the past 7 days
-  }
-
-  loadArtistData(): void {
-    this.artistService.getArtist().subscribe(
-      (data: any[]) => {
-        this.artistsData = data;
-        this.filteredArtists = data; // Initialize filtered artists
-      },
-      (error) => {
-        console.error('Error fetching artist data: ', error);
+    ngOnInit(): void {
+        this.getArtwork();
+        this.loadArtistData();
+        this.loadTrendingArtists(7); // Load trending artists for the past 7 days
+        this.loadTrendingArtworks(7); // Load trending artworks for the past 7 days
       }
-    );
-  }
 
-  loadTrendingArtworks(duration: number): void {
-    this.artService.getTrendingArtwork(duration).subscribe(
-      (data: any[]) => {
-        this.trendingArtworks = data;
-      },
-      (error: any) => {
-        console.error('Error fetching trending artworks: ', error);
-      }
-    );
-  }
+    loadArtistData(): void {
+        this.ArtistServieService.getArtist().subscribe(
+            (data: any[]) => {
+                this.artistsData = data;
+            },
+            (error) => {
+                console.error('Error fetching artist data: ', error);
+            }
+        );
+    }
 
-  loadTrendingArtists(duration: number): void {
-    this.artistService.getTrendingArtists(duration).subscribe(
-      (data: any[]) => {
-        this.trendingArtists = data;
-      },
-      (error) => {
-        console.error('Error fetching trending artists: ', error);
-      }
-    );
-  }
-
-  getArtwork(): void {
-    this.artService.getArtwork().subscribe(
-      (data: any[]) => {
-        this.artsData = data;
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-  }
-
-  onSearch(): void {
-    if (this.searchTerm.trim() === '') {
-      this.filteredArtists = this.artistsData;
-    } else {
-      this.filteredArtists = this.artistsData.filter(artist => 
-        artist.artist_name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    loadTrendingArtworks(duration: number): void {
+      this.artService.getTrendingArtwork(duration).subscribe(
+        (data: any[]) => {
+          this.trendingArtworks = data;
+        },
+        (error: any) => {
+          console.error('Error fetching trending artworks: ', error);
+        }
       );
     }
-  }
+    loadTrendingArtists(duration: number): void {
+        this.ArtistServieService.getTrendingArtists(duration).subscribe(
+            (data: any[]) => {
+                this.trendingArtists = data;
+            },
+            (error) => {
+                console.error('Error fetching trending artists: ', error);
+            }
+        );
+    }
+
+    getArtwork(): void {
+        this.ArtServiceService.getArtwork().subscribe(
+            (data: any[]) => {
+                this.artsData = data;
+            },
+            (error: any) => {
+                console.log(error);
+            }
+        );
+    }
 }
+
+
+// import { Component, OnInit } from '@angular/core';
+// import { ArtServiceService } from './service/art-service.service';
+// import { ArtistServieService } from './service/artist-servie.service';
+
+// @Component({
+//   selector: 'app-home',
+//   templateUrl: './home.component.html',
+//   styleUrls: ['./home.component.css'] // Fixed typo: styleUrl -> styleUrls
+// })
+// export class HomeComponent implements OnInit {
+//   artsData: any[] = [];
+//   artistsData: any[] = [];
+//   trendingArtists: any[] = [];
+//   trendingArtworks: any[] = [];
+//   filteredArtists: any[] = [];
+//   searchTerm: string = '';
+
+//   constructor(private artService: ArtServiceService, private artistService: ArtistServieService) { }
+
+//   ngOnInit(): void {
+//     this.getArtwork();
+//     this.loadArtistData();
+//     this.loadTrendingArtists(7); // Load trending artists for the past 7 days
+//     this.loadTrendingArtworks(7); // Load trending artworks for the past 7 days
+//   }
+
+//   loadArtistData(): void {
+//     this.artistService.getArtist().subscribe(
+//       (data: any[]) => {
+//         this.artistsData = data;
+//         this.filteredArtists = data; // Initialize filtered artists
+//       },
+//       (error) => {
+//         console.error('Error fetching artist data: ', error);
+//       }
+//     );
+//   }
+
+//   loadTrendingArtworks(duration: number): void {
+//     this.artService.getTrendingArtwork(duration).subscribe(
+//       (data: any[]) => {
+//         this.trendingArtworks = data;
+//       },
+//       (error: any) => {
+//         console.error('Error fetching trending artworks: ', error);
+//       }
+//     );
+//   }
+
+//   loadTrendingArtists(duration: number): void {
+//     this.artistService.getTrendingArtists(duration).subscribe(
+//       (data: any[]) => {
+//         this.trendingArtists = data;
+//       },
+//       (error) => {
+//         console.error('Error fetching trending artists: ', error);
+//       }
+//     );
+//   }
+
+//   getArtwork(): void {
+//     this.artService.getArtwork().subscribe(
+//       (data: any[]) => {
+//         this.artsData = data;
+//       },
+//       (error: any) => {
+//         console.log(error);
+//       }
+//     );
+//   }
+
+//   onSearch(): void {
+//     if (this.searchTerm.trim() === '') {
+//       this.filteredArtists = this.artistsData;
+//     } else {
+//       this.filteredArtists = this.artistsData.filter(artist => 
+//         artist.artist_name.toLowerCase().includes(this.searchTerm.toLowerCase())
+//       );
+//     }
+//   }
+// }

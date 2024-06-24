@@ -22,3 +22,25 @@ label
 {
     font-weight: bold;
 }
+
+img {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+    display: block;
+    max-width: 500px;
+}
+
+/* For medium devices (tablets) */
+@media (min-width: 768px) {
+    img {
+        margin: 20px;
+    }
+}
+
+/* For large devices (desktops) */
+@media (min-width: 1024px) {
+    img {
+        margin: 30px;
+    }
+}

@@ -58,7 +58,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserService } from './service/user.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
@@ -66,8 +66,9 @@ import { UserService } from './service/user.service';
 })
 export class NewPasswordComponent implements OnInit {
   newPasswordForm!: FormGroup;
+  
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.newPasswordForm = this.formBuilder.group({
@@ -120,6 +121,7 @@ export class NewPasswordComponent implements OnInit {
       this.userService.resetPassword(password, confirmPassword).subscribe(
         (response) => {
           console.log('Password reset successfully');
+          this.router.navigate(["/login"]);
           // Handle success response
         },
         (error) => {

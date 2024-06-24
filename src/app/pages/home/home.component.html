@@ -1,53 +1,76 @@
 <div>
 
-  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <!-- <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
-      <!-- Artista Logo -->
+      <Artista Logo>
       <img src="../../assets/logo1.jpg" alt="Artista Logo" class="custom-logo img-fluid"  />
 
     
 
       <div class="navbar-end">
         <div class="navbar-item">
+      
+            <button type="button" class="btn btn-danger" routerLink="/st01"><strong>Sign Up</strong></button>
+            <button type="button" class="btn btn-success" routerLink="/login"><strong>Sign In</strong></button>
 
-          <div class="buttons">
-           
-            <a class="button is-danger" routerLink="/st01">
-              <strong>Sign Up</strong>
-            </a>
-            <a class="button is-success" routerLink="/login">
-              <strong>Sign In</strong>
-            </a>
-          </div>
         </div>
       </div>
     </div>
 
 
 
-  </nav>
+  </nav> -->
+
+  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <!-- Artista Logo -->
+
+        <img src="../assets/images/logoArt.png" alt="Artista Logo" class="custom-logo img-fluid"  />
+        
+        <!-- Toggle key -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        <div class="d-flex">
+            
+          <button type="button" class="btn btn-danger" routerLink="/st01"><strong>Sign Up</strong></button>
+          <button type="button" class="btn btn-success" routerLink="/login"><strong>Sign In</strong></button>
+    </div>
+    </div>
+</nav>
+
 
 </div>
 
-<section class="hero is-primary">
-    <div class="hero-body">
-      <p class="title">
-        Dicover<br> a World of Digital Artistry
-      </p>
-      
+<div>
+  <div class="hero-body">
+    <p class="title">
+      Dicover<br> a World of Digital Artistry
+    </p>
+    <br>
 
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()">
-        <button id="search-button" type="button" class="btn btn-primary button-search" (click)="onSearch()">
-          <i class="bi bi-search"></i>
-        </button>
-      </div>
-   
+    <!-- <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search..." [(ngModel)]="searchTerm" (input)="onSearch()">
+      <button id="search-button" type="button" class="btn btn-primary button-search" (click)="onSearch()">
+        <i class="bi bi-search"></i>
+      </button>
+    </div> -->
+    
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search..." >
+      <button id="search-button" type="button" class="btn btn-primary button-search" >
+        <i class="bi bi-search"></i>
+      </button>
     </div>
+ 
+  </div>
 
+</div>
+    
    
 
-  </section><br>
+ <br>
 
 
 

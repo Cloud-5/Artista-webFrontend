@@ -28,7 +28,8 @@ export class AuthService {
 // }
 
 checkPreferences(uid: string): Observable<any> {
-  return this.http.get(`${this.apiurl}?uid=${uid}`);
+  console.log('uid', uid);
+  return this.http.get(`${this.apiurl}/checkPreferences/${uid}`);
 }
 }
 
