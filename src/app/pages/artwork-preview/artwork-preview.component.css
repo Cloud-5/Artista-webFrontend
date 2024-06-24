@@ -39,7 +39,7 @@
   }
   .pub-date-style {
     margin: 0;
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: 500;
   }
   .header-art {
@@ -49,6 +49,9 @@
     font-weight: 700;
     line-height: 1.563rem;
     color: #150734;
+  }
+  .header-margin {
+    margin-top: 0 !important;
   }
   .body1 {
     font-size: 1rem;
@@ -103,7 +106,7 @@
   }
   
   .artist-info {
-    background-color: #c0ccff;
+    background-color: #dee4ff;
   }
   .artist-info .container .artist-menu {
     margin-bottom: 40px;
@@ -201,40 +204,40 @@
   }
   
   .following {
-    background-color: #000000 !important;
+    background-color: #0D6EFD !important;
     color: rgb(255, 255, 255) !important;
-    border: #000000 solid 2px !important;
     width: 50%;
   }
   
   .follow {
-    background-color: #c0ccff !important;
+    background-color: #afbdfc !important;
     color: black !important;
-    border: #000000 solid 2px !important;
     width: 50%;
   }
   
   .follow:hover {
-    background-color: #000000 !important;
+    background-color: #0D6EFD !important;
     color: white !important;
-    border: #000000 solid 2px !important;
     width: 50%;
   }
   .add-to-gallery {
     background-color: #ffffff !important;
     color: black !important;
     border: #000000 solid 2px !important;
+    font-weight: 600;
   }
   .add-to-gallery:hover {
     background-color: #000000 !important;
     color: white !important;
     border: #000000 solid 2px !important;
+    font-weight: 600;
   }
   
   .added-to-gallery {
     background-color: #000000 !important;
     color: rgb(255, 255, 255) !important;
     border: #000000 solid 2px !important;
+    font-weight: 600;
   }
   .artwork-layout {
     margin-left: 10px;
@@ -262,7 +265,7 @@
   .sticky-bar {
     display: none;
     position: fixed;
-    bottom: 0;
+    top:0;
     width: 100%;
     background-color: #f8f9fa; /* Adjust background color as needed */
     padding: 10px;
@@ -283,11 +286,15 @@
     bottom: 0;
     margin-top: 2rem;
   }
+  .comment-area{
+    max-height: 700px;
+    overflow-y: scroll;
+  }
   
   @media (min-width: 992px) {
     section {
       padding-bottom: 80px;
-      padding-top: 80px;
+      /* padding-top: 80px; */
     }
   
     .collapsible {

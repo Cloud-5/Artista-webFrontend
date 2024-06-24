@@ -4,14 +4,14 @@
   </div>
   <div class="row">
     <div class="col d-flex justify-content-end">
-      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+      <button class="btn write-btn" type="submit" [disabled]="form.invalid">
         {{ submitLabel }}
       </button>
       &nbsp;&nbsp;
       <button
         *ngIf="hasCancelButton"
         type="button"
-        class="btn btn-primary"
+        class="btn write-btn"
         (click)="handleCancel.emit()"
       >
         Cancel

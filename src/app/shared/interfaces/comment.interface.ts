@@ -6,4 +6,5 @@ export interface CommentInterface {
   parent_comment_id: null | string;
   created_at: string;
   updated_at: string;
+  profile_photo_url: string;
 }
