@@ -191,6 +191,11 @@
     }
   }
   
+.artwork-preview{
+  width: 100%;
+  height: auto;
+}
+
   .filled {
     animation: scaleIn 0.5s ease-out, rotate 0.5s ease-out;
   }
@@ -267,10 +272,10 @@
     position: fixed;
     top:0;
     width: 100%;
-    background-color: #f8f9fa; /* Adjust background color as needed */
+    background-color: #f8f9fa; 
     padding: 10px;
     z-index: 1000;
-    transition: top 0.3s; /* Add smooth transition for a better visual effect */
+    transition: top 0.3s; 
   }
   
   .sticky-bar.show {
@@ -286,10 +291,69 @@
     bottom: 0;
     margin-top: 2rem;
   }
-  .comment-area{
-    max-height: 700px;
-    overflow-y: scroll;
+  
+  .cards{
+    display:flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 30px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   }
+  .card {
+    width: 250px;
+    height: 270px;
+    flex-shrink: 0; 
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .cards::-webkit-scrollbar {
+    height: 7px;
+  }
+
+  .cards::-webkit-scrollbar-track {
+    background: #dee4ff;
+    border-radius: 3px; 
+  }
+
+  .cards::-webkit-scrollbar-thumb {
+    height: 10px;
+    background-color: #888; 
+    border-radius: 3px; 
+    border: 1px solid #ccc; 
+  }
+
+  .cards::-webkit-scrollbar-thumb:hover {
+    background-color: #272626; 
+  }
+
+  .banner{
+    width: 100%;
+    overflow: hidden;
+    max-height: 230px;
+    min-height: 230px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+  .title{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4f4f4f;
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 20px;
+    margin: 0;
+  }
+  .title p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+  
   
   @media (min-width: 992px) {
     section {

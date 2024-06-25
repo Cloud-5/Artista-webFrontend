@@ -57,7 +57,7 @@
                     <div class="preview-container">
                         <div class="artwork">
                             <div *ngIf="!is3D">
-                               <img [src]="artworkDetails.imageUrl" alt="Artwork">
+                               <img [src]="imageUrl" alt="Artwork" class="artwork-preview">
                              </div>
                              <div *ngIf="is3D">
                                <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
@@ -195,6 +195,19 @@
                 </p>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="cards">
+                <div class="card shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
+                    <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner">
+                    <section class="title">
+                        <p>{{artwork.title}}</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <button class="btn btn-primary" style="width: 100px;">View All</button>
+        </div>
     </div>
 </section>
 <section class="comments">
@@ -212,7 +225,7 @@
                 <hr>
             </div>
             <div class="row border comment-area">
-                <app-comment-list [currentUserId]="userId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
+                <app-comment-list [currentUserId]="userId" [artworkId]="artworkId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
             </div>
         </div>
     </div>

@@ -59,7 +59,7 @@ const routes: Routes = [
   { path: 'search-art', component: SearchArtComponent },
   { path: 'purchase-img-card', component: PurchaseImgCardComponent },
 
-  { path: 'preview', component: ArtworkPreviewComponent },
+  { path: 'preview/:artworkId', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes

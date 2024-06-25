@@ -1,20 +1,10 @@
-import {
-  Component,
-  OnInit,
-  HostListener,
-  Input,
-  SimpleChanges,
-} from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { Component,OnInit,HostListener,Input,SimpleChanges,OnDestroy} from '@angular/core';
+import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { ArtworkPreviewService } from './artwork-preview.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommentInterface } from '../../shared/interfaces/comment.interface';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-artwork-preview',
@@ -38,14 +28,15 @@ import { CommentInterface } from '../../shared/interfaces/comment.interface';
     ]),
   ],
 })
-export class ArtworkPreviewComponent implements OnInit {
+export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   userId: string = '1';
-  artworkId: string = '3';
+  artworkId: string = '';
   artistId: string = '';
-  is3D: boolean = true;
+  is3D: boolean = false;
   artworkDetails: any = {};
   tags: string = '';
   tagsArray: string[] = [];
+  bestArtworks: any[] = [];
 
   isFollowing: boolean = false;
   followButtonText: string = '';
@@ -56,39 +47,34 @@ export class ArtworkPreviewComponent implements OnInit {
   addToGalleryButtonClass: string = 'add-to-gallery';
 
   imageUrl: string =
-    'https://test-artista.s3.ap-south-1.amazonaws.com/ford/scene.gltf';
+    '';
 
   //@Input() comments: CommentInterface[] = [];
 
   TotalComments: number = 0;
+  routeSub: Subscription | undefined;
 
   constructor(
-    // private route: ActivatedRoute,
-    private artworkService: ArtworkPreviewService
+    private route: ActivatedRoute,
+    private artworkService: ArtworkPreviewService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    // this.route.params.subscribe(params => {
-    //     this.artworkId = params['id'];
-    //     this.loadArtworkDetails(this.artworkId);
-    // })
-    this.loadArtworkDetails(this.artworkId, this.userId);
-    if (this.isFollowing) {
-      this.followButtonText = 'Following';
-      this.followButtonClass = 'following';
-    } else {
-      this.followButtonText = 'Follow';
-      this.followButtonClass = 'follow';
-    }
-    if (this.isAddedToGallery) {
-      this.addToGalleryButtonText = 'Added to Gallery';
-      this.addToGalleryButtonClass = 'added-to-gallery';
-    } else {
-      this.addToGalleryButtonText = 'Add to Gallery';
-      this.addToGalleryButtonClass = 'add-to-gallery';
-    }
-    this.checkScreenSize();
+    this.routeSub = this.route.params.subscribe(params => {
+      this.artworkId = params['artworkId'];
+      this.loadArtworkDetails(this.artworkId, this.userId); 
+      this.updateButtonStates();
+      this.checkScreenSize();
+    })
   }
+
+  ngOnDestroy(): void {
+      if(this.routeSub){
+        this.routeSub.unsubscribe();
+      }
+  }
+  
 
   oncommentsCount(count: number): void {
     this.TotalComments = count;
@@ -97,18 +83,41 @@ export class ArtworkPreviewComponent implements OnInit {
   loadArtworkDetails(artworkId: string, userId: string): void {
     this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
       (data: any) => {
+        console.log(data);
         this.artworkDetails = data.artworkDetails[0];
-        this.tags = this.artworkDetails.tags;
-        this.tagsArray = this.tags.split(',');
+        this.bestArtworks = data.bestArtworks;
+        this.artistId = this.artworkDetails.artist_id;
+        this.imageUrl = this.artworkDetails.url_link;
+        if(this.artworkDetails.category === '3D Modeling'){
+          this.is3D = true;
+        } else {
+          this.is3D = false;
+        }
+        console.log('art link', this.imageUrl);
+        console.log('3d', this.is3D);
+        if (this.artworkDetails.tags) {
+          this.tags = this.artworkDetails.tags;
+          this.tagsArray = this.tags.split(',');
+        } else {
+          this.tags = '';
+          this.tagsArray = [];
+        }
         this.isFavorite = this.artworkDetails.is_liked;
         this.isFollowing = this.artworkDetails.is_following;
-        this.artistId = this.artworkDetails.artist_id;
         this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
+        this.updateButtonStates();
       },
       (error) => {
         console.error('Error fetching artwork details:', error);
       }
     );
+  }
+
+  updateButtonStates(): void {
+    this.followButtonText = this.isFollowing ? 'Following' : 'Follow';
+    this.followButtonClass = this.isFollowing ? 'following' : 'follow';
+    this.addToGalleryButtonText = this.isAddedToGallery ? 'Added to Gallery' : 'Add to Gallery';
+    this.addToGalleryButtonClass = this.isAddedToGallery ? 'added-to-gallery' : 'add-to-gallery';
   }
 
   isFavorite: boolean = false;
@@ -231,5 +240,9 @@ export class ArtworkPreviewComponent implements OnInit {
     } else if (section === 'tags') {
       this.isTagsCollapsed = !this.isTagsCollapsed;
     }
+  }
+
+  viewArtwork(artworkId: string) {
+    this.router.navigate(['/preview', artworkId]);
   }
 }
