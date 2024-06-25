@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-notification',
@@ -36,20 +36,19 @@ export class NotificationComponent implements OnInit {
       this.down = false;
     } else {
       if (this.box) {
-        this.box.style.height = '510px'; // Assuming '510px' is the intended value
+        this.box.style.height = '510px';
         this.box.style.opacity = '1';
       }
       this.down = true;
     }
   }
+countUnreadMessages(): number|any{
+  return this.notifications.filter(notification=>notification.unread=false);
+}
 
-  countUnreadMessages(): number {
-    return this.notifications.filter(notification => notification.unread).length;
-  }
-
-  markAllAsRead(): void {
-    this.notifications.forEach(notification => notification.unread = false);
-  }
+markAllAsRead(): void {
+  this.notifications.forEach(notification => notification.unread = false);
+}
 
   clearAllNotifications(): void {
     this.notifications = [];
