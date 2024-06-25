@@ -1,4 +1,4 @@
-<!-- <div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
+<div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
     <div class="d-sm-flex justify-content-between align-items-center">
         <div class="d-flex">
             <div class="float-left" style="margin-left: 20px;">
@@ -21,7 +21,7 @@
                     (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
             </div>
             <div>
-                <button class="btn btn-primary" type="button">Add To Cart</button>
+                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button"><span class="">Add To Cart</span></button>
             </div>
         </div>
     </div>
@@ -48,104 +48,103 @@
             <button class="btn btn-primary w-50" type="button">Add To Cart</button>
         </div>
     </div>
-</div> -->
-
+</div>
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="preview-container">
-                    <div class="artwork">
-                        <div *ngIf="!is3D">
-                           <img [src]="artworkDetails.imageUrl" alt="Artwork">
-                         </div>
-                         <div *ngIf="is3D">
-                           <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
-                           <app-model [objectUrl]="imageUrl"></app-model>
-                         </div>
-                   </div>
-                </div>
-                <div class="likeCount-pubDate">
-                    <div class="like">
-                        <button (click)="toggleFavorite()" class="favorite-button">
-                            <i class="bi fs-5" style="color: blue;" aria-hidden="false"
-                                aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite"
-                                [class.bi-heart]="!isFavorite"></i>
-                        </button>
-                        <p class="count">{{artworkDetails.total_likes}}</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="preview-container">
+                        <div class="artwork">
+                            <div *ngIf="!is3D">
+                               <img [src]="imageUrl" alt="Artwork" class="artwork-preview">
+                             </div>
+                             <div *ngIf="is3D">
+                               <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
+                               <app-model [objectUrl]="imageUrl"></app-model>
+                             </div>
+                       </div>
                     </div>
-                    <div class="pub-date">
-                        <p class="pub-date-style">Published On: {{ artworkDetails.published_date | date }}</p>
-                    </div>
-                </div>
-                <div class="artwork-details">
-                    <h5 class="header-art">
-                        Artwork description:
-                        <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('description')">
-                            <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isDescriptionCollapsed, 'bi-caret-up-square-fill': isDescriptionCollapsed}"></i>
-                        </button>
-                    </h5>
-                    <div class="collapsible" [class.expanded]="isDescriptionCollapsed || !isSmallScreen">
-                        <p class="body1" style="text-align: justify;">
-                            {{artworkDetails.description}}
-                        </p>
-                    </div>
-                
-                    <h5 class="header-art">
-                        Tags:
-                        <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
-                            <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isTagsCollapsed, 'bi-caret-up-square-fill': isTagsCollapsed}"></i>
-                        </button>
-                    </h5>
-                    <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">  
-                        <div class="d-flex flex-wrap">
-                            <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: #c0ccff;">#{{ tag }}</span>
+                    <div class="likeCount-pubDate">
+                        <div class="like">
+                            <button (click)="toggleFavorite()" class="favorite-button">
+                                <i class="bi fs-5" style="color: blue;" aria-hidden="false"
+                                    aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite"
+                                    [class.bi-heart]="!isFavorite"></i>
+                            </button>
+                            <p class="count">{{artworkDetails.total_likes}}</p>
+                        </div>
+                        <div class="pub-date">
+                            <p class="pub-date-style">Published On: {{ artworkDetails.published_date | date }}</p>
                         </div>
                     </div>
-                </div> 
-            </div>
-            <div class="col-lg-4">
-                <div class="tab-content">
-                    <h1 class="header-art header-margin">
-                        {{artworkDetails.artwork_name}}
-                    </h1>
-                    <h2 class="body1">
-                        {{artworkDetails.category}}&nbsp;
-                        <br>
-                        <span>by</span>&nbsp;
-                        {{artworkDetails.artist}}
-                    </h2>
-                    &nbsp;
-                    <p class="body1">
-                        <span class="header-art">{{artworkDetails.price | currency}}</span>
-                    </p>
-                    <table class="body1">
-                        <tbody>
-                            <tr>
-                                <th>Tools:</th>
-                            </tr>
-                            <tr>
-                                <td>{{artworkDetails.tools}}</td>
-                            </tr>
-                            <tr>
-                                <th>File Formats:</th>
-                            </tr>
-                            <tr>
-                                <td>{{artworkDetails.formats}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
-                        <div class="d-grid gap-2">
-                            <button [ngClass]="['btn', addToGalleryButtonClass]" type="button"
-                                (click)="toggleAddToGallery()"><span class="pub-date-style">{{addToGalleryButtonText}}</span></button>
-                            <button class="btn" style="background: #c0ccff;" type="button"><span class="pub-date-style">Add To Cart</span></button>
+                    <div class="artwork-details">
+                        <h5 class="header-art">
+                            Artwork description:
+                            <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('description')">
+                                <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isDescriptionCollapsed, 'bi-caret-up-square-fill': isDescriptionCollapsed}"></i>
+                            </button>
+                        </h5>
+                        <div class="collapsible" [class.expanded]="isDescriptionCollapsed || !isSmallScreen">
+                            <p class="body1" style="text-align: justify;">
+                                {{artworkDetails.description}}
+                            </p>
+                        </div>
+                    
+                        <h5 class="header-art">
+                            Tags:
+                            <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
+                                <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isTagsCollapsed, 'bi-caret-up-square-fill': isTagsCollapsed}"></i>
+                            </button>
+                        </h5>
+                        <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">  
+                            <div class="d-flex flex-wrap">
+                                <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: #c0ccff;">#{{ tag }}</span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="col-lg-4">
+                    <div class="tab-content">
+                        <h1 class="header-art header-margin">
+                            {{artworkDetails.artwork_name}}
+                        </h1>
+                        <h2 class="body1">
+                            {{artworkDetails.category}}&nbsp;
+                            <br>
+                            <span>by</span>&nbsp;
+                            {{artworkDetails.artist}}
+                        </h2>
+                        &nbsp;
+                        <p class="body1">
+                            <span class="header-art">{{artworkDetails.price | currency}}</span>
+                        </p>
+                        <table class="body1">
+                            <tbody>
+                                <tr>
+                                    <th>Tools:</th>
+                                </tr>
+                                <tr>
+                                    <td>{{artworkDetails.tools}}</td>
+                                </tr>
+                                <tr>
+                                    <th>File Formats:</th>
+                                </tr>
+                                <tr>
+                                    <td>{{artworkDetails.formats}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
+                            <div class="d-grid gap-2">
+                                <button [ngClass]="['btn', addToGalleryButtonClass]" type="button"
+                                    (click)="toggleAddToGallery()"><span class="">{{addToGalleryButtonText}}</span></button>
+                                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button"><span class="">Add To Cart</span></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <section class="artist-info">
     <div class="container">
@@ -195,6 +194,19 @@
                 </p>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="cards">
+                <div class="card shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
+                    <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner">
+                    <section class="title">
+                        <p>{{artwork.title}}</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <button class="btn btn-primary" style="width: 100px;">View All</button>
+        </div>
     </div>
 </section>
 <section class="comments">
@@ -211,14 +223,10 @@
                 </div>
                 <hr>
             </div>
-            <div class="row border">
-                <app-comment-list [currentUserId]="userId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
+            <div class="row border comment-area">
+                <app-comment-list [currentUserId]="userId" [artworkId]="artworkId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
             </div>
         </div>
     </div>
-    <div class="col-12">
-        <div class="container" style="height: 150px; bottom: 0;">
-            <p></p>
-        </div>
-    </div>
+    
 </section>

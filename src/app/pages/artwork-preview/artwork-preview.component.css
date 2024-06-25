@@ -39,7 +39,7 @@ section {
 }
 .pub-date-style {
   margin: 0;
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: 500;
 }
 .header-art {
@@ -49,6 +49,9 @@ section {
   font-weight: 700;
   line-height: 1.563rem;
   color: #150734;
+}
+.header-margin {
+  margin-top: 0 !important;
 }
 .body1 {
   font-size: 1rem;
@@ -103,7 +106,7 @@ section {
 }
 
 .artist-info {
-  background-color: #c0ccff;
+  background-color: #dee4ff;
 }
 .artist-info .container .artist-menu {
   margin-bottom: 40px;
@@ -188,6 +191,11 @@ section .header-section {
   }
 }
 
+.artwork-preview{
+width: 100%;
+height: auto;
+}
+
 .filled {
   animation: scaleIn 0.5s ease-out, rotate 0.5s ease-out;
 }
@@ -201,40 +209,40 @@ section .header-section {
 }
 
 .following {
-  background-color: #000000 !important;
+  background-color: #0D6EFD !important;
   color: rgb(255, 255, 255) !important;
-  border: #000000 solid 2px !important;
   width: 50%;
 }
 
 .follow {
-  background-color: #c0ccff !important;
+  background-color: #afbdfc !important;
   color: black !important;
-  border: #000000 solid 2px !important;
   width: 50%;
 }
 
 .follow:hover {
-  background-color: #000000 !important;
+  background-color: #0D6EFD !important;
   color: white !important;
-  border: #000000 solid 2px !important;
   width: 50%;
 }
 .add-to-gallery {
   background-color: #ffffff !important;
   color: black !important;
   border: #000000 solid 2px !important;
+  font-weight: 600;
 }
 .add-to-gallery:hover {
   background-color: #000000 !important;
   color: white !important;
   border: #000000 solid 2px !important;
+  font-weight: 600;
 }
 
 .added-to-gallery {
   background-color: #000000 !important;
   color: rgb(255, 255, 255) !important;
   border: #000000 solid 2px !important;
+  font-weight: 600;
 }
 .artwork-layout {
   margin-left: 10px;
@@ -262,12 +270,12 @@ section .header-section {
 .sticky-bar {
   display: none;
   position: fixed;
-  bottom: 0;
+  top:0;
   width: 100%;
-  background-color: #f8f9fa; /* Adjust background color as needed */
+  background-color: #f8f9fa; 
   padding: 10px;
   z-index: 1000;
-  transition: top 0.3s; /* Add smooth transition for a better visual effect */
+  transition: top 0.3s; 
 }
 
 .sticky-bar.show {
@@ -284,10 +292,73 @@ section .header-section {
   margin-top: 2rem;
 }
 
+.cards{
+  display:flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 30px;
+  padding: 0;
+  margin: 20px 0 0 0;
+  scroll-snap-type: x mandatory;
+-webkit-overflow-scrolling: touch;
+}
+.card {
+  width: 250px;
+  height: 270px;
+  flex-shrink: 0; 
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.cards::-webkit-scrollbar {
+  height: 7px;
+}
+
+.cards::-webkit-scrollbar-track {
+  background: #dee4ff;
+  border-radius: 3px; 
+}
+
+.cards::-webkit-scrollbar-thumb {
+  height: 10px;
+  background-color: #888; 
+  border-radius: 3px; 
+  border: 1px solid #ccc; 
+}
+
+.cards::-webkit-scrollbar-thumb:hover {
+  background-color: #272626; 
+}
+
+.banner{
+  width: 100%;
+  overflow: hidden;
+  max-height: 230px;
+  min-height: 230px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.title{
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #4f4f4f;
+  width: 100%;
+  overflow: hidden;
+  padding: 5px 20px;
+  margin: 0;
+}
+.title p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+
 @media (min-width: 992px) {
   section {
     padding-bottom: 80px;
-    padding-top: 80px;
+    /* padding-top: 80px; */
   }
 
   .collapsible {

@@ -1,11 +1,26 @@
 .comment-area{
-    height: 7vw;
+    height: 4vw;
     width: 100%;
     border: 1px solid blue;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .comment-form{
     margin: 2vw;
+}
 
+.write-btn{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    height: fit-content;
+}
+.write-btn:hover{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
