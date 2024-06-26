@@ -231,9 +231,18 @@
     
 </section>
 <section class="related-artworks">
-    <div class="gallery">
-        <div class="image-container" *ngFor="let art of goodrelatedArtworks">
-            <img [src]="art.thumbnail_url" alt={{art.title}}>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="header-section">Related Artworks</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="gallery">
+            <div class="image-container" *ngFor="let art of relatedArtworks">
+                <img [src]="art.thumbnail_url" alt={{art.title}}>
+            </div>
         </div>
     </div>
 </section>
