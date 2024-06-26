@@ -30,7 +30,7 @@ toggleNotification(){
 
 
 ngOnInit(): void {
-  this.box = document.getElementById('box');
+  //this.box = document.getElementById('box');
   this.countUnreadMessages();
 }
 

@@ -41,16 +41,16 @@ export class ArtistFollowersService {
     return this.http.get<any>(`${this.apiUrl}/artist-followers/${artistId}/followers`);
   }
 
-  deleteFollower(followerId: number, artistId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/artist-followers/${artistId}/followers/${followerId}`)
-    .pipe(
-      catchError(this.handleError)
-    );
-  }
-private handleError(error:HttpErrorResponse){
-console.error('an error occoured',error.message);
-return throwError('Something went wrong; please try again later.');
-}
+//   deleteFollower(followerId: number, artistId: number): Observable<any> {
+//     return this.http.delete<any>(`${this.apiUrl}/artist-followers/${artistId}/followers/${followerId}`)
+//     .pipe(
+//       // catchError(this.handleError)
+//     );
+//   }
+//   private handleError(error:HttpErrorResponse){
+//     console.error('an error occoured',error.message);
+//   return throwError('Something went wrong; please try again later.');
+// }
 
 
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
@@ -24,7 +23,6 @@ import { HelpCenterComponent } from './shared/components/help-center/help-center
 @NgModule({
   declarations: [
     AppComponent,
-    ArtworkPreviewComponent,
     ArtistFeedbackComponent,
     EditArtistProfileComponent,
     ArtistFollowersComponent,

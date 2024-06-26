@@ -55,14 +55,16 @@ export class ArtistFollowersComponent implements OnInit {
   loadFollowersData() {
     this.followersService.getFollowersForArtist(1) // Replace 1 with actual artist id
       .subscribe((data: any) => {
-        this.followers = data.followers;
+        console.log('data',data);
+        this.followers = data;
+        console.log('folloers',this.followers);
       });
   }
 
-  deleteFollower(followerId: number) {
-    this.followersService.deleteFollower(followerId, 1) // replace 1 with actual artist id
-      .subscribe(() => {
-        this.loadFollowersData();
-      });
-  }
+  // deleteFollower(followerId: number) {
+  //   this.followersService.deleteFollower(followerId, 1) // replace 1 with actual artist id
+  //     .subscribe(() => {
+  //       this.loadFollowersData();
+  //     });
+  // }
 }
