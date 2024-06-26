@@ -37,6 +37,8 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   tags: string = '';
   tagsArray: string[] = [];
   bestArtworks: any[] = [];
+  relatedArtworks: any[] = [];
+  goodrelatedArtworks: any[] = [];
 
   isFollowing: boolean = false;
   followButtonText: string = '';
@@ -46,8 +48,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addToGalleryButtonText: string = 'Add to Gallery';
   addToGalleryButtonClass: string = 'add-to-gallery';
 
-  imageUrl: string =
-    '';
+  imageUrl: string = '';
 
   //@Input() comments: CommentInterface[] = [];
 
@@ -83,9 +84,10 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   loadArtworkDetails(artworkId: string, userId: string): void {
     this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
       (data: any) => {
-        console.log(data);
         this.artworkDetails = data.artworkDetails[0];
         this.bestArtworks = data.bestArtworks;
+        this.relatedArtworks = data.relatedArtworks[0];
+        this.goodrelatedArtworks = this.relatedArtworks.filter(artwork => artwork.artwork_id > 32);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
         if(this.artworkDetails.category === '3D Modeling'){
@@ -93,8 +95,6 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         } else {
           this.is3D = false;
         }
-        console.log('art link', this.imageUrl);
-        console.log('3d', this.is3D);
         if (this.artworkDetails.tags) {
           this.tags = this.artworkDetails.tags;
           this.tagsArray = this.tags.split(',');

@@ -353,7 +353,26 @@
     text-overflow: ellipsis;
     margin: 0;
   }
-  
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.image-container img {
+    height: auto;
+    width: 200px;
+    object-fit: cover;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin:0;
+    padding: 0;
+}
   
   @media (min-width: 992px) {
     section {

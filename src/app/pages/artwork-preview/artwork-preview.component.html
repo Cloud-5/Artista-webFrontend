@@ -60,7 +60,6 @@
                                <img [src]="imageUrl" alt="Artwork" class="artwork-preview">
                              </div>
                              <div *ngIf="is3D">
-                               <!-- <app-model [objectUrl]="artworkDetails.imageUrl"></app-model> -->
                                <app-model [objectUrl]="imageUrl"></app-model>
                              </div>
                        </div>
@@ -231,4 +230,13 @@
     </div>
     
 </section>
+<section class="related-artworks">
+    <div class="gallery">
+        <div class="image-container" *ngFor="let art of goodrelatedArtworks">
+            <img [src]="art.thumbnail_url" alt={{art.title}}>
+        </div>
+    </div>
+</section>
+
+
 <app-footer></app-footer>
