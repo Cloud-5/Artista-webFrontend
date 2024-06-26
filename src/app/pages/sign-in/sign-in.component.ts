@@ -35,13 +35,13 @@ export class SignInComponent implements OnInit {
             localStorage.setItem('uid', decodedToken.uid);
             localStorage.setItem('role', decodedToken.role);
             localStorage.setItem('user_id', response.data.user_id);
-
+            localStorage.setItem('email', response.data.email);
            console.log('decodedToken',decodedToken);
             // Navigate based on role
             if (decodedToken.role === 'artist') {
               this.router.navigate(['/']);
             } else {
-             console.log('decodedToken.uid',decodedToken.uid);
+             //console.log('decodedToken.uid',decodedToken.uid);
               this.authService.checkPreferences(response.data.user_id).subscribe(
                 (prefResponse: any) => {
                   console.log('Preferences response', prefResponse);

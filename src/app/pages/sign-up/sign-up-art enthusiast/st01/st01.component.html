@@ -12,7 +12,7 @@
               <p>Step 1 of 2</p>
               <br>
               <h1>Join as </h1>
-              <br><br>
+              <br>
               <div class="mb-3">
                 <label class="form-label">Email address</label>
                 <input type="email" name="Email" [(ngModel)]="formData.email" class="form-control" placeholder="Enter your Email" required>
@@ -21,7 +21,7 @@
               <div class="mb-3">
                 <label class="form-label">Password</label>
                 <input type="password" name="Password" [(ngModel)]="formData.password" class="form-control" placeholder="Password" required>
-                <!-- <div *ngIf="!formData.password" class="text-danger">Password is required</div> -->
+                <!-- <div *ngIf="!formData.password" class="text-danger">Password is required</div>  -->
                 <div *ngIf="!formData.password.match('^(?=.*[A-Z])')" class="text-danger">At least one uppercase letter is required</div>
                 <div *ngIf="!formData.password.match('(?=.*[a-z])')" class="text-danger">At least one lowercase letter is required</div>
                 <div *ngIf="!formData.password.match('(.*[0-9].*)')" class="text-danger">At least one digit is required</div>
@@ -37,7 +37,7 @@
               <div class="mb-3">
                 
               </div>
-          
+              <br>
               <div class="col-12">
                 <button type="button" (click)="submitForm()" class="btn btn-primary" [disabled]="!formData.email || !formData.password || formData.password !== formData.confirmPassword">Continue</button>
               </div>

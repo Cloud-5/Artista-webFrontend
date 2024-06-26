@@ -183,7 +183,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtServiceService } from './service/art-service.service';
 import { ArtistServieService } from './service/artist-servie.service';
-
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -195,7 +195,7 @@ export class HomeComponent implements OnInit {
     trendingArtists: any = [];
     trendingArtworks: any = [];
   artService: any;
-    constructor(private ArtServiceService: ArtServiceService, private ArtistServieService: ArtistServieService) { }
+    constructor(private ArtServiceService: ArtServiceService, private ArtistServieService: ArtistServieService, private router: Router) { }
 
     ngOnInit(): void {
         this.getArtwork();
@@ -246,6 +246,18 @@ export class HomeComponent implements OnInit {
             }
         );
     }
+
+    logout() {
+        // Clear local storage items related to user session
+        localStorage.removeItem('uid');
+        localStorage.removeItem('role');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('email');
+      
+        // Navigate to the login page or home page after logout
+        this.router.navigate(['/login']);
+      }
+      
 }
 
 
