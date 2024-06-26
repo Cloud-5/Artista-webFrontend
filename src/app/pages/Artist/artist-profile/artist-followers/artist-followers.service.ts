@@ -37,7 +37,7 @@ export class ArtistFollowersService {
 
   constructor(private http: HttpClient) { }
 
-  getFollowersForArtist(artistId: number): Observable<any> {
+    getFollowersForArtist(artistId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/artist-followers/${artistId}/followers`);
   }
 
