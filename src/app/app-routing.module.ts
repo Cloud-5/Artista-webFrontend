@@ -1,14 +1,15 @@
-import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
-import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { ModelComponent } from './shared/components/model/model.component';
 
-import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
-
+import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
@@ -69,6 +70,11 @@ const routes: Routes = [
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
+  { path: '', component: ArtistNewHomeComponent },
+  {path: 'edit',component:EditArtistProfileComponent},
+  { path: 'artist-feedback', component: ArtistFeedbackComponent },
+  { path: 'artist-followers', component: ArtistFollowersComponent },
+  { path: 'arts', component: ArtsComponent },
   {path:'upload',component:UploadArtworksComponent},
   {path:'notification',component:NotificationComponent},
   {path:'help',component:HelpCenterComponent}
