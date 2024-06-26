@@ -38,7 +38,6 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   tagsArray: string[] = [];
   bestArtworks: any[] = [];
   relatedArtworks: any[] = [];
-  goodrelatedArtworks: any[] = [];
 
   isFollowing: boolean = false;
   followButtonText: string = '';
@@ -87,7 +86,6 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.artworkDetails = data.artworkDetails[0];
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
-        this.goodrelatedArtworks = this.relatedArtworks.filter(artwork => artwork.artwork_id > 32);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
         if(this.artworkDetails.category === '3D Modeling'){

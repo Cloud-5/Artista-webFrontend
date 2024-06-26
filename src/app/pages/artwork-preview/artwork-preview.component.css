@@ -358,12 +358,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    justify-content: start;
 }
 
 .image-container img {
-    height: auto;
-    width: 200px;
+    height: 300px;
+    width: 100%;
     object-fit: cover;
     flex: 1 1 auto;
     display: flex;
