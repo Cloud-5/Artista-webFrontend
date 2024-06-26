@@ -1,7 +1,14 @@
-import { NgModule } from '@angular/core';
+import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { ModelComponent } from './shared/components/model/model.component';
+
+import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { NotificationComponent } from './shared/components/notification/notification.component';
+import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
@@ -25,7 +32,6 @@ import { St1Component } from './pages/sign-up/sign-up-artist/st1/st1.component';
 import { St2Component } from './pages/sign-up/sign-up-artist/st2/st2.component';
 import { ResetPasswordComponent } from './pages/fogot-password/reset-password/reset-password.component';
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
-import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 
@@ -63,6 +69,10 @@ const routes: Routes = [
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
+  {path:'upload',component:UploadArtworksComponent},
+  {path:'notification',component:NotificationComponent},
+  {path:'help',component:HelpCenterComponent}
+
 ];
 
 @NgModule({

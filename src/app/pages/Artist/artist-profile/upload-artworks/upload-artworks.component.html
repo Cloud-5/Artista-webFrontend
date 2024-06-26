@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<!-- <div class="blur-background"></div> -->
+<div class="d-flex justify-content-center  background-new" >
+  <div class="upload-box ">
+    <h2>Upload Artwork</h2>
+    <form action="#" method="post"> <!-- Replace "#" with your upload handler URL -->
+      <div class="form-field">
+
+
+        <div class="custom-file-upload">
+          <input type="file" id="artwork-image" name="artwork-image" accept="image/*">
+          <label for="artwork-image" class="upload-button">
+          <span>upload file</span>
+          </label>
+        </div>
+
+
+      </div>
+      <div class="form-field">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" class="styled-textarea"></textarea>
+      </div>
+      <div class="form-field">
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price">
+      </div>
+      <div class="form-field">
+        <label for="artwork-name">Artwork Name:</label>
+        <input type="text" id="artwork-name" name="artwork-name">
+      </div>
+      <div class="form-field">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <option value="none">None</option>
+          <option value="landscape">3D-Arts</option>
+          <option value="portrait">Anime</option>
+          <option value="portrait">Modern Graphic</option>
+          <option value="abstract">Digital-painting</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="upload-button">Upload Files</button>
+        <button type="button" routerLink="" class="cancel-button">Back</button>
+      </div>
+    </form>
+    <div class="having-problems">
+      <p>Having problems? Try the basic uploader.</p>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

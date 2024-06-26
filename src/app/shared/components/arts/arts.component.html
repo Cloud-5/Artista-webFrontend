@@ -1,0 +1,130 @@
+<!-- <div class="container">
+  <div class="card   shadow mb-4 zoom-in-out-on-hover">
+      <img [src]="art.artImgUrl" class="card-img-top" alt="Artwork Image">
+      <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+              <p class="card-title"><strong>{{art.artworkName}}</strong></p>
+              <div class="cart-container">
+
+                  <p class="card-text price-text"  ><strong>${{art.price}}
+                  </strong>
+
+
+
+              </div>
+          </div>
+
+
+          <div class="d-flex justify-content-between additional-texts">
+              <p class="artist-name"><strong>{{art.artistName}}</strong></p>
+              <p class="like-count"><strong>{{formatLikeCount(art.likeCount)}}</strong></p>
+          </div>
+      </div>
+  </div> -->
+
+
+
+
+
+
+<div class="container">
+  <div class="card shadow mb-4 zoom-in-out-on-hover">
+    <img [src]="art.thumbnail_url" class="card-img-top" alt="Artwork Image">
+
+
+
+    <div class="name-arts">
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="card-title"><strong>${{art.price}}</strong></p>
+        <div class="cart-container">
+          <p class="card-text price-text"><strong>{{art.title}}</strong></p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="d-flex justify-content-between additional-texts newLikeCiunt ">
+      <p class="artist-name"><strong>{{art.artistName}}</strong></p>
+
+    </div>
+
+
+    <!-- {{formatLikeCount(art.likeCount)}} -->
+
+    <div class="card-body">
+
+      <!-- Purchase Count with Purchased Icon -->
+      <div class="purchased-count">
+        <div class="d-flex justify-content-start align-items-center me-2" >
+          <p class="purchased-count"><strong>Purchased:{{ art.purchaseCount }}</strong></p>
+
+        </div>
+      </div>
+
+
+
+      <div class="position-relative">
+        <!-- Parent container with relative positioning -->
+        <!-- Your other content goes here -->
+
+        <div class="likeIconAndLikeCount d-flex flex-column position-absolute bottom-0 start-0 p-0">
+          <button type="button" class="btn btn-success btn-sm ms-0 me-1" style="width: fit-content;">
+            <i class="bi bi-hand-thumbs-up"></i>
+          </button>
+          <p class="like-count mb-0"><strong>3</strong></p>
+        </div>
+      </div>
+
+
+
+
+      <div class="position-relative">
+        <!-- Parent container with relative positioning -->
+        <!-- Your other content goes here -->
+
+        <div class="d-flex position-absolute bottom-0 end-0 p-0 deleteButton">
+          <button type="button" class="btn btn-danger btn-sm ms-0" style="width: fit-content;">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div class="container">
+  <div class="card shadow mb-4 zoom-in-out-on-hover">
+    <img [src]="art.artImgUrl" class="card-img-top" alt="Artwork Image">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="card-title"><strong>{{art.artworkName}}</strong></p>
+        <div class="cart-container">
+          <p class="card-text price-text"><strong>{{art.purchaseCount}}</strong></p>
+          <button class="btn cart-icon-btn" [disabled]="art.purchased">
+            <i class="bi bi-cart-plus-fill"></i>
+          </button>
+          <span *ngIf="art.purchased" class="purchased-icon">&#10004;</span>
+        </div>
+      </div>
+
+
+      <div class="d-flex justify-content-between additional-texts">
+        <p class="artist-name"><strong>{{art.artistName}}</strong></p>
+        <p class="like-count"><strong>{{formatLikeCount(art.likeCount)}}</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+ -->
