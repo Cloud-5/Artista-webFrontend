@@ -14,27 +14,27 @@ export class ArtistNewHomeComponent implements OnInit {
   constructor(private artistServices: ArtistNewHomeServiceService) { }
 
   ngOnInit(): void {
-    // this.loadArtistData();
+    this.loadArtistData();
     this.loadArtworks();
   }
 
-  // loadArtistData(): void {
-  //   this.artistServices.getArtistDetail(1).subscribe((data: any) => {
-  //     this.userData = data;
-  //     console.log("Artist Details: ", data);
+  loadArtistData(): void {
+    this.artistServices.getArtistDetail(1).subscribe((data: any) => {
+      this.userData = data;
+      console.log("Artist Details: ", data);
 
-  //     this.artworks.reverse();
-  //   })
-  // }
+      this.artworks.reverse();
+    })
+  }
 
   loadArtworks(): void {
     this.artistServices.getArtworksForArtist(1).subscribe((data: any) => {
       this.artworks = data;
-      // data.forEach((e: any) => {
-      //   console.log(e.artwork_id)
-      //  let id =  this.getArtworkLikes(e.artwork_id);
-      //  console.log(id);
-      // });
+      data.forEach((e: any) => {
+        console.log(e.artwork_id)
+       let id =  this.getArtworkLikes(e.artwork_id);
+       console.log(id);
+      });
       console.log("Artworks: ", data);
     })
   }
@@ -42,6 +42,18 @@ export class ArtistNewHomeComponent implements OnInit {
   getArtworkLikes(artId: number): void {
     this.artistServices.getLikeCountForArtwork(artId).subscribe((data: any) => {
       return data[0].count;
+    })
+  }
+
+  deleteArtwork(artId: number): void {
+    this.artistServices.deleteArtwork(artId).subscribe(() => {
+      this.loadArtworks();
+    })
+  }
+
+  updateArtwork(artId: number, artwork: any): void {
+    this.artistServices.updateArtwork(artId, artwork).subscribe(() => {
+      this.loadArtworks();
     })
   }
 

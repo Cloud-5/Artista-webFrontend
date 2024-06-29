@@ -55,7 +55,7 @@ export class ArtistFollowersComponent implements OnInit {
   loadFollowersData() {
     this.followersService.getFollowersForArtist(1) // Replace 1 with actual artist id
       .subscribe((data: any) => {
-        this.followers = data.followers;
+        this.followers = data;
       });
   }
 
