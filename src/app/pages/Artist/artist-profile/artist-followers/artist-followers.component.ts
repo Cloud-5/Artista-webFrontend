@@ -59,10 +59,10 @@ export class ArtistFollowersComponent implements OnInit {
       });
   }
 
-  deleteFollower(followerId: number) {
-    this.followersService.deleteFollower(followerId, 1) // replace 1 with actual artist id
-      .subscribe(() => {
-        this.loadFollowersData();
-      });
-  }
+  // deleteFollower(followerId: number) {
+  //   this.followersService.deleteFollower(followerId, 1) // replace 1 with actual artist id
+  //     .subscribe(() => {
+  //       this.loadFollowersData();
+  //     });
+  // }
 }

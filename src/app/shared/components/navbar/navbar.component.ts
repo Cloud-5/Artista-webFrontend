@@ -36,13 +36,17 @@ ngOnInit(): void {
 
 toggleNotiFi() {
   if (this.down) {
+    console.log('down',this.down);
     if (this.box) {
+      console.log('box',this.box);
       this.box.style.height = '0px';
       this.box.style.opacity = '0';
     }
     this.down = false;
   } else {
+    console.log('else');
     if (this.box) {
+      console.log('else box',this.box);
       this.box.style.height = '510px';
       this.box.style.opacity = '1';
     }
