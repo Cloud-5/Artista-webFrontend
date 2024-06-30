@@ -17,8 +17,10 @@ export class St02Component implements OnInit {
   email = '';
   password = '';
   role = '';
-  
+  errorMessage: string | null =null;
+  Message: string | null =null;
   signupForm!: FormGroup;
+
 
   constructor(private fb: FormBuilder, private router: Router,private userService: UserService) { }
 
@@ -62,13 +64,23 @@ export class St02Component implements OnInit {
      this.userService.signup(userData).subscribe(
        (response) => {
          console.log('User created successfully:', response);
+         const navigationExtras = {
+          state: {
+            Message: 'User created successfully. Verification mail sent.'
+          }
+        };
          // Redirect to next step after successful signup
-         this.router.navigate(['/login']); 
+         this.router.navigate(['/login'],navigationExtras); 
        },
-       (error) => {
-        
-         console.error('Error creating user:', error);
-         // Handle error response
+       (error:any) => {
+         if (error.status === 400) {
+        this.errorMessage = 'Email Already Exists.';
+      } 
+         else {
+        console.error('Registered failed', error);
+        this.errorMessage = 'An error occurred during signup';
+      }
+
        }
      );
   }

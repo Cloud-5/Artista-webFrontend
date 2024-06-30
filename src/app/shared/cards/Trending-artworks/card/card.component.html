@@ -9,15 +9,8 @@
         <div class="cart-container">
 
           <p class="card-text price-text"  ><strong>
-            {{art.artwork_price}}
-          </strong>
-            <button class="btn cart-icon-btn">
-
-
-              <i class="bi bi-cart-plus-fill"></i>
-
-
-            </button>
+            {{art.artwork_price | currency:'USD':'symbol':'1.2-2'}}
+          </strong>  
         </div> 
       </div>
 

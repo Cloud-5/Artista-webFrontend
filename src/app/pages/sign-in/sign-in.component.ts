@@ -11,8 +11,18 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
-
+  errorMessage: string | null =null;
+  Message: string | null = null;
+  successMessage: string | null = null;
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+   
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { Message: string };
+    if (state) {
+      this.successMessage = state.Message;
+    }
+   
+   
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -36,10 +46,12 @@ export class SignInComponent implements OnInit {
             localStorage.setItem('role', decodedToken.role);
             localStorage.setItem('user_id', response.data.user_id);
             localStorage.setItem('email', response.data.email);
+            localStorage.setItem('firebase_uid',response.data.firebase_uid );
            console.log('decodedToken',decodedToken);
+
             // Navigate based on role
             if (decodedToken.role === 'artist') {
-              this.router.navigate(['/']);
+              this.router.navigate(['/Artist']);
             } else {
              //console.log('decodedToken.uid',decodedToken.uid);
               this.authService.checkPreferences(response.data.user_id).subscribe(
@@ -59,13 +71,23 @@ export class SignInComponent implements OnInit {
             }
           },
           (error: any) => {
-            console.error('Login failed', error);
-            // Handle failed login here
+            if (error.status === 401) {
+              this.errorMessage = 'Wait for Admin Approval';
+            }
+            else if(error.status === 404)
+              {
+                this.errorMessage = 'Invalid Credentials';
+              }
+               else {
+              console.error('Login failed', error);
+              this.errorMessage = 'An error occurred during login';
+            }
           }
         );
         console.log(email, password);
       } else {
-        console.error('Email or password is null');
+        this.errorMessage = 'Email or password is Null';
+
       }
     }
   }

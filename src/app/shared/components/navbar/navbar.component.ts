@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationComponent } from '../notification/notification.component';
 
@@ -7,6 +7,7 @@ import { NotificationComponent } from '../notification/notification.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent {
   notifications: any[] = [
     { id: 1, profilePic: '../../../../assets/imgs/profile1.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
@@ -20,7 +21,7 @@ export class NavbarComponent {
   ];
   box: HTMLElement | null = null;
   down: boolean = true;
-
+  @Input() artist: any ;
 @ViewChild(NotificationComponent) notificationComponent!:NotificationComponent;
   constructor(private router: Router) { }
 
@@ -65,6 +66,12 @@ clearAllNotifications(): void {
   this.notifications = [];
   // Optionally, perform additional actions like making an API call to clear notifications on the server
 }
-
+messageArtist(firebase_uid: string, artistName: string): void {
+  // Save the firebase_uid to local storage
+  localStorage.setItem('artistFirebaseUid', firebase_uid);
+  localStorage.setItem('artistName', artistName);
+  // Navigate to the chat route
+  this.router.navigate(['/chat']);
+}
 }
 

@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'st01', component: St01Component },
   { path: 'st2', component: St2Component },
   { path: 'st02', component: St02Component },
-  { path: 'helpCenter', component: HelpCenterComponent },
+  
 
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'new', component: NewPasswordComponent },
@@ -71,7 +71,7 @@ const routes: Routes = [
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
-  { path: '', component: ArtistNewHomeComponent },
+  { path: 'Artist', component: ArtistNewHomeComponent },
   {path: 'edit',component:EditArtistProfileComponent},
   { path: 'artist-feedback', component: ArtistFeedbackComponent },
   { path: 'artist-followers', component: ArtistFollowersComponent },

@@ -1,6 +1,6 @@
 
 
-
+<div class="ss">
  <div class="container mt-5">
   <div class="row">
     <div class="col-md-6" >
@@ -11,17 +11,26 @@
         <div class="card-body">
           <div class="sign-in-container">
             <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+              <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                {{ errorMessage }}
+             </div>
+             <div *ngIf="Message" class="alert alert-success" role="alert">
+              {{ Message }}
+             </div>
+             <div *ngIf="successMessage" class="alert alert-success" role="alert">
+              {{ successMessage }}
+             </div>
               <h1>Sign In</h1>
               <br><br>
               <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address</label>
                 <input type="email" id="inputEmail" formControlName="email" class="form-control" placeholder="Enter your Email">
-                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')" class="text-danger">Please enter a valid email</div>
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">Please enter a valid email</div>
               </div>
               <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password</label>
                 <input type="password" id="inputPassword" formControlName="password" class="form-control" placeholder="Password">
-                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')" class="text-danger">Password is required</div>
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">Password is required</div>
               </div>
               <br>
               <div class="mb-3 row">
@@ -34,8 +43,8 @@
               </div>
               <br><br><br><br><br>
               <div class="mb-3">
-                <a href="#">New User?</a>
-                <a href="#">Get help for signing In</a>
+                <a routerLink="/st01">New User?</a>
+                <a routerLink="/st01">Get help for signing In</a>
               </div>
             </form>
           </div>
@@ -43,4 +52,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

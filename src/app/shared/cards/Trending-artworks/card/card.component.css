@@ -3,21 +3,7 @@
   flex-wrap: wrap;
   justify-content: space-between; /* Adjust as needed */
 }
-.category-card {
-  height: 275px; /* Set fixed height for the card */
-  width: 400px;/* Adjust the width of your card */
-  overflow: hidden; /* Ensure that anything outside the card's boundaries is hidden */
-  border: none;
-  box-shadow: 0px 0px 40px -10px rgba(5, 5, 5, 0.9);
-  position: relative;
-  transition: transform 0.5s, box-shadow 0.3s, background-color 0.3s ease;
-  margin-bottom: 15px;
-  background-size: cover; /* Ensure the background image covers the entire card */
-  background-position: center; /* Center the background image */
 
-
-
-}
 .card-img-top {
   height: 200px;
   object-fit: cover;
@@ -62,16 +48,6 @@
   padding-right: 0%;
  
 }
-
-
-
-
-
-
-
-
-
-
 .container {
   display: flex;
   overflow: hidden;
@@ -95,7 +71,7 @@
       transform: translateX(0%);
   }
   100% {
-      transform: translateX(-400%);
+      transform: translateX(-500%);
   }
 }
 

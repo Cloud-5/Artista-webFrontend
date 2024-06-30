@@ -1,43 +1,16 @@
 
-/* .navbar
-{
-    background-color: #3682cd;
-} */
 
 
 /* Add margin to the left to move the logo to the right */
+.main {
+  background-color:lightblue;
+}
 .custom-logo {
   margin-left: 50px;
   max-height: 50px;
   max-width: 600px;
   margin-right: 60px; /* Add margin to the right of the logo */
 
-}
-
-/* icons */
-.navbar-text .bi-bell-fill,
-.navbar-text .bi-chat-dots-fill,
-.navbar-text .bi-cart-fill,
-.navbar-text .bi-person-circle {
-  color: white;
-  font-size: 1.5rem;
-  text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2); 
-  margin-right: 30px; 
-  transition: color 0.3s; 
-}
-
-.navbar-text:hover .bi-bell-fill,
-.navbar-text:hover .bi-chat-dots-fill,
-.navbar-text:hover .bi-cart-fill,
-.navbar-text:hover .bi-person-circle {
-  color: rgb(212, 212, 212);
-}
-
-/* Increase the size and make the text bold for "ForYou" and "Artist" */
-.navbar-nav .nav-link {
-  font-size: 1.2rem; /* Adjust the size as needed */
-  font-weight: bold; /* Make the text bold */
-  margin-right: 50px;
 }
 
 /* Increase the width of the search bar and add round corners */
@@ -50,6 +23,7 @@
 
 .d-flex {
   margin-left:auto;
+  gap: 20px;
 }
 
 
@@ -99,19 +73,7 @@
       padding: 0.3rem 0.6rem;
   }
 }
-/* .title
-{     
-    font-size: 80px;
-    font-weight: bold;
-    color: white;
-}
-.hero-body{
-     background-image: url("../../../assets/images/background.jpg"); 
-    background-size: cover;
-    background-position: center center;
-    height: 500px;
- 
-} */
+
 
 .title {     
   font-size: 8vw;  /* Using viewport width to make the font size responsive */
@@ -134,6 +96,7 @@
 @media (min-width: 1024px) {
   .title {
       font-size: 6vw;  /* Adjust font size for large screens */
+      font-family: 'Times New Roman', Times, serif;
   }
 
   .hero-body {
@@ -198,11 +161,12 @@
   h1{
     font-weight: bold;
     font-size: 40px;
-    color:blue
+    color:darkblue;
+    font-family: 'Times New Roman', Times, serif;
   }
 
   h3{
-   
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
   }
   h2{
@@ -264,3 +228,4 @@
     margin-top: 20px; /* Add spacing between the logo and buttons on medium-sized screens and below */
 
   }}
+  

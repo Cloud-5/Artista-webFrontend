@@ -1,9 +1,14 @@
-
+.ss
+{
+    background-color:darkblue ;
+    padding-top: 7px;
+    padding: 7px;
+}
 .container
 {
     background-image: linear-gradient(to right, #006ca5, #006ca5);
-
-
+    border-radius: 8%;
+  
 }
 h1
 {
@@ -15,7 +20,14 @@ label
 {
     font-weight: bold;
 }
-
+.alert alert-success
+{
+    color: green;
+}
+.alert alert-danger
+{
+    color: red;
+}
 /* img
 {
 

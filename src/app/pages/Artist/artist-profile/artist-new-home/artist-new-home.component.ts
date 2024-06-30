@@ -10,6 +10,7 @@ export class ArtistNewHomeComponent implements OnInit {
 
   public userData: any = {};
   public artworks: any = [];
+  router: any;
 
   constructor(private artistServices: ArtistNewHomeServiceService) { }
 
@@ -45,6 +46,17 @@ export class ArtistNewHomeComponent implements OnInit {
     })
   }
 
+  logout() {
+    // Clear local storage items related to user session
+    localStorage.removeItem('uid');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('firebase_uid');
+  
+    // Navigate to the login page or home page after logout
+    this.router.navigate(['/login']);
+  }
   artsData = [
     { artImgUrl: '../assets/imgs/creations (1).jpeg', artworkName: 'Mystic Mountains',purchaseCount:2, price: 150,likeCount: 2350 ,purchased:1},
     { artImgUrl: '../assets/imgs/3DIMG.jpg', artworkName: 'Cosmic Dream', price: 220, purchaseCount:2, likeCount: 4100,purchased:1 },
