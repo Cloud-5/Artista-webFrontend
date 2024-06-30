@@ -66,6 +66,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       this.loadArtworkDetails(this.artworkId, this.userId); 
       this.updateButtonStates();
       this.checkScreenSize();
+      this.updateColumns();
     })
   }
 
@@ -86,8 +87,10 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.artworkDetails = data.artworkDetails[0];
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
+        console.log('related',this.relatedArtworks.length);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
+        console.log('image',this.imageUrl);
         if(this.artworkDetails.category === '3D Modeling'){
           this.is3D = true;
         } else {
@@ -226,6 +229,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.checkScreenSize();
+    this.updateColumns();
   }
 
   checkScreenSize() {
@@ -243,4 +247,25 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   viewArtwork(artworkId: string) {
     this.router.navigate(['/preview', artworkId]);
   }
+
+  columns: any[][] = [[], [], []];
+
+  updateColumns() {
+    const width = window.innerWidth;
+
+    let numColumns = 3;
+    if (width < 600) {
+      numColumns = 1;
+    } else if (width < 992) {
+      numColumns = 2;
+    }
+
+    this.columns = Array.from({ length: numColumns }, () => []);
+    this.relatedArtworks.forEach((image, index) => {
+      this.columns[index % numColumns].push(image);
+    });
+  }
+
+
+
 }

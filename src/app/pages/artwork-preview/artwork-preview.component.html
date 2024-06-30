@@ -1,12 +1,12 @@
 <div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
     <div class="d-sm-flex justify-content-between align-items-center">
-        <div class="d-flex">
-            <div class="float-left" style="margin-left: 20px;">
-                <h3 class="title fs-4 fw-bolder fst-italic">{{artworkDetails.artwork_name}}</h3>
+        
+            <div class="bar-header" style="margin-left: 20px;">
+                <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0;">{{artworkDetails.artwork_name}}</h3>
                 <p>by {{artworkDetails.artist}}</p>
             </div>
-        </div>
-        <div class="d-flex align-items-center gap-3">
+      
+        <div class="d-flex align-items-center gap-3" style="justify-content: center;">
             <div class="price">
                 <p class="fs-3 fw-medium">{{artworkDetails.price | currency}}</p>
             </div>
@@ -23,29 +23,6 @@
             <div>
                 <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button"><span class="">Add To Cart</span></button>
             </div>
-        </div>
-    </div>
-
-    <div class="d-sm-none">
-        <div class="float-left">
-            <h3 class="title fs-6 fw-bolder fst-italic">{{artworkDetails.artwork_name}}</h3>
-            <p class="fs-8">by {{artworkDetails.artist}}</p>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-2">
-            <div class="price">
-                <p class="fs-6 fw-medium">{{artworkDetails.price | currency}}</p>
-            </div>
-            <div>
-                <button (click)="toggleFavorite()" class="favorite-button">
-                    <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon"
-                        [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
-                </button>
-            </div>
-        </div>
-        <div class="d-flex mt-2">
-            <button class="btn btn-outline-info w-50" type="button"
-                (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
-            <button class="btn btn-primary w-50" type="button">Add To Cart</button>
         </div>
     </div>
 </div>
@@ -197,6 +174,7 @@
         <div class="row mt-4">
             <div class="cards">
                 <div class="card shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
+                    <div class="badge1 editor-choice">Artist's Best</div>
                     <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner">
                     <section class="title">
                         <p>{{artwork.title}}</p>
@@ -240,8 +218,13 @@
     </div>
     <div class="container">
         <div class="gallery">
-            <div class="image-container" *ngFor="let art of relatedArtworks">
-                <img [src]="art.thumbnail_url" alt={{art.title}}>
+            <div class="column" *ngFor="let column of columns">
+              <div class="gallery-item" *ngFor="let image of column" (click)="viewArtwork(image.artwork_id)">
+                <img [src]="image.thumbnail_url" alt={{image.title}}>
+                <section class="title">
+                    <p>{{image.title}}</p>
+                </section>
+              </div>
             </div>
         </div>
     </div>
