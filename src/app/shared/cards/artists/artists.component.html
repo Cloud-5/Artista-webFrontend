@@ -1,6 +1,6 @@
-<div class= "card artist-card shadow zoom-in-out-on-hover">
+<!-- <div class= "card artist-card shadow zoom-in-out-on-hover d-flex">
     
-    <img [src]="artist.banner_image_url" class="card-img-top" alt="Banner Image">
+    <img [src]="artist.banner_img_url" class="card-img-top" alt="Banner Image">
    
 
 <div class="card-body">
@@ -9,6 +9,7 @@
          <img [src]="artist.profile_photo_url" class="profile-picture rounded-circle shadow" alt="Profile Picture">
     </div>
     <div class="artist-detail">
+      
          <p class="card-title "><strong>{{artist.fName+" "+artist.LName}}</strong></p>
          <p class="job-title ">{{artist.profession}}</p>  
          <div class="row location-style">
@@ -19,20 +20,81 @@
              <p class="location">{{artist.location}}</p>
            </div>
          </div>
-         <div class="row like-creation">
+         <div class="row like-creation d-flex">
            <div class="col-auto">
              <i class="bi bi-star-fill"></i>
            </div>
              <div class="col">
-             <p class="like-count"><Strong>{{artist.rating[0].rating_value}}</Strong></p>
+             <p class="like-count"><Strong>{{artist.rating}}</Strong></p>
            </div>
            <div class="col">
-             <p class="creation text-right"><strong>Creation: {{ (artist.total_creations[0]['COUNT(artwork_id)'])}}</strong></p>
+             <p class="creation text-right"><strong>Creation: {{ artist.total_creations}}</strong></p>
            </div>
-           <button type="button" class="btn btn-primary mx-auto" (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
+           <button type="button" class="btn btn-primary " (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
          </div>
     </div>
     
 
 </div>
+ -->
 
+
+ <div class="container d-flex justify-content-center align-items-center">
+             
+  <div class="card">
+
+   <div class="upper">
+
+     <img [src]="artist.banner_img_url" class="img-fluid">
+     
+   </div>
+
+   <div class="user text-center">
+
+     <div class="profile">
+
+       <img [src]="artist.profile_photo_url" class="rounded-circle" width="80">
+       
+     </div>
+
+   </div>
+
+
+   <div class="mt-5 text-center">
+
+     <h4 class="mb-0">{{artist.fName+" "+artist.LName}}</h4>
+     <span class="text-muted d-block mb-2 location">{{artist.location}}</span>
+     <span class="text-muted d-block mb-2 profession">{{artist.profession}}</span>
+
+     <button class="btn btn-primary btn-sm follow"  (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
+
+
+     <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+
+       <div class="stats">
+         <h6 class="mb-0">Followers</h6>
+         <span>{{artist.follower_count}}</span>
+
+       </div>
+
+
+       <div class="stats">
+         <h6 class="mb-0">Projects</h6>
+         <span>{{artist.total_creations}}</span>
+
+       </div>
+
+
+       <div class="stats">
+         <h6 class="mb-0">Rating</h6>
+         <span>{{artist.rating | number: '1.1-1'}}</span>
+
+       </div>
+       
+     </div>
+     
+   </div>
+    
+  </div>
+
+</div>

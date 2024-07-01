@@ -16,12 +16,12 @@
             </div>
         </div>
         <div class="container mt-5 mb-3 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 card-index" >
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 card-index" (window:scroll)="onScroll()" >
                 <div class="col mb-3" *ngFor="let art of artsData" >
-                    <app-arts [art]="art"></app-arts>                
+                    <app-arts [art]="art"  [userId]="userId"></app-arts>                
                 </div>
             </div>
         </div>
     </div>
 </section>
-<app-footer></app-footer>
+<app-footer></app-footer>       
