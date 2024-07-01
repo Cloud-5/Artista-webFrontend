@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <!-- Show this message when cart is empty -->
 <section class="head-title-section section-margin ">
   <div class="container-fluid">
@@ -33,7 +34,8 @@
       <div *ngIf="cartItems">
         <div class="col-md-9">
           <div class="d-flex flex-wrap " *ngFor="let getCartDetail of cartItems">
-            <app-cart-card [cartItem]="getCartDetail"></app-cart-card>
+            <app-cart-card [cartItem]="getCartDetail" (itemChanged)="onItemChanged()"
+            (itemRemoved)="onItemRemoved(getCartDetail.artwork_id)"></app-cart-card>
           </div>
         </div>
       </div>
@@ -64,8 +66,8 @@
           </div>
           <button type="button" class="btn btn-success btn-change mt-3 shadow"  (click)="checkout()">Checkout</button>
           <button
-            type="button" class="btn btn-danger btn-customize mt-3 shadow"
-            (click)="removeAll()">
+            type="button" class="btn btn-danger btn-customize mt-3 shadow" (click)="removeAll()"
+           >
             Clear Cart
           </button>
         </div>
@@ -74,3 +76,4 @@
   </div>
   </div>
 </section>
+<app-footer></app-footer>
