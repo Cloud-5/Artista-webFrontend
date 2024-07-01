@@ -1,11 +1,40 @@
 .list-group-item {
-  margin-bottom: 30px; /* Adjust the value as needed for the desired spacing */
-  padding: 10px; /* Adjust the value as needed for the desired padding */
-
-}
-.list-group-item {
+  margin-bottom: 30px;
+  padding: 10px;
   transition: transform 0.3s ease;
+  border:0.5px solid #bcc7c7;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(13, 13, 13, 0.1);
 }
+
 .list-group-item:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.profile-pic {
+  width: 70px;
+  height: 70px;
+}
+
+.ml-2 {
+  margin-left: 10px;
+}
+
+.d-flex.align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.list-group-item h5.mb-1 {
+  margin-bottom: 0; /* Ensure no margin-bottom for inline alignment */
+}
+
+
+.list-group-item-action {
+  padding: 15px; /* Adjust as needed for spacing */
+}
+
+.list-group-item p.mb-1 {
+  margin-top: 10px; /* Adjust for spacing between elements */
 }

@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerServiceService } from './customer-service.service';
 import { CustomerDataService } from '../../../shared/services/customerData.service';
-
+import { Router } from '@angular/router';  // Import Router
 
 @Component({
   selector: 'app-customer-profile-gallery',
   templateUrl: './customer-profile-gallery.component.html',
   styleUrl: './customer-profile-gallery.component.css',
 })
-export class CustomerProfileGalleryComponent implements OnInit{
+export class CustomerProfileGalleryComponent implements OnInit {
 
   CustomerData: any = {};
-  userId: string = '3';
-  // galleryArtData: any[] = [];
-
+  userId: string = '24';
   artsData: any[] = [];
   filteredArts: any[] = [];
 
-
   constructor(
     public customerService: CustomerServiceService,
-    private customerDataService: CustomerDataService
+    private customerDataService: CustomerDataService,
+    private router: Router  // Inject Router
   ) { }
 
   ngOnInit(): void {
@@ -74,8 +72,24 @@ export class CustomerProfileGalleryComponent implements OnInit{
     }
   }
 
+  deactivateCustomer(): void {
+    const confirmed = confirm('Are you sure you want to delete your profile? This action cannot be undone.');
 
-
-
+    if (confirmed) {
+      const userId = Number(this.userId);
+      this.customerService.deactivateCustomer(userId).subscribe(
+        (response: any) => {
+          console.log(response.message);
+          alert('Your profile has been deleted successfully.');
+          this.router.navigate(['/']);  // Redirect to home or any other page
+        },
+        (error: any) => {
+          console.log(error);
+          alert('Error deactivating the profile.');
+        }
+      );
+    }
+  }
 
 }
+

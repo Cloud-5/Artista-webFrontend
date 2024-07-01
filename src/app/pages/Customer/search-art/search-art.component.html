@@ -6,17 +6,63 @@
     <br>
     <h5>Category</h5>
     <ul>
-        <li><input type="checkbox" id="3d-art" name="category" value="3d-art"><label for="3d-art">  3D Art</label></li>
-        <li><input type="checkbox" id="digital-arts" name="category" value="digital-arts"><label for="digital-arts">  Digital Arts</label></li>
-        <li><input type="checkbox" id="generative-arts" name="category" value="generative-arts"><label for="generative-arts">   Generative Arts</label></li>
-        <li><input type="checkbox" id="motion-arts" name="category" value="motion-arts"><label for="motion-arts">  Motion Arts</label></li>
-        <li><input type="checkbox" id="pixel-art" name="category" value="pixel-art"><label for="pixel-art">  Pixel Art</label></li>
-        <li><input type="checkbox" id="vector-art" name="category" value="vector-art"><label for="vector-art">  Vector Art</label></li>
-        <li><input type="checkbox" id="anime" name="category" value="anime"><label for="anime">  Anime</label></li>
+      <li>
+        <input type="checkbox" id="3d-modeling" name="category" value="3d-modeling">
+        <label for="3d-modeling">  3D Modeling</label>
+      </li>
+      <li>
+        <input type="checkbox" id="digital-painting" name="category" value="digital-painting">
+        <label for="digital-painting">  Digital Painting</label>
+      </li>
+      <li>
+        <input type="checkbox" id="pixel-art" name="category" value="pixel-art">
+        <label for="pixel-art">  Pixel Art</label>
+      </li>
+      <li>
+        <input type="checkbox" id="2d-animation" name="category" value="2d-animation">
+        <label for="2d-animation">  2D Animation</label>
+      </li>
+      <li>
+        <input type="checkbox" id="digital-sculpting" name="category" value="digital-sculpting">
+        <label for="digital-sculpting">  Digital Sculpting</label>
+      </li>
+      <li>
+        <input type="checkbox" id="vector-illustration" name="category" value="vector-illustration">
+        <label for="vector-illustration">  Vector Illustration</label>
+      </li>
+      <li>
+        <input type="checkbox" id="motion-graphics" name="category" value="motion-graphics">
+        <label for="motion-graphics">  Motion Graphics</label>
+      </li>
+      <li>
+        <input type="checkbox" id="digital-collage" name="category" value="digital-collage">
+        <label for="digital-collage">  Digital Collage</label>
+      </li>
+      <li>
+        <input type="checkbox" id="concept-art" name="category" value="concept-art">
+        <label for="concept-art">  Concept Art</label>
+      </li>
+      <li>
+        <input type="checkbox" id="generative-art" name="category" value="generative-art">
+        <label for="generative-art">  Generative Art</label>
+      </li>
+
     </ul>
+    <br>
+    <h5>Price Range</h5>
+<label for="customRange2" class="form-label">Min - Max ($) </label>
+<input type="range" class="form-range" min="10" max="1000" id="customRange2" (input)="onPriceRangeChange($event)">
+<div class="d-flex justify-content-between">
+  <small>10$</small>
+  <small>1000$</small>
+</div>
+
+    <br>
+    <br>
+
 
     <div class="dropdown-container">
-      <label for="sort-options"><b>Sort by: </b></label>
+     <label for="sort-options"><b>Sort by: </b></label>
       <br>
       <select id="sort-options" name="sort-options" [(ngModel)]="selectedOption" (change)="onSortChange($event)">
           <option value="name-asc">Name (A-Z)</option>
@@ -25,8 +71,11 @@
           <option value="date-desc">Date (Newest to Oldest)</option>
           <option value="price-asc">Price (Low to High)</option>
           <option value="price-desc">Price (High to Low)</option>
+          <option value="popularity-asc">Total Likes(Low to High)</option>
+          <option value="popularity-desc">Total Likes(High to Low)</option>
       </select>
     </div>
+
 </div>
 
   <div class="art-gallery-column">
@@ -43,18 +92,15 @@
           <div class="form-outline" data-mdb-input-init>
             <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" id="search-input" type="search" class="form-control custom-search" placeholder="Search for Arts" aria-label="Search for Arts" aria-describedby="search-button">
           </div>
-          <!-- <button id="search-button" type="button" class="btn btn-primary button-search">
-            <i class="bi bi-search"></i>
-          </button> -->
 
         </div>
       </div>
     </div>
 
     <div class="container mt-5 mb-3">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-        <div class="col mb-3" *ngFor="let arts of filteredArts">
-          <app-arts [art]="arts"></app-arts>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" style="max-height: 850px; overflow-y: scroll; overflow-x: hidden;">
+        <div class="col mb-3" *ngFor="let arts of filteredArts" >
+          <app-art-card [art]="arts"></app-art-card>
         </div>
       </div>
     </div>
