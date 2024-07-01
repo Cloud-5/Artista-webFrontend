@@ -91,7 +91,9 @@
   
   
 }
-
+.row{
+  gap: 38px;
+}
 /* For large devices (desktops) */
 @media (min-width: 1024px) {
   .title {
@@ -104,7 +106,7 @@
       min-height: 500px;  /* Maintain minimum height */
   }
 }
-
+/* 
 .card-container {
     display: flex;
    
@@ -112,9 +114,9 @@
   }
   .card-container-artist {
     display: flex;
-    overflow-x: auto;
+     overflow-x: auto; 
     white-space: nowrap;
-  }
+  } */
   .search-container {
     align-items: center;
     margin: 50px;
