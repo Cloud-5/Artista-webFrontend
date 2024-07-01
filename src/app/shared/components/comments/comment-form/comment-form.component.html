@@ -3,11 +3,10 @@
     <textarea class="form-control comment-area" formControlName="title" placeholder="Join The Discussion..."></textarea>
   </div>
   <div class="row">
-    <div class="col d-flex justify-content-end">
+    <div class="col d-flex justify-content-end m-0 p-0 gap-3">
       <button class="btn write-btn" type="submit" [disabled]="form.invalid">
         {{ submitLabel }}
       </button>
-      &nbsp;&nbsp;
       <button
         *ngIf="hasCancelButton"
         type="button"

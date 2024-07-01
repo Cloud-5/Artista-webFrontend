@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
+
+
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
 import { FollowingArtistsComponent } from './pages/Customer/following-artists/following-artists.component';
@@ -27,16 +29,26 @@ import { CommentsService } from './shared/services/comments.service';
 
 import { ModelComponent } from './shared/components/model/model.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonModule } from '@angular/material/button';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
+
+import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
+import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
+
+import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { NotificationComponent } from './shared/components/notification/notification.component';
+import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ArtistsComponent } from './shared/cards/artists/artists.component';
 import { ArtsComponent } from './shared/cards/arts/arts.component';
 import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
 import { CategoryComponent } from './shared/cards/category/category.component';
-import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtistComponent } from './pages/Artist/artist.component';
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
@@ -52,7 +64,7 @@ import { ResetPasswordComponent } from './pages/fogot-password/reset-password/re
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
 import { CheckEmailComponent } from './pages/fogot-password/check-email/check-email.component';
 import { HomeComponent } from './pages/home/home.component';
-import { HelpCenterComponent } from './pages/help-center/help-center.component';
+
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -111,7 +123,18 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     CommentComponent,
     CommentFormComponent,
     CommentListComponent,
-    ModelComponent
+    ModelComponent,
+    ArtistFeedbackComponent,
+    EditArtistProfileComponent,
+    ArtistFollowersComponent,
+    FooterComponent,
+    NavbarComponent,
+    ArtsComponent,
+    ArtistNewHomeComponent,
+    UploadArtworksComponent,
+    NotificationComponent,
+    HelpCenterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -119,6 +142,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatChipsModule,
     MatTooltipModule,
     MatButtonModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

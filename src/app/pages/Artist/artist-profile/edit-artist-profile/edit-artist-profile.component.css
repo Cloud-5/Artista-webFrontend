@@ -1,0 +1,130 @@
+.upload-box {
+
+  justify-content: center;
+  margin: 50px;
+  background-color: rgb(80, 137, 235);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 800px;
+  left: 400px;
+
+}
+
+.upload-box h2 {
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  width: 100px; /* Adjust the width and height as needed */
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile-photo-button {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 16px;
+  background-color: #b3e002;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-field input[type="text"],
+.form-field textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.upload-button,
+.cancel-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.having-problems {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.having-problems p {
+  font-size: 14px;
+  color: #333;
+}
+.container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container-row{
+  background-color: #007bff;
+  margin: 40px;
+  border-radius: 20px;
+
+
+}
+.container-logo{
+  /* background: url("/src/assets/imgs/creations\ \(6\).jpeg") no-repeat 50% 20% / cover; */
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 10px;
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #0056b3; /* Darker blue background color on hover */
+}
+
+.upload-button {
+  background-color: yellow;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+  justify-content: center;
+}

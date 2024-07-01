@@ -1,0 +1,152 @@
+<app-navbar></app-navbar>
+
+<div class="header__wrapper">
+ <header></header>
+  <div class="cols__container">
+
+
+    <div class="left__col artist-details">
+      <div class="img__container">
+        <img src={{userData.profile_photo_url}} alt={{userData.name}} />
+        <span></span>
+      </div>
+      <h2>{{userData.fName + " " + userData.LName}}</h2>
+      <p class="sub-title"><b>{{userData.location}}</b></p>
+      <!-- <p><b>Member Since : </b>{{userData.registered_at.split("T")[0]}}</p> -->
+
+
+      <!-- <div class="rating">
+        <span class="star" [class.filled]="averageRating >= 1">★</span>
+        <span class="star" [class.filled]="averageRating >= 2">★</span>
+        <span class="star" [class.filled]="averageRating >= 3">★</span>
+        <span class="star" [class.filled]="averageRating >= 4">★</span>
+        <span class="star" [class.filled]="averageRating >= 5">★</span>
+      </div> -->
+
+      <ul class="about">
+        <li><span>{{userData.gallery}}</span>Gallery</li>
+        <li><span>{{userData.followers}}</span>Followers</li>
+        <li><span>{{0}}</span>Purchases</li>
+      </ul>
+
+      <div class="content">
+        <p>{{userData.description}}</p>
+        <br />
+        <br />
+        <div class="row" style="margin: 0">
+          <div class="d-flex" style="justify-content: space-between">
+
+
+            <button class="btn btn-primary" style="width: 48%" routerLink="/edit">
+             Edit profile
+            </button>
+
+            <button type="button" class="btn btn-primary uploadArtworks"  routerLink="/upload"     style="width: 48%">
+              Upload Artwoks
+            </button>
+
+
+
+
+
+
+          </div>
+          <div class="row" style="margin: 10px 0 0 0">
+            <button type="button" class="btn btn-success"  (click)="logout()">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="right__col">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">My Creations</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab"
+            tabindex="-1">Followers</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#history" aria-selected="false" tabindex="-1"
+            role="tab">Feedbacks</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active show" id="home" role="tabpanel">
+          <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <form class="d-flex" role="search" style="width: 100%">
+                <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
+                  aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </nav>
+
+
+          <div class="Gallery">
+            <div class="col mb-3" *ngFor="let art of artworks">
+              <app-arts [art]="art"></app-arts>
+            </div>
+
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel">
+          <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+
+
+              <form class="d-flex" role="search" style="width: 100%">
+                <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
+                  aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+
+
+                <app-artist-followers></app-artist-followers>
+
+            </div>
+          </nav>
+        </div>
+
+
+        <div id="myTabContentx" class="tab-content">
+          <div class="tab-pane fade" id="history" role="tabpanel">
+            <nav class="navbar bg-body-tertiary">
+              <div class="container-fluid">
+                <form class="d-flex" role="search" style="width: 100%">
+                  <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
+                    aria-label="Search" />
+                  <button class="btn btn-outline-success" type="submit">
+                    Search
+                  </button>
+                </form>
+             <app-artist-feedback></app-artist-feedback>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

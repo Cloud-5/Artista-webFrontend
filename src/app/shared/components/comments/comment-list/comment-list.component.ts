@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommentInterface } from '../../../interfaces/comment.interface';
 import { ActiveCommentInterface } from '../../../interfaces/activeComment.interface';
 import { CommentsService } from '../../../services/comments.service';
@@ -9,9 +9,10 @@ import { CommentsService } from '../../../services/comments.service';
   templateUrl: './comment-list.component.html',
   styleUrl: './comment-list.component.css'
 })
-export class CommentListComponent implements OnInit {
+export class CommentListComponent implements OnInit, OnChanges {
 
   @Input() currentUserId!: string;
+  @Input() artworkId!: string;
   @Input() comments: CommentInterface[] = [];
   @Output() commentsCount = new EventEmitter<number>();
 
@@ -25,9 +26,14 @@ export class CommentListComponent implements OnInit {
     this.fetchComments();
   }
 
+  ngOnChanges(changes:SimpleChanges): void {
+    if(changes['artworkId'] && !changes['artworkId'].firstChange){
+      this.fetchComments();
+    }
+  }
+
   fetchComments(){
-    const artworkId = '3';
-    this.commentsService.getComments(artworkId, this.currentUserId).subscribe((comments: CommentInterface[]) => {
+    this.commentsService.getComments(this.artworkId, this.currentUserId).subscribe((comments: CommentInterface[]) => {
       this.comments = comments;
       this.commentsCount.emit(this.comments.length);
       console.log('init',this.commentsCount);

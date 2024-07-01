@@ -1,0 +1,4 @@
+.comments-container{
+    max-height: 700px;
+    overflow-y: scroll;
+}

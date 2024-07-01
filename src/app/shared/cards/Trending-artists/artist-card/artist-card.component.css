@@ -1,5 +1,5 @@
 .card {
-  height: 250px;
+  height: 260px;
   width: 225px;
  
 }
@@ -27,14 +27,14 @@
 
 
 .card-title {
-  margin-top: 5px;
+  margin-top: 1px;
   font-size: 17px;
  
 }
 
 .job-title {
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   font-weight: 600;
   color: rgb(107, 107, 107);
 }

@@ -1,64 +1,10 @@
 
 
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-// import { UserService } from './service/user.service';
-
-// @Component({
-//   selector: 'app-new-password',
-//   templateUrl: './new-password.component.html',
-//   styleUrls: ['./new-password.component.css']
-// })
-// export class NewPasswordComponent implements OnInit {
-//   newPasswordForm!: FormGroup; // Adding ! operator to indicate that this will be initialized in ngOnInit
-//   formData = {
-   
-//     password: '',
-//     confirmPassword: ''
-//   };
-//   constructor(private formBuilder: FormBuilder, private userService: UserService) { }
-
-//   ngOnInit(): void {
-//     this.newPasswordForm = this.formBuilder.group({
-      
-//       password: ['', [Validators.required, Validators.minLength(8)]],
-//       confirmPassword: ['', Validators.required]
-//     }, {
-//       validator: this.passwordsMatchValidator
-//     });
-//   }
-
-//   passwordsMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
-//     const password = control.get('password');
-//     const confirmPassword = control.get('confirmPassword');
-//     if (!password || !confirmPassword) {
-//       return null;
-//     }
-//     return password.value === confirmPassword.value ? null : { 'passwordsMismatch': true };
-//   }
-
-//   submitForm(): void {
-//     if (this.newPasswordForm && this.newPasswordForm.valid) {
-//       const { email, password, confirmPassword } = this.newPasswordForm.value;
-//       this.userService.resetPassword(email, password, confirmPassword).subscribe(
-//         (response) => {
-//           console.log('Password reset successfully');
-//           // Handle success response
-//         },
-//         (error) => {
-//           console.error('Error resetting password:', error);
-//           // Handle error response
-//         }
-//       );
-//     }
-//   }
-// }
-
-
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserService } from './service/user.service';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
@@ -66,11 +12,23 @@ import { Router } from '@angular/router';
 })
 export class NewPasswordComponent implements OnInit {
   newPasswordForm!: FormGroup;
-  
-
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  Message: string | null =null;
+  errorMessage: string | null =null;
+  constructor(
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const email = params['email'];
+      if (email) {
+        localStorage.setItem('email', email);
+      }
+    });
+
     this.newPasswordForm = this.formBuilder.group({
       password: ['', [
         Validators.required,
@@ -117,18 +75,33 @@ export class NewPasswordComponent implements OnInit {
 
   submitForm(): void {
     if (this.newPasswordForm && this.newPasswordForm.valid) {
-      const { password, confirmPassword } = this.newPasswordForm.value;
-      this.userService.resetPassword(password, confirmPassword).subscribe(
-        (response) => {
-          console.log('Password reset successfully');
-          this.router.navigate(["/login"]);
-          // Handle success response
-        },
-        (error) => {
-          console.error('Error resetting password:', error);
-          // Handle error response
-        }
-      );
+      const email = localStorage.getItem('email');
+      if (email) {
+        const { password, confirmPassword } = this.newPasswordForm.value;
+        this.userService.resetPassword(email, password, confirmPassword).subscribe(
+          response => {
+            console.log('Password reset successfully');
+            this.Message = 'Password reset successfully';
+            localStorage.removeItem('email');
+            this.router.navigate(['/login']);
+          },
+          (error: any) => {
+            if (error.status === 400) {
+              this.errorMessage = 'Passwords do not match';
+            }
+            else if(error.status === 404)
+              {
+                this.errorMessage = 'User not found';
+              }
+               else {
+              console.error('Updated failed', error);
+              this.errorMessage = 'Error updating password';
+            }
+          }
+        );
+      } else {
+        console.error('Email not found in local storage');
+      }
     }
   }
 }

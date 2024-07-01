@@ -1,4 +1,5 @@
 
+<div class="ss">
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
@@ -8,38 +9,38 @@
       <div class="card">
         <div class="card-body">
           <div class="sign-in-container">
-            <form class="form" (ngSubmit)="submitForm()">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
               <p>Step 1 of 2</p>
               <br>
               <h1>Join as </h1>
-              <br><br>
+              <br>
               <div class="mb-3">
                 <label class="form-label">Email address</label>
-                <input type="email" name="Email" [(ngModel)]="formData.email" class="form-control" placeholder="Enter your Email" required>
-                <div *ngIf="!formData.email" class="text-danger">Email is required</div>
+                <input type="email" formControlName="email" class="form-control" placeholder="Enter your Email" required>
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+                  <div *ngIf="email?.errors?.['required']">Email is required</div>
+                  <div *ngIf="email?.errors?.['email']">Invalid email address</div>
+                </div>
               </div>
               <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" name="Password" [(ngModel)]="formData.password" class="form-control" placeholder="Password" required>
-                <!-- <div *ngIf="!formData.password" class="text-danger">Password is required</div> -->
-                <div *ngIf="!formData.password.match('^(?=.*[A-Z])')" class="text-danger">At least one uppercase letter is required</div>
-                <div *ngIf="!formData.password.match('(?=.*[a-z])')" class="text-danger">At least one lowercase letter is required</div>
-                <div *ngIf="!formData.password.match('(.*[0-9].*)')" class="text-danger">At least one digit is required</div>
-                <div *ngIf="!formData.password.match('(?=.*[!@#$%^&*])')" class="text-danger">At least one special character is required</div>
-                <div *ngIf="!formData.password.match('.{8,}')" class="text-danger">At least 8 characters long</div>
+                <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+                  <div *ngIf="password?.errors?.['required']">Password is required</div>
+                  <div *ngIf="password?.errors?.['pattern']">Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long</div>
+                </div>
               </div>
-
               <div class="mb-3">
                 <label class="form-label"> Confirm Password</label>
-                <input type="password" name="ConfirmPassword" [(ngModel)]="formData.confirmPassword" class="form-control" placeholder="Confirm Password" required>
-                <div *ngIf="formData.password !== formData.confirmPassword" class="text-danger">Passwords do not match</div>
+                <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+                <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" class="text-danger">
+                  <div *ngIf="confirmPassword?.errors?.['required']">Confirm Password is required</div>
+                  <div *ngIf="signUpForm.errors?.['passwordMismatch']">Passwords do not match</div>
+                </div>
               </div>
-              <div class="mb-3">
-                
-              </div>
-          
+              <br>
               <div class="col-12">
-                <button type="button" (click)="submitForm()" class="btn btn-primary" [disabled]="!formData.email || !formData.password || formData.password !== formData.confirmPassword">Continue</button>
+                <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Continue</button>
               </div>
             </form>
           </div>
@@ -47,4 +48,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

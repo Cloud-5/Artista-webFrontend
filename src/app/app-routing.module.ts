@@ -1,7 +1,16 @@
-import { NgModule } from '@angular/core';
+import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { ModelComponent } from './shared/components/model/model.component';
+
+import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { NotificationComponent } from './shared/components/notification/notification.component';
+import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
@@ -15,7 +24,7 @@ import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/pur
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
-import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtistComponent } from './pages/Artist/artist.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
@@ -25,7 +34,6 @@ import { St1Component } from './pages/sign-up/sign-up-artist/st1/st1.component';
 import { St2Component } from './pages/sign-up/sign-up-artist/st2/st2.component';
 import { ResetPasswordComponent } from './pages/fogot-password/reset-password/reset-password.component';
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
-import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 
@@ -36,7 +44,7 @@ const routes: Routes = [
   { path: 'st01', component: St01Component },
   { path: 'st2', component: St2Component },
   { path: 'st02', component: St02Component },
-  { path: 'helpCenter', component: HelpCenterComponent },
+  
 
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'new', component: NewPasswordComponent },
@@ -59,10 +67,19 @@ const routes: Routes = [
   { path: 'search-art', component: SearchArtComponent },
   { path: 'purchase-img-card', component: PurchaseImgCardComponent },
 
-  { path: 'preview', component: ArtworkPreviewComponent },
+  { path: 'preview/:artworkId', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
+  { path: 'Artist', component: ArtistNewHomeComponent },
+  {path: 'edit',component:EditArtistProfileComponent},
+  { path: 'artist-feedback', component: ArtistFeedbackComponent },
+  { path: 'artist-followers', component: ArtistFollowersComponent },
+  { path: 'arts', component: ArtsComponent },
+  {path:'upload',component:UploadArtworksComponent},
+  {path:'notification',component:NotificationComponent},
+  {path:'help',component:HelpCenterComponent}
+
 ];
 
 @NgModule({
