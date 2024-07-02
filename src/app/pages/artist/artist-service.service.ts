@@ -11,7 +11,12 @@ export class ArtistServiceService {
   private apiUrl: string = environment.apiUrl + '/artist-page';
 
   constructor(private http:  HttpClient) { }
-  getArtist(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/`);
+  getArtists(params: any): Observable<any> {
+    let url = `${this.apiUrl}?page=${params.page}&limit=${params.limit}`;
+    if (params.searchKeyword) url += `&searchKeyword=${params.searchKeyword}`;
+    if (params.profession) url += `&profession=${params.profession}`;
+    if (params.location) url += `&location=${params.location}`;
+    if (params.sortBy) url += `&sortBy=${params.sortBy}`;
+    return this.http.get(url);
   }
 }

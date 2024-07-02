@@ -84,6 +84,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,6 +136,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     UploadArtworksComponent,
     NotificationComponent,
     HelpCenterComponent,
+    ArtCardComponent,
 
   ],
   imports: [
@@ -159,6 +162,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
+    NgxStarRatingModule
   ],
 
   providers: [

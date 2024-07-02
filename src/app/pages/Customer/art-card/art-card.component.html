@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card shadow mb-4 zoom-in-out-on-hover category-card">
+    <!-- Conditionally show the remove button in the top right corner -->
+    <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn">
+      Remove
+    </button>
+    <img src="{{ art.artwork_image_url }}" class="card-img-top" alt="Artwork Image" />
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="card-title">
+          <strong>{{ art.artwork_name }}</strong>
+        </p>
+        <div class="cart-container d-flex align-items-center">
+          <p class="card-text price-text">
+            <strong>{{ art.artwork_price }}</strong>
+          </p>
+          <button class="btn cart-icon-btn">
+            <i class="bi bi-cart-plus-fill"></i>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between additional-texts">
+        <p class="artist-name">
+          <strong>{{ art.artist_name }}</strong>
+        </p>
+        <p class="like-count">
+          <strong>{{ formatLikeCount(art.total_likes) }}</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
