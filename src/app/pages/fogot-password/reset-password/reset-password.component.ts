@@ -11,6 +11,7 @@ import { UserService } from './service/user.service';
 export class ResetPasswordComponent implements OnInit {
   resetForm!: FormGroup;
   Message: string | null =null;
+  errorMessage: string | null = null;
   constructor(private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -28,7 +29,14 @@ export class ResetPasswordComponent implements OnInit {
           this.Message = 'Password reset link sent to your email address.'
         },
         error => {
-          console.error(error);
+          if (error.status === 404) {
+            this.errorMessage = 'User not found.';
+          } 
+          else {
+           
+            this.errorMessage = 'User not found.';
+          }
+    
         }
       );
     }

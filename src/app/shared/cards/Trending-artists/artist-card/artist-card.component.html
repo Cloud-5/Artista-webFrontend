@@ -1,30 +1,68 @@
 
 
 
-<div class="container">
-  <div class="card artist-card shadow zoom-in-out-on-hover">
-      <div class="card-body">
-          <div class="profile-pic">
-              <img [src]="artist.thumbnail_url" class="profile-picture rounded-circle shadow" alt="Profile Picture">
+<div class="container d-flex justify-content-center align-items-center">
+  
+     
+    <div class="card">
+
+        <div class="upper">
+          <img [src]="artist.banner_url" class="img-fluid"> 
+        </div>
+
+        <div class="user text-center">
+
+          <div class="profile">
+              <img [src]="artist.thumbnail_url" class=" rounded-circle" alt="Profile Picture" width="80">
           </div>
-          <div class="artist-detail">
-              <p class="card-title"><strong>{{ artist.artist_name }}</strong></p>
-              <p class="job-title">{{ artist.artist_profession }}</p>
-              <div class="row follower-count">
-                <div class="col-auto">
-                  <i class="bi bi-people-fill"></i>
+
+          </div>
+
+          <div class="mt-5 text-center">
+
+              <h4 class="mb-0">{{ artist.artist_name }}</h4>
+      <span class="text-muted d-block mb-2 location">{{artist.artist_location}}</span>
+     <span class="text-muted d-block mb-2 profession">{{artist.artist_profession }}</span>
+                 
+              <button type="button" class="btn btn-primary btn-sm follow">Message</button>
+    
+              <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+
+                <div class="stats">
+                  <h6 class="mb-0">Followers</h6>
+
+                  <!-- <span>{{ formatFollowerCount(artist.total_followers) }} </span> -->
+                  <div class="row follower-count">
+                    <div class="col-auto">
+                      <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="col">
+                      <p class="follower-count"><strong>{{ formatFollowerCount(artist.total_followers) }}</strong></p>
+                    </div>   
+                  </div>
+         
                 </div>
-                <div class="col">
-                  <p class="follower-count"><strong>{{ formatFollowerCount(artist.total_followers) }} Followers</strong></p>
-                </div>   
+                <div class="stats">
+                  <h6 class="mb-0">Rating</h6>
+                 <!-- <p> <strong>{{artist.rating | number: '1.1-1'}}</strong></p> -->
+                 <div class="row follower-count">
+                  <div class="col-auto">
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                  <div class="col">
+                    <p ><strong>{{artist.rating | number: '1.1-1'}}</strong></p>
+                  </div>   
+                </div>
+                </div>
+                
               </div>
-              <button type="button" class="btn btn-primary mx-auto"(click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
-          </div>
-      </div>
-  </div>
-</div>
-
-
+              
+            </div>
+             
+           </div>
+         
+         </div>
+         
 
 <!-- 
 (click)="messageArtist(artist.firebase_uid, artist.artist_name)" -->
