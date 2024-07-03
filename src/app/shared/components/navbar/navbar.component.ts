@@ -21,7 +21,9 @@ export class NavbarComponent {
   ];
   box: HTMLElement | null = null;
   down: boolean = true;
-  @Input() artist: any ;
+  artist: { firebase_uid: string; artist_name: string; } | undefined;
+
+  
 @ViewChild(NotificationComponent) notificationComponent!:NotificationComponent;
   constructor(private router: Router) { }
 
@@ -33,6 +35,10 @@ toggleNotification(){
 ngOnInit(): void {
   this.box = document.getElementById('box');
   this.countUnreadMessages();
+  this.artist = {
+    firebase_uid: 'someFirebaseUid',
+    artist_name: 'Artist Name'
+  };
 }
 
 toggleNotiFi() {
@@ -66,6 +72,8 @@ clearAllNotifications(): void {
   this.notifications = [];
   // Optionally, perform additional actions like making an API call to clear notifications on the server
 }
+
+
 messageArtist(firebase_uid: string, artistName: string): void {
   // Save the firebase_uid to local storage
   localStorage.setItem('artistFirebaseUid', firebase_uid);
@@ -73,5 +81,8 @@ messageArtist(firebase_uid: string, artistName: string): void {
   // Navigate to the chat route
   this.router.navigate(['/chat']);
 }
+
+
+
 }
 

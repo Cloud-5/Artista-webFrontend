@@ -67,7 +67,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import { FormsModule } from '@angular/forms';
 
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
@@ -85,7 +85,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
-import { NgxStarRatingModule } from 'ngx-star-rating';
+import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -162,13 +163,15 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-    NgxStarRatingModule
+    
   ],
 
   providers: [
     provideClientHydration(),
     ArtistPortfolioService,
     CommentsService,
+    provideHttpClient(withFetch()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'angular-chat-c21c3',

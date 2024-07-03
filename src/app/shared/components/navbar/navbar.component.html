@@ -49,14 +49,21 @@
         </div>
 
 
-        <a class="navbar-text me-3"  (click)="messageArtist(artist.firebase_uid, artist.artist_name)">
+        <a class="navbar-text me-3"  (click)="artist && messageArtist(artist.firebase_uid, artist.artist_name)" >
           <i class="bi bi-chat-dots-fill"></i>
         </a>
 
 
 
-        <a href="#" class="navbar-text">
-          <i class="bi bi-person-circle"></i>
+        <a  class="navbar-text me-3">
+          <div class="dropdown">
+            <i class="bi bi-person-circle dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
         </a>
       </div>
     </div>
