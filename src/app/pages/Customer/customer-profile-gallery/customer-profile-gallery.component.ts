@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerServiceService } from './customer-service.service';
 import { CustomerDataService } from '../../../shared/services/customerData.service';
-import { Router } from '@angular/router';  // Import Router
-
+import { Router } from '@angular/router';  
 @Component({
   selector: 'app-customer-profile-gallery',
   templateUrl: './customer-profile-gallery.component.html',
@@ -27,6 +26,11 @@ export class CustomerProfileGalleryComponent implements OnInit {
     this.getCustomerGalleryArts(userId);
   }
 
+  onItemRemoved(artwork_id:string){
+    console.log('Item removed', artwork_id);
+    this.getCustomerGalleryArts(Number(this.userId));
+  }
+
   getCustomerDetails(userId: number): void {
     this.customerService.getCustomerDetails(userId).subscribe(
       (data: any[]) => {
@@ -48,6 +52,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
           artwork_price: artwork.artwork_price,
           artist_name: artwork.artist_name,
           total_likes: artwork.total_likes,
+          artwork_id: artwork.artwork_id
         }));
         this.filteredArts = this.artsData;
         console.log(this.filteredArts);

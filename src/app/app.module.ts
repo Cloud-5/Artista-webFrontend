@@ -84,9 +84,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
-import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
-import { AuthInterceptor } from './services/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,6 +137,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
     NotificationComponent,
     HelpCenterComponent,
     ArtCardComponent,
+
 
   ],
   imports: [

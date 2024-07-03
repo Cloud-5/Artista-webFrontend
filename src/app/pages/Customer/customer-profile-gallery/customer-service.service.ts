@@ -25,6 +25,9 @@ export class CustomerServiceService {
     return this.http.post(`${this.apiUrl}/deactivate/${UserId}`, {});
   }
 
+  removeGalleryItem(userId: number, artworkId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${userId}/${artworkId}`);
+  }
 
 }
 

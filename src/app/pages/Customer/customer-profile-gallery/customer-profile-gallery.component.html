@@ -63,7 +63,7 @@
           </nav>
           <div class="Gallery" style="max-height: 800px; overflow-y: scroll; overflow-x: hidden;">
             <div class="col mb-3" *ngFor="let art of filteredArts">
-              <app-art-card [art]="art" [showRemoveButton]="true"></app-art-card>
+              <app-art-card [art]="art" [showRemoveButton]="true" [customerUserId]="userId" (removeGalleryItem)="onItemRemoved(art.artwork_id)"></app-art-card>
             </div>
           </div>
         </div>

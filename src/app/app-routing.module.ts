@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'st01', component: St01Component },
   { path: 'st2', component: St2Component },
   { path: 'st02', component: St02Component },
-  
+
 
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'new', component: NewPasswordComponent },
