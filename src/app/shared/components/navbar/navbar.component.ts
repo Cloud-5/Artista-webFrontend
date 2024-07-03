@@ -20,30 +20,23 @@ export class NavbarComponent {
   ];
   box: HTMLElement | null = null;
   down: boolean = true;
-  @Input() artist: any;
+  
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   searchTerm: string = ''; // Added property to store search term
-
+artist: { firebase_uid: string; artist_name: string; } | undefined;
   constructor(private router: Router) {}
-  artist: { firebase_uid: string; artist_name: string; } | undefined;
-
   
-@ViewChild(NotificationComponent) notificationComponent!:NotificationComponent;
-  constructor(private router: Router) { }
 
-  toggleNotification() {
-    this.notificationComponent.toggleNotiFi();
-  }
 
 
   ngOnInit(): void {
     this.box = document.getElementById('box');
     this.countUnreadMessages();
     this.artist = {
-    firebase_uid: 'someFirebaseUid',
-    artist_name: 'Artist Name'
-  };
-}
+      firebase_uid: 'someFirebaseUid',
+      artist_name: 'Artist Name'
+    };
+  }
 
   toggleNotiFi() {
     if (this.down) {
@@ -61,32 +54,26 @@ export class NavbarComponent {
     }
   }
 
-  countUnreadMessages(): number {
-    return this.notifications.filter(notification => notification.unread).length;
-  }
+  
+  
 
-  markAllAsRead(): void {
-    this.notifications.forEach(notification => notification.unread = false);
-  }
 
-  clearAllNotifications(): void {
-    this.notifications = [];
-    // Optionally, perform additional actions like making an API call to clear notifications on the server
-  }
 
-  messageArtist(firebase_uid: string, artistName: string): void {
-    localStorage.setItem('artistFirebaseUid', firebase_uid);
-    localStorage.setItem('artistName', artistName);
-    this.router.navigate(['/chat']);
-  }
+ 
 
-  // Method to handle search form submission
-  onSearchSubmit(): void {
-    if (this.searchTerm.trim()) {
-      this.router.navigate(['/search-art'], { queryParams: { q: this.searchTerm } });
-    }
-  }
+
+toggleNotification(){
+  this.notificationComponent.toggleNotiFi();
 }
+
+countUnreadMessages(): number|any{
+return this.notifications.filter(notification=>notification.unread=false);
+}
+
+markAllAsRead(): void {
+this.notifications.forEach(notification => notification.unread = false);
+}
+
 clearAllNotifications(): void {
   this.notifications = [];
   // Optionally, perform additional actions like making an API call to clear notifications on the server
@@ -102,6 +89,13 @@ messageArtist(firebase_uid: string, artistName: string): void {
 }
 
 
+
+// Method to handle search form submission
+onSearchSubmit(): void {
+  if (this.searchTerm.trim()) {
+    this.router.navigate(['/search-art'], { queryParams: { q: this.searchTerm } });
+  }
+}
 
 }
 
