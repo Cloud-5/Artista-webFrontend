@@ -7,7 +7,6 @@ import { NotificationComponent } from '../notification/notification.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-
 export class NavbarComponent {
   notifications: any[] = [
     { id: 1, profilePic: '../../../../assets/imgs/profile1.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
@@ -21,57 +20,60 @@ export class NavbarComponent {
   ];
   box: HTMLElement | null = null;
   down: boolean = true;
-  @Input() artist: any ;
-@ViewChild(NotificationComponent) notificationComponent!:NotificationComponent;
-  constructor(private router: Router) { }
+  @Input() artist: any;
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
+  searchTerm: string = ''; // Added property to store search term
 
-toggleNotification(){
-  this.notificationComponent.toggleNotiFi();
-}
+  constructor(private router: Router) {}
 
+  toggleNotification() {
+    this.notificationComponent.toggleNotiFi();
+  }
 
-ngOnInit(): void {
-  this.box = document.getElementById('box');
-  this.countUnreadMessages();
-}
+  ngOnInit(): void {
+    this.box = document.getElementById('box');
+    this.countUnreadMessages();
+  }
 
-toggleNotiFi() {
-  if (this.down) {
-    console.log('down',this.down);
-    if (this.box) {
-      console.log('box',this.box);
-      this.box.style.height = '0px';
-      this.box.style.opacity = '0';
+  toggleNotiFi() {
+    if (this.down) {
+      if (this.box) {
+        this.box.style.height = '0px';
+        this.box.style.opacity = '0';
+      }
+      this.down = false;
+    } else {
+      if (this.box) {
+        this.box.style.height = '510px';
+        this.box.style.opacity = '1';
+      }
+      this.down = true;
     }
-    this.down = false;
-  } else {
-    console.log('else');
-    if (this.box) {
-      console.log('else box',this.box);
-      this.box.style.height = '510px';
-      this.box.style.opacity = '1';
+  }
+
+  countUnreadMessages(): number {
+    return this.notifications.filter(notification => notification.unread).length;
+  }
+
+  markAllAsRead(): void {
+    this.notifications.forEach(notification => notification.unread = false);
+  }
+
+  clearAllNotifications(): void {
+    this.notifications = [];
+    // Optionally, perform additional actions like making an API call to clear notifications on the server
+  }
+
+  messageArtist(firebase_uid: string, artistName: string): void {
+    localStorage.setItem('artistFirebaseUid', firebase_uid);
+    localStorage.setItem('artistName', artistName);
+    this.router.navigate(['/chat']);
+  }
+
+  // Method to handle search form submission
+  onSearchSubmit(): void {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search-art'], { queryParams: { q: this.searchTerm } });
     }
-    this.down = true;
   }
 }
-countUnreadMessages(): number|any{
-return this.notifications.filter(notification=>notification.unread=false);
-}
-
-markAllAsRead(): void {
-this.notifications.forEach(notification => notification.unread = false);
-}
-
-clearAllNotifications(): void {
-  this.notifications = [];
-  // Optionally, perform additional actions like making an API call to clear notifications on the server
-}
-messageArtist(firebase_uid: string, artistName: string): void {
-  // Save the firebase_uid to local storage
-  localStorage.setItem('artistFirebaseUid', firebase_uid);
-  localStorage.setItem('artistName', artistName);
-  // Navigate to the chat route
-  this.router.navigate(['/chat']);
-}
-}
-

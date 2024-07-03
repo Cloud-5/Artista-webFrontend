@@ -8,11 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class SearchArtService {
 
-  private apiUrl = environment.apiUrl + '/search-art'; // Adjusted endpoint URL
+  private apiUrl = environment.apiUrl + '/search-art';
 
   constructor(private http: HttpClient) { }
 
-  getAllArtworks(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+  searchArtworks(searchTerm: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search/${searchTerm}`);
+  }
+
+  fetchCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/`);
   }
 }

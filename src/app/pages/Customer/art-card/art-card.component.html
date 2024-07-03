@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card shadow mb-4 zoom-in-out-on-hover category-card">
     <!-- Conditionally show the remove button in the top right corner -->
-    <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn">
+    <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery()">
       Remove
     </button>
     <img src="{{ art.artwork_image_url }}" class="card-img-top" alt="Artwork Image" />
@@ -30,5 +30,3 @@
     </div>
   </div>
 </div>
-
-
