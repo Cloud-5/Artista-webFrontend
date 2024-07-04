@@ -1,8 +1,12 @@
 .list-group-item {
-  margin-bottom: 30px;
+  background: #9cdafc;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 30px;
   padding: 10px;
   transition: transform 0.3s ease;
-  border:0.5px solid #bcc7c7;
+  border:1.0px solid #bcc7c7;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(13, 13, 13, 0.1);
 }
@@ -33,6 +37,7 @@
 
 .list-group-item-action {
   padding: 15px; /* Adjust as needed for spacing */
+  width: 730px;
 }
 
 .list-group-item p.mb-1 {
