@@ -36,7 +36,7 @@ import { ResetPasswordComponent } from './pages/fogot-password/reset-password/re
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
-
+import { AuthGuard } from './services/authGuard.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: SignInComponent },
@@ -44,15 +44,15 @@ const routes: Routes = [
   { path: 'st01', component: St01Component },
   { path: 'st2', component: St2Component },
   { path: 'st02', component: St02Component },
-  
+
 
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'new', component: NewPasswordComponent },
   { path: 'chat', component: ChatScreenComponent },
 
-  { path: 'firstforyou', component: FirstForyouComponent },
+  { path: 'firstforyou', component: FirstForyouComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent },
-  { path: 'foryou', component: ForyouComponent },
+  { path: 'foryou', component: ForyouComponent, canActivate: [AuthGuard] },
   { path: 'artist', component: ArtistComponent },
   { path: 'checkout', component: CheckoutFormComponent },
   { path: 'categories', component: CategoriesComponent },
@@ -64,14 +64,14 @@ const routes: Routes = [
   { path: 'artist-portfolio', component: ArtistPortfolioComponent },
   { path: 'feedback-list-card', component: FeedbackListComponent },
   { path: 'arts', component: ArtsComponent },
-  { path: 'search-art', component: SearchArtComponent },
+  { path: 'search-art', component: SearchArtComponent ,canActivate: [AuthGuard]},
   { path: 'purchase-img-card', component: PurchaseImgCardComponent },
 
   { path: 'preview/:artworkId', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
-  { path: 'Artist', component: ArtistNewHomeComponent },
+  { path: 'Artist', component: ArtistNewHomeComponent ,canActivate: [AuthGuard] },
   {path: 'edit',component:EditArtistProfileComponent},
   { path: 'artist-feedback', component: ArtistFeedbackComponent },
   { path: 'artist-followers', component: ArtistFollowersComponent },
