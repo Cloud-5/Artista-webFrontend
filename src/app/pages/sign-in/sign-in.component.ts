@@ -91,7 +91,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
             } else {
               this.authService.checkPreferences(response.data.user_id).subscribe(
                 (prefResponse: any) => {
-                  console.log('Preferences response', prefResponse);
+                 // console.log('Preferences response', prefResponse);
                   if (prefResponse.hasPreferences) {
                     this.router.navigate(['/foryou']);
                   } else {
@@ -106,7 +106,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
             }
           },
           (error: any) => {
-            if (error.status === 401) {
+            if (error.status === 200) {
               this.errorMessage = 'Wait for Admin Approval';
             } else if (error.status === 404) {
               this.errorMessage = 'Invalid Credentials';

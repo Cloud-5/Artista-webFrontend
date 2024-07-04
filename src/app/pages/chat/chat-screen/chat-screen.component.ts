@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ChatServiceService } from '../../caht/chat-service.service';
+import { ChatServiceService } from '../chat-screen/service/chat-service.service';
 import { Observable, from, of } from 'rxjs';
 import {  map, mergeMap, switchMap, toArray } from 'rxjs/operators';
 

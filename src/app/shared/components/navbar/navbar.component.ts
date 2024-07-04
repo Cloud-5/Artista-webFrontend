@@ -20,17 +20,14 @@ export class NavbarComponent {
   ];
   box: HTMLElement | null = null;
   down: boolean = true;
-  @Input() artist: any;
+  
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   searchTerm: string = ''; // Added property to store search term
 
   constructor(private router: Router) {}
   artist: { firebase_uid: string; artist_name: string; } | undefined;
 
-  
-@ViewChild(NotificationComponent) notificationComponent!:NotificationComponent;
-  constructor(private router: Router) { }
-
+ 
   toggleNotification() {
     this.notificationComponent.toggleNotiFi();
   }
@@ -74,11 +71,7 @@ export class NavbarComponent {
     // Optionally, perform additional actions like making an API call to clear notifications on the server
   }
 
-  messageArtist(firebase_uid: string, artistName: string): void {
-    localStorage.setItem('artistFirebaseUid', firebase_uid);
-    localStorage.setItem('artistName', artistName);
-    this.router.navigate(['/chat']);
-  }
+ 
 
   // Method to handle search form submission
   onSearchSubmit(): void {
@@ -86,13 +79,7 @@ export class NavbarComponent {
       this.router.navigate(['/search-art'], { queryParams: { q: this.searchTerm } });
     }
   }
-}
-clearAllNotifications(): void {
-  this.notifications = [];
-  // Optionally, perform additional actions like making an API call to clear notifications on the server
-}
-
-
+  
 messageArtist(firebase_uid: string, artistName: string): void {
   // Save the firebase_uid to local storage
   localStorage.setItem('artistFirebaseUid', firebase_uid);
@@ -101,7 +88,11 @@ messageArtist(firebase_uid: string, artistName: string): void {
   this.router.navigate(['/chat']);
 }
 
-
-
 }
+
+
+
+
+
+
 

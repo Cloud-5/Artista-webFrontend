@@ -12,14 +12,21 @@ export class ResetPasswordComponent implements OnInit {
   resetForm!: FormGroup;
   Message: string | null =null;
   errorMessage: string | null = null;
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { 
+    this.showSuccessMessage();
+  }
 
   ngOnInit(): void {
     this.resetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
+    
   }
-
+  showSuccessMessage() {
+    setTimeout(() => {
+      this.Message = null;
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
   submitForm(): void {
     if (this.resetForm && this.resetForm.valid) {
       const email = this.resetForm.value.email;
