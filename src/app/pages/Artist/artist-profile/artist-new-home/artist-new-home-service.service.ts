@@ -31,5 +31,12 @@ export class ArtistNewHomeServiceService {
   updateArtwork(artId: number, artwork: any) {
     return this.http.put(`${this.apiUrl}/artwork/${artId}`, artwork);
   }
+  getArtworksCount(artistId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/artworks/count/${artistId}`);
+  }
+
+  getArtworksCountForArtist(artistId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/artist/${artistId}/creation/count`);
+  }
 }
 

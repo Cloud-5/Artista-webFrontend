@@ -52,5 +52,8 @@ export class ArtistFollowersService {
 //   return throwError('Something went wrong; please try again later.');
 // }
 
+    deleteFollowers(followerId: number, artistId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/artist-followers/${artistId}/followers/${followerId}`);
+    }
 
 }

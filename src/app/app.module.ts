@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
@@ -18,11 +21,18 @@ import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-ar
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
+
+
+import { ReactiveFormsModule } from '@angular/forms'; // Import this module
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    // ArtworkPreviewComponent,
     ArtistFeedbackComponent,
     EditArtistProfileComponent,
     ArtistFollowersComponent,
@@ -34,6 +44,8 @@ import { HelpCenterComponent } from './shared/components/help-center/help-center
     UploadArtworksComponent,
     NotificationComponent,
     HelpCenterComponent,
+    ArtistCreationsComponent,
+
 
   ],
   imports: [
@@ -44,7 +56,9 @@ import { HelpCenterComponent } from './shared/components/help-center/help-center
     MatChipsModule,
     MatTooltipModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()
