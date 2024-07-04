@@ -47,14 +47,14 @@ export class St02Component implements OnInit {
   }
   createAccount() {
     // Implement logic to handle form submission here
-    console.log('Form submitted');
-    console.log('First Name:', this.fName);
-    console.log('Last Name:', this.lName);
-    console.log('Date of Birth:', this.dob);
-    console.log('Location:', this.location);
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Role:', this.role);
+    // console.log('Form submitted');
+    // console.log('First Name:', this.fName);
+    // console.log('Last Name:', this.lName);
+    // console.log('Date of Birth:', this.dob);
+    // console.log('Location:', this.location);
+    // console.log('Email:', this.email);
+    // console.log('Password:', this.password);
+    // console.log('Role:', this.role);
 
 
      // Send HTTP request to backend to create user account

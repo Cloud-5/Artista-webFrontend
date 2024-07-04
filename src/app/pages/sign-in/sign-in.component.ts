@@ -29,6 +29,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
     const state = navigation?.extras.state as { Message: string };
     if (state) {
       this.successMessage = state.Message;
+      this.showSuccessMessage();
     }
 
     this.loginForm = this.fb.group({
@@ -60,6 +61,11 @@ export class SignInComponent implements OnInit, AfterViewInit {
     this.recaptchaToken = token;
   }
 
+  showSuccessMessage() {
+    setTimeout(() => {
+      this.successMessage = null;
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
   signIn() {
     if (this.loginForm?.valid) {
       const email = this.loginForm.get('email')?.value;
@@ -76,7 +82,8 @@ export class SignInComponent implements OnInit, AfterViewInit {
             localStorage.setItem('user_id', response.data.user_id);
             localStorage.setItem('email', response.data.email);
             localStorage.setItem('firebase_uid', response.data.firebase_uid);
-            console.log('decodedToken', decodedToken);
+            //console.log('decodedToken', decodedToken);
+            localStorage.setItem('accessToken', response.accessToken);
 
             // Navigate based on role
             if (decodedToken.role === 'artist') {
@@ -84,7 +91,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
             } else {
               this.authService.checkPreferences(response.data.user_id).subscribe(
                 (prefResponse: any) => {
-                  console.log('Preferences response', prefResponse);
+                 // console.log('Preferences response', prefResponse);
                   if (prefResponse.hasPreferences) {
                     this.router.navigate(['/foryou']);
                   } else {
@@ -99,7 +106,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
             }
           },
           (error: any) => {
-            if (error.status === 401) {
+            if (error.status === 200) {
               this.errorMessage = 'Wait for Admin Approval';
             } else if (error.status === 404) {
               this.errorMessage = 'Invalid Credentials';
