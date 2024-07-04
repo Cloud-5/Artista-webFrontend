@@ -31,7 +31,7 @@ export class St02Component implements OnInit {
       dob: ['', Validators.required],
       location: ['', Validators.required],
       role: ['', Validators.required],
-      
+      empcode: [{ value: '', disabled: true }, Validators.required] 
     });
 
     const data = sessionStorage.getItem('artista-form-data');
@@ -43,7 +43,7 @@ export class St02Component implements OnInit {
     }
 
     if (!data) this.router.navigate(['/st01']);
-    
+    // this.autofillUserCode();
   }
   createAccount() {
     // Implement logic to handle form submission here
@@ -84,4 +84,15 @@ export class St02Component implements OnInit {
        }
      );
   }
+  // generateRandomCode(): string {
+  //   const randomCode = 'AC';
+  //   const randomNumber = Math.floor(1000 + Math.random() * 9000);
+  //   return randomCode + randomNumber;
+  // }
+
+  // autofillUserCode(): void {
+  //   const randomCode = this.generateRandomCode();
+  //   this.signupForm.get('usercode')?.setValue(randomCode);
+  //   document.getElementById('userId-availability')!.textContent = 'Auto-generated code: ' + randomCode;
+  // }
 }
