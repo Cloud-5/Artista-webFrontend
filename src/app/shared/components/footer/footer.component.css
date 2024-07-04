@@ -3,20 +3,25 @@
 .footer {
     padding: 20px 0; /* Adjust padding as needed */
     margin-top: 20px;
+    background-color: #1184c2;
+    position:sticky ;
+    width: 100%;
+    height: fit-content;
 }
 
 .footer-logo {
-    max-width: 200px; /* Adjust the max-width of the logo */
+    max-width: 15vw; /* Adjust the max-width of the logo */
+    max-height: 10vh;
 }
 
 /* Adjust margin for all buttons */
 .btn-footer {
-    margin-right: 1px; /* Reduce the right margin between buttons */
+    margin-right: 1vh; /* Reduce the right margin between buttons */
 }
 
 /* Style for the five buttons */
 .btn-footer {
-    display: inline-block;
+   
     padding: 8px 50px;
     border-radius: 20px;
     font-weight: bold;
@@ -32,7 +37,7 @@
 
 /* Social media icons */
 .bi {
-    font-size: 2rem; /* Adjust the size of the icons */
+    font-size: 2vh; /* Adjust the size of the icons */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the icons */
 }
 

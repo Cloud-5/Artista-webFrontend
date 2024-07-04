@@ -16,7 +16,12 @@ export class ArtistServiceService {
     if (params.searchKeyword) url += `&searchKeyword=${params.searchKeyword}`;
     if (params.profession) url += `&profession=${params.profession}`;
     if (params.location) url += `&location=${params.location}`;
+    if (params.featured !== undefined) url += `&featured=${params.featured}`;
     if (params.sortBy) url += `&sortBy=${params.sortBy}`;
     return this.http.get(url);
+  }
+
+  getLocations(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/locations`);
   }
 }
