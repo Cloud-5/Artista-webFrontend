@@ -1,80 +1,186 @@
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed */
+/* General CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
+body {
+  height: 100vh;
+  font-family: "Raleway", sans-serif;
+  background: #2F3238;
 }
 
-.card-body {
-  padding: 1%;
-}
-
-.card-title,
-.card-text {
-  font-size: 1rem;
-  margin-bottom: 2px;
-}
-
-.additional-texts {
-  margin-top: 5px;
-}
-
-.artist-name,
-.like-count {
-  font-size: 0.7rem;
-  margin-bottom: 2px;
-}
-
-.zoom-in-out-on-hover {
-  transition: transform 0.3s ease;
-}
-
-.zoom-in-out-on-hover:hover {
-  transform: scale(1.04);
-  transition: transform 0.3s ease;
-}
-
-.zoom-in-out-on-hover:active {
-  transform: scale(0.999);
-  transition: transform 0.3s ease;
-}
-
-.btn{
-  padding-left: 0%;
-  padding-right: 0%;
- 
-}
 .container {
+  margin: -20px;
+}
+
+.row {
+  width: 100%;
   display: flex;
-  overflow: hidden;
-  width: 100%; /* Adjust width as needed */
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  background: #50A7FF;
   position: relative;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  animation: none; /* Initially no animation */
+  flex: 1;
+  max-width: 1500px;
+  height: 300px;
+  margin: 12px;
+  margin-right: -10px;
+  overflow: hidden;
 }
 
-.card {
-  flex: 0 0 auto;
-  min-width: 300px; /* Adjust card width */
-  margin-right: 10px; /* Adjust spacing between cards */
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 30%);
+  z-index: 1;
 }
 
-@keyframes scrollCards {
-  0% {
-      transform: translateX(0%);
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.99;
+  position: relative;
+  vertical-align: top;
+  transition: 0.6s;
+  transition-property: opacity;
+}
+
+.image:hover img {
+  opacity: 1;
+}
+
+.image .details {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.image .details h2 {
+  z-index: 2;
+  position: absolute;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 15px;
+  font-weight: 300;
+  margin-top: 12px;
+  transition: 0.4s;
+  transition-property: transform, background-color;
+}
+
+.image .details h2 span {
+  font-weight: 900;
+}
+
+.image:hover .details h2 {
+  transform: translateY(10px);
+  font-weight: bold;
+}
+
+.image .details p {
+  z-index: 2;
+  position: absolute;
+  margin: 30px 30px 0 30px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 12px;
+  margin-top: 265px;
+  opacity: 0;
+  transition: 0.6s;
+  transition-property: opacity, transform;
+}
+
+.image:hover {
+  box-shadow: #50A7FF 0px 0px 10px 0px;
+}
+
+.image:hover .details p {
+  opacity: 1;
+  transform: translateY(-40px);
+}
+
+.more {
+  position: absolute;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 80%);
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  padding: 5px;
+  bottom: -80px;
+  transition: 0.6s;
+  transition-property: bottom;
+  padding-bottom: -10px;
+  z-index: 2;
+}
+
+
+
+.price {
+  color: rgb(255, 255, 255);
+ font-size: 12px;
+ margin-left: 10px;
+ font-weight: 500;
+}
+
+.cart-icon-btn {
+  color:rgb(255, 255, 255);
+  font-size: 17px;
+  transform: color 0.5s, scale 0.5s,outline 0.5s;
+}
+
+.cart-icon-btn:hover {
+  color: rgb(19, 177, 185);
+  transform: scale(1.4);
+  outline: orangered;
+}
+
+
+.like-count {
+  color: rgb(255, 255, 255);
+  font-size: 11px;
+}
+
+.bi-heart-fill {
+  color: rgb(255, 255, 255);
+}
+
+.image:hover .more {
+  bottom: 0;
+}
+
+/* Responsive CSS */
+@media (max-width: 1080px) {
+  .image {
+      flex: 100%;
+      max-width: 480px;
   }
-  100% {
-      transform: translateX(-100%);
-  }
 }
 
-.container{
-  animation: scrollCards 20s linear infinite; /* Apply animation on hover */
+@media (max-width: 400px) {
+  .image .details p {
+      font-size: 16px;
+  }
+}
+.card{
+  height: 350px;
+  width: 250px;
 }

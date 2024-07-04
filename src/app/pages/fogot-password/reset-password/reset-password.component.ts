@@ -11,14 +11,22 @@ import { UserService } from './service/user.service';
 export class ResetPasswordComponent implements OnInit {
   resetForm!: FormGroup;
   Message: string | null =null;
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  errorMessage: string | null = null;
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { 
+    this.showSuccessMessage();
+  }
 
   ngOnInit(): void {
     this.resetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
+    
   }
-
+  showSuccessMessage() {
+    setTimeout(() => {
+      this.Message = null;
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
   submitForm(): void {
     if (this.resetForm && this.resetForm.valid) {
       const email = this.resetForm.value.email;
@@ -28,7 +36,14 @@ export class ResetPasswordComponent implements OnInit {
           this.Message = 'Password reset link sent to your email address.'
         },
         error => {
-          console.error(error);
+          if (error.status === 404) {
+            this.errorMessage = 'User not found.';
+          } 
+          else {
+           
+            this.errorMessage = 'User not found.';
+          }
+    
         }
       );
     }

@@ -1,73 +1,102 @@
-.card {
-  height: 260px;
-  width: 225px;
- 
+
+
+
+body{
+  background-color:#545454;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+ }
+
+ .container{
+  height: 40vh;
+  margin-bottom: -5px;
+  margin-top: 140px;
+ }
+
+ .card{
+
+  width: 380px;
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  background-color: #ffffff;
+  position: relative;
+  height: 370px;
+  border: 1px  #545454;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  margin-bottom: 150px;
+ }
+
+ .card:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  box-shadow: 0 8px 16px rgba(4, 87, 255, 0.3); /* Add shadow on hover */
 }
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; 
-}
+ .upper{
 
-
-.card-img-top {
-  object-fit: cover;
-  height: 35%;
-}
-
-.profile-picture{
-  width:100px;
   height: 100px;
-  margin-top: 0px;
- margin-left: 35px;
+
+ }
+
+ .upper img{
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+ }
+
+ .user{
+  position: relative;
+ }
+
+ .profile img{
+
+  
+  height: 80px;
+  width: 80px;
+  margin-top:2px;
+  object-fit: cover;
+  object-position: center;
+ 
+ }
+
+ .profile{
+
+  position: absolute;
+  top:-50px;
+  left: 38%;
+  height: 90px;
+  width: 90px;
+  border:3px solid #fff;
+
   border-radius: 50%;
+
+ }
+
+ .location {
+  margin-bottom: 2px; /* Reduce bottom margin */
+}
+
+.profession {
+  margin-top: -15px; /* Reduce top margin */
 }
 
 
+ .follow{
 
-.card-title {
-  margin-top: 1px;
-  font-size: 17px;
- 
-}
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 35px;
+ }
 
-.job-title {
-  font-size: 14px;
-  margin-bottom: 0px;
-  font-weight: 600;
-  color: rgb(107, 107, 107);
-}
+ .stats span{
 
-.btn-primary{
-  padding: 6px;
-  width: 90%;
-  align-items: center;
-}
-
-
-.artist-card:hover {
-  transform: scale(1.05); /* Scale up the card size on hover */
-  box-shadow: 0px 0px 40px -10px rgba(71, 114, 254, 2); /* Darker shadow on hover */
- 
-}
-
-.zoom-in-out-on-hover {
-  transition: transform 0.3s ease;
-}
-
-.zoom-in-out-on-hover:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-}
-
-.zoom-in-out-on-hover:active {
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-
-
-
-
-
+  font-size: 20px;
+ }

@@ -1,17 +1,18 @@
 <app-navbar></app-navbar>
 
 <div class="header__wrapper">
- <header></header>
+  <header></header>
   <div class="cols__container">
 
 
     <div class="left__col artist-details">
       <div class="img__container">
-        <img src={{userData.profile_photo_url}} alt={{userData.name}} />
+        <img src={{userData.profile_photo_url}} alt={{userData.name}}/>
         <span></span>
       </div>
       <h2>{{userData.fName + " " + userData.LName}}</h2>
       <p class="sub-title"><b>{{userData.location}}</b></p>
+      <p>{{userData.dob}}</p>
       <!-- <p><b>Member Since : </b>{{userData.registered_at.split("T")[0]}}</p> -->
 
 
@@ -24,32 +25,21 @@
       </div> -->
 
       <ul class="about">
-        <li><span>{{userData.gallery}}</span>Gallery</li>
-        <li><span>{{userData.followers}}</span>Followers</li>
+        <li><span>{{artworksCount}} </span>Gallery</li>
+        <li><span>{{userData.followers}}3</span>Followers</li>
         <li><span>{{0}}</span>Purchases</li>
       </ul>
 
+      <p>{{userData.description}}</p>
+
       <div class="content">
-        <p>{{userData.description}}</p>
+
         <br />
         <br />
         <div class="row" style="margin: 0">
           <div class="d-flex" style="justify-content: space-between">
-
-
-            <button class="btn btn-primary" style="width: 48%" routerLink="/edit">
-             Edit profile
-            </button>
-
-            <button type="button" class="btn btn-primary uploadArtworks"  routerLink="/upload"     style="width: 48%">
-              Upload Artwoks
-            </button>
-
-
-
-
-
-
+            <button class="btn btn-primary" style="width: 48%" routerLink="/edit"> Edit profile</button>
+                 <button type="button" class="btn btn-primary uploadArtworks" routerLink="/upload" style="width: 48%">Upload Artwoks</button>
           </div>
           <div class="row" style="margin: 10px 0 0 0">
             <button type="button" class="btn btn-success"  (click)="logout()">Log Out</button>
@@ -57,12 +47,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
 
 
 
@@ -99,8 +83,9 @@
 
 
           <div class="Gallery">
-            <div class="col mb-3" *ngFor="let art of artworks">
-              <app-arts [art]="art"></app-arts>
+            <div class="col mb-3" *ngFor="let artworks of artworks">
+              <!-- <app-arts [art]="art" [deleteArtwork]="deleteArtwork"></app-arts> -->
+              <app-artist-creations [artworks]="artworks" [deleteArtwork]="deleteArtwork"> </app-artist-creations>
             </div>
 
           </div>
@@ -119,7 +104,7 @@
               </form>
 
 
-                <app-artist-followers></app-artist-followers>
+              <app-artist-followers></app-artist-followers>
 
             </div>
           </nav>
@@ -137,7 +122,7 @@
                     Search
                   </button>
                 </form>
-             <app-artist-feedback></app-artist-feedback>
+                <app-artist-feedback></app-artist-feedback>
               </div>
             </nav>
           </div>

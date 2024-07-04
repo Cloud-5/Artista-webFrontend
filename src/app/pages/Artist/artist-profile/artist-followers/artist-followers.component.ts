@@ -45,6 +45,7 @@ import { ArtistFollowersService } from './artist-followers.service';
 })
 export class ArtistFollowersComponent implements OnInit {
   followers: any[] = [];
+  artistId:number=1;
 
   constructor(private followersService: ArtistFollowersService) { }
 
@@ -55,9 +56,7 @@ export class ArtistFollowersComponent implements OnInit {
   loadFollowersData() {
     this.followersService.getFollowersForArtist(1) // Replace 1 with actual artist id
       .subscribe((data: any) => {
-        console.log('data',data);
         this.followers = data;
-        console.log('folloers',this.followers);
       });
   }
 
@@ -67,4 +66,22 @@ export class ArtistFollowersComponent implements OnInit {
   //       this.loadFollowersData();
   //     });
   // }
+
+ deleteFollower1(followerId:number,artistId:number){
+   this.followersService.deleteFollowers(followerId,artistId)
+   .subscribe(()=>{
+     this.loadFollowersData();
+   })
+
+ }
+
+
+  deleteFollower(followerId: number) {
+    this.followersService.deleteFollowers(followerId, 1) // replace 1 with actual artist id
+      .subscribe(() => {
+        this.loadFollowersData();
+      });
+  }
 }
+
+

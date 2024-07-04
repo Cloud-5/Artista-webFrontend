@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
   
   artistsData: any[] = [];
   chunkedArtistsData: any[] = [];
-
+  searchTerm: string = ''; // Added property to store search term
   constructor(private artService: ArtServiceService, private artistService: ArtistServieService, private router: Router) {}
 
   ngOnInit(): void {
@@ -115,7 +115,7 @@ export class HomeComponent implements OnInit {
   loadArtistData(): void {
     this.artistService.getArtist().subscribe(
       (data: any[]) => {
-        console.log(data);
+       // console.log(data);
         this.artistsData = data;
         this.chunkArtistsData();
       },
@@ -135,7 +135,7 @@ export class HomeComponent implements OnInit {
   getArtwork(): void {
     this.artService.getArtwork().subscribe(
       (data: any[]) => {
-        console.log(data);
+        //console.log(data);
         this.artsData = data;
         this.groupArtsData();
       },
@@ -145,15 +145,21 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  logout() {
-    // Clear local storage items related to user session
-    localStorage.removeItem('uid');
-    localStorage.removeItem('role');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('email');
-    localStorage.removeItem('firebase_uid');
+  // Method to handle search form submission
+  onSearchSubmit(): void {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search-art'], { queryParams: { q: this.searchTerm}});
+}
+} 
+  // logout() {
+  //   // Clear local storage items related to user session
+  //   localStorage.removeItem('uid');
+  //   localStorage.removeItem('role');
+  //   localStorage.removeItem('user_id');
+  //   localStorage.removeItem('email');
+  //   localStorage.removeItem('firebase_uid');
     
-    // Navigate to the login page or home page after logout
-    this.router.navigate(['/login']);
-  }
+  //   // Navigate to the login page or home page after logout
+  //   this.router.navigate(['/login']);
+  // }
 }

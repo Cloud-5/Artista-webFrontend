@@ -1,10 +1,6 @@
 
 
 
-/* Add margin to the left to move the logo to the right */
-.main {
-  background-color:lightblue;
-}
 .custom-logo {
   margin-left: 50px;
   max-height: 50px;
@@ -22,8 +18,8 @@
 
 
 .d-flex {
-  margin-left:auto;
-  gap: 20px;
+  
+  gap: 25px;
 }
 
 
@@ -38,7 +34,10 @@
   .navbar-nav .nav-link {
       margin-right: 20px;
       font-size: 1rem;
+      
+
   }
+
 
   .form-control {
       width: 250px;
@@ -76,9 +75,10 @@
 
 
 .title {     
-  font-size: 8vw;  /* Using viewport width to make the font size responsive */
+  font-size: 10vw;  /* Using viewport width to make the font size responsive */
   font-weight: bold;
   color: white;
+  margin-top: 60px;
   
 }
 
@@ -87,36 +87,50 @@
   background-size: cover;
   background-position: center center;
   height: 50vh;  /* Use viewport height for responsive height */
-  min-height: 500px;  /* Ensures a minimum height of 500px */
+  min-height: 50px;  /* Ensures a minimum height of 500px */
   
   
 }
 .row{
-  gap: 38px;
+  gap: 10px;
 }
+
+
+.carousel-control-next-icon {
+  background-color: black; /* Ensure background is transparent */
+  background-size: 100% 100%;
+  color: black;
+}
+.carousel-control-prev-icon{
+
+  background-color: black; /* Ensure background is transparent */
+  background-size: 100% 100%;
+  color: black;
+}
+
+
 /* For large devices (desktops) */
 @media (min-width: 1024px) {
   .title {
-      font-size: 6vw;  /* Adjust font size for large screens */
-      font-family: 'Times New Roman', Times, serif;
+      font-size: 4vw;  /* Adjust font size for large screens */
+      
   }
 
   .hero-body {
       height: 60vh;  /* Adjust height for large screens */
-      min-height: 500px;  /* Maintain minimum height */
+      min-height: 300px;  /* Maintain minimum height */
   }
 }
-/* 
+
 .card-container {
     display: flex;
+    row-gap: 10px;
    
-    white-space: nowrap;
   }
+  
   .card-container-artist {
     display: flex;
-     overflow-x: auto; 
-    white-space: nowrap;
-  } */
+  }
   .search-container {
     align-items: center;
     margin: 50px;
@@ -125,15 +139,46 @@
 
 #search-input {
     padding: 10px;
-    width: 85%;
+    width: 93%;
     font-size: 16px;
     box-sizing: border-box;
+   
+}
+.form-outline{
+  width: 90%;
 }
 
-#search-button {
-    padding: 10px;
-    font-size: 16px;
+
+.btn-custom-size {
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 10px;  
+
+   /* Adjust font size as needed */
 }
+.custom-bi-search {
+  font-size: 24px; /* Adjust size as needed */
+}
+
+
+.paragraph{
+
+  font-size: 20px;
+  color: black;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: justify;
+  font-size: 16px; /* Adjust the font size as needed */
+
+}
+.button{
+  color: tomato;
+  align-items: center;
+  text-align: center;
+
+}
+
 
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
@@ -153,9 +198,9 @@
     }
 
     #search-button {
-        width: 25%;
+        width: 15%;
         padding: 8px;
-        font-size: 14px;
+      
     }
 }
 
@@ -164,70 +209,103 @@
     font-weight: bold;
     font-size: 40px;
     color:darkblue;
-    font-family: 'Times New Roman', Times, serif;
+    
   }
 
   h3{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
     font-size: 20px;
   }
   h2{
+    
     font-weight: bold;
     font-size: 20px;
   }
-/* Add any additional styles for your footer here */
 
-.footer {
-  padding: 20px 0; /* Adjust padding as needed */
-  margin-top: 20px;
-}
 
-.footer-logo {
-  max-width: 200px; /* Adjust the max-width of the logo */
-}
-
-/* Adjust margin for all buttons */
-.btn-footer {
-  margin-right: 1px; /* Reduce the right margin between buttons */
-}
-
-/* Style for the five buttons */
-.btn-footer {
-  display: inline-block;
-  padding: 8px 50px;
-  border-radius: 20px;
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Dark blue background on hover for buttons */
-.btn-footer:hover {
-  background-color: #001f3f; /* Dark blue color */
-  color: #fff; /* White text color on hover */
-}
-
-/* Social media icons */
-.bi {
-  font-size: 2rem; /* Adjust the size of the icons */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the icons */
-}
-
-/* Gray color on hover for social media icons */
-.btn-link:hover .bi {
-  color: #999; /* Gray color on hover */
-}
-
-/* Responsive styles for the row */
-@media (max-width: 991.98px)
-{
-  .align-items-center {
-    flex-direction: column; /* Stack items vertically on medium-sized screens and below */
-    align-items: center; /* Align items to the center on medium-sized screens and below */
+  main {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+  justify-content: space-between;
+  
+  }
+  
+  main h2 {
+    color: #3498db;
+  }
+  
+  main p {
+    color: #555555;
   }
 
-  .footer-buttons {
-    margin-top: 20px; /* Add spacing between the logo and buttons on medium-sized screens and below */
+ .list-group-item
+ {
+  line-height:5;
+ }
 
-  }}
-  
+.item1 {
+   grid-area: header;
+ }
+ .item1 h2{
+  font-size: 50px;
+  font-weight: bold;
+ }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  gap: 10px;
+   background-color: #2196F3; 
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 15px;
+}
+
+.responsive-image {
+  width: 100%;
+  max-width: 100%; /* Set a max-width for larger screens */
+  margin: 0 auto; /* Center the image on the page */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.responsive-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text-color{
+  color: var(--body-text-color);
+  font-size: 130%;
+  font-weight: bold;
+}
+
+.custom-search{
+  width:400px;
+  margin-left: 100px;
+}
+
+.search-button{
+  margin-left:1px;
+}
+
+.column{
+  margin-left: 6%;
+  margin-right: 6%;
+}

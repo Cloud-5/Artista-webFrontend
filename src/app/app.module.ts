@@ -41,6 +41,7 @@ import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new
 import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
 
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -67,7 +68,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
 import { CardComponent } from './shared/cards/Trending-artworks/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import { FormsModule } from '@angular/forms';
 
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
@@ -84,6 +85,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,6 +139,10 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     UploadArtworksComponent,
     NotificationComponent,
     HelpCenterComponent,
+    ArtCardComponent,
+
+    ArtistCreationsComponent,
+
 
   ],
   imports: [
@@ -145,7 +154,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -159,12 +168,15 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
+
   ],
 
   providers: [
     provideClientHydration(),
     ArtistPortfolioService,
     CommentsService,
+    provideHttpClient(withFetch()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'angular-chat-c21c3',

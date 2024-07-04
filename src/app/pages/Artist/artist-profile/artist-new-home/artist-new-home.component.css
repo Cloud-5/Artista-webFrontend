@@ -202,4 +202,15 @@ h2, .sub-title {
 .artist-details{
   background-color: rgba(20, 147, 221, 0.5); /* Adjust the RGBA values and opacity as needed */
   backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+  max-height: 900px;
+}
+
+.artist-details content{
+  max-height: 900px;
+
+}
+
+.content{
+  position: relative;
+  top: 200px;
 }

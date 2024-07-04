@@ -1,6 +1,5 @@
 <form class="d-flex" role="search" style="width: 100%">
-  <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
-    aria-label="Search" />
+  <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search" />
 </form>
 <div *ngFor="let profile of filteredArtists" class="card request-card" style="width: 720px;">
   <div class="d-flex" style="height: 100%;">
