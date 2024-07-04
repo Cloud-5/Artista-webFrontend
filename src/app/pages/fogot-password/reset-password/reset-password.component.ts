@@ -1,42 +1,4 @@
 
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import  { UserService } from './service/user.service'
-// @Component({
-//   selector: 'app-reset-password',
-//   templateUrl: './reset-password.component.html',
-//   styleUrls: ['./reset-password.component.css']
-// })
-// export class ResetPasswordComponent implements OnInit {
-//   resetForm!: FormGroup; // Defined resetForm property
-
-//   constructor(private formBuilder: FormBuilder,private userService: UserService) { }
-
-//   ngOnInit(): void {
-//     this.resetForm = this.formBuilder.group({
-//       email: ['', [Validators.required, Validators.email]]
-//     });
-//   }
-
-//   submitForm(): void { // Defined submitForm method
-//     if (this.resetForm && this.resetForm.valid) {
-//       // Send password reset instructions or process the form data
-//       const email = this.resetForm.value.email;
-//       this.userService.forgotPassword(email).subscribe(
-//         response => {
-//           console.log(response); // Handle response from the backend
-//         },
-//         error => {
-//           console.error(error); // Handle error
-//         }
-//       );
-//     }
-//   }
-
-
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './service/user.service';
@@ -48,24 +10,40 @@ import { UserService } from './service/user.service';
 })
 export class ResetPasswordComponent implements OnInit {
   resetForm!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  Message: string | null =null;
+  errorMessage: string | null = null;
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { 
+    this.showSuccessMessage();
+  }
 
   ngOnInit(): void {
     this.resetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
+    
   }
-
+  showSuccessMessage() {
+    setTimeout(() => {
+      this.Message = null;
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
   submitForm(): void {
     if (this.resetForm && this.resetForm.valid) {
       const email = this.resetForm.value.email;
       this.userService.forgotPassword(email).subscribe(
         response => {
           console.log(response);
+          this.Message = 'Password reset link sent to your email address.'
         },
         error => {
-          console.error(error);
+          if (error.status === 404) {
+            this.errorMessage = 'User not found.';
+          } 
+          else {
+           
+            this.errorMessage = 'User not found.';
+          }
+    
         }
       );
     }

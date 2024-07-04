@@ -1,134 +1,87 @@
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
 <div class="header__wrapper">
-  <img
-    src="{{ artistData.banner_img_url }}"
-    alt="Banner Image"
-    style="width: 100%; height: 200px"
-  />
+  <img src="{{ artistData.banner_img_url }}" alt="Banner Image" style="width: 100%; height: 200px" />
 
   <div class="cols__container">
     <div class="left__col">
       <div class="img__container">
-        <img src="{{ artistData.profile_photo_url }}" alt="Peter Anderson" />
-        <span></span>
+        <img src="{{ artistData.profile_photo_url }}" alt="Artist Photo" />
       </div>
       <h2>{{ artistData.artist_name }}</h2>
-      <!-- <p><b>{{artistData.profession}}</b></p> -->
-      <p>
-        <b>{{ artistData.artist_location }}</b>
-      </p>
-      <p>
-        <b>Member Since : </b>{{ artistData.joined_date | date : "yyyy-MM-dd" }}
-      </p>
-
+      <p><b>{{ artistData.artist_location }}</b></p>
+      <p><b>Member Since: </b>{{ artistData.joined_date | date: "yyyy-MM-dd" }}</p>
       <br />
-
       <div class="row" style="margin: 0">
         <div class="d-flex" style="justify-content: space-between">
           <div class="follow-button">
             <button
-              [ngClass]="[
-                'btn',
-                'btn-outline-info',
-                followButtonClass,
-                'rounded'
-              ]"
+              [ngClass]="['btn', 'btn-outline-info', followButtonClass, 'rounded']"
               type="button"
               (click)="toggleFollow()"
-              style="width:150px; height: 50px;"
-              
+              style="width: 150px; height: 50px;"
             >
               {{ followButtonText }}
             </button>
           </div>
-          <button type="button" class="btn btn-secondary" style="width: 48%">
-            Message
-          </button>
+          <button type="button" class="btn btn-secondary" style="width: 48%">Message</button>
         </div>
-
         <ul class="about">
-          <li>
-            <span>{{ artistData.total_likes }}</span
-            >Likes
-          </li>
-          <li>
-            <span>{{ artistData.total_followers }}</span
-            >Followers
-          </li>
-          <li>
-            <span>{{ artistData.total_creations }}</span
-            >Creations
-          </li>
+          <li><span>{{ artistData.total_likes }}</span>Likes</li>
+          <li><span>{{ artistData.total_followers }}</span>Followers</li>
+          <li><span>{{ artistData.total_creations }}</span>Creations</li>
         </ul>
-
         <div class="content">
-          <p>
-            {{ artistData.description }}
-          </p>
-        </div>
-        <div class="col-auto" style="margin: 50px 0 0 0">
-          <div class="d-flex flex-row flex-wrap justify-content-center">
-            <a href="#" class="btn btn-link text-dark"
-              ><i class="bi bi-twitter"></i
-            ></a>
-            <a href="#" class="btn btn-link text-dark"
-              ><i class="bi bi-facebook"></i
-            ></a>
-            <a href="#" class="btn btn-link text-dark"
-              ><i class="bi bi-instagram"></i
-            ></a>
-            <a href="#" class="btn btn-link text-dark"
-              ><i class="bi bi-linkedin"></i
-            ></a>
-            <a href="#" class="btn btn-link text-dark"
-              ><i class="bi bi-pinterest"></i
-            ></a>
-          </div>
+          <p>{{ artistData.description }}</p>
         </div>
         <br />
-
-        <form>
-          <div class="form-group" style="margin: 50px 0 0 0">
-            <label for="feedback"><b>Give a feedback:</b></label>
-            <br />
-            <textarea
-              class="form-control"
-              id="feedback"
-              rows="5"
-              maxlength="1000"
-            ></textarea>
-            <small id="wordCount" class="text-muted"
-              >0 words (Max 150 words)</small
-            >
+        <div class="rating-order-wrp">
+          <h2>How was the experience?</h2>
+          <div class="d-flex rating-list align-items-center">
+            <p class="w-50">Star Your Rating:</p>
+            <div class="star w-50 rating-star">
+              <ngx-star-rating formControlName="rating"></ngx-star-rating>
+            </div>
           </div>
-          <br />
-          <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+          <form [formGroup]="ratingForm" (ngSubmit)="onSubmitRating()">
+            <div class="form-group" style="margin: 20px 0">
+              <input
+                type="number"
+                formControlName="rating"
+                min="1"
+                max="5"
+                placeholder="Enter rating (1-5)"
+                class="form-control"
+              />
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="ratingForm.invalid">Submit Rating</button>
+          </form>
+        </div>
+        <div class="feedback-section">
+          <form [formGroup]="feedbackForm" (ngSubmit)="onSubmitFeedback()">
+            <div class="form-group" style="margin: 20px 0">
+              <h2>Submit your feedback</h2>
+              <textarea
+                class="form-control"
+                id="feedback"
+                formControlName="feedback"
+                rows="5"
+                maxlength="100"
+              ></textarea>
+              <small id="wordCount" class="text-muted">0 words (Max 100 words)</small>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-success" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="right__col">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <a
-            class="nav-link active"
-            data-bs-toggle="tab"
-            href="#home"
-            aria-selected="true"
-            role="tab"
-            >Creations</a
-          >
+          <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Creations</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a
-            class="nav-link"
-            data-bs-toggle="tab"
-            href="#profile"
-            aria-selected="false"
-            role="tab"
-            tabindex="-1"
-            >Feedbacks</a
-          >
+          <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" tabindex="-1">Feedbacks</a>
         </li>
       </ul>
       <div id="myTabContent" class="tab-content">
@@ -147,17 +100,17 @@
               </form>
             </div>
           </nav>
-          <div class="Creations">
+          <div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
             <div class="col mb-3" *ngFor="let art of filteredArts">
-              <app-arts [art]="art"></app-arts>
+              <app-art-card [art]="art"></app-art-card>
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel">
+        <div class="tab-pane fade" id="profile" role="tabpanel" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
           <app-feedback-list-card></app-feedback-list-card>
         </div>
       </div>
     </div>
   </div>
-  <app-footer></app-footer>
 </div>
+<app-footer></app-footer>

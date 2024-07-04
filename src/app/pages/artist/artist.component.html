@@ -11,9 +11,10 @@
       <div class="col-md-12 text-center mt-3">
         <div class="input-group">
           <div class="form-outline" data-mdb-input-init>
-            <input (input)="searchByKeyword($event)" id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists" aria-describedby="search-button">
+            <input id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists" aria-describedby="search-button"
+            [(ngModel)]="searchKeyword" (keyup.enter)="onSearch()">
           </div>
-          <button id="search-button" type="button" class="btn btn-primary button-search">
+          <button id="search-button" type="button" class="btn btn-primary button-search" (click)="onSearch()">
             <i class="bi bi-search"></i>
           </button>
         </div>
@@ -24,36 +25,51 @@
      
       <div class="col-md-3 filter">
         <label for="profession-select">Filter by Profession:</label>
-        <select id="profession-select" class="form-control" (change)="onProfessionChange($event)">
-          <option value="">All Professions</option>
-          <option value="Digital Illustrator">Digital Illustrator</option>
-          <option value="Pixel Artist">Pixel Artist</option>
-          <option value="Animator">Animator</option>
-          <!-- Add more options as needed -->
+        <select id="profession-select" class="form-control" [(ngModel)]="selectedProfession" (change)="onFilterByProfession()">
+            <option value="">All Professions</option>
+            <option value="Illustrator">Illustrator</option>
+            <option value="Graphic Designer">Graphic Designer</option>
+            <option value="Animator">Animator</option>
+            <option value="Digital Painter">Digital Painter</option>
+            <option value="3D Modeler">3D Modeler</option>
+            <option value="Concept Artist">Concept Artist</option>
+            <option value="Comic Artist">Comic Artist</option>
+            <option value="Game Artist">Game Artist</option>
+            <option value="UI/UX Designer">UI/UX Designer</option>
+            <option value="VFX Artist">VFX Artist</option>
         </select>
-      </div>
-      <div class="col-md-3 filter">
-        <label for="location-select">Filter by Location:</label>
-        <select id="location-select" class="form-control" (change)="onLocationChange($event)">
+    </div>
+    <div class="col-md-3 filter">
+      <label for="location-select">Filter by Location:</label>
+      <select id="location-select" class="form-control" [(ngModel)]="selectedLocation" (change)="onFilterByLocation()">
           <option value="">All Locations</option>
-          <option value="Earth">Earth</option>
-          <option value="Los Angeles">Los Angeles, USA</option>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
+          <option value="United States">United States</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+          <option value="Germany">Germany</option>
+          <option value="France">France</option>
+          <option value="Japan">Japan</option>
+          <option value="South Korea">South Korea</option>
+          <option value="Brazil">Brazil</option>
+          <option value="India">India</option>
+      </select>
+  </div>
+  
       <div class="col-md-3 filter">
         <label for="sort-select">Sort by:</label>
-        <select id="sort-select" class="form-control" (change)="onSortChange($event)">
+        <select id="sort-select" class="form-control" [(ngModel)]="sortBy" (change)="onSortBy()" >
           <option value="">None</option>
           <option value="rating">Rating</option>
           <option value="total_creations">Total Creations</option>
+          <option value="follower_count">Followers</option>
         </select>
       </div>
     </div>
 
-    <div class="container mt-5 mb-3">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-        <div class="col mb-3" *ngFor="let artist of filteredArtists">
+    <div class="container mt-5 mb-3 d-flex data-artist">
+      <div class="row md-3 g-2" (window:scroll)="onScroll()">
+        <div class="col mb-3" *ngFor="let artist of artistsData">
           <app-artists [artist]="artist"></app-artists>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ArtistServiceService } from './artist-service.service';
 
 interface Artist {
@@ -10,7 +10,7 @@ interface Artist {
   fName: string;
   LName: string;
   profile_photo_url: string;
-  banner_image_url: string | null;
+  banner_img_url: string;
   profession: string;
   rating: number;
   total_creations: number;
@@ -24,11 +24,15 @@ interface Artist {
 export class ArtistComponent implements OnInit {
 
   artistsData: Artist[] = [];
-  filteredArtists: Artist[] = [];
-  selectedProfession: string = '';
-  selectedLocation: string = '';
-  sortBy: string = '';
-  searchKeyword: string = '';
+  currentPage = 0; // Initial page number for pagination
+  pageSize = 10; // Number of items to fetch per page
+  loading = false; // Flag to track if data is currently being loaded
+  searchKeyword = ''; // Search keyword for artist names
+  selectedProfession = ''; // Selected profession for filtering
+  selectedLocation = ''; // Selected location for filtering
+  sortBy = ''; // Sort by field
+  allDataLoaded: boolean = false;
+
 
   constructor(private artistService: ArtistServiceService) { }
 
@@ -37,68 +41,79 @@ export class ArtistComponent implements OnInit {
   }
 
   loadArtistData(): void {
-    this.artistService.getArtist().subscribe((data: Artist[]) => {
-      this.artistsData = data;
-      this.applyFilters();
-    }, (error) => {
-      console.error('Error fetching artist data: ', error);
-    });
+    if (this.loading || this.allDataLoaded) return; // Prevent multiple simultaneous requests
+    this.loading = true;
+
+    // Prepare query parameters
+    const params: any = {
+      page: this.currentPage,
+      limit: this.pageSize
+    };
+
+    if (this.searchKeyword) params.searchKeyword = this.searchKeyword;
+    if (this.selectedProfession) params.profession = this.selectedProfession;
+    if (this.selectedLocation) params.location = this.selectedLocation;
+    if (this.sortBy) params.sortBy = this.sortBy;
+
+    console.log(`Fetching artists with params:`, params);
+
+    // Call service to fetch artists
+    this.artistService.getArtists(params)
+      .subscribe((data: Artist[]) => {
+        console.log(`Received artists for page ${this.currentPage}:`, data);
+        if (data.length === 0) {
+          console.log('All data loaded');
+          this.allDataLoaded = true; // No more data to load
+        } else {
+          this.artistsData = [...this.artistsData, ...data]; // Append new data to existing artists
+          this.currentPage++; // Move to the next page for the next request
+          console.log(`Artists loaded, now on page ${this.currentPage}`);
+        }
+        this.loading = false;
+      }, (error) => {
+        console.error('Error fetching artist data: ', error);
+        this.loading = false;
+      });
   }
 
-  searchByKeyword(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.searchKeyword = inputElement.value.toLowerCase().trim();
-    this.applyFilters();
-  }
-
-  applyFilters(): void {
-    let filtered = this.artistsData;
-
-    if (this.selectedProfession) {
-      filtered = filtered.filter(artist => artist.profession === this.selectedProfession);
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !this.loading) {
+    
+      this.loadArtistData(); // Load more data
     }
-
-    if (this.selectedLocation) {
-      filtered = filtered.filter(artist => artist.location === this.selectedLocation);
-    }
-
-    if (this.searchKeyword) {
-      filtered = filtered.filter(artist =>
-        artist.fName.toLowerCase().includes(this.searchKeyword) ||
-        artist.LName.toLowerCase().includes(this.searchKeyword) ||
-        artist.profession.toLowerCase().includes(this.searchKeyword) ||
-        artist.location.toLowerCase().includes(this.searchKeyword)
-      );
-    }
-
-    this.filteredArtists = filtered;
-    this.applySorting();
   }
 
-  applySorting(): void {
-    if (this.sortBy === 'rating') {
-      this.filteredArtists.sort((a, b) => b.rating - a.rating);
-    } else if (this.sortBy === 'total_creations') {
-      this.filteredArtists.sort((a, b) => b.total_creations - a.total_creations);
-    }
-    console.log('After sorting:', this.filteredArtists);
+  // Function to handle search
+  onSearch(): void {
+    this.currentPage = 0; // Reset page number when searching
+    this.artistsData = []; // Clear current data
+    this.allDataLoaded = false; // Reset data loaded flag
+    this.loadArtistData(); // Reload data based on new search
   }
 
-  onProfessionChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.selectedProfession = selectElement.value;
-    this.applyFilters();
+  // Function to handle profession filter
+  onFilterByProfession(): void {
+    this.currentPage = 0;
+    this.artistsData = [];
+    this.allDataLoaded = false;
+    this.loadArtistData();
   }
 
-  onLocationChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.selectedLocation = selectElement.value;
-    this.applyFilters();
+  // Function to handle location filter
+  onFilterByLocation(): void {
+    this.currentPage = 0;
+    this.artistsData = [];
+    this.allDataLoaded = false;
+    this.loadArtistData();
   }
 
-  onSortChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.sortBy = selectElement.value;
-    this.applyFilters();
+  // Function to handle sorting
+  onSortBy(): void {
+    this.currentPage = 0;
+    this.artistsData = [];
+    this.allDataLoaded = false;
+    this.loadArtistData();
   }
+
 }

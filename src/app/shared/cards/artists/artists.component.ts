@@ -15,7 +15,7 @@ export class ArtistsComponent  {
   constructor(private router: Router) { }
  
   
-
+  
  
 
   formatCrationCount(creationCount:number):string{

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationComponent } from '../notification/notification.component';
 
@@ -20,51 +20,79 @@ export class NavbarComponent {
   ];
   box: HTMLElement | null = null;
   down: boolean = true;
+  
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
+  searchTerm: string = ''; // Added property to store search term
 
-@ViewChild(NotificationComponent) notificationComponent!:NotificationComponent;
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
+  artist: { firebase_uid: string; artist_name: string; } | undefined;
 
-toggleNotification(){
-  this.notificationComponent.toggleNotiFi();
-}
-
-
-ngOnInit(): void {
-  this.box = document.getElementById('box');
-  this.countUnreadMessages();
-}
-
-toggleNotiFi() {
-  if (this.down) {
-    console.log('down',this.down);
-    if (this.box) {
-      console.log('box',this.box);
-      this.box.style.height = '0px';
-      this.box.style.opacity = '0';
-    }
-    this.down = false;
-  } else {
-    console.log('else');
-    if (this.box) {
-      console.log('else box',this.box);
-      this.box.style.height = '510px';
-      this.box.style.opacity = '1';
-    }
-    this.down = true;
+ 
+  toggleNotification() {
+    this.notificationComponent.toggleNotiFi();
   }
-}
-countUnreadMessages(): number|any{
-return this.notifications.filter(notification=>notification.unread=false);
+
+
+  ngOnInit(): void {
+    this.box = document.getElementById('box');
+    this.countUnreadMessages();
+    this.artist = {
+    firebase_uid: 'someFirebaseUid',
+    artist_name: 'Artist Name'
+  };
 }
 
-markAllAsRead(): void {
-this.notifications.forEach(notification => notification.unread = false);
+  toggleNotiFi() {
+    if (this.down) {
+      if (this.box) {
+        this.box.style.height = '0px';
+        this.box.style.opacity = '0';
+      }
+      this.down = false;
+    } else {
+      if (this.box) {
+        this.box.style.height = '510px';
+        this.box.style.opacity = '1';
+      }
+      this.down = true;
+    }
+  }
+
+  countUnreadMessages(): number {
+    return this.notifications.filter(notification => notification.unread).length;
+  }
+
+  markAllAsRead(): void {
+    this.notifications.forEach(notification => notification.unread = false);
+  }
+
+  clearAllNotifications(): void {
+    this.notifications = [];
+    // Optionally, perform additional actions like making an API call to clear notifications on the server
+  }
+
+ 
+
+  // Method to handle search form submission
+  onSearchSubmit(): void {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/search-art'], { queryParams: { q: this.searchTerm } });
+    }
+  }
+  
+messageArtist(firebase_uid: string, artistName: string): void {
+  // Save the firebase_uid to local storage
+  localStorage.setItem('artistFirebaseUid', firebase_uid);
+  localStorage.setItem('artistName', artistName);
+  // Navigate to the chat route
+  this.router.navigate(['/chat']);
 }
 
-clearAllNotifications(): void {
-  this.notifications = [];
-  // Optionally, perform additional actions like making an API call to clear notifications on the server
 }
 
-}
+
+
+
+
+
 

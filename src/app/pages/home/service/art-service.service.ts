@@ -15,7 +15,5 @@
      return this.http.get<any>(`${this.apiUrl}/`);
 
  }
- getTrendingArtwork(durationInDays: number): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/trending/${durationInDays}`);
-}
+ 
  }

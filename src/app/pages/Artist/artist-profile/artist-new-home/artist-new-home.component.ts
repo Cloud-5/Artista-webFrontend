@@ -11,6 +11,7 @@ export class ArtistNewHomeComponent implements OnInit {
 
   public userData: any = {};
   public artworks: any = [];
+  router: any;
   public artworksCount: number = 0;
 
 
@@ -50,6 +51,17 @@ export class ArtistNewHomeComponent implements OnInit {
     })
   }
 
+  logout() {
+    // Clear local storage items related to user session
+    localStorage.removeItem('uid');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('firebase_uid');
+
+    // Navigate to the login page or home page after logout
+    this.router.navigate(['/login']);
+  }
   loadArtworksCount(): void {
     this.artistServices.getArtworksCountForArtist(1).subscribe((data: any) => {
       this.artworksCount = data.count;

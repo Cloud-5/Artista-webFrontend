@@ -17,8 +17,10 @@ export class St02Component implements OnInit {
   email = '';
   password = '';
   role = '';
-  
+  errorMessage: string | null =null;
+  Message: string | null =null;
   signupForm!: FormGroup;
+
 
   constructor(private fb: FormBuilder, private router: Router,private userService: UserService) { }
 
@@ -29,7 +31,7 @@ export class St02Component implements OnInit {
       dob: ['', Validators.required],
       location: ['', Validators.required],
       role: ['', Validators.required],
-      
+      empcode: [{ value: '', disabled: true }, Validators.required] 
     });
 
     const data = sessionStorage.getItem('artista-form-data');
@@ -41,18 +43,18 @@ export class St02Component implements OnInit {
     }
 
     if (!data) this.router.navigate(['/st01']);
-    
+    // this.autofillUserCode();
   }
   createAccount() {
     // Implement logic to handle form submission here
-    console.log('Form submitted');
-    console.log('First Name:', this.fName);
-    console.log('Last Name:', this.lName);
-    console.log('Date of Birth:', this.dob);
-    console.log('Location:', this.location);
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Role:', this.role);
+    // console.log('Form submitted');
+    // console.log('First Name:', this.fName);
+    // console.log('Last Name:', this.lName);
+    // console.log('Date of Birth:', this.dob);
+    // console.log('Location:', this.location);
+    // console.log('Email:', this.email);
+    // console.log('Password:', this.password);
+    // console.log('Role:', this.role);
 
 
      // Send HTTP request to backend to create user account
@@ -62,14 +64,35 @@ export class St02Component implements OnInit {
      this.userService.signup(userData).subscribe(
        (response) => {
          console.log('User created successfully:', response);
+         const navigationExtras = {
+          state: {
+            Message: 'User created successfully. Verification mail sent.'
+          }
+        };
          // Redirect to next step after successful signup
-         this.router.navigate(['/login']); 
+         this.router.navigate(['/login'],navigationExtras); 
        },
-       (error) => {
-        
-         console.error('Error creating user:', error);
-         // Handle error response
+       (error:any) => {
+         if (error.status === 400) {
+        this.errorMessage = 'Email Already Exists.';
+      } 
+         else {
+        console.error('Registered failed', error);
+        this.errorMessage = 'An error occurred during signup';
+      }
+
        }
      );
   }
+  // generateRandomCode(): string {
+  //   const randomCode = 'AC';
+  //   const randomNumber = Math.floor(1000 + Math.random() * 9000);
+  //   return randomCode + randomNumber;
+  // }
+
+  // autofillUserCode(): void {
+  //   const randomCode = this.generateRandomCode();
+  //   this.signupForm.get('usercode')?.setValue(randomCode);
+  //   document.getElementById('userId-availability')!.textContent = 'Auto-generated code: ' + randomCode;
+  // }
 }

@@ -12,20 +12,10 @@ export class AuthService {
   private apiUrl: String = environment.apiUrl +'/user'
   constructor(private http: HttpClient) {}
 
- login(email: string, password: string):Observable<any>{
-  return this.http.post(`${this.apiUrl}/login`,{ email, password });
+ login(email: string, password: string,  recaptchaToken: string):Observable<any>{
+  return this.http.post(`${this.apiUrl}/login`,{ email, password ,recaptchaToken});
  }
 
-//  hasPreferences(userId: string) {
-//   return this.http.get<boolean>(`/hasPreferences/${userId}`);
-// }
-
-// hasPreferences(userId: string): Observable<boolean> {
-//   return this.http.get<{ hasPreferences: boolean }>(`/hasPreferences/${userId}`)
-//     .pipe(
-//       map((response: { hasPreferences: any; }) => response.hasPreferences)
-//     );
-// }
 
 checkPreferences(uid: string): Observable<any> {
   console.log('uid', uid);

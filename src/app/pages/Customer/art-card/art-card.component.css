@@ -1,32 +1,8 @@
-/* General CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  height: 100vh;
-  font-family: "Raleway", sans-serif;
-  background: #2F3238;
-}
-
-.container {
-  margin: -20px;
-}
-
-.row {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
 
 .image {
   background: #50A7FF;
   position: relative;
   flex: 1;
-  max-width: 1500px;
   height: 300px;
   margin: 12px;
   margin-right: -10px;
@@ -70,6 +46,17 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.image .details .remove-btn {
+  z-index: 2;
+  position:absolute;
+  align-items: right;
+  top: 5px;
+  right: 5px;
+  padding: 4px 8px;
+  font-size: 0.6rem;
+}
+
 
 .image .details h2 {
   z-index: 2;
@@ -167,6 +154,14 @@ body {
   bottom: 0;
 }
 
+
+/* .search-art .image {
+  width: 276px;
+}
+.customer-profile-gallery .image {
+  width:px;
+} */
+
 /* Responsive CSS */
 @media (max-width: 1080px) {
   .image {
@@ -179,8 +174,4 @@ body {
   .image .details p {
       font-size: 16px;
   }
-}
-.card{
-  height: 350px;
-  width: 250px;
 }
