@@ -22,8 +22,8 @@
 }
 
 .camera-icon i {
-   font-size:1.5rem;
-   }
+   font-size: 1.5rem;
+}
 
 ul {
   list-style-type: none;
@@ -36,6 +36,7 @@ ul {
 a {
   text-decoration: none;
 }
+
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -53,8 +54,9 @@ a {
   position: absolute;
   top: -60px;
   left: 50%;
-  transform: translatex(-50%);
+  transform: translateX(-50%);
 }
+
 .header__wrapper .cols__container .left__col .img__container img {
   width: 120px;
   height: 120px;
@@ -63,32 +65,38 @@ a {
   display: block;
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
 }
+
 .header__wrapper .cols__container .left__col h2 {
   margin-top: 60px;
   font-weight: 600;
   font-size: 22px;
   margin-bottom: 5px;
 }
+
 .header__wrapper .cols__container .left__col p {
   font-size: 0.9rem;
   color: #818181;
   margin: 0;
 }
+
 .header__wrapper .cols__container .left__col .about {
   justify-content: space-between;
   position: relative;
   margin: 35px 0;
 }
+
 .header__wrapper .cols__container .left__col .about li {
   display: flex;
   flex-direction: column;
   color: #818181;
   font-size: 0.9rem;
 }
+
 .header__wrapper .cols__container .left__col .about li span {
   color: #1d1d1d;
   font-weight: 600;
 }
+
 .header__wrapper .cols__container .left__col .about:after {
   position: absolute;
   content: "";
@@ -98,28 +106,32 @@ a {
   height: 1px;
   width: 100%;
 }
+
 .header__wrapper .cols__container .content p {
   font-size: 1rem;
   color: #1d1d1d;
   line-height: 1.8em;
 }
+
 .header__wrapper .cols__container .content ul {
   gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
+
 .header__wrapper .cols__container .content ul li {
   display: flex;
 }
+
 .header__wrapper .cols__container .content ul i {
   font-size: 1.3rem;
 }
 
 .header__wrapper .cols__container .right__col .Gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
 }
 
 .header__wrapper .cols__container .right__col .Gallery img {
@@ -168,22 +180,20 @@ a {
   }
 }
 
-.nav-item{
+.nav-item {
   width: 33%;
   text-align: center;
   font-weight: 500;
   font-size: larger;
 }
 
-.tab-content{
+.tab-content {
   background: #fff;
   padding: 20px;
+  width:880px;
 }
-
 
 .bi {
   font-size: 2rem; /* Adjust the size of the icons */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the icons */
 }
-
-
