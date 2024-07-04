@@ -8,6 +8,7 @@ import { Component,Input } from '@angular/core';
 export class ArtsComponent  {
 
   @Input() art: any;
+  @Input() deleteArtwork: any;
 
   constructor(){}
 
@@ -21,7 +22,11 @@ export class ArtsComponent  {
     }
   }
 
-
+  handleDelete() {
+    if (this.deleteArtwork) {
+      this.deleteArtwork(this.art.artwork_id);
+    }
+  }
 
 
 }

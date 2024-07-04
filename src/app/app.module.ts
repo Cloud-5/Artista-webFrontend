@@ -41,6 +41,7 @@ import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new
 import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
 
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -134,6 +135,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     UploadArtworksComponent,
     NotificationComponent,
     HelpCenterComponent,
+    ArtistCreationsComponent,
+
 
   ],
   imports: [

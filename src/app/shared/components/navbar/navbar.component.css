@@ -63,6 +63,11 @@
   background-color: antiquewhite;
   overflow-y: auto;
   z-index: 1000;
+
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
 }
 
 .notifi-box h2 {
