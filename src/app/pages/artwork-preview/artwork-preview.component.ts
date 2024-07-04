@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentInterface } from '../../shared/interfaces/comment.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CartItemService } from '../../shared/cards/arts/arts.service';
 
 @Component({
   selector: 'app-artwork-preview',
@@ -30,6 +31,7 @@ import { Subscription } from 'rxjs';
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   userId: string = '1';
+
   artworkId: string = '';
   artistId: string = '';
   is3D: boolean = false;
@@ -56,6 +58,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private cartItemService: CartItemService,
     private artworkService: ArtworkPreviewService,
     private router: Router
   ) {}
@@ -63,6 +66,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
       this.artworkId = params['artworkId'];
+      console.log('artworkId',this.artworkId);
       this.loadArtworkDetails(this.artworkId, this.userId); 
       this.updateButtonStates();
       this.checkScreenSize();
@@ -266,6 +270,20 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     });
   }
 
-
-
+  addCart(art: any) {
+    console.log('art', art);
+    
+    this.cartItemService.addItem(parseInt(this.userId), art.artwork_id) // Replace '1' with the actual user_id
+      .subscribe(
+        response => {
+          console.log('Item added to cart:', response);
+        },
+        error => {
+          console.error('Error adding item to cart:', error);
+        }
+      );
+ 
 }
+}
+
+

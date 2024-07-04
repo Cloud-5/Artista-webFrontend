@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ArtistServiceService } from './artist-service.service';
+import { ArtistServiceService } from '../artist/artist-service.service';
 
 interface Artist {
   user_id: number;
@@ -14,6 +14,7 @@ interface Artist {
   profession: string;
   rating: number;
   total_creations: number;
+  featured: number;
 }
 
 @Component({
@@ -30,16 +31,33 @@ export class ArtistComponent implements OnInit {
   searchKeyword = ''; // Search keyword for artist names
   selectedProfession = ''; // Selected profession for filtering
   selectedLocation = ''; // Selected location for filtering
+ selectedFeatured: number | null = null; 
   sortBy = ''; // Sort by field
   allDataLoaded: boolean = false;
+  locations: string[] = []; 
 
 
   constructor(private artistService: ArtistServiceService) { }
 
   ngOnInit(): void {
     this.loadArtistData();
+    this.fetchLocations();
   }
-
+   
+  fetchLocations(): void {
+    this.artistService.getLocations()
+      .subscribe(
+        (locations: any[]) => {
+          this.locations = locations.map(location => location.location); // Extracting 'location' field
+          console.log('Locations:', this.locations);
+        },
+        error => {
+          console.error('Error fetching locations:', error);
+        }
+      );
+  }
+  
+  
   loadArtistData(): void {
     if (this.loading || this.allDataLoaded) return; // Prevent multiple simultaneous requests
     this.loading = true;
@@ -53,6 +71,7 @@ export class ArtistComponent implements OnInit {
     if (this.searchKeyword) params.searchKeyword = this.searchKeyword;
     if (this.selectedProfession) params.profession = this.selectedProfession;
     if (this.selectedLocation) params.location = this.selectedLocation;
+    if (this.selectedFeatured !== null) params.featured = this.selectedFeatured; // Add featured filter
     if (this.sortBy) params.sortBy = this.sortBy;
 
     console.log(`Fetching artists with params:`, params);
@@ -107,7 +126,15 @@ export class ArtistComponent implements OnInit {
     this.allDataLoaded = false;
     this.loadArtistData();
   }
+  onFilterByFeatured(): void {
+    this.currentPage = 0;
+    this.artistsData = [];
+    this.allDataLoaded = false;
+    this.loadArtistData();
+  }
+ 
 
+  
   // Function to handle sorting
   onSortBy(): void {
     this.currentPage = 0;

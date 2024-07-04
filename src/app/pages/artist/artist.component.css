@@ -19,8 +19,15 @@
 }
 
 .filter{
-  margin-right: 8%;
+  margin-right: 0.01vw;
   margin-bottom: 50px;
+  flex: 1;
  
 }
 
+.row.align-items-center {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between; /* Ensure even spacing between filters */
+}

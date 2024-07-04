@@ -21,12 +21,12 @@
                     (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
             </div>
             <div>
-                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button"><span class="">Add To Cart</span></button>
+                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
             </div>
         </div>
     </div>
 </div>
-<app-navbar></app-navbar>
+<app-navbar></app-navbar>   
 <section>
         <div class="container">
             <div class="row">
@@ -115,7 +115,7 @@
                             <div class="d-grid gap-2">
                                 <button [ngClass]="['btn', addToGalleryButtonClass]" type="button"
                                     (click)="toggleAddToGallery()"><span class="">{{addToGalleryButtonText}}</span></button>
-                                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button"><span class="">Add To Cart</span></button>
+                                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
                             </div>
                         </div>
                     </div>

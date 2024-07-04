@@ -7,19 +7,18 @@
       </div>
     </div>
     
-    <div class="row">
-      <div class="col-md-12 text-center mt-3">
-        <div class="input-group">
-          <div class="form-outline" data-mdb-input-init>
-            <input id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists" aria-describedby="search-button"
-            [(ngModel)]="searchKeyword" (keyup.enter)="onSearch()">
-          </div>
-          <button id="search-button" type="button" class="btn btn-primary button-search" (click)="onSearch()">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
+   <div class="row">
+  <div class="col-md-12 text-center mt-3">
+    <div class="input-group">
+      <div class="position-relative w-100">
+        <input id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists"
+               [(ngModel)]="searchKeyword" (input)="onSearch()">
+        
       </div>
     </div>
+  </div>
+</div>
+
      <br>
     <div class="row column d-flex center">
      
@@ -43,17 +42,16 @@
       <label for="location-select">Filter by Location:</label>
       <select id="location-select" class="form-control" [(ngModel)]="selectedLocation" (change)="onFilterByLocation()">
           <option value="">All Locations</option>
-          <option value="United States">United States</option>
-          <option value="United Kingdom">United Kingdom</option>
-          <option value="Canada">Canada</option>
-          <option value="Australia">Australia</option>
-          <option value="Germany">Germany</option>
-          <option value="France">France</option>
-          <option value="Japan">Japan</option>
-          <option value="South Korea">South Korea</option>
-          <option value="Brazil">Brazil</option>
-          <option value="India">India</option>
+          <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
       </select>
+  </div>
+  <div class="col-md-3 filter">
+    <label for="featured-select">Filter by Featured:</label>
+    <select id="featured-select" class="form-control" [(ngModel)]="selectedFeatured" (change)="onFilterByFeatured()" >
+      <option value="">All Artists</option>
+      <option value="1">Featured</option>
+      <option value="0">Non-Featured</option>
+    </select>
   </div>
   
       <div class="col-md-3 filter">
@@ -65,15 +63,17 @@
           <option value="follower_count">Followers</option>
         </select>
       </div>
+      
     </div>
 
-    <div class="container mt-5 mb-3 d-flex data-artist">
-      <div class="row md-3 g-2" (window:scroll)="onScroll()">
-        <div class="col mb-3" *ngFor="let artist of artistsData">
+    <div class="container mt-5 mb-3">
+      <div class="row g-2" (window:scroll)="onScroll()">
+        <div class="col-12 col-md-4 mb-3" *ngFor="let artist of artistsData">
           <app-artists [artist]="artist"></app-artists>
         </div>
       </div>
     </div>
+    
   </div>
 </section>
 <app-footer></app-footer>
