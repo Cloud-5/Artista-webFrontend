@@ -12,12 +12,12 @@ export class CheckoutServiceService {
   constructor(private http:  HttpClient) {  }
 
   // Function to get user details
-  getUserDetails(userId: number): Observable<any> {
+  getUserDetails(userId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
   // Function to create purchase
-  createPurchase(userId: number, data: any): Observable<any> {
+  createPurchase(userId: string, data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${userId}`, data);
   }
 

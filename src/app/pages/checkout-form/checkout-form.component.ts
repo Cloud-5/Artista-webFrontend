@@ -23,7 +23,7 @@ export class CheckoutFormComponent implements OnInit {
   price: number = 0;
   userData: any = {}; // Object to store user data
   cartItems: any[] = []; // Array to store cart items
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')).toString() : '0';
 
 
   fiName: string = '';
@@ -133,7 +133,7 @@ export class CheckoutFormComponent implements OnInit {
     this.getCustomerData(this.userId);
   }
 
-  getCustomerData(userId: number): void {
+  getCustomerData(userId: string): void {
     this.checkoutService.getUserDetails(userId).subscribe((data: any) => {
       console.log('User data: ', data);
       this.fiName = data.fName;

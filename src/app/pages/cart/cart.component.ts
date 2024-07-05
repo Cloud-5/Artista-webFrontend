@@ -10,6 +10,7 @@ interface CartItem {
   quantity: number;
   thumbnail_url: string;
   artist_name: string;
+  user_id: string;
 }
 
 @Component({
@@ -21,7 +22,8 @@ export class CartComponent implements OnInit {
   totalQuantity: number = 0;
   subTotal: number = 0;
   cartItems: CartItem[] = [];
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')).toString() : '0';
+
 
   constructor(
     private router: Router,

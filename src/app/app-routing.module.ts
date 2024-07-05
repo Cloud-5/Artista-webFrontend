@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { ModelComponent } from './shared/components/model/model.component';
 
-import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
 import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
