@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { isPlatformBrowser } from '@angular/common';
 
+
 @Component({
   selector: 'app-model',
   templateUrl: './model.component.html',
@@ -43,6 +44,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
   private renderer: THREE.WebGLRenderer | undefined;
   private scene: THREE.Scene | undefined;
 
+  
   // Animate the model
   private animateModel() {
     if (this.model) {
@@ -85,44 +87,46 @@ export class ModelComponent implements OnInit, AfterViewInit {
 
   // Create the scene
   private createScene() {
-    //* Scene
-    this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x000000);
-    this.scene.fog = new THREE.Fog(0x000000, 1, 10);
+      //* Scene
+  this.scene = new THREE.Scene();
 
-    const planeGeometry = new THREE.PlaneGeometry(10, 10, 10);
-    const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, opacity: 1, transparent: true});
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = -0.5 * Math.PI;
-    plane.position.set(0,0,0);
-    this.scene.add(plane);
-    plane.castShadow = false;
-    plane.receiveShadow = true;
+  const textureLoader = new THREE.TextureLoader();
+  textureLoader.load('assets/bg-1-full.jpg', (texture) => {
+    this.scene!.background = texture;
+  });
 
-    this.loaderGLTF.load('assets/car/scene.gltf', (gltf: GLTF):void => {
-      this.model = gltf.scene.children[0];
-      console.log(this.model);
+  this.loaderGLTF.load('assets/robot/scene.gltf', (gltf: GLTF): void => {
+    this.model = gltf.scene;
+    console.log(this.model);
 
-      if(this.model) {
-        const box = new THREE.Box3().setFromObject(this.model);
+    if (this.model) {
+      // Calculate the bounding box of the model
+      const box = new THREE.Box3().setFromObject(this.model);
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const maxDimension = Math.max(size.x, size.y, size.z);
 
-        const size = new THREE.Vector3();
-        box.getSize(size);
+      // Define the desired size (e.g., 10 units)
+      const desiredSize = 300;
 
-        const center = new THREE.Vector3();
-        box.getCenter(this.model.position);
+      // Calculate the scaling factor
+      const scaleFactor = desiredSize / maxDimension;
 
-        const desiredScale = 3;
-        const scaleV3 = new THREE.Vector3().setScalar(desiredScale);
-        const scaleTemp = new THREE.Vector3().copy(scaleV3).divide(size);
-        const scale = Math.min(scaleTemp.x, Math.min(scaleTemp.y, scaleTemp.z));
+      // Apply the scaling factor to the model
+      this.model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-        this.model.scale.setScalar(scale);
-        this.model.position.set(0, size.y * scale / 2 - this.model.position.y * scale, 0);
-        this.scene!.add(this.model);
-        this.model.castShadow = true;
-        this.model.receiveShadow = true;
-        this.camera?.lookAt(center);
+      // Recalculate the bounding box after scaling
+      const newBox = new THREE.Box3().setFromObject(this.model);
+      const newCenter = new THREE.Vector3();
+      newBox.getCenter(newCenter);
+
+      // Center the model
+      this.model.position.sub(newCenter);
+
+
+      this.scene!.add(this.model);
+      this.model.castShadow = true;
+      this.model.receiveShadow = true;
       }
     });
     //*Camera
@@ -133,8 +137,10 @@ export class ModelComponent implements OnInit, AfterViewInit {
       this.nearClippingPane,
       this.farClippingPane
     )
-    this.camera.rotation.y = Math.PI/6;
-    this.camera.position.set(3,1,2);
+    // this.camera.rotation.y = Math.PI/6;
+    this.camera.position.x = -150;
+    this.camera.position.y = 100;
+    this.camera.position.z = 250;
     this.ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.scene.add(this.ambientLight);
     this.directionalLight = new THREE.DirectionalLight(0xffffff, 10);
@@ -163,7 +169,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
   private startRenderingLoop() {
     // Renderer
     // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true });
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true,alpha: true });
     this.renderer.setPixelRatio(devicePixelRatio);
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
     let component: ModelComponent = this;
@@ -177,6 +183,7 @@ export class ModelComponent implements OnInit, AfterViewInit {
   }
 
   private isBrowser: boolean;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
