@@ -30,6 +30,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
     if (state) {
       this.successMessage = state.Message;
       this.showSuccessMessage();
+     
     }
 
     this.loginForm = this.fb.group({
@@ -66,6 +67,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
       this.successMessage = null;
     }, 5000); // 5000 milliseconds = 5 seconds
   }
+  
   signIn() {
     if (this.loginForm?.valid) {
       const email = this.loginForm.get('email')?.value;
@@ -106,13 +108,14 @@ export class SignInComponent implements OnInit, AfterViewInit {
             }
           },
           (error: any) => {
-            if (error.status === 200) {
+            if (error.status === 403) {
               this.errorMessage = 'Wait for Admin Approval';
-            } else if (error.status === 404) {
+            }
+            else if (error.status === 404) {
               this.errorMessage = 'Invalid Credentials';
             } else {
               console.error('Login failed', error);
-              this.errorMessage = 'An error occurred during login';
+              this.errorMessage = 'An error occurred while logging in. Please try again later.';
             }
           }
         );
