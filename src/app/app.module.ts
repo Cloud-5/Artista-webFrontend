@@ -41,6 +41,7 @@ import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new
 import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
 
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -140,6 +141,8 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     HelpCenterComponent,
     ArtCardComponent,
 
+    ArtistCreationsComponent,
+
 
   ],
   imports: [
@@ -151,7 +154,7 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -165,7 +168,7 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-    
+
   ],
 
   providers: [

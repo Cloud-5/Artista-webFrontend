@@ -1,16 +1,18 @@
 import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
 import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { NotificationComponent } from './shared/components/notification/notification.component';
+import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
+import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
+
 
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtworkPreviewComponent } from './pages/artwork-preview/artwork-preview.component';
 import { ModelComponent } from './shared/components/model/model.component';
 
-import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
-import { NotificationComponent } from './shared/components/notification/notification.component';
-import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
-import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
+
 
 import { EditCustomerProfileComponent } from './pages/Customer/edit-customer-profile/edit-customer-profile.component';
 import { CustomerProfileGalleryComponent } from './pages/Customer/customer-profile-gallery/customer-profile-gallery.component';
@@ -38,6 +40,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 import { AuthGuard } from './shared/services/auth.Guard.service';
 const routes: Routes = [
+
+  //gihan
   { path: '', component: HomeComponent },
   { path: 'login', component: SignInComponent },
   { path: 'st1', component: St1Component },
@@ -48,12 +52,14 @@ const routes: Routes = [
   { path: 'new', component: NewPasswordComponent },
   { path: 'chat', component: ChatScreenComponent },
 
+
   { path: 'firstforyou', component: FirstForyouComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent },
   { path: 'foryou', component: ForyouComponent, canActivate: [AuthGuard] },
   { path: 'artist', component: ArtistComponent },
   { path: 'checkout', component: CheckoutFormComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: 'arts', component: ArtsComponent },
 
   //{ path: '', redirectTo: '/customer-profile-gallery', pathMatch: 'full' },
   { path: 'customer-profile-gallery',component: CustomerProfileGalleryComponent, },
@@ -65,15 +71,18 @@ const routes: Routes = [
   { path: 'search-art', component: SearchArtComponent ,canActivate: [AuthGuard]},
   { path: 'purchase-img-card', component: PurchaseImgCardComponent },
 
+  //buddhi
   { path: 'preview/:artworkId', component: ArtworkPreviewComponent },
   { path: 'model', component: ModelComponent },
   //{ path: '', redirectTo: '/art-p', pathMatch: 'full' }, // Redirect to artwork-preview by default
   //{ path: '**', redirectTo: '/art-p' }, // Redirect to artwork-preview for any other unknown routes
-  { path: 'Artist', component: ArtistNewHomeComponent ,canActivate: [AuthGuard] },
-  {path: 'edit',component:EditArtistProfileComponent},
+
+
+  //dhanushka
+  { path: 'artist/new-home', component: ArtistNewHomeComponent  },
+  {path: 'artist/edit',component:EditArtistProfileComponent},
   { path: 'artist-feedback', component: ArtistFeedbackComponent },
   { path: 'artist-followers', component: ArtistFollowersComponent },
-  { path: 'arts', component: ArtsComponent },
   {path:'upload',component:UploadArtworksComponent},
   {path:'notification',component:NotificationComponent},
   {path:'help',component:HelpCenterComponent}

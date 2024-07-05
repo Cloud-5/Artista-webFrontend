@@ -36,4 +36,9 @@ export class ArtistsComponent  {
     // Navigate to the chat route
     this.router.navigate(['/chat']);
   }
+
+  goToPortfolio(artist: any) {
+    this.router.navigate(['/artist-portfolio', artist.user_id]);
+    console.log('artist', artist.user_id);
+  }
 }

@@ -1,10 +1,9 @@
-<app-navbar></app-navbar>
+<!--
 
-<!-- <div class="blur-background"></div> -->
 <div class="d-flex justify-content-center  background-new" >
   <div class="upload-box ">
     <h2>Upload Artwork</h2>
-    <form action="#" method="post"> <!-- Replace "#" with your upload handler URL -->
+    <form action="#" method="post">
       <div class="form-field">
 
 
@@ -37,7 +36,6 @@
           <option value="portrait">Anime</option>
           <option value="portrait">Modern Graphic</option>
           <option value="abstract">Digital-painting</option>
-          <!-- Add more options as needed -->
         </select>
       </div>
       <div class="button-container">
@@ -51,5 +49,176 @@
   </div>
 </div>
 
+
+ -->
+
+<!--
+<app-navbar></app-navbar>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-6 col-md-7 p-0">
+
+
+      <img src="../../../../../assets/imgs/art.jpg" class="left-image">
+
+    </div>
+
+
+    <div class="col-sm-6 col-md-5 intro-section">
+
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02">
+        <label class="input-group-text btn-custom" for="inputGroupFile02">Upload File</label>
+      </div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+</div>
+<app-footer></app-footer> -->
+
+
+
+<!-- <div class="login-wrapper">
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form">
+            <div class="form-header">
+              <h1>Make your reservation</h1>
+            </div>
+            <form>
+              <div class="form-group"> <input class="form-control" type="text"
+                  placeholder="Country, ZIP, city..."> <span class="form-label">Destination</span> </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group"> <input class="form-control" type="date" required> <span
+                      class="form-label">Check In</span> </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group"> <input class="form-control" type="date" required> <span
+                      class="form-label">Check out</span> </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group"> <select class="form-control" required>
+                      <option value="" selected hidden>no of rooms</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select> <span class="select-arrow"></span> <span class="form-label">Rooms</span> </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group"> <select class="form-control" required>
+                      <option value="" selected hidden>no of adults</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select> <span class="select-arrow"></span> <span class="form-label">Adults</span> </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group"> <select class="form-control" required>
+                      <option value="" selected hidden>no of children</option>
+                      <option>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                    </select> <span class="select-arrow"></span> <span class="form-label">Children</span> </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group"> <input class="form-control" type="email"
+                      placeholder="Enter your Email"> <span class="form-label">Email</span> </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group"> <input class="form-control" type="tel" placeholder="Enter you Phone">
+                    <span class="form-label">Phone</span> </div>
+                </div>
+              </div>
+              <div class="form-btn"> <button class="submit-btn">Book Now</button> </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<app-navbar></app-navbar>
+<div class="main">
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-sm-6 col-md-7 p-0">
+        <img src="../../../../../assets/imgs/art.jpg" class="left-image">
+      </div>
+      <div class="col-sm-6 col-md-5 intro-section ">
+        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+          <div class="input-group mb-3">
+            <input type="file" class="form-control input-area" id="inputGroupFile02" (change)="onFileSelect($event)">
+            <label class="input-group-text btn-custom" for="inputGroupFile02">Choose File</label>
+          </div>
+          <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
+
+          <div class="form-group">
+            <label for="title">Artwork Title</label>
+            <input type="text" id="title" formControlName="title" class="form-control input-area">
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="keywords">Keywords</label>
+            <input type="text" id="keywords" formControlName="keywords" class="form-control">
+          </div> -->
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" formControlName="price" class="form-control input-area">
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" formControlName="category" class="form-control input-area">
+              <option value="3d">3D Art</option>
+              <option value="2d">2D Art</option>
+              <option value="anime">Anime</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" class="form-control input-area"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" formControlName="tags" class="form-control input-area" placeholder="Comma-separated tags">
+          </div>
+
+          <div class="form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-custom " [disabled]="isUploading">Upload Artwork</button>
+            <button type="button" class="btn btn-custom">Cancel</button>
+          </div>
+
+          <div *ngIf="isUploading" class="uploading-animation">Uploading...</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>
