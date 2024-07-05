@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class FirstForyouComponent implements OnInit {
 
   categoryData: any[] = [];
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')).toString() : '0';
+
   selectedCategoryIds: number[] = [];
 
 

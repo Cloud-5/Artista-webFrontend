@@ -16,7 +16,7 @@ export class PreferencesService {
     return this.http.get(`${this.apiUrl}/`);
   }
 
-  addpreferences( user_id:number, category_ids: any ): Observable<any> {
+  addpreferences( user_id:string, category_ids: any ): Observable<any> {
     return this.http.post(`${this.apiUrl}/`, {user_id, category_ids});
   }
   
