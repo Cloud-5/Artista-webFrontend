@@ -36,7 +36,7 @@ import { ResetPasswordComponent } from './pages/fogot-password/reset-password/re
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
-import { AuthGuard } from './services/authGuard.service';
+import { AuthGuard } from './shared/services/auth.Guard.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: SignInComponent },
@@ -44,8 +44,6 @@ const routes: Routes = [
   { path: 'st01', component: St01Component },
   { path: 'st2', component: St2Component },
   { path: 'st02', component: St02Component },
-
-
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'new', component: NewPasswordComponent },
   { path: 'chat', component: ChatScreenComponent },

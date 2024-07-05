@@ -75,7 +75,7 @@
 
 
 .title {     
-  font-size: 10vw;  /* Using viewport width to make the font size responsive */
+  font-size: 6vw;  /* Using viewport width to make the font size responsive */
   font-weight: bold;
   color: white;
   margin-top: 60px;
@@ -131,33 +131,7 @@
   .card-container-artist {
     display: flex;
   }
-  .search-container {
-    align-items: center;
-    margin: 50px;
-    text-align: center;
-}
-
-#search-input {
-    padding: 10px;
-    width: 93%;
-    font-size: 16px;
-    box-sizing: border-box;
-   
-}
-.form-outline{
-  width: 90%;
-}
-
-
-.btn-custom-size {
-  padding: 10px 20px; /* Adjust padding as needed */
-  font-size: 10px;  
-
-   /* Adjust font size as needed */
-}
-.custom-bi-search {
-  font-size: 24px; /* Adjust size as needed */
-}
+ 
 
 
 .paragraph{
@@ -207,19 +181,19 @@
 
   h1{
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     color:darkblue;
     
   }
 
   h3{
     
-    font-size: 20px;
+    font-size: 15px;
   }
   h2{
     
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
   }
 
 

@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './service/user.service';
+import e from 'express';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,7 +14,7 @@ export class ResetPasswordComponent implements OnInit {
   Message: string | null =null;
   errorMessage: string | null = null;
   constructor(private formBuilder: FormBuilder, private userService: UserService) { 
-    this.showSuccessMessage();
+    
   }
 
   ngOnInit(): void {
@@ -33,17 +34,16 @@ export class ResetPasswordComponent implements OnInit {
       this.userService.forgotPassword(email).subscribe(
         response => {
           console.log(response);
-          this.Message = 'Password reset link sent to your email address.'
+          this.Message = 'Password reset link sent to your email address.';
+          this.showSuccessMessage();
         },
         error => {
-          if (error.status === 404) {
-            this.errorMessage = 'User not found.';
-          } 
-          else {
-           
-            this.errorMessage = 'User not found.';
-          }
     
+          if (error.status === 404) {
+            this.errorMessage = 'User not found. Please register or try a different email.';
+          } else {
+            this.errorMessage = 'An error occurred. Please try again later.';
+          }
         }
       );
     }
