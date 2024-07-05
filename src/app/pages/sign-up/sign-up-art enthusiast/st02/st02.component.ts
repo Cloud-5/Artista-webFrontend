@@ -31,7 +31,7 @@ export class St02Component implements OnInit {
       dob: ['', Validators.required],
       location: ['', Validators.required],
       role: ['', Validators.required],
-      
+      empcode: [{ value: '', disabled: true }, Validators.required] 
     });
 
     const data = sessionStorage.getItem('artista-form-data');
@@ -84,4 +84,5 @@ export class St02Component implements OnInit {
        }
      );
   }
+  
 }

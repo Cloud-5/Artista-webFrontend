@@ -1,26 +1,22 @@
-import { Component,Input,OnInit,HostListener } from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { ForyouServiceService } from './foryou-service.service';
-
 
 @Component({
   selector: 'app-foryou',
   templateUrl: './foryou.component.html',
   styleUrls: ['./foryou.component.css']
 })
-export class ForyouComponent {
+export class ForyouComponent implements OnInit {
 
-  artsData: any[]= [];
-  userId: number =  localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  artsData: any[] = [];
+  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
   currentPage: number = 1;
   pageSize: number = 20;
   loading: boolean = false;
   allDataLoaded: boolean = false;
 
-
   constructor(private foryouService: ForyouServiceService) { }
 
-  
-  
   ngOnInit(): void {
     this.fetchArtworks();
   }
@@ -31,21 +27,24 @@ export class ForyouComponent {
     this.loading = true;
     console.log(`Fetching artworks for page ${this.currentPage}`);
     this.foryouService.fetchAll(this.userId, this.currentPage, this.pageSize)
-      .subscribe(data => {
-        console.log(`Received artworks for page ${this.currentPage}:`, data);
-        if (data.length === 0) {
-          console.log('All data loaded');
-          this.allDataLoaded = true; // No more data to load
-        } else {
-          this.artsData = [...this.artsData, ...data]; // Append new data to existing artworks
-          this.currentPage++; // Move to the next page for the next request
-          console.log(`Artworks loaded, now on page ${this.currentPage}`);
+      .subscribe(
+        (data: any) => {
+          console.log(`Received artworks for page ${this.currentPage}:`, data);
+          if (data.artworks.length === 0) {
+            console.log('All data loaded');
+            this.allDataLoaded = true; // No more data to load
+          } else {
+            this.artsData = [...this.artsData, ...data.artworks]; // Append new data to existing artworks
+            this.currentPage++; // Move to the next page for the next request
+            console.log(`Artworks loaded, now on page ${this.currentPage}`);
+          }
+          this.loading = false;
+        },
+        error => {
+          console.error('Error fetching artworks:', error);
+          this.loading = false;
         }
-        this.loading = false;
-      }, error => {
-        console.error('Error fetching artworks:', error);
-        this.loading = false;
-      });
+      );
   }
 
   @HostListener('window:scroll', ['$event'])

@@ -48,3 +48,83 @@
 .d-flex {
   margin-left: auto;
 }
+
+
+
+
+
+.notifi-box {
+  width: 300px;
+  position: absolute;
+  top: 63px;
+  right: 35px;
+  transition: 1s opacity, 250ms height;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: antiquewhite;
+  overflow-y: auto;
+  z-index: 1000;
+
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.notifi-box h2 {
+  font-size: 14px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: #999;
+}
+
+.notifi-box h2 span {
+  color: #f00;
+}
+
+.noti-item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 15px 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.noti-item:hover {
+  background-color: #eee;
+}
+
+.noti-item img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50px;
+}
+
+.noti-item .text h4 {
+  color: #777;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 10px;
+  line-height: 60px;
+}
+
+.icon img {
+  display: inline-block;
+  width: 40px;
+  margin-top: 20px;
+}
+
+.icon:hover {
+  opacity: 0.7;
+}
+
+.notifi-count span {
+  background: #f00;
+  padding: 7px;
+  border-radius: 50%;
+}

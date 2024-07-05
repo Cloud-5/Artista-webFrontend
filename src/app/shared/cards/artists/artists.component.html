@@ -39,10 +39,13 @@
  -->
 
 
- <div class="container d-flex justify-content-center align-items-center">
+ <div class="container d-flex justify-content-center align-items-center "(click)="goToPortfolio(artist)">
              
   <div class="card">
-
+    <div class="status" *ngIf="artist.featured === 1">
+      Featured
+    </div>
+   
    <div class="upper">
 
      <img [src]="artist.banner_img_url" class="img-fluid">
@@ -66,10 +69,10 @@
      <span class="text-muted d-block mb-2 location">{{artist.location}}</span>
      <span class="text-muted d-block mb-2 profession">{{artist.profession}}</span>
 
-     <button class="btn btn-primary btn-sm follow"  (click)="messageArtist(artist.firebase_uid, artist.artist_name)">Message</button>
+     <button class="btn btn-primary btn-sm follow"  (click)="messageArtist(artist.firebase_uid, artist.artist_name); $event.stopPropagation()">Message</button>
 
 
-     <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+     <div class="d-flex justify-content-between align-items-center mt-4 px-4 container-fluid">
 
        <div class="stats">
          <h6 class="mb-0">Followers</h6>
@@ -79,7 +82,7 @@
 
 
        <div class="stats">
-         <h6 class="mb-0">Projects</h6>
+         <h6 class="mb-0">Creations</h6>
          <span>{{artist.total_creations}}</span>
 
        </div>
