@@ -11,11 +11,11 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+
         let authReq = req;
         if (isPlatformBrowser(this.platformId)) {
             const token = localStorage.getItem('accessToken');
-            console.log('authreq', authReq, 'token', token);
+            //console.log('authreq', authReq, 'token', token);
             if (token) {
                 authReq = req.clone({
                     setHeaders: {
@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 });
             }
         }
-        
+
         return next.handle(authReq).pipe(
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401) {
