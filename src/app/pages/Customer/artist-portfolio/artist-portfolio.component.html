@@ -9,7 +9,10 @@
       </div>
       <h2>{{ artistData.artist_name }}</h2>
       <p><b>{{ artistData.artist_location }}</b></p>
+      <p><b>{{ artistData.artist_profession }}</b></p>
+      <p><b>Rating : </b>{{ artistData.average_rating | number: '1.1-1'}}</p>
       <p><b>Member Since: </b>{{ artistData.joined_date | date: "yyyy-MM-dd" }}</p>
+
       <br />
       <div class="row" style="margin: 0">
         <div class="d-flex" style="justify-content: space-between">
@@ -23,7 +26,7 @@
               {{ followButtonText }}
             </button>
           </div>
-          <button type="button" class="btn btn-secondary"  style="width: 140px; height: 50px;">Message</button>
+          <button type="button" class="btn btn-secondary" routerLink='/chat' style="width: 140px; height: 50px;">Message</button>
         </div>
         <ul class="about">
           <li><span>{{ artistData.total_likes }}</span>Likes</li>

@@ -17,7 +17,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
   constructor(
     public customerService: CustomerServiceService,
     private customerDataService: CustomerDataService,
-    private router: Router  // Inject Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +42,8 @@ export class CustomerProfileGalleryComponent implements OnInit {
       }
     );
   }
+
+
 
   getCustomerGalleryArts(userId: number): void {
     this.customerService.getCustomerGalleryArts(userId).subscribe(
@@ -94,6 +96,12 @@ export class CustomerProfileGalleryComponent implements OnInit {
         }
       );
     }
+  }
+
+  logout(): void{
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('admin_id');
+    this.router.navigate(['/']);
   }
 
 }

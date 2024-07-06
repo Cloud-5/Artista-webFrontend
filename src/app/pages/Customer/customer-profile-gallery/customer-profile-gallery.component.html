@@ -34,8 +34,9 @@
             </button>
           </div>
           <div class="row" style="margin: 10px 0 0 0">
-            <button type="button" class="btn btn-success" routerLink="/login">Log Out</button>
+            <button type="button" class="btn btn-success" (click)="logout()">Log Out</button>
           </div>
+
         </div>
 
       </div>
@@ -78,7 +79,7 @@
           <div class="tab-pane fade" id="history" role="tabpanel">
             <nav class="navbar bg-body-tertiary" style="max-height: 800px; overflow-y: scroll; overflow-x: hidden;">
               <div class="container-fluid">
-                <app-purchase-img-card></app-purchase-img-card>
+                <app-purchase-img-card ></app-purchase-img-card>
               </div>
             </nav>
           </div>
