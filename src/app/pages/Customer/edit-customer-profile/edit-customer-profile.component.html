@@ -1,4 +1,4 @@
-<body class="container pt-3">
+<div class="container pt-3">
   <h1>Edit Profile</h1>
   <br />
   <div class="row">
@@ -20,15 +20,34 @@
     <div class="form-container">
       <div class="form-section">
         <div class="row mb-3">
+          <h2>Profile Image</h2>
           <div class="col-md-4">
-            <div class="mb-3">
+            <button
+                    *ngIf="customer.profile_photo_url"
+                    (click)="removeExistingImage()"
+                    class="btn btn-danger"
+                    style="margin-top: 5px; margin-right: 10px"
+                    type="button"
+                  >
+                    Remove
+                  </button>
+            <div class="mb-3" *ngIf="!customer.profile_photo_url">
               <label for="profile-image" class="form-label">Profile Image:</label>
               <input
                 type="file"
                 class="form-control"
                 id="profile-image"
-                accept="image/*"
+                name="profile-image"
+                (change)="onFileSelected($event)"
               />
+              <button
+                    (click)="newImageUpload()"
+                    class="btn btn-primary"
+                    style="margin-top: 10px; margin-right: 10px"
+                    type="button"
+                  >
+                    Upload Image
+                  </button>
             </div>
           </div>
 
@@ -175,4 +194,4 @@
       </div>
     </div>
   </form>
-</body>
+</div>

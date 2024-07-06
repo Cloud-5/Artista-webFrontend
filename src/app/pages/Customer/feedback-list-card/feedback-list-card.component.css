@@ -1,15 +1,21 @@
 .list-group-item {
-  background: #9cdafc;
+  background: #9cdafc; /* Fallback background color */
   margin-bottom: 20px;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 30px;
   padding: 10px;
   transition: transform 0.3s ease;
-  border:1.0px solid #bcc7c7;
+  border: 1.0px solid #bcc7c7;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(13, 13, 13, 0.1);
+
+  background-image: url('https://img.freepik.com/free-vector/abstract-watercolor-pastel-background_87374-139.jpg?w=996&t=st=1720111082~exp=1720111682~hmac=8af53b3f4c1904101fff67a381a9b9e27175cf6be909bbe45980427dac5446c5');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
 
 .list-group-item:hover {
   transform: scale(1.05);

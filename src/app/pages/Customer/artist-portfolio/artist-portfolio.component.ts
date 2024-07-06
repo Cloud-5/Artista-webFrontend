@@ -18,13 +18,14 @@ export class ArtistPortfolioComponent implements OnInit {
   isFollowing: boolean = false;
   followButtonText: string = "Follow";
   followButtonClass: string = "follow";
+  rating: number = 0; // Initialize the rating property
 
   constructor(
     private artistPortfolioService: ArtistPortfolioService,
     private fb: FormBuilder
   ) {
     this.ratingForm = this.fb.group({
-      rating: ['', Validators.required],
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
     });
     this.feedbackForm = this.fb.group({
       feedback: ['', [Validators.required, Validators.maxLength(1000)]],
@@ -34,6 +35,11 @@ export class ArtistPortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.getArtistDetails(this.artistId);
     this.getArtistCreations(this.artistId);
+
+    // Update the stars when the form control value changes
+    this.ratingForm.get('rating')?.valueChanges.subscribe(value => {
+      this.rating = value;
+    });
   }
 
   getArtistDetails(artistId: number): void {
@@ -140,4 +146,10 @@ export class ArtistPortfolioComponent implements OnInit {
       );
     }
   }
+
+  onStarClick(star: number): void {
+    this.rating = star;
+    this.ratingForm.patchValue({ rating: star });
+  }
 }
+

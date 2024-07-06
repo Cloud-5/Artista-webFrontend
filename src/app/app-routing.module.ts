@@ -38,8 +38,7 @@ import { ResetPasswordComponent } from './pages/fogot-password/reset-password/re
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
-import { AuthGuard } from './services/authGuard.service';
-
+import { AuthGuard } from './shared/services/auth.Guard.service';
 const routes: Routes = [
 
   //gihan

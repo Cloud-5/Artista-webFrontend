@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ArtistServiceService } from '../artist/artist-service.service';
 
 interface Artist {
-  user_id: number;
+  user_id: string;
   username: string;
   email: string;
   description: string;
@@ -41,6 +41,7 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadArtistData();
+   
     this.fetchLocations();
   }
    

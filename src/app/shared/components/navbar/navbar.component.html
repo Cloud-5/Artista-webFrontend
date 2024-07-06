@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   < class="container-fluid">
     <!-- Artista Logo -->
-    <img src="../assets/images/logoArt.png" alt="Artista Logo" class="custom-logo img-fluid" />
+    <img src="../assets/images/Artista.png" alt="Artista Logo" class="custom-logo img-fluid" />
 
     <!-- Toggle button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
@@ -13,15 +13,15 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/">ForYou <span class="visually-hidden">(current)</span></a>
+          <a class="nav-link " routerLink="/forYou" routerLinkActive="active">ForYou<span class="visually-hidden">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/artist">Artist</a>
+          <a class="nav-link " routerLink="/artist" routerLinkActive="active">Artist</a>
         </li>
       </ul>
 
       <!-- Search Bar -->
-      <form class="d-flex" (submit)="onSearchSubmit()">
+      <form class="d-flex searchbox" (submit)="onSearchSubmit()">
         <input class="form-control me-sm-2" type="search" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm">
         <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
       </form>

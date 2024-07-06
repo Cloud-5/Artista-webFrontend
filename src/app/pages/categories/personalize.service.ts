@@ -11,11 +11,11 @@ export class PersonalizeService {
 
   constructor(private http:  HttpClient) { }
 
-    getCategories(userId: number): Observable<any> {
+    getCategories(userId: string): Observable<any> {
       return this.http.get(`${this.apiUrl}/${userId}`);
     }
 
-    updateCategories(user_id: number, new_category_ids: any): Observable<any> {
+    updateCategories(user_id: string, new_category_ids: any): Observable<any> {
       return this.http.put(`${this.apiUrl}/${user_id}`, {new_category_ids});
     }
   }

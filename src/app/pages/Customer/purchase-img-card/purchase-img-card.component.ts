@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PurchaseHistoryService } from './purchase-history.service';
 
+
 @Component({
   selector: 'app-purchase-img-card',
   templateUrl: './purchase-img-card.component.html',
@@ -12,7 +13,7 @@ export class PurchaseImgCardComponent implements OnInit {
     private purchaseHistoryService: PurchaseHistoryService
   ){}
 
-  userId:number = 24
+  userId:string = "24";
   purchaseData: any[] =[];
 
 
@@ -21,7 +22,7 @@ export class PurchaseImgCardComponent implements OnInit {
     console.log(this.purchaseData);
   }
 
-  loadPurchseHistory(userId: number):void {
+  loadPurchseHistory(userId: string):void {
     this.purchaseHistoryService.getPurchaseHistory(userId)
     .subscribe((data: any[]) => {
       this.purchaseData = data;
@@ -34,5 +35,10 @@ export class PurchaseImgCardComponent implements OnInit {
     .subscribe(() => {
       this.loadPurchseHistory(this.userId);
     });
+  }
+
+  onPurchaseDeleted(purchaseId: number): void {
+    // Remove the deleted purchase from the purchaseData array
+    this.purchaseData = this.purchaseData.filter(purchase => purchase.purchase_id !== purchaseId);
   }
 }

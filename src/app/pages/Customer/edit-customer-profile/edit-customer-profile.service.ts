@@ -14,6 +14,7 @@ export class EditCustomerProfileService {
   constructor(private http:HttpClient) { }
 
   EditCustomerProfile(userId: string, data: any): Observable<any> {
+    console.log('data', data);
     return this.http.put<any>(`${this.apiUrl}/${userId}`, data);
   }
 }
