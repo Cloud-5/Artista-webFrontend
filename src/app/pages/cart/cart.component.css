@@ -12,8 +12,8 @@
 
 
 .section-margin{
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 5vw;
+    margin-right: 10vw;
  
 }
 
@@ -63,4 +63,6 @@
     font-size: 1.2rem;
   }
 
-  
+  .summary-card {
+   position: fixed;
+  }

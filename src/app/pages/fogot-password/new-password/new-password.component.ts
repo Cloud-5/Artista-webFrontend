@@ -89,10 +89,7 @@ export class NewPasswordComponent implements OnInit {
             if (error.status === 400) {
               this.errorMessage = 'Passwords do not match';
             }
-            else if(error.status === 404)
-              {
-                this.errorMessage = 'User not found';
-              }
+            
                else {
               console.error('Updated failed', error);
               this.errorMessage = 'Error updating password';

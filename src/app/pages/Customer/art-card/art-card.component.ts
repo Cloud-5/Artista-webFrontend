@@ -12,7 +12,7 @@ export class ArtCardComponent {
   @Input() art: any;
   @Input() showRemoveButton: boolean = false;
   @Input() customerUserId!: string;
-  @Input() userId!: number; // Assuming userId is passed as an input
+  @Input() userId!: string; // Assuming userId is passed as an input
   private isBrowser: boolean;
 
   @Output() removeGalleryItem = new EventEmitter<void>();
