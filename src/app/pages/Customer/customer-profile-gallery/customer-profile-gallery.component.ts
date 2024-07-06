@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerServiceService } from './customer-service.service';
 import { CustomerDataService } from '../../../shared/services/customerData.service';
-import { Router } from '@angular/router';  
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer-profile-gallery',
   templateUrl: './customer-profile-gallery.component.html',

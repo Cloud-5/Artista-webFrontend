@@ -18,12 +18,12 @@
               [ngClass]="['btn', 'btn-outline-info', followButtonClass, 'rounded']"
               type="button"
               (click)="toggleFollow()"
-              style="width: 150px; height: 50px;"
+              style="width: 140px; height: 50px;"
             >
               {{ followButtonText }}
             </button>
           </div>
-          <button type="button" class="btn btn-secondary" style="width: 48%">Message</button>
+          <button type="button" class="btn btn-secondary"  style="width: 140px; height: 50px;">Message</button>
         </div>
         <ul class="about">
           <li><span>{{ artistData.total_likes }}</span>Likes</li>
@@ -34,28 +34,29 @@
           <p>{{ artistData.description }}</p>
         </div>
         <br />
-        <div class="rating-order-wrp">
-          <h2>How was the experience?</h2>
-          <div class="d-flex rating-list align-items-center">
-            <p class="w-50">Star Your Rating:</p>
-            <div class="star w-50 rating-star">
-              <ngx-star-rating formControlName="rating"></ngx-star-rating>
-            </div>
+
+        <h2>How was the experience?</h2>
+        <form [formGroup]="ratingForm" (ngSubmit)="onSubmitRating()">
+          <div class="rating-section">
+            <span class="fa fa-star" (click)="onStarClick(1)" [ngClass]="{'checked': rating >= 1}"></span>
+            <span class="fa fa-star" (click)="onStarClick(2)" [ngClass]="{'checked': rating >= 2}"></span>
+            <span class="fa fa-star" (click)="onStarClick(3)" [ngClass]="{'checked': rating >= 3}"></span>
+            <span class="fa fa-star" (click)="onStarClick(4)" [ngClass]="{'checked': rating >= 4}"></span>
+            <span class="fa fa-star" (click)="onStarClick(5)" [ngClass]="{'checked': rating >= 5}"></span>
           </div>
-          <form [formGroup]="ratingForm" (ngSubmit)="onSubmitRating()">
-            <div class="form-group" style="margin: 20px 0">
-              <input
-                type="number"
-                formControlName="rating"
-                min="1"
-                max="5"
-                placeholder="Enter rating (1-5)"
-                class="form-control"
-              />
-            </div>
-            <button type="submit" class="btn btn-success" [disabled]="ratingForm.invalid">Submit Rating</button>
-          </form>
-        </div>
+          <div class="form-group" style="margin: 20px 0">
+            <input
+              type="number"
+              formControlName="rating"
+              min="1"
+              max="5"
+              placeholder="Enter rating (1-5)"
+              class="form-control"
+            />
+          </div>
+          <button type="submit" class="btn btn-success" [disabled]="ratingForm.invalid">Submit Rating</button>
+        </form>
+        <br />
         <div class="feedback-section">
           <form [formGroup]="feedbackForm" (ngSubmit)="onSubmitFeedback()">
             <div class="form-group" style="margin: 20px 0">
