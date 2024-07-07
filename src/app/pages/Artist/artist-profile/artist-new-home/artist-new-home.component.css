@@ -214,3 +214,15 @@ h2, .sub-title {
   position: relative;
   top: 200px;
 }
+
+
+
+
+/* for ratings //////////////////////////////////////*/
+.star-active {
+  color: gold;
+}
+
+.star-inactive {
+  color: gray;
+}

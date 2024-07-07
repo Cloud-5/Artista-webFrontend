@@ -178,52 +178,75 @@
 
           <!-- Artwork Type Switch -->
           <div class="mb-4">
-            <label for="artworkType" class="form-label">Select Artwork Type</label>
+            <label for="artworkType" class="form-label ">Select Artwork Type</label>
             <select
               id="artworkType"
-              class="form-control"
+              class="form-control artwork-type"
               [(ngModel)]="artType"
               (change)="onArtworkTypeChange()"
             >
-              <option value="2d">2D Artwork</option>
-              <option value="3d">3D Artwork</option>
+              <option value="2d" class="input-area">2D Artwork</option>
+              <option value="3d"  class="input-area">3D Artwork</option>
             </select>
           </div>
-          <form *ngIf="artType === '2d'">
+
+
+
+          <!-- 2D art//////////////////////////////// -->
+          <form *ngIf="artType === '2d'"  (ngSubmit)="onSubmit2D()">
             <div class="input-group mb-3">
-              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+              <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelect($event)" required>
               <label class="input-group-text btn-custom">Choose File</label>
             </div>
-            <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
+            <!-- <div *ngIf="fileName" class="file-name">{{ fileName }}</div> -->
 
             <div class="form-group">
               <label for="title2D">Artwork Title</label>
-              <input type="text" id="title2D" name="title" class="form-control input-area" ngModel required>
+              <input type="text" id="title2D" name="title" class="form-control input-area" [(ngModel)]="new2DArtwork.title" ngModel required>
             </div>
 
             <div class="form-group">
               <label for="price2D">Price</label>
-              <input type="number" id="price2D" name="price" class="form-control input-area" ngModel required>
+              <input type="number" id="price2D" name="price" class="form-control input-area" [(ngModel)]="new2DArtwork.price" ngModel required>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="category2D">Category</label>
               <select id="category2D" name="category" class="form-control input-area" ngModel required>
                 <option value="anime">Anime</option>
-                <!-- Add more 2D categories if needed -->
+
               </select>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label for="description2D">Description</label>
-              <textarea id="description2D" name="description" class="form-control input-area" ngModel required></textarea>
+              <textarea id="description2D" name="description" class="form-control input-area" [(ngModel)]="new2DArtwork.price" ngModel required></textarea>
             </div>
 
-            <div class="form-group">
-              <label for="tags2D">Tags</label>
-              <input type="text" id="tags2D" name="tags" class="form-control input-area" placeholder="Comma-separated tags" ngModel required>
+            <div class="mb-3">
+              <label for="categoryFileTypes" class="form-label">Tags</label>
+              <div class="d-flex flex-wrap">
+                <span *ngFor="let j of new2DArtwork.tag_name; let i = index" class="badge bg-primary"
+                  style="margin-bottom: 5px; margin-right: 5px">
+                  {{ j.tag_name }}
+                  <button type="button" class="btn-close" aria-label="Close" (click)="remove2DTag(i)"></button>
+                </span>
+              </div>
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="new2DTag_Name"
+                  name="new tag name" required #tag_nameInput="ngModel" />
+                <button class="btn btn-primary" type="button" (click)="addNew2DTag()" [disabled]="tag_nameInput.invalid">
+                  Add
+                </button>
+              </div>
+              <div *ngIf="
+                  new2DArtwork.tag_name.length === 0 &&
+                  (tag_nameInput.touched || tag_nameInput.dirty) &&
+                  tag_nameInput.invalid
+                " class="alert alert-danger mt-2 p-2">
+                At least one tag_name is required.
+              </div>
             </div>
-
             <div class="form-group d-flex justify-content-between">
               <button type="submit" class="btn btn-custom">Upload 2D Artwork</button>
               <button type="button" class="btn btn-custom" >Cancel</button>
@@ -232,8 +255,16 @@
             <div *ngIf="isUploading2D" class="uploading-animation">Uploading...</div>
           </form>
 
-          <!-- 3D Artwork Form -->
-          <form *ngIf="artType === '3d'" >
+          <!-- 3D Artwork Form///////////////////////////////////////////////// -->
+          <form   (ngSubmit)="upload3DArtwork()"  *ngIf="artType === '3d'" >
+            <div class="input-group mb-3">
+              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+              <label class="input-group-text btn-custom">Choose File</label>
+            </div>
+            <div class="input-group mb-3">
+              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+              <label class="input-group-text btn-custom">Choose File</label>
+            </div>
             <div class="input-group mb-3">
               <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
               <label class="input-group-text btn-custom">Choose File</label>
@@ -263,10 +294,35 @@
               <textarea id="description3D" name="description" class="form-control input-area" ngModel required></textarea>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="tags3D">Tags</label>
               <input type="text" id="tags3D" name="tags" class="form-control input-area" placeholder="Comma-separated tags" ngModel required>
+            </div> -->
+            <div class="mb-3">
+              <label for="categoryFileTypes" class="form-label">Tags</label>
+              <div class="d-flex flex-wrap">
+                <span *ngFor="let j of new3DArtwork.tag_name; let i = index" class="badge bg-primary"
+                  style="margin-bottom: 5px; margin-right: 5px">
+                  {{ j.tag_name }}
+                  <button type="button" class="btn-close" aria-label="Close" (click)="remove3DTag(i)"></button>
+                </span>
+              </div>
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="new3DTag_name"
+                  name="new tag name" required #tag_nameInput="ngModel" />
+                <button class="btn btn-primary" type="button" style="color: black;" (click)="addNew3DTag()" [disabled]="tag_nameInput.invalid">
+                  Add
+                </button>
+              </div>
+              <div *ngIf="
+                  new3DArtwork.tag_name.length === 0 &&
+                  (tag_nameInput.touched || tag_nameInput.dirty) &&
+                  tag_nameInput.invalid
+                " class="alert alert-danger mt-2 p-2">
+                At least one tag_name is required.
+              </div>
             </div>
+
 
             <div class="form-group d-flex justify-content-between">
               <button type="submit" class="btn btn-custom" >Upload 3D Artwork</button>
