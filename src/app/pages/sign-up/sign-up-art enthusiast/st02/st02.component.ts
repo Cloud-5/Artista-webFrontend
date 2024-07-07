@@ -26,15 +26,18 @@ export class St02Component implements OnInit {
   constructor(private fb: FormBuilder, private router: Router,private userService: UserService) { }
 
   ngOnInit(): void {
+
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+
     this.signupForm = this.fb.group({
       fName: ['', Validators.required],
       lName: ['', Validators.required],
       dob: ['', Validators.required],
       location: ['', Validators.required],
       role: ['', Validators.required],
-      registered_at: [ '', Validators.required] 
+      registered_at: [currentDate, Validators.required] // Set current date as default value
     });
-
+    
     const data = sessionStorage.getItem('artista-form-data');
 
     if (data) {
