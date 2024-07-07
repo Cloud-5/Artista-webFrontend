@@ -30,4 +30,6 @@ export class PreferencesService {
     return this.selectedCategoryIds;
     console.log('Selected category IDs:', this.selectedCategoryIds);
   }
+
+  
 }

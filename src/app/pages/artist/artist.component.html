@@ -8,13 +8,17 @@
     </div>
     
    <div class="row">
-  <div class="col-md-12 text-center mt-3">
-    <div class="input-group">
-      <div class="position-relative w-100">
-        <input id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists"
-               [(ngModel)]="searchKeyword" (input)="onSearch()">
-        
+  <div class="col-md-4 text-center mb-3 mt-3">
+    <div class="input-group mb-3">
+      <input id="search-input" type="search" class="form-control custom-search" placeholder="Search for Artists" aria-label="Search for Artists"
+             [(ngModel)]="searchKeyword" (input)="onSearch()">
+      <div class="input-group-append" *ngIf="searchKeyword">
+        <span class="input-group-text">
+          <i class="fa fa-times-circle pointer" (click)="clearSearch()"></i>
+        </span>
       </div>
+    </div>
+    
     </div>
   </div>
 </div>
@@ -48,7 +52,7 @@
   <div class="col-md-3 filter">
     <label for="featured-select">Filter by Featured:</label>
     <select id="featured-select" class="form-control" [(ngModel)]="selectedFeatured" (change)="onFilterByFeatured()" >
-      <option value="null">All Artists</option>
+      <option value="">All Artists</option>
       <option value="1">Featured</option>
       <option value="0">Non-Featured</option>
     </select>
@@ -74,6 +78,6 @@
       </div>
     </div>
     
-  </div>
+  
 </section>
 <app-footer></app-footer>

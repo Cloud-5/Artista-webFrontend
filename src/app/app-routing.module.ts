@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'customer-profile-gallery',component: CustomerProfileGalleryComponent, },
   { path: 'edit-customer-profile/:userId',component: EditCustomerProfileComponent, },
   { path: 'following-artists', component: FollowingArtistsComponent },
-  { path: 'artist-portfolio', component: ArtistPortfolioComponent },
+  { path: 'artist-portfolio/:user_id', component: ArtistPortfolioComponent },
   { path: 'feedback-list-card', component: FeedbackListComponent },
   { path: 'arts', component: ArtsComponent },
   { path: 'search-art', component: SearchArtComponent ,canActivate: [AuthGuard]},
