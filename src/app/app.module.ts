@@ -33,12 +33,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 
-import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
-import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
-import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
+import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
+import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
 
-import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
 import { ArtistCreationsComponent } from './pages/artist/artist-profile/artist-creations/artist-creations.component';
@@ -49,7 +49,7 @@ import { ArtistsComponent } from './shared/cards/artists/artists.component';
 import { ArtsComponent } from './shared/cards/arts/arts.component';
 import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
 import { CategoryComponent } from './shared/cards/category/category.component';
-import { ArtistComponent } from './pages/Artist/artist.component';
+import { ArtistComponent } from './pages/artist/artist.component';
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';

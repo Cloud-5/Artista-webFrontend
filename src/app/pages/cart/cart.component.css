@@ -14,7 +14,19 @@
 .section-margin{
     margin-left: 5vw;
     margin-right: 10vw;
- 
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+section:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Ensure the footer sticks to the bottom */
+footer {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .btn-customize{
@@ -65,4 +77,12 @@
 
   .summary-card {
    position: fixed;
+   margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .body{
+   
+    margin-bottom: 0;
+    padding-bottom: 0;
   }

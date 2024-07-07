@@ -31,7 +31,7 @@ export class ArtistComponent implements OnInit {
   searchKeyword = ''; // Search keyword for artist names
   selectedProfession = ''; // Selected profession for filtering
   selectedLocation = ''; // Selected location for filtering
- selectedFeatured: number | null = null; 
+ selectedFeatured: string=''; 
   sortBy = ''; // Sort by field
   allDataLoaded: boolean = false;
   locations: string[] = []; 
@@ -66,13 +66,14 @@ export class ArtistComponent implements OnInit {
     // Prepare query parameters
     const params: any = {
       page: this.currentPage,
-      limit: this.pageSize
+      limit: this.pageSize,
+      
     };
 
     if (this.searchKeyword) params.searchKeyword = this.searchKeyword;
     if (this.selectedProfession) params.profession = this.selectedProfession;
     if (this.selectedLocation) params.location = this.selectedLocation;
-    if (this.selectedFeatured !== null) params.featured = this.selectedFeatured; // Add featured filter
+    if (this.selectedFeatured !== '') params.featured = this.selectedFeatured; // Add featured filter
     if (this.sortBy) params.sortBy = this.sortBy;
 
     console.log(`Fetching artists with params:`, params);
@@ -106,10 +107,24 @@ export class ArtistComponent implements OnInit {
 
   // Function to handle search
   onSearch(): void {
-    this.currentPage = 0; // Reset page number when searching
-    this.artistsData = []; // Clear current data
-    this.allDataLoaded = false; // Reset data loaded flag
-    this.loadArtistData(); // Reload data based on new search
+    if (this.searchKeyword.trim()) {
+      // If there is a search keyword, reset pagination and load data
+      this.currentPage = 0;
+      this.artistsData = [];
+      this.allDataLoaded = false;
+      this.loadArtistData(); // Reload data based on new search
+    } else {
+      // If search keyword is empty, just reload data with existing filters
+      this.loadArtistData();
+    }
+  }
+  
+  clearSearch(): void {
+    this.searchKeyword = '';
+    this.currentPage = 0;
+    this.artistsData = [];
+    this.allDataLoaded = false;
+    this.loadArtistData();
   }
 
   // Function to handle profession filter
@@ -134,6 +149,8 @@ export class ArtistComponent implements OnInit {
     this.loadArtistData();
   }
  
+
+  
 
   
   // Function to handle sorting
