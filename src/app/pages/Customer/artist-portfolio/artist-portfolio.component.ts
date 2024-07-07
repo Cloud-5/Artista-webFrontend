@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArtistPortfolioService } from './artist-portfolio-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-artist-portfolio',
@@ -13,16 +15,20 @@ export class ArtistPortfolioComponent implements OnInit {
   artistData: any = {};
   artistCreations: any[] = [];
   filteredArts: any[] = [];
-  customerId: number = 24; // Assuming logged-in user ID is 24
-  artistId: number = 25; // Assuming artist ID is 25
+  customerId: string = '24'; // Assuming logged-in user ID is 24
+  artistId: string = ''; // Assuming artist ID is 25
   isFollowing: boolean = false;
   followButtonText: string = "Follow";
   followButtonClass: string = "follow";
   rating: number = 0; // Initialize the rating property
 
+  routeSub: Subscription | undefined;
+
   constructor(
     private artistPortfolioService: ArtistPortfolioService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.ratingForm = this.fb.group({
       rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
@@ -33,16 +39,17 @@ export class ArtistPortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getArtistDetails(this.artistId);
-    this.getArtistCreations(this.artistId);
-
-    // Update the stars when the form control value changes
-    this.ratingForm.get('rating')?.valueChanges.subscribe(value => {
-      this.rating = value;
-    });
+    this.routeSub = this.route.params.subscribe( params => {
+      this.artistId = params['user_id'];
+      console.log('artistId9999999999999999', this.artistId);
+      this.getArtistDetails(this.artistId);
+      this.getArtistCreations(this.artistId);
+    
+    })
+    
   }
 
-  getArtistDetails(artistId: number): void {
+  getArtistDetails(artistId: string): void {
     this.artistPortfolioService.getArtistDetails(artistId).subscribe(
       (data: any[]) => {
         this.artistData = data[0];
@@ -55,7 +62,7 @@ export class ArtistPortfolioComponent implements OnInit {
     );
   }
 
-  getArtistCreations(artistId: number): void {
+  getArtistCreations(artistId: string): void {
     this.artistPortfolioService.getArtistCreations(artistId).subscribe(
       (data: any[]) => {
         this.artistCreations = data;

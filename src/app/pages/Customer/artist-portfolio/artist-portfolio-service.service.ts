@@ -12,11 +12,11 @@ export class ArtistPortfolioService {
 
   constructor(private http: HttpClient) {}
 
-  getArtistDetails(artistId: number): Observable<any> {
+  getArtistDetails(artistId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${artistId}`);
   }
 
-  getArtistCreations(artistId: number): Observable<any> {
+  getArtistCreations(artistId: string): Observable<any> {
     return this.http.get(`${this.apiUrlCreations}/${artistId}`);
   }
 
@@ -28,11 +28,11 @@ export class ArtistPortfolioService {
     return this.http.post<any>(`${this.apiUrl}/${artistId}/unfollow`, { userId });
   }
 
-  submitFeedback(artistId: number, feedback: string, customerId: number): Observable<any> {
+  submitFeedback(artistId: string, feedback: string, customerId: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${artistId}/feedback`, { feedback, customerId });
   }
 
-  submitRating(artistId: number, ratingValue: number, customerId: number): Observable<any> {
+  submitRating(artistId: string, ratingValue: number, customerId: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${artistId}/rating`, { ratingValue, customerId });
   }
 }
