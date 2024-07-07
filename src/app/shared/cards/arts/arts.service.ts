@@ -22,11 +22,11 @@ export class CartItemService {
   }
   
 
-  getCartItems(userId: string): Observable<any> {
+  getCartItems(userId:string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
-  incrementQuantity(userId:string, artworkId: number): Observable<any> {
+  incrementQuantity(userId: string, artworkId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/increment`, { userId, artworkId });
   }
 
@@ -34,7 +34,7 @@ export class CartItemService {
     return this.http.post(`${this.apiUrl}/decrement`, { userId, artworkId });
   }
 
-  clearCart(userId:string): Observable<any> {
+  clearCart(userId: string): Observable<any> {
     return this.http.request('delete', `${this.apiUrl}/clear`, { body: { userId } });
   }
 }  

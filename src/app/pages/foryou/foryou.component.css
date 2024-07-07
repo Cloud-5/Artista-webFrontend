@@ -9,8 +9,16 @@
     top: -90%; /* Adjust positioning as needed */
     right: 390%; /* Adjust positioning as needed */
     z-index: 2; /* Set a higher z-index value for the button */
-    font-weight: bold;
+    font-weight: 400;
     width: 700%;
+    background-color: #0040ca;
+    transition: transform 0.3s ease, color 0.3s ease; /* Added transform */
+}
+
+.custom-button:hover {
+  color: rgb(145, 222, 250);
+  transform: scale(1.1); /* Zoom-in effect */
+  background-color: #013558;
 }
 
 .z-custom-button {

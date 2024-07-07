@@ -1,32 +1,38 @@
 /* Add any additional styles for your footer here */
 
 .footer {
-    padding: 20px 0; /* Adjust padding as needed */
-    margin-top: 20px;
-    background-color: #1184c2;
+    padding: 0 0; /* Adjust padding as needed */
+   
+    background-color: #055287;
     position:sticky ;
     width: 100%;
     height: fit-content;
 }
 
 .footer-logo {
-    max-width: 15vw; /* Adjust the max-width of the logo */
-    max-height: 10vh;
+    width: 14vw; /* Adjust the max-width of the logo */
+   margin-right: -20px;
+   margin-top: 30px;
+   display: flex;
+    
 }
 
 /* Adjust margin for all buttons */
 .btn-footer {
     margin-right: 1vh; /* Reduce the right margin between buttons */
+    display: flex;
 }
 
 /* Style for the five buttons */
 .btn-footer {
    
-    padding: 8px 50px;
+    padding: 0px 35px;
     border-radius: 20px;
-    font-weight: bold;
+    font-weight: 450;
     text-align: center;
-    white-space: nowrap;
+   
+    
+    display: inline-block;
 }
 
 /* Dark blue background on hover for buttons */
@@ -55,6 +61,20 @@
 
     .footer-buttons {
         margin-top: 20px; /* Add spacing between the logo and buttons on medium-sized screens and below */
+        width: 100%; /* Make sure buttons take full width */
+        justify-content: center; /* Center the buttons */
+        flex-wrap: nowrap; /* Keep the buttons in one line */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+    }
+
+    .footer-buttons .btn-footer {
+        flex-grow: 1; /* Allow buttons to grow */
+        flex-shrink: 1; /* Allow buttons to shrink */
+        min-width: 120px; /* Minimum width for buttons */
+        margin: 5px; /* Margin between buttons */
+    }
+
+    .footer-buttons .btn-footer {
+        flex-shrink: 0; /* Prevent buttons from shrinking */
     }
 }
-

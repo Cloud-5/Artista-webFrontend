@@ -11,7 +11,7 @@ describe('UploadArtworksComponent', () => {
       declarations: [UploadArtworksComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(UploadArtworksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

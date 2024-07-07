@@ -15,7 +15,7 @@
   color: white;
   font-size: 1.5rem;
   text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
-  margin-right: 30px;
+  margin-right: 1vw;
   transition: color 0.3s;
 }
 
@@ -23,89 +23,47 @@
 .navbar-text:hover .bi-chat-dots-fill,
 .navbar-text:hover .bi-cart-fill,
 .navbar-text:hover .bi-person-circle {
-  color: rgb(212, 212, 212);
+  color: rgb(145, 222, 250);
 }
 
 /* Increase the size and make the text bold for "ForYou" and "Artist" */
 .navbar-nav .nav-link {
   font-size: 1.2rem; /* Adjust the size as needed */
-  font-weight: bold; /* Make the text bold */
-  margin-right: 50px;
+  font-weight: 320; /* Make the text bold */
+  margin-right: 5vw;
+  transition: transform 0.3s ease, color 0.3s ease; /* Added transform */
+}
+
+.navbar-nav .nav-link:hover {
+  color: rgb(145, 222, 250);
+  transform: scale(1.1); /* Zoom-in effect */
+}
+
+.navbar-nav .nav-link:active,
+.navbar-nav .nav-link.active {
+  font-weight: 400; /* Make the text bold when selected */
 }
 
 /* Increase the width of the search bar and add round corners */
 .form-control {
-  width: 400px; /* Adjust the width as needed */
+  width: 18vw; /* Adjust the width as needed */
   border-radius: 14px; /* Add round corners */
-  margin-left: 180px;
+  margin-left: 8vw;
 }
 
 
 
-
+.btn{
+  color: rgb(0, 21, 47);
+  
+ 
+}
 
 /*icons to the right corner*/
 .d-flex {
   margin-left: auto;
 }
 
-
-
-
-
-.notifi-box {
-  width: 300px;
-  position: absolute;
-  top: 63px;
-  right: 35px;
-  transition: 1s opacity, 250ms height;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: antiquewhite;
-  overflow-y: auto;
-  z-index: 1000;
-
-  height: 0;
-  opacity: 0;
-  transition: height 0.3s ease, opacity 0.3s ease;
-  overflow: hidden;
-}
-
-.notifi-box h2 {
-  font-size: 14px;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  color: #999;
-}
-
-.notifi-box h2 span {
-  color: #f00;
-}
-
-.noti-item {
-  display: flex;
-  border-bottom: 1px solid #eee;
-  padding: 15px 5px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-.noti-item:hover {
-  background-color: #eee;
-}
-
-.noti-item img {
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 50px;
-}
-
-.noti-item .text h4 {
-  color: #777;
-  font-size: 16px;
-  margin-top: 10px;
-}
 
 .icon {
   cursor: pointer;
@@ -127,4 +85,13 @@
   background: #f00;
   padding: 7px;
   border-radius: 50%;
+}
+
+.navbar{
+  width: 100%;
+background-color:  #055287;
+}
+
+.searchbox{
+  margin-left:2px;
 }

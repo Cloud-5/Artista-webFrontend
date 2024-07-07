@@ -10,9 +10,11 @@ import { ArtistNewHomeServiceService } from './artist-new-home-service.service';
 export class ArtistNewHomeComponent implements OnInit {
 
   public userData: any = {};
+  private socialAccounts: any[] = [];
   public artworks: any = [];
   router: any;
   public artworksCount: number = 0;
+  private rank:number = 0;
 
 
   constructor(private artistServices: ArtistNewHomeServiceService,ArtistCreationsService:ArtistCreationsService) { }
@@ -24,11 +26,13 @@ export class ArtistNewHomeComponent implements OnInit {
   }
 
   loadArtistData(): void {
-    this.artistServices.getArtistDetail(1).subscribe((data: any) => {
-      this.userData = data;
-      console.log("Artist Details: ", data);
+    this.artistServices.getArtistDetail('1').subscribe((data: any) => {
+      this.userData = data.artistData[0];
+      this.socialAccounts = data.socialAccounts;
+      this.rank = data.rank.featured;
+      console.log("Artist Details:========================== ", this.rank);
 
-      this.artworks.reverse();
+      //this.artworks.reverse();
     })
   }
 
@@ -40,7 +44,7 @@ export class ArtistNewHomeComponent implements OnInit {
        let id =  this.getArtworkLikes(e.artwork_id);
        console.log(id);
       });
-      console.log("Artworks: ", data);
+      //console.log("Artworks: ", data);
     })
   }
 

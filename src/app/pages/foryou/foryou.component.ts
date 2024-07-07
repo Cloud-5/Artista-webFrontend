@@ -9,7 +9,8 @@ import { ForyouServiceService } from './foryou-service.service';
 export class ForyouComponent implements OnInit {
 
   artsData: any[] = [];
-  userId: string = localStorage.getItem('user_id')||'';
+  userId: string = localStorage.getItem('user_id') || '';
+
   currentPage: number = 1;
   pageSize: number = 20;
   loading: boolean = false;
@@ -18,10 +19,12 @@ export class ForyouComponent implements OnInit {
   constructor(private foryouService: ForyouServiceService) { }
 
   ngOnInit(): void {
-    this.fetchArtworks();
+     this.fetchArtworks();
+  
   }
 
   fetchArtworks(): void {
+    
     if (this.loading || this.allDataLoaded) return; // Prevent multiple simultaneous requests
 
     this.loading = true;

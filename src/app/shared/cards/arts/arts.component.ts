@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ArtsComponent {
   @Input() art: any;
-  @Input() userId!:string;
+  @Input() userId!: string;
   //private isBrowser: boolean;
 
   constructor(//private cartService: CartServiceService,

@@ -24,4 +24,6 @@ export class ArtistServiceService {
   getLocations(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/locations`);
   }
+
+  
 }

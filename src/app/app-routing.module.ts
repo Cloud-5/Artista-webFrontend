@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'customer-profile-gallery',component: CustomerProfileGalleryComponent, },
   { path: 'edit-customer-profile/:userId',component: EditCustomerProfileComponent, },
   { path: 'following-artists', component: FollowingArtistsComponent },
-  { path: 'artist-portfolio', component: ArtistPortfolioComponent },
+  { path: 'artist-portfolio/:user_id', component: ArtistPortfolioComponent },
   { path: 'feedback-list-card', component: FeedbackListComponent },
   { path: 'arts', component: ArtsComponent },
   { path: 'search-art', component: SearchArtComponent ,canActivate: [AuthGuard]},
@@ -80,13 +80,12 @@ const routes: Routes = [
 
   //dhanushka
   { path: 'artist/new-home', component: ArtistNewHomeComponent  },
-  {path: 'artist/edit',component:EditArtistProfileComponent},
+  {path: 'artist/edit/:userId',component:EditArtistProfileComponent},
   { path: 'artist-feedback', component: ArtistFeedbackComponent },
   { path: 'artist-followers', component: ArtistFollowersComponent },
   {path:'upload',component:UploadArtworksComponent},
   {path:'notification',component:NotificationComponent},
   {path:'help',component:HelpCenterComponent}
-
 ];
 
 @NgModule({

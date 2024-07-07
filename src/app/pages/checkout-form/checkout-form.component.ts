@@ -23,7 +23,8 @@ export class CheckoutFormComponent implements OnInit {
   price: number = 0;
   userData: any = {}; // Object to store user data
   cartItems: any[] = []; // Array to store cart items
-  userId: string = localStorage.getItem('user_id')||'';
+  userId: string = localStorage.getItem('user_id') || '';
+
 
 
   fiName: string = '';

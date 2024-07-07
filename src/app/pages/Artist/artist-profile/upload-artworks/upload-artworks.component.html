@@ -42,7 +42,7 @@
         <button type="submit" class="upload-button">Upload Files</button>
         <button type="button" routerLink="" class="cancel-button">Back</button>
       </div>
-    </form>
+
     <div class="having-problems">
       <p>Having problems? Try the basic uploader.</p>
     </div>
@@ -159,66 +159,210 @@
   </div>
 </div> -->
 
-
-<app-navbar></app-navbar>
 <div class="main">
-  <div class="container-fluid ">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 col-md-7 p-0">
         <img src="../../../../../assets/imgs/art.jpg" class="left-image">
       </div>
-      <div class="col-sm-6 col-md-5 intro-section ">
-        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+      <div class="col-sm-6 col-md-5 intro-section">
+        <!-- <div class="form-group">
+          <label for="artType">Select Art Type</label>
+          <select id="artType" class="form-control input-area">
+            <option value="2d">2D Art</option>
+            <option value="3d">3D Art</option>
+          </select>
+        </div> -->
+        <div class="container mt-5">
+          <h2>Upload Artwork</h2>
+
+          <!-- Artwork Type Switch -->
+          <div class="mb-4">
+            <label for="artworkType" class="form-label">Select Artwork Type</label>
+            <select
+              id="artworkType"
+              class="form-control"
+              [(ngModel)]="artType"
+              (change)="onArtworkTypeChange()"
+            >
+              <option value="2d">2D Artwork</option>
+              <option value="3d">3D Artwork</option>
+            </select>
+          </div>
+          <form *ngIf="artType === '2d'">
+            <div class="input-group mb-3">
+              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+              <label class="input-group-text btn-custom">Choose File</label>
+            </div>
+            <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
+
+            <div class="form-group">
+              <label for="title2D">Artwork Title</label>
+              <input type="text" id="title2D" name="title" class="form-control input-area" ngModel required>
+            </div>
+
+            <div class="form-group">
+              <label for="price2D">Price</label>
+              <input type="number" id="price2D" name="price" class="form-control input-area" ngModel required>
+            </div>
+
+            <div class="form-group">
+              <label for="category2D">Category</label>
+              <select id="category2D" name="category" class="form-control input-area" ngModel required>
+                <option value="anime">Anime</option>
+                <!-- Add more 2D categories if needed -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="description2D">Description</label>
+              <textarea id="description2D" name="description" class="form-control input-area" ngModel required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="tags2D">Tags</label>
+              <input type="text" id="tags2D" name="tags" class="form-control input-area" placeholder="Comma-separated tags" ngModel required>
+            </div>
+
+            <div class="form-group d-flex justify-content-between">
+              <button type="submit" class="btn btn-custom">Upload 2D Artwork</button>
+              <button type="button" class="btn btn-custom" >Cancel</button>
+            </div>
+
+            <div *ngIf="isUploading2D" class="uploading-animation">Uploading...</div>
+          </form>
+
+          <!-- 3D Artwork Form -->
+          <form *ngIf="artType === '3d'" >
+            <div class="input-group mb-3">
+              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+              <label class="input-group-text btn-custom">Choose File</label>
+            </div>
+            <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
+
+            <div class="form-group">
+              <label for="title3D">Artwork Title</label>
+              <input type="text" id="title3D" name="title" class="form-control input-area" ngModel required>
+            </div>
+
+            <div class="form-group">
+              <label for="price3D">Price</label>
+              <input type="number" id="price3D" name="price" class="form-control input-area" ngModel required>
+            </div>
+
+            <div class="form-group">
+              <label for="category3D">Category</label>
+              <select id="category3D" name="category" class="form-control input-area" ngModel required>
+                <option value="sculpture">Sculpture</option>
+                <!-- Add more 3D categories if needed -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="description3D">Description</label>
+              <textarea id="description3D" name="description" class="form-control input-area" ngModel required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="tags3D">Tags</label>
+              <input type="text" id="tags3D" name="tags" class="form-control input-area" placeholder="Comma-separated tags" ngModel required>
+            </div>
+
+            <div class="form-group d-flex justify-content-between">
+              <button type="submit" class="btn btn-custom" >Upload 3D Artwork</button>
+              <button type="button" class="btn btn-custom" >Cancel</button>
+            </div>
+
+            <div *ngIf="isUploading3D" class="uploading-animation">Uploading...</div>
+          </form>
+        </div>
+
+
+        <!-- <form *ngIf="artType === '2d'">
           <div class="input-group mb-3">
-            <input type="file" class="form-control input-area" id="inputGroupFile02" (change)="onFileSelect($event)">
-            <label class="input-group-text btn-custom" for="inputGroupFile02">Choose File</label>
+            <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+            <label class="input-group-text btn-custom">Choose File</label>
           </div>
           <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
 
           <div class="form-group">
-            <label for="title">Artwork Title</label>
-            <input type="text" id="title" formControlName="title" class="form-control input-area">
-          </div>
-
-          <!-- <div class="form-group">
-            <label for="keywords">Keywords</label>
-            <input type="text" id="keywords" formControlName="keywords" class="form-control">
-          </div> -->
-
-          <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" id="price" formControlName="price" class="form-control input-area">
+            <label for="title2D">Artwork Title</label>
+            <input type="text" id="title2D" name="title" class="form-control input-area" ngModel required>
           </div>
 
           <div class="form-group">
-            <label for="category">Category</label>
-            <select id="category" formControlName="category" class="form-control input-area">
-              <option value="3d">3D Art</option>
-              <option value="2d">2D Art</option>
+            <label for="price2D">Price</label>
+            <input type="number" id="price2D" name="price" class="form-control input-area" ngModel required>
+          </div>
+
+          <div class="form-group">
+            <label for="category2D">Category</label>
+            <select id="category2D" name="category" class="form-control input-area" ngModel required>
               <option value="anime">Anime</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" formControlName="description" class="form-control input-area"></textarea>
+            <label for="description2D">Description</label>
+            <textarea id="description2D" name="description" class="form-control input-area" ngModel required></textarea>
           </div>
 
           <div class="form-group">
-            <label for="tags">Tags</label>
-            <input type="text" id="tags" formControlName="tags" class="form-control input-area" placeholder="Comma-separated tags">
+            <label for="tags2D">Tags</label>
+            <input type="text" id="tags2D" name="tags" class="form-control input-area" placeholder="Comma-separated tags" ngModel required>
           </div>
 
           <div class="form-group d-flex justify-content-between">
-            <button type="submit" class="btn btn-custom " [disabled]="isUploading">Upload Artwork</button>
+            <button type="submit" class="btn btn-custom" [disabled]="isUploading">Upload 2D Artwork</button>
             <button type="button" class="btn btn-custom">Cancel</button>
           </div>
 
           <div *ngIf="isUploading" class="uploading-animation">Uploading...</div>
-        </form>
+        </form> -->
+
+        <!-- <form *ngIf="artType === '3d'" >
+          <div class="input-group mb-3">
+            <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
+            <label class="input-group-text btn-custom">Choose File</label>
+          </div>
+          <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
+
+          <div class="form-group">
+            <label for="title3D">Artwork Title</label>
+            <input type="text" id="title3D" name="title" class="form-control input-area" ngModel required>
+          </div>
+
+          <div class="form-group">
+            <label for="price3D">Price</label>
+            <input type="number" id="price3D" name="price" class="form-control input-area" ngModel required>
+          </div>
+
+          <div class="form-group">
+            <label for="category3D">Category</label>
+            <select id="category3D" name="category" class="form-control input-area" ngModel required>
+              <option value="sculpture">Sculpture</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description3D">Description</label>
+            <textarea id="description3D" name="description" class="form-control input-area" ngModel required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="tags3D">Tags</label>
+            <input type="text" id="tags3D" name="tags" class="form-control input-area" placeholder="Comma-separated tags" ngModel required>
+          </div>
+
+          <div class="form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-custom" [disabled]="isUploading">Upload 3D Artwork</button>
+            <button type="button" class="btn btn-custom">Cancel</button>
+          </div>
+
+          <div *ngIf="isUploading" class="uploading-animation">Uploading...</div>
+        </form> -->
+
       </div>
     </div>
   </div>
 </div>
-
-<app-footer></app-footer>
