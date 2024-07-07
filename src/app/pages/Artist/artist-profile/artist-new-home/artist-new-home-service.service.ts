@@ -12,9 +12,11 @@ export class ArtistNewHomeServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getArtistDetail(artistId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/user-management/${artistId}`);
+  getArtistDetail(artistId: string): Observable<any> {
+    console.log('artistId', artistId);
+    return this.http.get(`${this.apiUrl}/artist-new-home/${artistId}`);
   }
+
 
   getArtworksForArtist(artistId: number) {
     return this.http.get(`${this.apiUrl}/artwork/all/${artistId}`);

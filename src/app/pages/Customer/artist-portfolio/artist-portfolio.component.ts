@@ -20,6 +20,7 @@ export class ArtistPortfolioComponent implements OnInit {
   isFollowing: boolean = false;
   followButtonText: string = "Follow";
   followButtonClass: string = "follow";
+  rating: number = 0; // Initialize the rating property
 
   routeSub: Subscription | undefined;
 
@@ -30,7 +31,7 @@ export class ArtistPortfolioComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
     this.ratingForm = this.fb.group({
-      rating: ['', Validators.required],
+      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
     });
     this.feedbackForm = this.fb.group({
       feedback: ['', [Validators.required, Validators.maxLength(1000)]],
@@ -152,4 +153,10 @@ export class ArtistPortfolioComponent implements OnInit {
       );
     }
   }
+
+  onStarClick(star: number): void {
+    this.rating = star;
+    this.ratingForm.patchValue({ rating: star });
+  }
 }
+

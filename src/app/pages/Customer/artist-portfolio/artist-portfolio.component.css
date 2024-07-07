@@ -124,6 +124,58 @@ a {
   object-fit: cover;
 }
 
+.nav-item{
+  width: 50%;
+  text-align: center;
+  font-weight: 500;
+  font-size: larger;
+}
+
+.tab-content{
+  background: #fff;
+  padding: 20px;
+  width:830px;
+}
+
+.bi {
+  font-size: 2rem; /* Adjust the size of the icons */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the icons */
+}
+
+
+.following {
+  background-color: #000000 !important;
+  color: rgb(255, 255, 255) !important;
+  border: #000000 solid 1px !important;
+}
+
+.follow{
+  background-color: #ffffff !important;
+  color: black !important;
+  border: #000000 solid 1px !important;
+}
+
+.follow:hover {
+  background-color: #000000 !important;
+  color: white !important;
+  border: #000000 solid 1px !important;
+}
+
+.fa-star {
+  font-size: 24px;
+  color: grey;
+  cursor: pointer;
+  margin-right: 5px; /* Add space between stars */
+}
+
+.fa-star.checked {
+  color: gold;
+}
+.stats span{
+
+  font-size: 20px;
+ }
+
 /* Responsiveness */
 
 @media (min-width: 868px) {
@@ -163,64 +215,3 @@ a {
   }
 }
 
-.nav-item{
-  width: 50%;
-  text-align: center;
-  font-weight: 500;
-  font-size: larger;
-}
-
-.tab-content{
-  background: #fff;
-  padding: 20px;
-  width:830px;
-}
-
-.bi {
-  font-size: 2rem; /* Adjust the size of the icons */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the icons */
-}
-
-
-.following {
-  background-color: #000000 !important;
-  color: rgb(255, 255, 255) !important;
-  border: #000000 solid 1px !important;
-}
-
-.follow{
-  background-color: #ffffff !important;
-  color: black !important;
-  border: #000000 solid 1px !important;
-}
-
-.follow:hover {
-  background-color: #000000 !important;
-  color: white !important;
-  border: #000000 solid 1px !important;
-}
-
-.rating-order-wrp {
-  .d-flex {
-      display: flex;
-  }
-  .align-items-center {
-      align-items: center;
-  }
-  .w-50 {
-      width: 50%;
-  }
-
-}
-
-::ng-deep label.star {
-  padding: 0 5px !important;
-  font-size: 20px !important;
-  color: #ddd !important;
-  &::before {
-      content: "\f005" !important;
-  }
-  &:hover {
-      transform: rotate(0deg) scale(1.2) !important;
-  }
-}

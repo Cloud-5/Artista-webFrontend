@@ -12,7 +12,7 @@ export class PurchaseHistoryService {
 
   constructor(private http: HttpClient) { }
 
-  getPurchaseHistory(userId: number): Observable<any> {
+  getPurchaseHistory(userId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
