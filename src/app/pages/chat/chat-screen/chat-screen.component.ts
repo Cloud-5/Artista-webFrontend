@@ -30,7 +30,7 @@ export class ChatScreenComponent implements OnInit {
       this.userRole = this.getFromLocalStorage('role', '');
       this.senderId = this.getFromLocalStorage('uid', '');
       this.artistName = this.getFromLocalStorage('artistName', '');
-      if (this.userRole === 'enthusiast') {
+      if (this.userRole === 'customer') {
         this.recipientId = this.getFromLocalStorage('artistFirebaseUid', '');
         this.loadMessages();
       } else if (this.userRole === 'artist') {
