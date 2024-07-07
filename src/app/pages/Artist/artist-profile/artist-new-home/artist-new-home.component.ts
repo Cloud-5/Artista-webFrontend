@@ -17,12 +17,24 @@ export class ArtistNewHomeComponent implements OnInit {
   private rank:number = 0;
 
 
+
+
+
   constructor(private artistServices: ArtistNewHomeServiceService,ArtistCreationsService:ArtistCreationsService) { }
+
+
+  changeRating(newRating: number): void {
+    this.userData.AverageRating = newRating;
+  }
+
+
+
 
   ngOnInit(): void {
     this.loadArtistData();
     this.loadArtworks();
     this.loadArtworksCount();;
+
   }
 
   loadArtistData(): void {
@@ -30,7 +42,8 @@ export class ArtistNewHomeComponent implements OnInit {
       this.userData = data.artistData[0];
       this.socialAccounts = data.socialAccounts;
       this.rank = data.rank.featured;
-      console.log("Artist Details:========================== ", this.rank);
+      console.log("Artist Details:========================== ", this.userData);
+      this.userData.AverageRating=4.5;
 
       //this.artworks.reverse();
     })

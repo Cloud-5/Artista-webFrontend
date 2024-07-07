@@ -7,12 +7,50 @@
 
     <div class="left__col artist-details">
       <div class="img__container">
-        <img src={{userData.profile_photo_url}} alt={{userData.name}}/>
+        <img [src]="userData.ProfilePhoto" alt={{userData.name}}/>
         <span></span>
       </div>
       <h2>{{userData.FName + " " + userData.LName}}</h2>
-      <p class="sub-title"><b>{{userData.location}}</b></p>
-      <p>{{userData.dob}}</p>
+      <p class="sub-title"><b>{{userData.Location}}</b></p>
+      <div class="ratings">
+        <span
+        class="fa fa-star star"
+        [ngClass]="{
+          'star-active': userData.AverageRating >= 1,
+          'star-half': userData.AverageRating >= 0.5 && userData.AverageRating < 1
+        }"
+      ></span>
+      <span
+        class="fa fa-star star"
+        [ngClass]="{
+          'star-active': userData.AverageRating >= 2,
+          'star-half': userData.AverageRating >= 1.5 && userData.AverageRating < 2
+        }"
+      ></span>
+      <span
+        class="fa fa-star star"
+        [ngClass]="{
+          'star-active': userData.AverageRating >= 3,
+          'star-half': userData.AverageRating >= 2.5 && userData.AverageRating < 3
+        }"
+      ></span>
+      <span
+        class="fa fa-star star"
+        [ngClass]="{
+          'star-active': userData.AverageRating >= 4,
+          'star-half': userData.AverageRating >= 3.5 && userData.AverageRating < 4
+        }"
+      ></span>
+      <span
+        class="fa fa-star star"
+        [ngClass]="{
+          'star-active': userData.AverageRating >= 5,
+          'star-half': userData.AverageRating >= 4.5 && userData.AverageRating < 5
+        }"
+      ></span>
+
+      </div>
+
       <!-- <p><b>Member Since : </b>{{userData.registered_at.split("T")[0]}}</p> -->
 
 
@@ -25,12 +63,18 @@
       </div> -->
 
       <ul class="about">
-        <li><span>{{artworksCount}} </span>Gallery</li>
+        <li><span>{{userData.NumberOfArtworks}} </span>Gallery</li>
         <li><span>{{userData.followers}}3</span>Followers</li>
-        <li><span>{{0}}</span>Purchases</li>
+        <li><span>{{userData.NumberOfFollowers}}</span>Purchases</li>
       </ul>
 
-      <p>{{userData.description}}</p>
+
+
+
+
+
+
+      <p>{{userData.Description}}</p>
 
       <div class="content">
 

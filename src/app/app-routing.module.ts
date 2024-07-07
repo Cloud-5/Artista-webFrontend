@@ -79,10 +79,10 @@ const routes: Routes = [
 
 
   //dhanushka
-  { path: 'artist/new-home', component: ArtistNewHomeComponent  },
-  {path: 'artist/edit/:userId',component:EditArtistProfileComponent},
-  { path: 'artist-feedback', component: ArtistFeedbackComponent },
-  { path: 'artist-followers', component: ArtistFollowersComponent },
+  { path:'artist/new-home', component: ArtistNewHomeComponent  },
+  {path:'artist/edit/:userId',component:EditArtistProfileComponent},
+  { path:'artist-feedback', component: ArtistFeedbackComponent },
+  { path:'artist-followers', component: ArtistFollowersComponent },
   {path:'upload',component:UploadArtworksComponent},
   {path:'notification',component:NotificationComponent},
   {path:'help',component:HelpCenterComponent}
