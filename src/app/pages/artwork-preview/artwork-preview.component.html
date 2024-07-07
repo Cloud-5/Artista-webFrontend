@@ -171,17 +171,23 @@
                 </p>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="cards">
-                <div class="card shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
-                    <div class="badge1 editor-choice">Artist's Best</div>
-                    <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner">
-                    <section class="title">
-                        <p>{{artwork.title}}</p>
-                    </section>
-                </div>
+
+        <!--carousal-->
+        <div class="carousel-container">
+            <div class="carousel">
+              <div class="card2 shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
+                <div class="badge1 editor-choice">Artist's Best</div>
+                <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner">
+                <section class="title">
+                  <p>{{artwork.title}}</p>
+                </section>
+              </div>
             </div>
-        </div>
+            <button class="carousel-control prev" (click)="prev()">&#10094;</button>
+            <button class="carousel-control next" (click)="next()">&#10095;</button>
+          </div>
+
+
         <div class="row mt-4 d-flex justify-content-center">
             <button class="btn btn-primary" style="width: 100px;">View All</button>
         </div>

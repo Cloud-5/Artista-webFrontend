@@ -41,7 +41,7 @@ import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new
 import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
-import { ArtistCreationsComponent } from './pages/artist/artist-profile/artist-creations/artist-creations.component';
+import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
 
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -89,6 +89,8 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
 import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,12 +138,11 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     NavbarComponent,
     ArtsComponent,
     ArtistNewHomeComponent,
-    UploadArtworksComponent,
     NotificationComponent,
     HelpCenterComponent,
     ArtCardComponent,
-
     ArtistCreationsComponent,
+    UploadArtworksComponent
 
 
   ],
@@ -154,10 +155,7 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
     MatCardModule,

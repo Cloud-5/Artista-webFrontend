@@ -1,5 +1,9 @@
+import { ImageUploadService } from './../../../../shared/services/image-upload.service';
 import { Component, OnInit } from '@angular/core';
 import { EditArtistProfileService } from './edit-artist-profile.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ArtistNewHomeServiceService } from '../artist-new-home/artist-new-home-service.service';
 
 @Component({
   selector: 'app-edit-artist-profile',
@@ -26,6 +30,7 @@ export class EditArtistProfileComponent implements OnInit {
 
 
   userData: any = {}
+  profilePhoto: any;
 
 
   months: { name: string, value: number }[] = [
@@ -43,6 +48,7 @@ export class EditArtistProfileComponent implements OnInit {
     { name: 'December', value: 12 }
   ];
 
+  public userId:string ='1';
 
 
 
@@ -72,25 +78,39 @@ export class EditArtistProfileComponent implements OnInit {
     'Zambia', 'Zimbabwe'
   ];
 
+  routeSub: Subscription | undefined;
 
-  constructor(private artistService: EditArtistProfileService) { }
+
+  constructor(private artistService: EditArtistProfileService, private ImageUploadService:ImageUploadService, private route: ActivatedRoute,private artist:ArtistNewHomeServiceService) { }
 
   ngOnInit(): void {
-    this.loadArtistData();
+    this.routeSub = this.route.params.subscribe(params => {
+      this.userId = params['userId'];
+      console.log('userId',this.userId)
+      this.loadArtistData(this.userId);
+    });
   }
 
-  loadArtistData(): void {
-    this.artistService.getArtistDetail(1).subscribe((data: any) => {
-      this.userData = data;
-      this.updateDetails.fName = this.userData.fName;
+  loadArtistData(userId:string): void {
+    this.artist.getArtistDetail(userId).subscribe((data: any) => {
+      this.userData = data.artistData[0];
+      console.log('data',this.userData)
+      this.updateDetails.fName = this.userData.FName;
       this.updateDetails.LName = this.userData.LName;
       this.updateDetails.location = this.userData.location;
       this.updateDetails.description = this.userData.description;
       this.updateDetails.profession = this.userData.profession;
       this.updateDetails.profile_photo_url = this.userData.profile_photo_url;
-
-
-    });
+    })
+    // this.artistService.getArtistDetail(userId).subscribe((data: any) => {
+    //   this.userData = data;
+    //   this.updateDetails.fName = this.userData.fName;
+    //   this.updateDetails.LName = this.userData.LName;
+    //   this.updateDetails.location = this.userData.location;
+    //   this.updateDetails.description = this.userData.description;
+    //   this.updateDetails.profession = this.userData.profession;
+    //   this.updateDetails.profile_photo_url = this.userData.profile_photo_url;
+    // });
   }
 
   updateProfile(): void {
@@ -101,18 +121,45 @@ export class EditArtistProfileComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.userData.profile_photo_url = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+  // onFileSelected(event: any): void {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       this.userData.profile_photo_url = e.target.result;
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
   cancelEdit(): void {
     alert("Edit profile cancelled.");
+  }
+
+  onFileSelected(event: any) {
+    const FILE = (event.target as HTMLInputElement).files?.[0];
+    this.profilePhoto = FILE;
+  }
+
+  newImageUpload() {
+    const imageForm = new FormData();
+    imageForm.append('image', this.profilePhoto as Blob);
+    this.ImageUploadService.imageUpload(imageForm).subscribe((res:any) => {
+      this.userData.ProfilePhoto = res.image.location;
+    });
+  }
+
+  removeExistingImage() {
+    if (this.userData.ProfilePhoto) {
+      const key = this.userData.ProfilePhoto.split('/').pop();
+      this.ImageUploadService.removeImage(key as any).subscribe(
+        () => {
+          this.userData.ProfilePhoto = '';
+        },
+        (error) => {
+          console.log('error removing image', error);
+        }
+      );
+    }
   }
 }

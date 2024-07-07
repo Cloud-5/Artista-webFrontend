@@ -355,25 +355,7 @@
     margin: 0;
   }
 
-  .badge1 {
-    position: absolute;
-    width: fit-content;
-    top: 10px;
-    right:-5px;
-    background-color: #ff5733;
-    color: white;
-    padding: 5px 10px;
-    font-size: 12px;
-    font-weight: 400;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 50px 0 0 50px;
-    z-index: 1;
-  }
-  
-  .editor-choice {
-    background-color: blue;
-    border: 1px solid blue;
-  }
+
 
 .gallery {
   display: flex;
@@ -403,13 +385,74 @@
   justify-content: left;
 }
 
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0 0 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card2 {
+  min-width: 25%;
+  box-sizing: border-box;
+  background-color: white;
+  position: relative;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
+
+.badge1 {
+  position: absolute;
+  width: fit-content;
+  top: 10px;
+  right:-5px;
+  background-color: #ff5733;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 50px 0 0 50px;
+  z-index: 1;
+}
+
+.editor-choice {
+  background-color: rgb(22, 0, 96);
+  border: 1px solid white;
+}
+
+
+
 @media (max-width: 992px) {
   .gallery {
     flex-wrap: wrap;
   }
   
   .column {
-    flex: 0 0 50%; /* 2 columns on medium screens */
+    flex: 0 0 50%;
   }
 }
 
@@ -428,8 +471,6 @@
       padding: 0;
     }
 
-
-  
     .collapsible {
       height: auto !important;
     }
@@ -461,4 +502,27 @@
       justify-content: left;
     }
   }
-  
+
+@media (min-width: 1200px) {
+  .card2 {
+    min-width: calc(25% - 12px); 
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .card2 {
+    min-width: calc(33.33% - 10.67px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .card2 {
+    min-width: calc(50% - 8px);
+  }
+}
+
+@media (max-width: 767px) {
+  .card2 {
+    min-width: calc(100% - 0px); 
+  }
+}

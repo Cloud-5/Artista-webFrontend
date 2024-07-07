@@ -95,17 +95,48 @@
 
 
 <app-navbar></app-navbar>
-
 <div class="container rounded bg-green mt-5 mb-5 main-form">
   <div class="row">
     <div class="col-md-3 border-right">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5" [src]="userData.profile_photo_url" height="90" width="90">
+        <img class="rounded-circle mt-5" [src]="userData.ProfilePhoto" height="90" width="90">
         <span class="font-weight-bold">{{userData.fName + " " + userData.LName}}</span>
         <span class="font-weight-bold">{{userData.profession}}</span>
         <span class="text-black-50">{{userData.email}}</span>
         <span>{{userData.location}}</span>
       </div>
+
+      <h2>Profile Image</h2>
+      <div class="col-md-4">
+        <button
+                *ngIf="userData.ProfilePhoto"
+                (click)="removeExistingImage()"
+                class="btn btn-danger"
+                style="margin-top: 5px; margin-right: 10px"
+                type="button"
+              >
+                Remove
+              </button>
+        <div class="mb-3" *ngIf="!userData.ProfilePhoto">
+          <label for="profile-image" class="form-label">Profile Image:</label>
+          <input
+            type="file"
+            class="form-control"
+            id="profile-image"
+            name="profile-image"
+            (change)="onFileSelected($event)"
+          />
+          <button
+                (click)="newImageUpload()"
+                class="btn btn-primary"
+                style="margin-top: 10px; margin-right: 10px"
+                type="button"
+              >
+                Upload Image
+              </button>
+        </div>
+      </div>
+
     </div>
     <div class="col-md-5 border-right">
       <div class="p-3 py-5">
@@ -232,6 +263,7 @@
     </div>
   </div>
 </div>
+
 
 
 
