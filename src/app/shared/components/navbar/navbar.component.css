@@ -29,8 +29,8 @@
 /* Increase the size and make the text bold for "ForYou" and "Artist" */
 .navbar-nav .nav-link {
   font-size: 1.2rem; /* Adjust the size as needed */
-  font-weight: 220; /* Make the text bold */
-  margin-right: 50px;
+  font-weight: 320; /* Make the text bold */
+  margin-right: 5vw;
   transition: transform 0.3s ease, color 0.3s ease; /* Added transform */
 }
 
