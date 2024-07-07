@@ -12,7 +12,7 @@ export class ForyouServiceService {
 
   constructor(private http: HttpClient) { }
 
-  fetchAll(userId: number, page: number, pageSize: number): Observable<any> {
+  fetchAll(userId: string , page: number, pageSize: number): Observable<any> {
     const url = `${this.apiUrl}/${userId}?page=${page}&pageSize=${pageSize}`;
     return this.http.get(url);
   }

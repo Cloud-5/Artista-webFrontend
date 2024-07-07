@@ -9,7 +9,7 @@ import { PreferencesService } from '../first-foryou/preferences.service';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent {
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id')||'';
 
 
   categoryData: any[]= [];

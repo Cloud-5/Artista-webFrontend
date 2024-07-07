@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ArtistServiceService } from '../artist/artist-service.service';
+import { ArtistServiceService } from '../Artist/artist-service.service';
 
 interface Artist {
   user_id: number;

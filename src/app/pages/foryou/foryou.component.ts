@@ -9,7 +9,7 @@ import { ForyouServiceService } from './foryou-service.service';
 export class ForyouComponent implements OnInit {
 
   artsData: any[] = [];
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id')||'';
   currentPage: number = 1;
   pageSize: number = 20;
   loading: boolean = false;

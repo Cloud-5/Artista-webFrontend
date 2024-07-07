@@ -12,29 +12,29 @@ export class CartItemService {
 
   constructor(private http: HttpClient) { }
 
-  addItem(userId: number, artworkId: number): Observable<any> {
+  addItem(userId: string, artworkId: number): Observable<any> {
     console.log('userId', userId, 'artworkId', artworkId);
     return this.http.post(`${this.apiUrl}/add`, { userId, artworkId });
   }
 
-  removeItem(userId: number, artworkId: number): Observable<any> {
+  removeItem(userId: string, artworkId: number): Observable<any> {
     return this.http.request('delete', `${this.apiUrl}/remove`, { body: { userId, artworkId } });
   }
   
 
-  getCartItems(userId: number): Observable<any> {
+  getCartItems(userId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
-  incrementQuantity(userId: number, artworkId: number): Observable<any> {
+  incrementQuantity(userId:string, artworkId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/increment`, { userId, artworkId });
   }
 
-  decrementQuantity(userId: number, artworkId: number): Observable<any> {
+  decrementQuantity(userId: string, artworkId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/decrement`, { userId, artworkId });
   }
 
-  clearCart(userId: number): Observable<any> {
+  clearCart(userId:string): Observable<any> {
     return this.http.request('delete', `${this.apiUrl}/clear`, { body: { userId } });
   }
 }  

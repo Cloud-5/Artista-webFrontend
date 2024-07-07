@@ -5,10 +5,10 @@
 
    <!-- Navbar -->
   <div> 
-    <nav class="navbar navbar-expand-lg bg-primary navbar-custom fixed-top" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" data-bs-theme="dark">
       <div class="container-fluid">
         <!-- Artista Logo -->
-        <img src="../assets/images/logoArt.png" alt="Artista Logo" class="custom-logo img-fluid" />
+        <img src="../../../assets/artista logo.jpg" alt="Artista Logo" class="custom-logo img-fluid" />
   
   
          <!-- Search Bar -->
@@ -62,27 +62,17 @@
   </div>
   <br>
 
-  <div id="artworkCarousel" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let group of groupedArtsData; let i = index" [class.active]="i === 0">
-        <div class="card-container">
-        <div class="d-flex">
-          <div *ngFor="let art of group" >
-            <app-card [art]="art"></app-card>
-          </div>
-        </div>
+  <div class="carousel-container" *ngIf="dataLoaded">
+    <div class="carousel artwork-carousel">
+      <div class="card2 shadow" *ngFor="let art of artsData" >
+        <app-card [art]="art"></app-card>
       </div>
     </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#artworkCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#artworkCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <button class="carousel-control prev" (click)="prev()">&#10094;</button>
+    <button class="carousel-control next" (click)="next()">&#10095;</button>
   </div>
+</div>
+
   <br><br>
   </div>
 
@@ -96,30 +86,19 @@
   <div>
     <h2>SEE ALL TRENDING ARTISTS</h2>
   </div>
-  <div id="artistCarousel" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let chunk of chunkedArtistsData; let i = index" [class.active]="i === 0">
-        <div class="card-container-artist">
-        
-          <div class="d-flex  "> 
-          <div *ngFor="let artist of chunk" class="col-md-2">
-            <app-artist-card [artist]="artist"></app-artist-card>
-          </div>
-
-        </div>
-      </div>
-       
+  
+  <div class="carousel-container" *ngIf="dataLoaded">
+    <div class="carousel artist-carousel">
+      <div class="card1 shadow" *ngFor="let artist of artistsData" >
+        <app-artist-card [artist]="artist"></app-artist-card>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#artistCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#artistCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <button class="carousel-control prev" (click)="prevArtist()">&#10094;</button>
+    <button class="carousel-control next"  (click)="nextArtist()">&#10095;</button>
   </div>
+
+
+
   <br><br>
 
 
@@ -143,7 +122,7 @@
 </div>
 <br><br>
   </div>
-
+</div>
 
   <div>
     <!-- footer -->

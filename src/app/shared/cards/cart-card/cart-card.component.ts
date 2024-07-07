@@ -13,7 +13,7 @@ export class CartCardComponent {
   @Input() art: any;
   @Output() itemChanged = new EventEmitter<void>();
   @Output() itemRemoved = new EventEmitter<void>();
-  userId: number =localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id')||'';
 
   constructor(//private cartService: CartServiceService,
      private cartItemService: CartItemService) {

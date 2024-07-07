@@ -39,7 +39,19 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Location</label>
-                  <input type="text" class="form-control" formControlName="location">
+                  <select class="form-select" formControlName="location">
+                    <option value="" disabled selected>Select your location</option>
+                    <option value="United State">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Brazi">Brazil</option>
+                    <option value="India">India</option>
+                  </select>
                   <div *ngIf="signupForm.get('location')?.invalid && signupForm.get('location')?.touched" class="text-danger">
                     Location is required
                   </div>
@@ -49,19 +61,20 @@
                   <select class="form-select" formControlName="role">
                     <option value="" disabled selected>Select your role</option>
                     <option value="artist">Artist</option>
-                    <option value="enthusiast">Customer</option>
+                    <option value="customer">Customer</option>
                   </select>
                   <div *ngIf="signupForm.get('role')?.invalid && signupForm.get('role')?.touched" class="text-danger">
                     Role is required
                   </div>
                 </div>
-                <!-- <div class="col-12">
-                  <label for="userId">User Code</label>
-                  <input name="user_index" type="text" id="userId" formControlName="usercode" autocomplete="off" required readonly>
-                  <span id="userId-availability" style="font-size:12px;"></span>
-                </div> -->
-              
-                <p>By clicking create account... <a href="">Terms of use</a> & <a href="">privacy policy</a></p>
+                <div class="col-12">
+                  <label class="form-label">Registration Date</label>
+                  <input type="date" class="form-control" formControlName="registered_at">
+                  <div *ngIf="signupForm.get('registered_at')?.invalid && signupForm.get('registered_at')?.touched" class="text-danger">
+                   Registration Date  is required
+                  </div>
+                </div>
+               
                 <div class="col-12">
                   <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Create Account</button>
                 </div>

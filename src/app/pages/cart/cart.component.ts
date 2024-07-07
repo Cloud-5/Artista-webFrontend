@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   totalQuantity: number = 0;
   subTotal: number = 0;
   cartItems: CartItem[] = [];
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id')||'';
 
   constructor(
     private router: Router,

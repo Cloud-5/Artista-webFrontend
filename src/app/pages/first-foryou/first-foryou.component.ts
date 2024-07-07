@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class FirstForyouComponent implements OnInit {
 
   categoryData: any[] = [];
-  userId: number = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')) : 0;
+  userId: string = localStorage.getItem('user_id')||'';
   selectedCategoryIds: number[] = [];
 
 
@@ -30,7 +30,7 @@ export class FirstForyouComponent implements OnInit {
   //     { categoryId: 'cat9', imageUrl: '../assets/images/digicol.jpg', title: 'Digital Collage', selected: false }
   // ];
 
-
+ 
   constructor(
     private preferencesService: PreferencesService,
     private router: Router
