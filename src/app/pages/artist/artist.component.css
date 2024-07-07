@@ -5,12 +5,17 @@
 }
 
 .custom-search{
-    width:400px;
+    width:10px;
     margin-left: 100px;
+    
 }
 
-.search-button{
-    margin-left:1px;
+.input-group-text {
+  cursor: pointer;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .column{

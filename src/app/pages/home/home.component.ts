@@ -115,7 +115,7 @@ export class HomeComponent implements OnInit {
   loadArtistData(): void {
     this.artistService.getArtist().subscribe(
       (data: any[]) => {
-       // console.log(data);
+       console.log(data);
         this.artistsData = data;
         this.chunkArtistsData();
       },

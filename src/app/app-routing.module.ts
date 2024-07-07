@@ -1,10 +1,10 @@
-import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
-import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
-import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
+import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
+import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
-import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
+import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
 
 
 import { NgModule, importProvidersFrom } from '@angular/core';
@@ -26,7 +26,7 @@ import { PurchaseImgCardComponent } from './pages/Customer/purchase-img-card/pur
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
-import { ArtistComponent } from './pages/Artist/artist.component';
+import { ArtistComponent } from './pages/artist/artist.component';
 import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'customer-profile-gallery',component: CustomerProfileGalleryComponent, },
   { path: 'edit-customer-profile/:userId',component: EditCustomerProfileComponent, },
   { path: 'following-artists', component: FollowingArtistsComponent },
-  { path: 'artist-portfolio', component: ArtistPortfolioComponent },
+  { path: 'artist-portfolio/:user_id', component: ArtistPortfolioComponent },
   { path: 'feedback-list-card', component: FeedbackListComponent },
   { path: 'arts', component: ArtsComponent },
   { path: 'search-art', component: SearchArtComponent ,canActivate: [AuthGuard]},
