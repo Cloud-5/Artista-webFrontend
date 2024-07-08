@@ -9,14 +9,34 @@
       <div *ngIf="userRole === 'artist'" class="col-md-3 customer-sidebar">
         <div class="customer-selection">
           <label for="selectCustomer">Select Customer</label>
-          <ul class="list-group">
+          <!-- <ul class="list-group">
             <li *ngFor="let customer of customers$ | async" 
                 (click)="onCustomerSelect(customer)" 
                 [class.active]="customer.firebaseUid === recipientId" 
                 class="list-group-item">
               {{ customer.name }}
             </li>
+          </ul> -->
+
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Customer" [(ngModel)]="searchTerm" (input)="filterCustomers()">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="bi bi-search"></i>
+              </span>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li *ngFor="let customer of filteredCustomers$ | async"
+                (click)="onCustomerSelect(customer)"
+                [class.active]="customer.firebaseUid === recipientId"
+                class="list-group-item">
+              {{ customer.name }}
+            </li>
           </ul>
+          
+          
+          
         </div>
       </div>
 

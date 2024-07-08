@@ -41,16 +41,26 @@
                   <label class="form-label">Location</label>
                   <select class="form-select" formControlName="location">
                     <option value="" disabled selected>Select your location</option>
-                    <option value="United State">United States</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Canada">Canada</option>
                     <option value="Australia">Australia</option>
-                    <option value="Germany">Germany</option>
-                    <option value="France">France</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Belgium">Belgium</option>
                     <option value="Brazi">Brazil</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Chaina">Chaina</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Greece">Greece</option>
                     <option value="India">India</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Netherland">Netherland</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Russia">Russia</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United State">United States</option>
                   </select>
                   <div *ngIf="signupForm.get('location')?.invalid && signupForm.get('location')?.touched" class="text-danger">
                     Location is required
