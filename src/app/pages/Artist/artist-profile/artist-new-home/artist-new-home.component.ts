@@ -38,7 +38,7 @@ export class ArtistNewHomeComponent implements OnInit {
   }
 
   loadArtistData(): void {
-    this.artistServices.getArtistDetail('1').subscribe((data: any) => {
+    this.artistServices.getArtistDetail('Ar-00001').subscribe((data: any) => {
       this.userData = data.artistData[0];
       this.socialAccounts = data.socialAccounts;
       this.rank = data.rank.featured;
@@ -50,7 +50,7 @@ export class ArtistNewHomeComponent implements OnInit {
   }
 
   loadArtworks(): void {
-    this.artistServices.getArtworksForArtist(1).subscribe((data: any) => {
+    this.artistServices.getArtworksForArtist('Ar-00001').subscribe((data: any) => {
       this.artworks = data;
       data.forEach((e: any) => {
         console.log(e.artwork_id)
@@ -80,7 +80,7 @@ export class ArtistNewHomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   loadArtworksCount(): void {
-    this.artistServices.getArtworksCountForArtist(1).subscribe((data: any) => {
+    this.artistServices.getArtworksCountForArtist('Ar-00001').subscribe((data: any) => {
       this.artworksCount = data.count;
       console.log("Artworks Count: ", data.count);
     });

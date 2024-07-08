@@ -10,11 +10,11 @@ export class ArtistFeedbackService {
 
   constructor(private http: HttpClient) {}
 
-  getFeedbackForArtist(artistId: number): Observable<any> {
+  getFeedbackForArtist(artistId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/artist-feedback/${artistId}`);
   }
 
-  deleteFeedback(feedbackId: number, artistId: number): Observable<any> {
+  deleteFeedback(feedbackId: number, artistId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/artist-feedback/${feedbackId}`);
   }
 }
