@@ -26,7 +26,7 @@
               {{ followButtonText }}
             </button>
           </div>
-          <button type="button" class="btn btn-secondary" routerLink='/chat' style="width: 140px; height: 50px;">Message</button>
+          <button type="button" class="btn btn-secondary" style="width: 140px; height: 50px;" (click)="messageArtist(artistData.firebase_uid, artistData.artist_name); $event.stopPropagation()">Message</button>
         </div>
         <ul class="about">
           <li><span>{{ artistData.total_likes }}</span>Likes</li>

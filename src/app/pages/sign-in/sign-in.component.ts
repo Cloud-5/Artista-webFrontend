@@ -89,7 +89,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
 
             // Navigate based on role
             if (decodedToken.role === 'artist') {
-              this.router.navigate(['/Artist']);
+              this.router.navigate(['/artist/new-home']);
             } else {
               this.authService.checkPreferences(response.data.user_id).subscribe(
                 (prefResponse: any) => {
@@ -115,13 +115,13 @@ export class SignInComponent implements OnInit, AfterViewInit {
               this.errorMessage = 'Invalid Credentials';
             } else {
               console.error('Login failed', error);
-              this.errorMessage = 'An error occurred while logging in. Please try again later.';
+              this.errorMessage = 'Email or Password Incorrect. Please try again later.';
             }
           }
         );
         console.log(email, password, this.recaptchaToken);
       } else {
-        this.errorMessage = 'Email, password or reCAPTCHA response is missing';
+        this.errorMessage =  ' Please confirm reCAPTCHA verification';
       }
     }
   }

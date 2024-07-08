@@ -1,5 +1,4 @@
-.ss
-{
+.ss {
     background-color: #055287 ;
     padding-top: 7px;
     padding: 7px;
@@ -44,53 +43,25 @@
     border-radius: 3%;
   
 }
-
-
-
-/* Style for tablets and smaller screens */
-@media (max-width: 768px) {
-    .g-recaptcha {
-        margin-left: 10px; /* Adjust margin for medium screens */
-        width: 100%; /* Ensure the element is responsive */
-    }
-}
-
-/* Style for mobile devices */
-@media (max-width: 480px) {
-    .g-recaptcha {
-        margin-left: 5px; /* Adjust margin for small screens */
-        width: 100%; /* Ensure the element is responsive */
-    }
-}
-
 h1
 {
     color: #4D63D9;
     font-size: xx-large;
     font-weight: bold;
 }
+.form
+{
+    
+   height: 600px;
+}
+p{
+    font-weight: bold;
+}
 label
 {
     font-weight: bold;
 }
-.alert alert-success
-{
-    color: green;
-}
-.alert alert-danger
-{
-    color: red;
-}
-/* img
-{
 
-    width: 500px;
-    height: 500px;
-    margin: 10px, 10px, 10px, 10px;
-    display: block;
-} */
-
-/* Default styling for small devices */
 img {
     width: 100%;
     height: auto;

@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FollowingArtistsServiceService } from './following-artists-service.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-following-artists',
@@ -12,6 +12,7 @@ export class FollowingArtistsComponent implements OnInit{
   FollowingArtistsData: any[] = [];
   filteredArtists: any[] = [];
   artistId: string = '';
+  router: any;
 
 
   constructor(
@@ -79,5 +80,10 @@ export class FollowingArtistsComponent implements OnInit{
         console.log('Error unfollowing artist:', error);
       }
     );
+  }
+
+  goToPortfolio(artist: any) {
+    this.router.navigate(['/artist-portfolio', this.artistId]);
+    console.log('artist', this.artistId);
   }
 }

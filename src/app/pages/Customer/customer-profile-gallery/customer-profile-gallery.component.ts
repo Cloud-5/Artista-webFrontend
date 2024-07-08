@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class CustomerProfileGalleryComponent implements OnInit {
 
   CustomerData: any = {};
-  userId: string = '24';
+  userId: string = localStorage.getItem('user_id') || '';
   artsData: any[] = [];
   filteredArts: any[] = [];
 
@@ -21,17 +21,17 @@ export class CustomerProfileGalleryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const userId = 24;
-    this.getCustomerDetails(userId);
-    this.getCustomerGalleryArts(userId);
+
+    this.getCustomerDetails(this.userId);
+    this.getCustomerGalleryArts(this.userId);
   }
 
   onItemRemoved(artwork_id:string){
     console.log('Item removed', artwork_id);
-    this.getCustomerGalleryArts(Number(this.userId));
+    this.getCustomerGalleryArts(this.userId);
   }
 
-  getCustomerDetails(userId: number): void {
+  getCustomerDetails(userId: string): void {
     this.customerService.getCustomerDetails(userId).subscribe(
       (data: any[]) => {
         this.CustomerData = data[0];
@@ -45,7 +45,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
 
 
 
-  getCustomerGalleryArts(userId: number): void {
+  getCustomerGalleryArts(userId: string): void {
     this.customerService.getCustomerGalleryArts(userId).subscribe(
       (data: any[]) => {
         this.artsData = data.map((artwork: any) => ({
@@ -84,7 +84,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
 
     if (confirmed) {
       const userId = Number(this.userId);
-      this.customerService.deactivateCustomer(userId).subscribe(
+      this.customerService.deactivateCustomer(this.userId).subscribe(
         (response: any) => {
           console.log(response.message);
           alert('Your profile has been deleted successfully.');

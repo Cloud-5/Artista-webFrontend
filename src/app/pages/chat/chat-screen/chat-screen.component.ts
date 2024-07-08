@@ -23,6 +23,11 @@ export class ChatScreenComponent implements OnInit {
   customers$: Observable<Customer[]> = of([]); // List of customers who have sent messages
   selectedCustomerMessages$!: Observable<any[]>; // Messages from selected customer
   selectedMessageId: string = '';
+
+  filteredCustomers$: Observable<Customer[]> = of([]);
+  searchTerm: string = '';
+
+
   constructor(private chatService: ChatServiceService) {}
 
   ngOnInit(): void {
@@ -30,7 +35,7 @@ export class ChatScreenComponent implements OnInit {
       this.userRole = this.getFromLocalStorage('role', '');
       this.senderId = this.getFromLocalStorage('uid', '');
       this.artistName = this.getFromLocalStorage('artistName', '');
-      if (this.userRole === 'enthusiast') {
+      if (this.userRole === 'customer') {
         this.recipientId = this.getFromLocalStorage('artistFirebaseUid', '');
         this.loadMessages();
       } else if (this.userRole === 'artist') {
@@ -47,22 +52,48 @@ export class ChatScreenComponent implements OnInit {
     }
   }
 
-  loadCustomersWhoSentMessages(): void {
-    this.customers$ = this.chatService.getUniqueCustomersForArtist(this.senderId).pipe(
-      switchMap((customerIds: string[]) =>
-        from(customerIds).pipe(
-          mergeMap(id =>
-            this.chatService.getCustomerDetailsByUid(id).pipe(
-              map(customerDetails => ({
-                firebaseUid: id,
-                name: customerDetails ? customerDetails.displayName : `Customer`
-              }))
-            )
-          ),
-          toArray()
-        )
-  )
-);}
+//   loadCustomersWhoSentMessages(): void {
+//     this.customers$ = this.chatService.getUniqueCustomersForArtist(this.senderId).pipe(
+//       switchMap((customerIds: string[]) =>
+//         from(customerIds).pipe(
+//           mergeMap(id =>
+//             this.chatService.getCustomerDetailsByUid(id).pipe(
+//               map(customerDetails => ({
+//                 firebaseUid: id,
+//                 name: customerDetails ? customerDetails.displayName : `Customer`
+//               }))
+//             )
+//           ),
+//           toArray()
+//         )
+//   )
+// );}
+
+loadCustomersWhoSentMessages(): void {
+  this.customers$ = this.chatService.getUniqueCustomersForArtist(this.senderId).pipe(
+    switchMap((customerIds: string[]) =>
+      from(customerIds).pipe(
+        mergeMap(id =>
+          this.chatService.getCustomerDetailsByUid(id).pipe(
+            map(customerDetails => ({
+              firebaseUid: id,
+              name: customerDetails ? customerDetails.displayName : `Customer`
+            }))
+          )
+        ),
+        toArray()
+      )
+    )
+  );
+
+  this.filteredCustomers$ = this.customers$; // Initialize the filtered list with all customers
+}
+
+filterCustomers(): void {
+  this.filteredCustomers$ = this.customers$.pipe(
+    map(customers => customers.filter(customer => customer.name.toLowerCase().includes(this.searchTerm.toLowerCase())))
+  );
+}
 
   onCustomerSelect(customer: Customer): void {
     this.recipientId = customer.firebaseUid;
