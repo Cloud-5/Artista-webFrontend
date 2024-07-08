@@ -89,7 +89,7 @@ addNew2DTag() {
 
 
 
-  constructor(private uploadArtworksService: UploadArtworksService) {}
+  constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService) {}
 
   onFileSelect(event: any) {
     const file: File = event.target.files[0];
@@ -183,10 +183,6 @@ addNew2DTag() {
     );
   }
 
-
-
-
-
   ngOnInit(): void {
     this.uploadArtworksService.getCategories().subscribe((categories: any) => {
       this.categories = categories;
@@ -194,4 +190,45 @@ addNew2DTag() {
 
     console.log('Categories', this.categories);
   }
+
+  files: any[] =[];
+  subfolderName: string = '';
+
+  onFolderSelect(event: any) {
+    const folder = event.target.files;
+    if(folder.length > 0){
+      this.files = Array.from(folder);
+    }
+  }
+  newFolderUpload(folder: string, uploadType: string) {
+    const subfolderName = `Subfolder_${Date.now()}`; 
+    this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
+      if (res.gltfFile) {
+        this.subfolderName = res.subfolderName;
+        console.log('3D artwork upload successful', res);
+        console.log('3D artwork', res.gltfFile);
+      } else {
+        console.log('3D artwork upload UNsuccessful', res);
+      }
+    });
+  }
+
+  deleteFolder(folder: string) {
+    if (this.subfolderName) {
+      this.imageUploadService.deleteFolder(folder, this.subfolderName).subscribe(
+        () => {
+          console.log('Folder deleted successfully');
+          // Reset the subfolderName
+          this.subfolderName = '';
+        },
+        (error) => {
+          console.error('Error deleting folder', error);
+        }
+      );
+    } else {
+      console.error('No subfolder name available to delete');
+    }
+  }
+
+
 }
