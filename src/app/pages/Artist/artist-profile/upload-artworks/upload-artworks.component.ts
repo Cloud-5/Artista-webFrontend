@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UploadArtworksService } from './upload-artworks.service';
+import { ImageUploadService } from '../../../../shared/services/image-upload.service';
 
 @Component({
   selector: 'app-upload-artworks',
@@ -15,8 +16,9 @@ export class UploadArtworksComponent {
   fileName: string | undefined;
   isUploading2D: boolean = false;
   isUploading3D: boolean = false;
+  
 
-  constructor(private uploadArtworksService: UploadArtworksService) {}
+  constructor(private uploadArtworksService: UploadArtworksService, private imageUploadService: ImageUploadService) {}
 
   onFileSelect(event: any) {
     const file: File = event.target.files[0];
@@ -73,4 +75,44 @@ export class UploadArtworksComponent {
       );
     }
   }
+
+  files: any[] = [];
+  subfolderName:string = '';
+
+  onFolderSelect(event: any) {
+    const folder = event.target.files;
+    if (folder.length > 0) {
+      this.files = Array.from(folder);
+    }
+    console.log('files: ',this.files);
+  }
+  
+  newFolderUpload(folder: string, uploadType: string) {
+    const subfolderName = `Subfolder_${Date.now()}`;
+    this.imageUploadService.folderUpload(this.files, folder, uploadType, subfolderName).subscribe((res: any) => {
+      if (res.gltfFile) {
+        this.subfolderName = res.subfolderName;
+        console.log('3D artwork upload successful', res);
+        console.log('3D artwork', res.gltfFile);
+      } else {
+        console.log('3D artwork upload UNsuccessful', res);
+      }
+    });
+  }
+  
+  deleteFolder(folder: string) {
+    if (this.subfolderName) {
+      this.imageUploadService.deleteFolder(folder, this.subfolderName).subscribe((res: any) => {
+        if (res.success) {
+          console.log('Subfolder deleted successfully', res);
+          this.subfolderName = '';
+        } else {
+          console.log('Failed to delete subfolder', res);
+        }
+      });
+    } else {
+      console.log('No subfolder to delete');
+    }
+  }
+  
 }
