@@ -7,6 +7,7 @@
   margin: 12px;
   margin-right: -10px;
   overflow: hidden;
+  border-radius: 10%;
 }
 
 .image::before {
@@ -45,6 +46,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 20%;
 }
 
 .image .details .remove-btn {
@@ -91,15 +93,19 @@
   opacity: 0;
   transition: 0.6s;
   transition-property: opacity, transform;
+
+
 }
 
 .image:hover {
-  box-shadow: #50A7FF 0px 0px 10px 0px;
+  box-shadow: #001123 0px 0px 10px 0px;
+  border-radius: 10px;
 }
 
 .image:hover .details p {
   opacity: 1;
   transform: translateY(-40px);
+
 }
 
 .more {
@@ -283,3 +289,19 @@
     margin: 20px 0px;
   }
 }
+
+
+.card {
+  position: relative;
+  padding: 0;
+  margin: 0 !important;
+  border-radius: 20%;
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 15px rgba(235, 8, 8, 0.2);
+  border-radius: 10px;
+}
+
