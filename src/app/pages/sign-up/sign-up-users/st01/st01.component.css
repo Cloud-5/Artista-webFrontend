@@ -2,7 +2,7 @@
     background-color: #055287 ;
     padding-top: 7px;
     padding: 7px;
-    height: 100%;
+    height: 100vh;
 }
 
 /* Mobile Devices (up to 480px) */
@@ -43,21 +43,17 @@
     border-radius: 3%;
   
 }
-.alert alert-success
+h1
 {
-    color: green;
+    color: #4D63D9;
+    font-size: xx-large;
+    font-weight: bold;
 }
-.alert alert-danger
+.form
 {
-    color: red;
+    
+   height: 600px;
 }
-.row g-3
-{
-  
-    height: 800px;   
-
-}
-
 p{
     font-weight: bold;
 }
