@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { EditCustomerProfileService } from './edit-customer-profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +7,7 @@ import { ImageUploadService } from '../../../shared/services/image-upload.servic
 @Component({
   selector: 'app-edit-customer-profile',
   templateUrl: './edit-customer-profile.component.html',
-  styleUrl: './edit-customer-profile.component.css',
+  styleUrls: ['./edit-customer-profile.component.css'],
 })
 export class EditCustomerProfileComponent implements OnInit {
 
@@ -25,6 +24,7 @@ export class EditCustomerProfileComponent implements OnInit {
   editingCustomer: string = '';
   customer: any = {};
   imageObj: File | undefined;
+  bannerImageObj: File | undefined;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -40,11 +40,11 @@ export class EditCustomerProfileComponent implements OnInit {
   editDetails(editCustomerProfileForm: any) {
     if (editCustomerProfileForm.valid) {
       if (this.customer.newPassword && this.confirmPassword !== this.customer.newPassword) {
-
         return;
       }
 
       const customerDetails = {
+        banner_img_url: this.customer.banner_img_url,
         profile_photo_url: this.customer.profile_photo_url,
         firstName: this.customer.fName,
         lastName: this.customer.LName,
@@ -55,11 +55,11 @@ export class EditCustomerProfileComponent implements OnInit {
       };
       console.log('customerDetails', customerDetails);
 
-
       this.editCustomerProfileService
         .EditCustomerProfile(this.editingCustomer, customerDetails)
         .subscribe(
           () => {
+            // Handle successful profile edit
           },
           (error) => {
             console.log('error editing customer', error);
@@ -73,11 +73,24 @@ export class EditCustomerProfileComponent implements OnInit {
     this.imageObj = FILE;
   }
 
+  onBannerFileSelected(event: any) {
+    const FILE = (event.target as HTMLInputElement).files?.[0];
+    this.bannerImageObj = FILE;
+  }
+
   newImageUpload() {
     const imageForm = new FormData();
     imageForm.append('image', this.imageObj as Blob);
-    this.ImageUploadService.imageUpload(imageForm).subscribe((res:any) => {
+    this.ImageUploadService.imageUpload(imageForm).subscribe((res: any) => {
       this.customer.profile_photo_url = res.image.location;
+    });
+  }
+
+  uploadBannerImage() {
+    const imageForm = new FormData();
+    imageForm.append('image', this.bannerImageObj as Blob);
+    this.ImageUploadService.imageUpload(imageForm).subscribe((res: any) => {
+      this.customer.banner_img_url = res.image.location;
     });
   }
 
@@ -90,6 +103,20 @@ export class EditCustomerProfileComponent implements OnInit {
         },
         (error) => {
           console.log('error removing image', error);
+        }
+      );
+    }
+  }
+
+  removeBannerImage() {
+    if (this.customer.banner_img_url) {
+      const key = this.customer.banner_img_url.split('/').pop();
+      this.ImageUploadService.removeImage(key as any).subscribe(
+        () => {
+          this.customer.banner_img_url = '';
+        },
+        (error) => {
+          console.log('error removing banner image', error);
         }
       );
     }

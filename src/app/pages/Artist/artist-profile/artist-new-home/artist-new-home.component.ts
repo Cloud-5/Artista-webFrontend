@@ -17,27 +17,40 @@ export class ArtistNewHomeComponent implements OnInit {
   private rank:number = 0;
 
 
+
+
+
   constructor(private artistServices: ArtistNewHomeServiceService,ArtistCreationsService:ArtistCreationsService) { }
+
+
+  changeRating(newRating: number): void {
+    this.userData.AverageRating = newRating;
+  }
+
+
+
 
   ngOnInit(): void {
     this.loadArtistData();
     this.loadArtworks();
     this.loadArtworksCount();;
+
   }
 
   loadArtistData(): void {
-    this.artistServices.getArtistDetail('1').subscribe((data: any) => {
+    this.artistServices.getArtistDetail('Ar-00001').subscribe((data: any) => {
       this.userData = data.artistData[0];
       this.socialAccounts = data.socialAccounts;
       this.rank = data.rank.featured;
-      console.log("Artist Details:========================== ", this.rank);
+      console.log("Artist Details:========================== ", this.userData);
+      this.userData.AverageRating=4.5;
 
       //this.artworks.reverse();
     })
   }
 
   loadArtworks(): void {
-    this.artistServices.getArtworksForArtist(1).subscribe((data: any) => {
+    this.artistServices.getArtworksForArtist('Ar-00001').subscribe((data: any) => {
       this.artworks = data;
       data.forEach((e: any) => {
         console.log(e.artwork_id)
@@ -67,7 +80,7 @@ export class ArtistNewHomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   loadArtworksCount(): void {
-    this.artistServices.getArtworksCountForArtist(1).subscribe((data: any) => {
+    this.artistServices.getArtworksCountForArtist('Ar-00001').subscribe((data: any) => {
       this.artworksCount = data.count;
       console.log("Artworks Count: ", data.count);
     });

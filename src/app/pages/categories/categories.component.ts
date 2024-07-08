@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PersonalizeService } from './personalize.service';
 import { Router } from '@angular/router';
 import { PreferencesService } from '../first-foryou/preferences.service';
@@ -6,87 +6,68 @@ import { PreferencesService } from '../first-foryou/preferences.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css'
+  styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent {
-  userId: string = localStorage.getItem('user_id') ? Number(localStorage.getItem('user_id')).toString() : '0';
-
-
-
-  categoryData: any[]= [];
-
+export class CategoriesComponent implements OnInit {
+  userId: string = localStorage.getItem('user_id') || '';
+  categoryData: any[] = [];
   selectedCategoryIds: number[] = [];
 
-//   categories = [
-//     { categoryId: 'cat1', imageUrl: '../assets/images/digitalIllustrations.jpg', title: 'Digital Illustrations', selected: false },
-//     { categoryId: 'cat2', imageUrl: '../assets/images/3DIMG.jpg', title: '3D Art' , selected: false},
-//     { categoryId: 'cat3', imageUrl: '../assets/images/3d.png', title: 'Digital Painting', selected: false },
-//     { categoryId: 'cat4', imageUrl: '../assets/images/vectorArt.jpg', title: 'Vector Art', selected: false },
-//     { categoryId: 'cat5', imageUrl: '../assets/images/pixelart.png', title: 'Pixel Art' , selected: false},
-//     { categoryId: 'cat6', imageUrl: '../assets/images/motionArt.png', title: 'Motion Graphics', selected: false },
-//     { categoryId: 'cat7', imageUrl: '../assets/images/generativeArts.jpg', title: 'Generative Art', selected: false },
-//     { categoryId: 'cat8', imageUrl: '../assets/images/graphicDesign.jpg', title: 'Graphic Design', selected: false },
-//     { categoryId: 'cat9', imageUrl: '../assets/images/digicol.jpg', title: 'Digital Collage', selected: false }
-// ];
+  constructor(
+    private personalizeService: PersonalizeService,
+    private router: Router,
+    private preferencesService: PreferencesService
+  ) { }
 
-constructor(
-  private PersonalizeService:PersonalizeService,
-  private router: Router,
-  private preferencesService: PreferencesService
-) { }
+  ngOnInit(): void {
+    console.log('ngOnInit: Fetching categories');
+    this.getCategories();
+  }
 
-ngOnInit() :void{
-  this.getCategories();
-  this.selectedCategoryIds = this.preferencesService.getSelectedCategoryIds();
-};
-
-
-  getCategories(): void{
-    this.PersonalizeService.getCategories(this.userId).subscribe((data: any[]) => {
+  getCategories(): void {
+    console.log(`getCategories: Fetching categories for userId: ${this.userId}`);
+    this.personalizeService.getCategories(this.userId).subscribe((data: any[]) => {
+      console.log('Category data received: ', data);
       console.log('Category data: ', data);
-      //console.log('Category data: ', data[0].category_id);
-  
       this.categoryData = data;
-      
-      
+      this.selectedCategoryIds = data.filter(category => category.selected).map(category => category.category_id);
+      console.log('Initial selected category IDs:', this.selectedCategoryIds);
+      this.preferencesService.saveSelectedCategoryIds(this.selectedCategoryIds); // Persist selected category IDs
     }, (error) => {
       console.error('Error fetching category data: ', error);
     });
-
   }
 
   handleSelectionChange(event: { categoryId: number, selected: boolean }): void {
-    console.log('before anything',this.selectedCategoryIds)
     const { categoryId, selected } = event;
     if (selected) {
       this.selectedCategoryIds.push(categoryId);
-      console.log('Selected category IDs:', this.selectedCategoryIds);
     } else {
       const index = this.selectedCategoryIds.indexOf(categoryId);
-      console.log('Index:', index);
       if (index !== -1) {
         this.selectedCategoryIds.splice(index, 1);
-        console.log('Selected category IDs:', this.selectedCategoryIds);  
       }
     }
-    // console.log('Selected category IDs:', this.selectedCategoryIds);
-    // You can perform further actions here, su ch as updating the database.
+    this.preferencesService.saveSelectedCategoryIds(this.selectedCategoryIds); // Persist selected category IDs
   }
 
   postPreferences(): void {
-    console.log('Posting preferences', this.selectedCategoryIds);
-    this.PersonalizeService.updateCategories(this.userId,this.selectedCategoryIds).subscribe(
+    console.log('postPreferences: Posting preferences');
+    if (this.selectedCategoryIds.length === 0) {
+      alert('Please select at least one category.');
+      console.log('No categories selected. Alert displayed to user.');
+      return;
+    }
+    console.log('Selected category IDs to be posted:', this.selectedCategoryIds);
+    this.personalizeService.updateCategories(this.userId, this.selectedCategoryIds).subscribe(
       (response) => {
-        console.log('Preferences added successfully:', response);
-        // You can handle success actions here, such as displaying a success message or redirecting the user.
+        console.log('Preferences updated successfully:', response);
+        console.log('Preferences updated successfully:', response);
         this.router.navigateByUrl('/foryou');
       },
       (error) => {
-        console.error('Error adding preferences:', error);
-        // You can handle error actions here, such as displaying an error message or retrying the request.
+        console.error('Error updating preferences:', error);
       }
     );
   }
-
-
 }

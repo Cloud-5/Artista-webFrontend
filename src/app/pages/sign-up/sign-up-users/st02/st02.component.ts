@@ -14,6 +14,7 @@ export class St02Component implements OnInit {
   lName: string = '';
   dob: string = '' ;
   location: string = '';
+  registered_at: string = '';
   email = '';
   password = '';
   role = '';
@@ -25,15 +26,18 @@ export class St02Component implements OnInit {
   constructor(private fb: FormBuilder, private router: Router,private userService: UserService) { }
 
   ngOnInit(): void {
+
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+
     this.signupForm = this.fb.group({
       fName: ['', Validators.required],
       lName: ['', Validators.required],
       dob: ['', Validators.required],
       location: ['', Validators.required],
       role: ['', Validators.required],
-      empcode: [{ value: '', disabled: true }, Validators.required] 
+      registered_at: [currentDate, Validators.required] // Set current date as default value
     });
-
+    
     const data = sessionStorage.getItem('artista-form-data');
 
     if (data) {
@@ -46,17 +50,7 @@ export class St02Component implements OnInit {
     
   }
   createAccount() {
-    // Implement logic to handle form submission here
-    // console.log('Form submitted');
-    // console.log('First Name:', this.fName);
-    // console.log('Last Name:', this.lName);
-    // console.log('Date of Birth:', this.dob);
-    // console.log('Location:', this.location);
-    // console.log('Email:', this.email);
-    // console.log('Password:', this.password);
-    // console.log('Role:', this.role);
-
-
+    
      // Send HTTP request to backend to create user account
      let userData = this.signupForm.value;
      userData = {...userData, email: this.email, password: this.password};

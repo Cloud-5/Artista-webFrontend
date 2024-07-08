@@ -275,7 +275,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addCart(art: any) {
     console.log('art', art);
     
-    this.cartItemService.addItem((this.userId), art.artwork_id) // Replace '1' with the actual user_id
+    this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
       .subscribe(
         response => {
           console.log('Item added to cart:', response);

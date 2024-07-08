@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  < class="container-fluid">
+<nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <div class="container-fluid">
     <!-- Artista Logo -->
     <img src="../assets/images/Artista.png" alt="Artista Logo" class="custom-logo img-fluid" />
 
@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link " routerLink="/forYou" routerLinkActive="active">ForYou<span class="visually-hidden">(current)</span></a>
+          <a class="nav-link " routerLink="/foryou" routerLinkActive="active">ForYou<span class="visually-hidden">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="/artist" routerLinkActive="active">Artist</a>
@@ -26,44 +26,22 @@
         <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
       </form>
 
-      <!-- Icon Section -->
-      <div class="d-flex ms-3">
-        <a href="#" class="navbar-text me-3">
-          <i class="bi bi-bell-fill"></i>
-        </a>
-        <a href="#" class="navbar-text me-3">
-          <span>{{ countUnreadMessages() }}</span>
 
-        </a>
-
-        <div id="box" class="notifi-box">
-          <h2>Notifications <span>{{ countUnreadMessages() }}</span></h2>
-
-          <div class="noti-item" *ngFor="let notification of notifications">
-            <img [src]="notification.profilePic" alt="Profile Picture">
-            <div class="text">
-              <h4>{{ notification.message }}</h4>
-              <p>{{ notification.time }}</p>
-            </div>
-          </div>
-
-          <div class="notification-footer">
-            <button class="btn btn-sm btn-secondary" (click)="markAllAsRead()">Mark All as Read</button>
-            <button class="btn btn-sm btn-danger" (click)="clearAllNotifications()">Clear All Notifications</button>
-          </div>
-        </div>
+ <!-- Icon Section -->
+ <div class="d-flex ms-3">
+  <a href="#" class="navbar-text me-3">
+    <i class="bi bi-bell-fill"></i>
+  </a>
 
 
-        <a class="navbar-text me-3"  (click)="artist && messageArtist(artist.firebase_uid, artist.artist_name)" >
-          <i class="bi bi-chat-dots-fill"></i>
-        </a>
-        <a routerLink="/cart" class="navbar-text me-3">
-          <i class="bi bi-cart-fill"></i>
-        </a>
-        <a href="#" class="navbar-text">
-          <i class="bi bi-person-circle"></i>
-        </a>
-      </div>
-    </div>
-
-
+  <a class="navbar-text me-3"  (click)="artist && messageArtist(artist.firebase_uid, artist.artist_name)" >
+    <i class="bi bi-chat-dots-fill"></i>
+  </a>
+  <a routerLink="/cart" class="navbar-text me-3">
+    <i class="bi bi-cart-fill"></i>
+  </a>
+  <a href="#" class="navbar-text">
+    <i class="bi bi-person-circle"></i>
+  </a>
+</div>
+</div>
