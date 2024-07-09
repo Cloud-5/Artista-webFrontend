@@ -19,25 +19,24 @@ export class UploadArtworksComponent {
   isUploading3D: boolean = false;
 
   new2DArtwork:any={
-   artwork_id:'',
    title:'',
    price:'',
    thumbnail_url:'',
+   original_url:'',
    description:'',
    published_date:'',
    category_id:'',
-   is3D:'',
+   is2D:'',
    tag_name: [],
     }
 
- 
+
 
   new2DTag_Name: string = '';
   new3DTag_name: string = '';
 
 
   new3DArtwork: any = {
-    artwork_id: '',
     title: '',
     price: '',
     thumbnail_url: '',
@@ -48,7 +47,15 @@ export class UploadArtworksComponent {
     tag_name: []
   };
 
+  constructor(private uploadArtworksService: UploadArtworksService) {}
 
+  ngOnInit(): void {
+    this.uploadArtworksService.getCategories().subscribe((categories: any) => {
+      this.categories = categories;
+    });
+
+    console.log('Categories', this.categories);
+  }
 
 
 addNew2DTag() {
@@ -111,6 +118,9 @@ addNew2DTag() {
   onSubmit2D(){
     console.log('2D artwork', this.new2DArtwork);
   }
+  onSubmit3D(){
+    console.log('3D artwork', this.new2DArtwork);
+  }
 
 
   // onSubmit2D(form: NgForm) {
@@ -132,40 +142,40 @@ addNew2DTag() {
   //   }
   // }
 
-  onSubmit3D(form: NgForm) {
-    if (form.valid) {
-      this.isUploading = true;
-      const formData = form.value;
-      formData.tags = formData.tags.split(',').map((tag: string) => tag.trim());
+  // onSubmit3D(form: NgForm) {
+  //   if (form.valid) {
+  //     this.isUploading = true;
+  //     const formData = form.value;
+  //     formData.tags = formData.tags.split(',').map((tag: string) => tag.trim());
 
-      this.uploadArtworksService.addArtworkByArtist(formData).subscribe(
-        (response: any) => {
-          console.log('3D artwork upload successful', response);
-          this.isUploading = false;
-        },
-        (error: any) => {
-          console.error('3D artwork upload error', error);
-          this.isUploading = false;
-        }
-      );
-    }
-  }
+  //     this.uploadArtworksService.addArtworkByArtist(formData).subscribe(
+  //       (response: any) => {
+  //         console.log('3D artwork upload successful', response);
+  //         this.isUploading = false;
+  //       },
+  //       (error: any) => {
+  //         console.error('3D artwork upload error', error);
+  //         this.isUploading = false;
+  //       }
+  //     );
+  //   }
+  // }
 
 
-  upload2DArtwork(): void {
-    this.isUploading2D = true;
-    console.log('2D artwork', this.new2DArtwork);
-    this.uploadArtworksService.addArtworkByArtist(this.new2DArtwork).subscribe(
-      (response: any) => {
-        console.log('2D artwork upload successful', response);
-        this.isUploading2D = false;
-      },
-      (error: any) => {
-        console.error('2D artwork upload error', error);
-        this.isUploading2D = false;
-      }
-    );
-  }
+  // upload2DArtwork(): void {
+  //   this.isUploading2D = true;
+  //   console.log('2D artwork', this.new2DArtwork);
+  //   this.uploadArtworksService.addArtworkByArtist(this.new2DArtwork).subscribe(
+  //     (response: any) => {
+  //       console.log('2D artwork upload successful', response);
+  //       this.isUploading2D = false;
+  //     },
+  //     (error: any) => {
+  //       console.error('2D artwork upload error', error);
+  //       this.isUploading2D = false;
+  //     }
+  //   );
+  // }
 
 
   upload3DArtwork(): void {
@@ -201,7 +211,7 @@ addNew2DTag() {
     }
   }
   newFolderUpload(folder: string, uploadType: string) {
-    const subfolderName = `Subfolder_${Date.now()}`; 
+    const subfolderName = `Subfolder_${Date.now()}`;
     this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
       if (res.gltfFile) {
         this.subfolderName = res.subfolderName;
