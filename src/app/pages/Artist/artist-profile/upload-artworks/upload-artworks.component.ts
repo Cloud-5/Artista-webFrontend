@@ -47,15 +47,6 @@ export class UploadArtworksComponent {
     tag_name: []
   };
 
-  constructor(private uploadArtworksService: UploadArtworksService) {}
-
-  ngOnInit(): void {
-    this.uploadArtworksService.getCategories().subscribe((categories: any) => {
-      this.categories = categories;
-    });
-
-    console.log('Categories', this.categories);
-  }
 
 
 addNew2DTag() {

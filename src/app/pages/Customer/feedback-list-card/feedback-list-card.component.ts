@@ -17,6 +17,7 @@ export class FeedbackListComponent implements OnInit {
   }
 
   loadFeedbackList() {
+    console.log('artistId:==================', this.artistId);
     this.FeedbackListService.getFeedbackList(this.artistId)
       .subscribe((data: any[]) => {
         this.feedbackList = data;
