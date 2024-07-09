@@ -41,6 +41,12 @@
                 name="banner-image"
                 (change)="onBannerFileSelected($event)"
               />
+              <img
+               *ngIf="customer.banner_img_url"
+               [src]="customer.banner_img_url"
+                alt="Banner Image"
+                style="width: 100%; height: auto; margin-left: 10px; margin-top: 10px;"
+                />
               <button
                 (click)="uploadBannerImage()"
                 class="btn btn-primary"
@@ -76,6 +82,12 @@
                 name="profile-image"
                 (change)="onFileSelected($event)"
               />
+              <img
+               *ngIf="customer.profile_photo_url"
+               [src]="customer.profile_photo_url"
+                alt="profile-image"
+                style="width: 100%; height: auto; margin-left: 10px; margin-top: 10px;"
+                />
               <button
                 (click)="newImageUpload()"
                 class="btn btn-primary"
