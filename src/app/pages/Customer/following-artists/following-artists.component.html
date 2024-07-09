@@ -1,7 +1,4 @@
-<!-- <form class="d-flex" role="search" style="width: 100%">
-  <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search" />
-</form> -->
-<div *ngFor="let profile of filteredArtists" class="card request-card" style="width: 720px;">
+<div *ngFor="let profile of filteredArtists" class="card request-card" style="width: 760px;">
   <div class="d-flex" style="height: 100%;">
     <div class="profile-pic">
       <img src="{{profile.profile_photo_url}}" alt="Profile Picture" class="rounded-pill" style="width: 78px; height: 78px;">
@@ -15,7 +12,7 @@
         </div>
       </div>
       <div style="margin: auto; text-align: left;">
-        <a class="fs-6" (click)="goToPortfolio(profile.user_id)">More Details</a>
+        <a href class="fs-6" (click)="goToPortfolio(profile.user_id)"> More Details </a>
       </div>
     </div>
     <div class="buttons d-flex">
