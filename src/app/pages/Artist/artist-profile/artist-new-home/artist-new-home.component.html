@@ -2,10 +2,10 @@
 
 <div class="header__wrapper">
   <header></header>
-  <div class="cols__container">
+  <div class="cols__container" >
 
 
-    <div class="left__col artist-details">
+    <div class="left__col artist-details" style="width: 450px;">
       <div class="img__container">
         <img [src]="userData.ProfilePhoto" alt={{userData.name}}/>
         <span></span>
@@ -50,30 +50,11 @@
       ></span>
 
       </div>
-
-      <!-- <p><b>Member Since : </b>{{userData.registered_at.split("T")[0]}}</p> -->
-
-
-      <!-- <div class="rating">
-        <span class="star" [class.filled]="averageRating >= 1">★</span>
-        <span class="star" [class.filled]="averageRating >= 2">★</span>
-        <span class="star" [class.filled]="averageRating >= 3">★</span>
-        <span class="star" [class.filled]="averageRating >= 4">★</span>
-        <span class="star" [class.filled]="averageRating >= 5">★</span>
-      </div> -->
-
       <ul class="about">
         <li><span>{{userData.NumberOfArtworks}} </span>Gallery</li>
         <li><span>{{userData.followers}}3</span>Followers</li>
         <li><span>{{userData.NumberOfFollowers}}</span>Purchases</li>
       </ul>
-
-
-
-
-
-
-
       <p>{{userData.Description}}</p>
 
       <div class="content">
@@ -82,11 +63,13 @@
         <br />
         <div class="row" style="margin: 0">
           <div class="d-flex" style="justify-content: space-between">
+
             <button class="btn btn-primary" style="width: 48%" [routerLink]="['/artist/edit', userData.UserID]"> Edit profile</button>
                  <button type="button" class="btn btn-primary uploadArtworks" routerLink="/upload" style="width: 48%">Upload Artwoks</button>
           </div>
           <div class="row" style="margin: 10px 0 0 0">
             <button type="button" class="btn btn-success"  (click)="logout()">Log Out</button>
+
           </div>
         </div>
       </div>
@@ -97,7 +80,7 @@
 
 
 
-    <div class="right__col">
+    <div class="right__col" style="width: 900px; ">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">My Creations</a>
@@ -124,16 +107,16 @@
               </form>
             </div>
           </nav>
+<!-- ////////////////////////////////////////////////////////////creations -->
+
+<div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+  <div class="col mb-3" *ngFor="let art of artworks">
+    <app-creations [artworks]="art"></app-creations>
+  </div>
+</div>
 
 
-          <div class="Gallery">
-            <div class="col mb-3" *ngFor="let artworks of artworks">
-              <!-- <app-arts [art]="art" [deleteArtwork]="deleteArtwork"></app-arts> -->
-              <app-artist-creations [artworks]="artworks" [deleteArtwork]="deleteArtwork"> </app-artist-creations>
-            </div>
 
-          </div>
-        </div>
         <div class="tab-pane fade" id="profile" role="tabpanel">
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
@@ -177,6 +160,58 @@
     </div>
   </div>
 </div>
+<!--
+<app-footer></app-footer> -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks"> <!-- Use mb-2 for smaller bottom margin -->
+      <div class="card p-0 category-card">
+        <div class="card-image">
+          <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
+        </div>
+        <div class="card-body card-content d-flex flex-column align-items-center">
+          <div class="card-details d-flex justify-content-between w-100">
+            <div class="price">{{artwork.price | currency}}</div>
+            <div class="title">{{artwork.title}}</div>
+          </div>
+          <div class="card-stats d-flex justify-content-between w-100 mt-2">
+            <div class="purchase-count">{{artwork.purchaseCount}} Purchases</div>
+            <div class="like-count">{{artwork.likeCount}} Likes</div>
+          </div>
+          <div class="card-actions mt-3 w-100 d-flex justify-content-end">
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artwork.id)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<app-footer></app-footer>
-
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks">  <!-- Use mb-2 for smaller bottom margin -->
+      <div class="card p-0 category-card">
+        <div class="card-image">
+          <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
+        </div>
+        <div class="card-body card-content d-flex flex-column align-items-center">
+          <div class="card-details d-flex justify-content-between w-100">
+            <div class="price">{{artwork.price | currency}}</div>
+            <div class="title">{{artwork.title}}</div>
+          </div>
+          <div class="card-stats d-flex justify-content-between w-100 mt-2">
+            <div class="purchase-count">{{artwork.purchaseCount}} Purchases</div>
+            <div class="like-count">{{artwork.likeCount}} Likes</div>
+          </div>
+          <div class="card-actions mt-3 w-100 d-flex justify-content-end">
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artwork.id)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

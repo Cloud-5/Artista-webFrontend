@@ -18,7 +18,7 @@ export class ArtistNewHomeServiceService {
   }
 
 
-  getArtworksForArtist(artistId: number) {
+  getArtworksForArtist(artistId: string) {
     return this.http.get(`${this.apiUrl}/artwork/all/${artistId}`);
   }
 
@@ -33,11 +33,11 @@ export class ArtistNewHomeServiceService {
   updateArtwork(artId: number, artwork: any) {
     return this.http.put(`${this.apiUrl}/artwork/${artId}`, artwork);
   }
-  getArtworksCount(artistId: number): Observable<any> {
+  getArtworksCount(artistId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/artworks/count/${artistId}`);
   }
 
-  getArtworksCountForArtist(artistId: number): Observable<any> {
+  getArtworksCountForArtist(artistId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/artist/${artistId}/creation/count`);
   }
 }

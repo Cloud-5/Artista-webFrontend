@@ -10,9 +10,9 @@
         <div class="customer-selection">
           <label for="selectCustomer">Select Customer</label>
           <!-- <ul class="list-group">
-            <li *ngFor="let customer of customers$ | async" 
-                (click)="onCustomerSelect(customer)" 
-                [class.active]="customer.firebaseUid === recipientId" 
+            <li *ngFor="let customer of customers$ | async"
+                (click)="onCustomerSelect(customer)"
+                [class.active]="customer.firebaseUid === recipientId"
                 class="list-group-item">
               {{ customer.name }}
             </li>
@@ -34,9 +34,9 @@
               {{ customer.name }}
             </li>
           </ul>
-          
-          
-          
+
+
+
         </div>
       </div>
 
@@ -44,7 +44,7 @@
       <div [ngClass]="{'col-md-9': userRole === 'artist', 'col-md-12': userRole !== 'artist'}" class="d-flex flex-column">
         <div class="messages-container flex-grow-1">
           <div class="messages overflow-auto">
-            <div *ngFor="let message of messages$ | async" class="message" 
+            <div *ngFor="let message of messages$ | async" class="message"
                  [ngClass]="{ 'sent-message': message.senderId === senderId, 'received-message': message.senderId !== senderId }"  (contextmenu)="onRightClick($event, message)">
               <div class="sender">{{ message.senderId === senderId ? 'You' : (userRole === 'artist' ? 'Customer' : 'Artist') }}:</div>
               <div class="content">{{ message.message }}</div>
