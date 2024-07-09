@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UploadArtworksService } from './upload-artworks.service';
+import { ImageUploadService } from '../../../../shared/services/image-upload.service';
 
 @Component({
   selector: 'app-upload-artworks',
@@ -86,6 +87,17 @@ addNew2DTag() {
 
 
 
+
+
+
+
+
+
+
+
+
+  constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService) {}
+
   onFileSelect(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -166,23 +178,67 @@ addNew2DTag() {
   // }
 
 
-  // upload3DArtwork(): void {
-  //   this.isUploading3D = true;
-  //   console.log('3D artwork', this.new3DArtwork);
-  //   this.uploadArtworksService.addArtworkByArtist(this.new3DArtwork).subscribe(
-  //     (response: any) => {
-  //       console.log('3D artwork upload successful', response);
-  //       this.isUploading3D = false;
-  //     },
-  //     (error: any) => {
-  //       console.error('3D artwork upload error', error);
-  //       this.isUploading3D = false;
-  //     }
-  //   );
-  // }
+  upload3DArtwork(): void {
+    this.isUploading3D = true;
+    console.log('3D artwork', this.new3DArtwork);
+    this.uploadArtworksService.addArtworkByArtist(this.new3DArtwork).subscribe(
+      (response: any) => {
+        console.log('3D artwork upload successful', response);
+        this.isUploading3D = false;
+      },
+      (error: any) => {
+        console.error('3D artwork upload error', error);
+        this.isUploading3D = false;
+      }
+    );
+  }
 
+  ngOnInit(): void {
+    this.uploadArtworksService.getCategories().subscribe((categories: any) => {
+      this.categories = categories;
+    });
 
+    console.log('Categories', this.categories);
+  }
 
+  files: any[] =[];
+  subfolderName: string = '';
+
+  onFolderSelect(event: any) {
+    const folder = event.target.files;
+    if(folder.length > 0){
+      this.files = Array.from(folder);
+    }
+  }
+  newFolderUpload(folder: string, uploadType: string) {
+    const subfolderName = `Subfolder_${Date.now()}`;
+    this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
+      if (res.gltfFile) {
+        this.subfolderName = res.subfolderName;
+        console.log('3D artwork upload successful', res);
+        console.log('3D artwork', res.gltfFile);
+      } else {
+        console.log('3D artwork upload UNsuccessful', res);
+      }
+    });
+  }
+
+  deleteFolder(folder: string) {
+    if (this.subfolderName) {
+      this.imageUploadService.deleteFolder(folder, this.subfolderName).subscribe(
+        () => {
+          console.log('Folder deleted successfully');
+          // Reset the subfolderName
+          this.subfolderName = '';
+        },
+        (error) => {
+          console.error('Error deleting folder', error);
+        }
+      );
+    } else {
+      console.error('No subfolder name available to delete');
+    }
+  }
 
 
 }

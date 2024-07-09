@@ -270,9 +270,10 @@
               <label class="input-group-text btn-custom">Choose File</label>
             </div>
             <div class="input-group mb-3">
-              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
-              <label class="input-group-text btn-custom">Choose File</label>
+              <input type="file" (change)="onFolderSelect($event)" webkitdirectory mozdirectory odirectory directory />
+<label class="input-group-text btn-custom" (click)="newFolderUpload('3DArtwork', '3DArtwork')">Choose File</label>
             </div>
+            <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')">Delete Folder</button>
             <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
 
             <div class="form-group">

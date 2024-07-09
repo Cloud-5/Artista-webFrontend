@@ -3,7 +3,7 @@
 <div class="header__wrapper">
   <div class="banner-container">
     <img src="{{CustomerData.banner_img_url}}" alt="Banner Image" style="width: 100%; height: 200px;">
-   
+
   </div>
  <header></header>
   <div class="cols__container">
@@ -69,6 +69,9 @@
         <div class="tab-pane fade" id="profile" role="tabpanel" style="width: 100%;">
           <nav class="navbar bg-body-tertiary" style="max-height: 800px; overflow-y: scroll; overflow-x: hidden;">
             <div class="container-fluid" style="width: 100%;">
+              <form class="d-flex" role="search" style="width: 100%">
+                <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search" />
+              </form>
               <app-following-artists></app-following-artists>
             </div>
           </nav>
