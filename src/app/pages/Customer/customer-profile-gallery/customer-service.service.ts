@@ -13,19 +13,19 @@ export class CustomerServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getCustomerDetails(UserId: number): Observable<any> {
+  getCustomerDetails(UserId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${UserId}`);
   }
 
-  getCustomerGalleryArts(UserId: number): Observable<any> {
+  getCustomerGalleryArts(UserId: string): Observable<any> {
     return this.http.get(`${this.apiUrl1}/${UserId}`);
   }
 
-  deactivateCustomer(UserId: number): Observable<any> {
+  deactivateCustomer(UserId: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/deactivate/${UserId}`, {});
   }
 
-  removeGalleryItem(userId: number, artworkId: number): Observable<any> {
+  removeGalleryItem(userId: string, artworkId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${userId}/${artworkId}`);
   }
 

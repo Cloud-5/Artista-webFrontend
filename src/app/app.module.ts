@@ -33,15 +33,15 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 
-import { ArtistFeedbackComponent } from './pages/artist/artist-profile/artist-feedback/artist-feedback.component';
-import { EditArtistProfileComponent } from './pages/artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
-import { ArtistFollowersComponent } from './pages/artist/artist-profile/artist-followers/artist-followers.component';
-import { ArtistNewHomeComponent } from './pages/artist/artist-profile/artist-new-home/artist-new-home.component';
+import { ArtistFeedbackComponent } from './pages/Artist/artist-profile/artist-feedback/artist-feedback.component';
+import { EditArtistProfileComponent } from './pages/Artist/artist-profile/edit-artist-profile/edit-artist-profile.component';
+import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-followers/artist-followers.component';
+import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
 
-import { UploadArtworksComponent } from './pages/artist/artist-profile/upload-artworks/upload-artworks.component';
+import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
 import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
-import { ArtistCreationsComponent } from './pages/artist/artist-profile/artist-creations/artist-creations.component';
+import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
 
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -49,7 +49,7 @@ import { ArtistsComponent } from './shared/cards/artists/artists.component';
 import { ArtsComponent } from './shared/cards/arts/arts.component';
 import { CartCardComponent } from './shared/cards/cart-card/cart-card.component';
 import { CategoryComponent } from './shared/cards/category/category.component';
-import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtistComponent } from './pages/Artist/artist.component';
 import { FirstForyouComponent } from './pages/first-foryou/first-foryou.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ForyouComponent } from './pages/foryou/foryou.component';
@@ -57,13 +57,10 @@ import { CheckoutFormComponent } from './pages/checkout-form/checkout-form.compo
 import { CategoriesComponent } from './pages/categories/categories.component';
 
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { St01Component } from './pages/sign-up/sign-up-art enthusiast/st01/st01.component';
-import { St02Component } from './pages/sign-up/sign-up-art enthusiast/st02/st02.component';
-import { St1Component } from './pages/sign-up/sign-up-artist/st1/st1.component';
-import { St2Component } from './pages/sign-up/sign-up-artist/st2/st2.component';
+import { St01Component } from './pages/sign-up/sign-up-users/st01/st01.component';
+import { St02Component } from './pages/sign-up/sign-up-users/st02/st02.component';
 import { ResetPasswordComponent } from './pages/fogot-password/reset-password/reset-password.component';
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
-import { CheckEmailComponent } from './pages/fogot-password/check-email/check-email.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { ArtistCardComponent } from './shared/cards/Trending-artists/artist-card/artist-card.component';
@@ -89,6 +86,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
 import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
+import { CreationsComponent } from './pages/Artist/artist-profile/creations/creations.component';
 
 
 @NgModule({
@@ -116,11 +114,8 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     SignInComponent,
     St01Component,
     St02Component,
-    St1Component,
-    St2Component,
     ResetPasswordComponent,
     NewPasswordComponent,
-    CheckEmailComponent,
     HomeComponent,
     HelpCenterComponent,
     ArtistCardComponent,
@@ -142,7 +137,8 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     HelpCenterComponent,
     ArtCardComponent,
     ArtistCreationsComponent,
-    UploadArtworksComponent
+    UploadArtworksComponent,
+    CreationsComponent
 
 
   ],

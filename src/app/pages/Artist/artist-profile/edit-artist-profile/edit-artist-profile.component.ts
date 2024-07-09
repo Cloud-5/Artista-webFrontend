@@ -48,7 +48,7 @@ export class EditArtistProfileComponent implements OnInit {
     { name: 'December', value: 12 }
   ];
 
-  public userId:string ='1';
+  public userId:string ='Ar-00001';
 
 
 
@@ -115,7 +115,7 @@ export class EditArtistProfileComponent implements OnInit {
 
   updateProfile(): void {
     console.log('data',this.userData);
-    this.artistService.updateArtistProfile(1, this.updateDetails).subscribe((response: any) => {
+    this.artistService.updateArtistProfile('Ar-00001', this.updateDetails).subscribe((response: any) => {
       console.log('data 2 --',this.userData);
       console.log(response.message);
     });

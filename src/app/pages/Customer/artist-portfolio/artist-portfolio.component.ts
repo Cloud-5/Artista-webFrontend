@@ -15,12 +15,12 @@ export class ArtistPortfolioComponent implements OnInit {
   artistData: any = {};
   artistCreations: any[] = [];
   filteredArts: any[] = [];
-  customerId: string = '24'; // Assuming logged-in user ID is 24
-  artistId: string = ''; // Assuming artist ID is 25
+  customerId: string = '24';
+  artistId: string = '';
   isFollowing: boolean = false;
   followButtonText: string = "Follow";
   followButtonClass: string = "follow";
-  rating: number = 0; // Initialize the rating property
+  rating: number = 0;
 
   routeSub: Subscription | undefined;
 
@@ -44,9 +44,9 @@ export class ArtistPortfolioComponent implements OnInit {
       console.log('artistId9999999999999999', this.artistId);
       this.getArtistDetails(this.artistId);
       this.getArtistCreations(this.artistId);
-    
+
     })
-    
+
   }
 
   getArtistDetails(artistId: string): void {
@@ -158,5 +158,14 @@ export class ArtistPortfolioComponent implements OnInit {
     this.rating = star;
     this.ratingForm.patchValue({ rating: star });
   }
+
+  messageArtist(firebase_uid: string, artistName: string): void {
+    // Save the firebase_uid to local storage
+    localStorage.setItem('artistFirebaseUid', firebase_uid);
+    localStorage.setItem('artistName', artistName);
+    // Navigate to the chat route
+    this.router.navigate(['/chat']);
+  }
+
 }
 

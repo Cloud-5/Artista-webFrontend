@@ -37,7 +37,7 @@ export class ArtistFollowersService {
 
   constructor(private http: HttpClient) { }
 
-    getFollowersForArtist(artistId: number): Observable<any> {
+    getFollowersForArtist(artistId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/artist-followers/${artistId}/followers`);
   }
 
@@ -52,7 +52,7 @@ export class ArtistFollowersService {
 //   return throwError('Something went wrong; please try again later.');
 // }
 
-    deleteFollowers(followerId: number, artistId: number): Observable<any> {
+    deleteFollowers(followerId: string, artistId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/artist-followers/${artistId}/followers/${followerId}`);
     }
 

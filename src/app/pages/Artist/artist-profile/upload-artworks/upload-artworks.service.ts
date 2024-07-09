@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,5 +15,12 @@ export class UploadArtworksService {
 
   addArtworkByArtist(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/artwork/upload`, formData);
+  }
+
+
+
+
+  getCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/artist-upload-artworks/`);
   }
 }
