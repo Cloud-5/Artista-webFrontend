@@ -233,21 +233,20 @@ h2, .sub-title {
 
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////new blue */
-.header__wrapper .cols__container .right__col .Creations {
+ .header__wrapper .cols__container .right__col .Creations {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px; /* Reduce the gap between grid items */
+  gap: 10px;
   max-height: 1000px;
   overflow-y: scroll;
   overflow-x: hidden;
+  border-radius: 10%;
 }
 
 
 
-/* Importing fonts from Google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Resetting */
 * {
   margin: 0;
   padding: 0;
@@ -392,4 +391,4 @@ body {
   .container .row .col-lg-4 {
     margin: 20px 0px;
   }
-}
+} 
