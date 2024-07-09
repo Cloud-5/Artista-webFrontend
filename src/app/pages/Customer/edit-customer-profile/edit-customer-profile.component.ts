@@ -78,18 +78,18 @@ export class EditCustomerProfileComponent implements OnInit {
     this.bannerImageObj = FILE;
   }
 
-  newImageUpload() {
+  newImageUpload(folder: string, uploadType: string) {
     const imageForm = new FormData();
     imageForm.append('image', this.imageObj as Blob);
-    this.ImageUploadService.imageUpload(imageForm).subscribe((res: any) => {
+    this.ImageUploadService.imageUpload(imageForm,folder,uploadType).subscribe((res: any) => {
       this.customer.profile_photo_url = res.image.location;
     });
   }
 
-  uploadBannerImage() {
+  uploadBannerImage(folder: string, uploadType: string) {
     const imageForm = new FormData();
     imageForm.append('image', this.bannerImageObj as Blob);
-    this.ImageUploadService.imageUpload(imageForm).subscribe((res: any) => {
+    this.ImageUploadService.imageUpload(imageForm,folder,uploadType).subscribe((res: any) => {
       this.customer.banner_img_url = res.image.location;
     });
   }

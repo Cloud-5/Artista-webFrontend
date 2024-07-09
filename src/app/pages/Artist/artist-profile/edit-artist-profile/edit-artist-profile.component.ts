@@ -141,10 +141,10 @@ export class EditArtistProfileComponent implements OnInit {
     this.profilePhoto = FILE;
   }
 
-  newImageUpload() {
+  newImageUpload(folder: string, uploadType: string) {
     const imageForm = new FormData();
     imageForm.append('image', this.profilePhoto as Blob);
-    this.ImageUploadService.imageUpload(imageForm).subscribe((res:any) => {
+    this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res:any) => {
       this.userData.ProfilePhoto = res.image.location;
     });
   }

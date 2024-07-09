@@ -14,27 +14,14 @@ export class UploadArtworksComponent {
   isUploading = false;
   categories: any[] = [];
 
-  fileName: string | undefined;
+  //fileName: string | undefined;
+
   isUploading2D: boolean = false;
   isUploading3D: boolean = false;
 
-  new2DArtwork:any={
-   title:'',
-   price:'',
-   thumbnail_url:'',
-   original_url:'',
-   description:'',
-   published_date:'',
-   category_id:'',
-   is2D:'',
-   tag_name: [],
-    }
 
 
-
-  new2DTag_Name: string = '';
-  new3DTag_name: string = '';
-
+Tag_Name: string = '';
 
   new3DArtwork: any = {
     title: '',
@@ -43,11 +30,11 @@ export class UploadArtworksComponent {
     description: '',
     published_date: '',
     category_id: '',
-    is3D: true, // Set true for 3D artwork
+    is3D: true,
     tag_name: []
   };
 
-  constructor(private uploadArtworksService: UploadArtworksService) {}
+  constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService) {}
 
   ngOnInit(): void {
     this.uploadArtworksService.getCategories().subscribe((categories: any) => {
@@ -59,9 +46,9 @@ export class UploadArtworksComponent {
 
 
 addNew2DTag() {
-    if (this.new2DTag_Name.trim() !== '') {
-      this.new2DArtwork.tag_name.push({ tag_name: this.new2DTag_Name });
-      this.new2DTag_Name = '';
+    if (this.Tag_Name.trim() !== '') {
+      this.new2DArtwork.tag_name.push({ tag_name: this.Tag_Name });
+      this.Tag_Name = '';
     }
   }
 
@@ -70,13 +57,10 @@ addNew2DTag() {
   }
 
 
-
-
-  //33333ddddddd
   addNew3DTag() {
-    if (this.new3DTag_name.trim() !== '') {
-      this.new3DArtwork.tag_name.push({ tag_name: this.new3DTag_name });
-      this.new3DTag_name = '';
+    if (this.Tag_Name.trim() !== '') {
+      this.new3DArtwork.tag_name.push({ tag_name: this.Tag_Name });
+      this.Tag_Name = '';
     }
   }
 
@@ -84,36 +68,11 @@ addNew2DTag() {
     this.new3DArtwork.tag_name.splice(index, 1);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-  constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService) {}
-
-  onFileSelect(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
-    }
-  }
-
-  onArtTypeChange(event: any): void {
+  onArtworkTypeChange(event: any): void {
     this.artType = event.target.value;
     console.log(this.artType);
   }
 
-  onArtworkTypeChange() {
-    // Reset form-specific variables or perform any specific actions
-    this.fileName = undefined;
-  }
 
   onSubmit2D(){
     console.log('2D artwork', this.new2DArtwork);
@@ -122,84 +81,6 @@ addNew2DTag() {
     console.log('3D artwork', this.new2DArtwork);
   }
 
-
-  // onSubmit2D(form: NgForm) {
-  //   if (form.valid) {
-  //     this.isUploading = true;
-  //     const formData = form.value;
-  //     formData.tags = formData.tags.split(',').map((tag: string) => tag.trim());
-
-  //     this.uploadArtworksService.addArtworkByArtist(formData).subscribe(
-  //       (response: any) => {
-  //         console.log('2D artwork upload successful', response);
-  //         this.isUploading = false;
-  //       },
-  //       (error: any) => {
-  //         console.error('2D artwork upload error', error);
-  //         this.isUploading = false;
-  //       }
-  //     );
-  //   }
-  // }
-
-  // onSubmit3D(form: NgForm) {
-  //   if (form.valid) {
-  //     this.isUploading = true;
-  //     const formData = form.value;
-  //     formData.tags = formData.tags.split(',').map((tag: string) => tag.trim());
-
-  //     this.uploadArtworksService.addArtworkByArtist(formData).subscribe(
-  //       (response: any) => {
-  //         console.log('3D artwork upload successful', response);
-  //         this.isUploading = false;
-  //       },
-  //       (error: any) => {
-  //         console.error('3D artwork upload error', error);
-  //         this.isUploading = false;
-  //       }
-  //     );
-  //   }
-  // }
-
-
-  // upload2DArtwork(): void {
-  //   this.isUploading2D = true;
-  //   console.log('2D artwork', this.new2DArtwork);
-  //   this.uploadArtworksService.addArtworkByArtist(this.new2DArtwork).subscribe(
-  //     (response: any) => {
-  //       console.log('2D artwork upload successful', response);
-  //       this.isUploading2D = false;
-  //     },
-  //     (error: any) => {
-  //       console.error('2D artwork upload error', error);
-  //       this.isUploading2D = false;
-  //     }
-  //   );
-  // }
-
-
-  upload3DArtwork(): void {
-    this.isUploading3D = true;
-    console.log('3D artwork', this.new3DArtwork);
-    this.uploadArtworksService.addArtworkByArtist(this.new3DArtwork).subscribe(
-      (response: any) => {
-        console.log('3D artwork upload successful', response);
-        this.isUploading3D = false;
-      },
-      (error: any) => {
-        console.error('3D artwork upload error', error);
-        this.isUploading3D = false;
-      }
-    );
-  }
-
-  ngOnInit(): void {
-    this.uploadArtworksService.getCategories().subscribe((categories: any) => {
-      this.categories = categories;
-    });
-
-    console.log('Categories', this.categories);
-  }
 
   files: any[] =[];
   subfolderName: string = '';
@@ -241,4 +122,85 @@ addNew2DTag() {
   }
 
 
+  //for 2d form
+
+  thumb: File | undefined;
+  thumbUrl: string = '';
+  ori: File | undefined;
+  OriUrl: string = '';
+
+  new2DArtwork:any={
+    title:'',
+    price:'',
+    thumbnail_url:'',
+    original_url:'',
+    description:'',
+    category_id:'',
+    is3D: false,
+    tag_name: [],
+   }
+
+
+  onFileSelected1(event: any) {
+    const FILE = (event.target as HTMLInputElement).files?.[0];
+    this.thumb = FILE;
+  }
+  onFileSelected2(event: any) {
+    const FILE = (event.target as HTMLInputElement).files?.[0];
+    this.ori = FILE;
+  }
+
+  onthumbUpload(folder: string, uploadType: string) {
+    const imageForm = new FormData();
+    imageForm.append('image', this.thumb as Blob);
+    this.imageUploadService.imageUpload(imageForm, folder, uploadType).subscribe(
+      (res: any) => {
+        this.thumbUrl = res.image.location;
+        this.new2DArtwork.thumbnail_url = this.thumbUrl;
+        console.log('Image uploaded successfully:', this.thumbUrl);
+
+      });
+  }
+
+  removeThumb() {
+    if (this.thumbUrl) {
+      const key = this.thumbUrl.split('/').pop();
+      this.imageUploadService.removeImage(key as any).subscribe(
+        () => {
+          this.thumbUrl = '';
+          this.new2DArtwork.thumbnail_url = '';
+          console.log('thumb removed successfully');
+        },
+        (error) => {
+          console.error('Error removing image:', error);
+        }
+      );
+    }
+  }
+
+  onOriginalUpload(folder: string, uploadType: string) {
+    const imageForm = new FormData();
+    imageForm.append('image', this.ori as Blob);
+    this.imageUploadService.imageUpload(imageForm, folder, uploadType).subscribe(
+      (res: any) => {
+        this.OriUrl = res.image.location;
+        this.new2DArtwork.original_url = this.OriUrl;
+        console.log('Image uploaded successfully:', this.OriUrl);
+      });
+  }
+
+  removeOri() {
+    if (this.OriUrl) {
+      const key = this.OriUrl.split('/').pop();
+      this.imageUploadService.removeImage(key as any).subscribe(
+        () => {
+          this.OriUrl = '';
+          this.new2DArtwork.original_url = '';
+        },
+        (error) => {
+          console.error('Error removing image:', error);
+        }
+      );
+    }
+  }
 }

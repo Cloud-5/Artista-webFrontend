@@ -1,4 +1,4 @@
-
+/* General CSS */
 .image {
   background: #50A7FF;
   position: relative;
@@ -7,7 +7,7 @@
   margin: 12px;
   margin-right: -10px;
   overflow: hidden;
-  border-radius: 10%;
+  border-radius: 5px; /* Ensure border-radius is 10% */
 }
 
 .image::before {
@@ -30,6 +30,7 @@
   vertical-align: top;
   transition: 0.6s;
   transition-property: opacity;
+  border-radius: 5px; /* Ensure border-radius is 10% */
 }
 
 .image:hover img {
@@ -46,19 +47,17 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: 10%;
 }
 
 .image .details .remove-btn {
   z-index: 2;
-  position:absolute;
+  position: absolute;
   align-items: right;
   top: 5px;
   right: 5px;
   padding: 4px 8px;
   font-size: 0.6rem;
 }
-
 
 .image .details h2 {
   z-index: 2;
@@ -93,19 +92,11 @@
   opacity: 0;
   transition: 0.6s;
   transition-property: opacity, transform;
-
-
-}
-
-.image:hover {
-  box-shadow: #001123 0px 0px 10px 0px;
-  border-radius: 10%;
 }
 
 .image:hover .details p {
   opacity: 1;
   transform: translateY(-40px);
-
 }
 
 .more {
@@ -121,91 +112,50 @@
   font-size: 10px;
   padding: 5px;
   bottom: -80px;
-
   transition-property: bottom;
   padding-bottom: -10px;
   z-index: 2;
   transition: bottom .4s ease-in;
   box-shadow: 0 -10px 10px rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10%;
-}
-
-
-
-.price {
-  color: rgb(0, 0, 0);
- font-size: 12px;
- margin-left: 10px;
- font-weight: 500;
-}
-
-.cart-icon-btn {
-  color:rgb(255, 255, 255);
-  font-size: 17px;
-  transform: color 0.5s, scale 0.5s,outline 0.5s;
-}
-
-.cart-icon-btn:hover {
-  color: rgb(19, 177, 185);
-  transform: scale(1.4);
-  outline: orangered;
-}
-
-
-.like-count {
-  color: rgb(0, 0, 0);
-  font-size: 11px;
-}
-
-.bi-heart-fill {
-  color: rgb(255, 255, 255);
+  border-radius: 5px; /* Ensure border-radius is 10% */
 }
 
 .image:hover .more {
   bottom: 0;
 }
 
-
-/* .search-art .image {
-  width: 276px;
+/* Update card CSS to ensure consistent border-radius */
+.card {
+  position: relative;
+  padding: 0;
+  margin: 0 !important;
+  border-radius: 5px; /* Ensure border-radius is 10% */
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 15px rgba(235, 8, 8, 0.2);
 }
-.customer-profile-gallery .image {
-  width:px;
-} */
-
-/* Responsive CSS */
-@media (max-width: 1080px) {
-  .image {
-      flex: 100%;
-      max-width: 480px;
-  }
-}
-
-@media (max-width: 400px) {
-  .image .details p {
-      font-size: 16px;
-  }
-}
-
 
 .card .card-content {
   position: absolute;
   bottom: -180px;
   color: #000000;
-  background: rgba(0, 70, 131, 0.7); /* Changed background color to a bluer tone */
+  background: rgba(0, 70, 131, 0.7);
   backdrop-filter: blur(15px);
   min-height: 140px;
   width: 100%;
-  transition: bottom 0.4s ease-in, background 0.4s ease-in; /* Added transition for background color */
+  transition: bottom 0.4s ease-in, background 0.4s ease-in;
   box-shadow: 0 -10px 10px rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10%;
+  border-radius: 5px; /* Ensure border-radius is 10% */
 }
 
 .card:hover .card-content {
   bottom: 0px;
-  background: rgba(0, 70, 131, 0.9); /* Bluer background color when hovered */
+  background: rgba(0, 70, 131, 0.9);
 }
 
 .card .card-content .card-details {
@@ -222,15 +172,6 @@
   opacity: 0;
   transform: translateY(-40px);
   transition-delay: 0.2s;
-}
-
-.card .card-content .price {
-  color: #1d1d1d;
-  font-weight: bold;
-}
-
-.card .card-content .title {
-  color: #1d1d1d;
 }
 
 .card:hover .card-content .price,
@@ -292,18 +233,15 @@
   }
 }
 
-
-.card {
-  position: relative;
-  padding: 0;
-  margin: 0 !important;
-  border-radius: 20%;
-  overflow: hidden;
-  max-width: 100%;
-  max-height: 100%;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 5px 15px rgba(235, 8, 8, 0.2);
-  border-radius: 10px;
+@media (max-width: 1080px) {
+  .image {
+    flex: 100%;
+    max-width: 480px;
+  }
 }
 
+@media (max-width: 400px) {
+  .image .details p {
+    font-size: 16px;
+  }
+}

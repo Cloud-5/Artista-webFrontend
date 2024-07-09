@@ -183,7 +183,7 @@
               id="artworkType"
               class="form-control artwork-type"
               [(ngModel)]="artType"
-              (change)="onArtworkTypeChange()"
+              (change)="onArtworkTypeChange($event)"
             >
               <option value="2d" class="input-area">2D Artwork</option>
               <option value="3d"  class="input-area">3D Artwork</option>
@@ -195,13 +195,17 @@
           <!-- 2D art//////////////////////////////// -->
           <form *ngIf="artType === '2d'"  (ngSubmit)="onSubmit2D()">
             <div class="input-group mb-3">
-              <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelect($event)" required>
-              <label class="input-group-text btn-custom">Choose File</label>
+              <label>Upload Thumbnail</label>
+              <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelected1($event)" required>
+              <label  *ngIf="!thumbUrl" class="input-group-text btn-custom" (click)="onthumbUpload('2DThumbnails','profilePicture')" >Upload</label>
+              <button *ngIf="thumbUrl" type="button" (click)="removeThumb()">Remove</button>
             </div>
 
             <div class="input-group mb-3">
-              <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelect($event)" required>
-              <label class="input-group-text btn-custom">Choose File</label>
+              <label>Upload Original File</label>
+              <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelected2($event)" required>
+              <label *ngIf="!OriUrl" class="input-group-text btn-custom" (click)="onOriginalUpload('2DArtworks','profilePicture')">Upload</label>
+              <button *ngIf="OriUrl" type="button" (click)="removeOri()" >Remove</button>
             </div>
             <!-- <div *ngIf="fileName" class="file-name">{{ fileName }}</div> -->
 
@@ -237,7 +241,7 @@
                 </span>
               </div>
               <div class="input-group mt-2">
-                <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="new2DTag_Name"
+                <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="Tag_Name"
                   name="new tag name" required #tag_nameInput="ngModel" />
                 <button class="btn btn-primary" type="button" (click)="addNew2DTag()" [disabled]="tag_nameInput.invalid">
                   Add
@@ -260,7 +264,7 @@
           </form>
 
           <!-- 3D Artwork Form///////////////////////////////////////////////// -->
-          <form   (ngSubmit)="onSubmit3D()"  *ngIf="artType === '3d'" >
+          <!-- <form   (ngSubmit)="onSubmit3D()"  *ngIf="artType === '3d'" >
             <div class="input-group mb-3">
               <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
               <label class="input-group-text btn-custom">Choose File</label>
@@ -274,7 +278,6 @@
 <label class="input-group-text btn-custom" (click)="newFolderUpload('3DArtwork', '3DArtwork')">Choose File</label>
             </div>
             <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')">Delete Folder</button>
-            <div *ngIf="fileName" class="file-name">{{ fileName }}</div>
 
             <div class="form-group">
               <label for="title3D">Artwork Title</label>
@@ -337,7 +340,7 @@
             </div>
 
             <div *ngIf="isUploading3D" class="uploading-animation">Uploading...</div>
-          </form>
+          </form> -->
         </div>
 
 
