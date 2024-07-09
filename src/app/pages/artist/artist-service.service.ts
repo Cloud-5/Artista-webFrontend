@@ -25,5 +25,26 @@ export class ArtistServiceService {
     return this.http.get<string[]>(`${this.apiUrl}/locations`);
   }
 
-  
+  getProfessions(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/professions`);
+  }
+
+  toggleFollow(artistId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artistId}/follow`, { userId });
+  }
+
+  unfollow(artistId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artistId}/unfollow`, { userId });
+  }
+
+  toggleAddToGallery(artworkId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/addtogallery`, { userId });
+  }
+
+  removeFromGallery(artworkId: string, userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${artworkId}/removefromgallery`, { userId });
+  }
+
+
+
 }

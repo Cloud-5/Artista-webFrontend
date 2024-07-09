@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 // upload-artworks.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -23,4 +24,6 @@ export class UploadArtworksService {
   getCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/artist-upload-artworks/`);
   }
+
+ 
 }

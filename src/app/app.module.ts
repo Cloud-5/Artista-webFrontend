@@ -87,6 +87,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
 import { CreationsComponent } from './pages/Artist/artist-profile/creations/creations.component';
+import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
 
 
 @NgModule({
@@ -138,7 +139,8 @@ import { CreationsComponent } from './pages/Artist/artist-profile/creations/crea
     ArtCardComponent,
     ArtistCreationsComponent,
     UploadArtworksComponent,
-    CreationsComponent
+    CreationsComponent,
+    CreationPreviewComponent
 
 
   ],
