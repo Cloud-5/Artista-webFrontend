@@ -193,21 +193,13 @@
 
 
           <!-- 2D art//////////////////////////////// -->
-          <form *ngIf="artType === '2d'"  (ngSubmit)="onSubmit2D()">
+          <form *ngIf="artType === '2d'"  (ngSubmit)="upload2DArtwork()">
             <div class="input-group mb-3">
               <label>Upload Thumbnail</label>
               <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelected1($event)" required>
               <label  *ngIf="!thumbUrl" class="input-group-text btn-custom" (click)="onthumbUpload('2DThumbnails','profilePicture')" >Upload</label>
               <button *ngIf="thumbUrl" type="button" (click)="removeThumb()">Remove</button>
             </div>
-
-            <div class="input-group mb-3">
-              <label>Upload Original File</label>
-              <input  id="file2D" type="file" name="title" class="form-control input-area"  (change)="onFileSelected2($event)" required>
-              <label *ngIf="!OriUrl" class="input-group-text btn-custom" (click)="onOriginalUpload('2DArtworks','profilePicture')">Upload</label>
-              <button *ngIf="OriUrl" type="button" (click)="removeOri()" >Remove</button>
-            </div>
-            <!-- <div *ngIf="fileName" class="file-name">{{ fileName }}</div> -->
 
             <div class="form-group">
               <label for="title2D">Artwork Title</label>
@@ -255,9 +247,62 @@
                 At least one tag_name is required.
               </div>
             </div>
+
+            <div class="mb-3">
+              <label for="tools2D" class="form-label">Tools</label>
+              <div class="d-flex flex-wrap">
+                <span *ngFor="let tool of new2DArtwork.tools; let i = index" class="badge bg-primary"
+                      style="margin-bottom: 5px; margin-right: 5px">
+                  {{ tool.tool_name }}
+                  <button type="button" class="btn-close" aria-label="Close" (click)="removeTool(i)"></button>
+                </span>
+              </div>
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Add tool" [(ngModel)]="Tool_Name"
+                       name="new tool" required #toolInput="ngModel" />
+                <button class="btn btn-primary" type="button" (click)="addNewTool()" [disabled]="toolInput.invalid">
+                  Add
+                </button>
+              </div>
+              <div *ngIf="
+                  new2DArtwork.tools.length === 0 &&
+                  (toolInput.touched || toolInput.dirty) &&
+                  toolInput.invalid
+                " class="alert alert-danger mt-2 p-2">
+                At least one tool is required.
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="fileFormats2D" class="form-label">File Formats</label>
+              <div class="d-flex flex-wrap">
+                <span *ngFor="let format of new2DArtwork.fileFormats; let i = index" class="badge bg-primary"
+                      style="margin-bottom: 5px; margin-right: 5px">
+                  {{ format.file_format_name }}
+                  <button type="button" class="btn-close" aria-label="Close" (click)="removeFileFormat(i)"></button>
+                </span>
+              </div>
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Add file format" [(ngModel)]="Format_name"
+                       name="new file format" required #fileFormatInput="ngModel" />
+                <button class="btn btn-primary" type="button" (click)="addNewFileFormat()" [disabled]="fileFormatInput.invalid">
+                  Add
+                </button>
+              </div>
+              <div *ngIf="
+                  new2DArtwork.fileFormats.length === 0 &&
+                  (fileFormatInput.touched || fileFormatInput.dirty) &&
+                  fileFormatInput.invalid
+                " class="alert alert-danger mt-2 p-2">
+                At least one file format is required.
+              </div>
+            </div>
+
+
             <div class="form-group d-flex justify-content-between">
               <button type="submit" class="btn btn-custom">Upload 2D Artwork</button>
-              <button type="button" class="btn btn-custom" >Cancel</button>
+              <button type="button" class="btn btn-custom" routerLink="/artist/new-home" >Cancel</button>
             </div>
 
             <div *ngIf="isUploading2D" class="uploading-animation">Uploading...</div>

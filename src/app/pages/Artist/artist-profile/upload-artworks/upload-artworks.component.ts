@@ -21,8 +21,6 @@ export class UploadArtworksComponent {
 
 
 
-Tag_Name: string = '';
-
   new3DArtwork: any = {
     title: '',
     price: '',
@@ -31,12 +29,22 @@ Tag_Name: string = '';
     published_date: '',
     category_id: '',
     is3D: true,
-    tag_name: []
+    tag_name: [],
+    tools: [],
+    fileFormats: [],
+    subfolder_name: '',
+    modelBackground: '',
+    original_url: ''
   };
 
   constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService) {}
 
   ngOnInit(): void {
+
+    const userId = localStorage.getItem('user_id');
+    if (userId) {
+      this.new2DArtwork.artist = userId;
+    }
     this.uploadArtworksService.getCategories().subscribe((categories: any) => {
       this.categories = categories;
     });
@@ -45,16 +53,6 @@ Tag_Name: string = '';
   }
 
 
-addNew2DTag() {
-    if (this.Tag_Name.trim() !== '') {
-      this.new2DArtwork.tag_name.push({ tag_name: this.Tag_Name });
-      this.Tag_Name = '';
-    }
-  }
-
-  remove2DTag(index: number) {
-    this.new2DArtwork.tag_name.splice(index, 1);
-  }
 
 
   addNew3DTag() {
@@ -121,8 +119,25 @@ addNew2DTag() {
     }
   }
 
+  Tool_Name: string = '';
+  Format_name: string = '';
+  Tag_Name: string = '';
+
+  addNew2DTag() {
+    if (this.Tag_Name.trim() !== '') {
+      this.new2DArtwork.tag_name.push({ tag_name: this.Tag_Name });
+      this.Tag_Name = '';
+    }
+  }
+
+  remove2DTag(index: number) {
+    this.new2DArtwork.tag_name.splice(index, 1);
+  }
+
+
 
   //for 2d form
+
 
   thumb: File | undefined;
   thumbUrl: string = '';
@@ -132,13 +147,38 @@ addNew2DTag() {
   new2DArtwork:any={
     title:'',
     price:'',
+    artist:'',
     thumbnail_url:'',
-    original_url:'',
     description:'',
     category_id:'',
     is3D: false,
     tag_name: [],
+    tools: [],
+    fileFormats: []
    }
+
+   addNewTool() {
+    if (this.Tool_Name.trim() !== '') {
+      this.new2DArtwork.tools.push({ tool_name: this.Tool_Name });
+      this.Tool_Name = '';
+    }
+  }
+
+  removeTool(index: number) {
+    this.new2DArtwork.tools.splice(index, 1);
+  }
+
+  addNewFileFormat() {
+    if (this.Format_name.trim() !== '') {
+      this.new2DArtwork.fileFormats.push({ file_format_name: this.Format_name });
+      this.Format_name = '';
+    }
+  }
+
+  removeFileFormat(index: number) {
+    this.new2DArtwork.fileFormats.splice(index, 1);
+  }
+
 
 
   onFileSelected1(event: any) {
@@ -201,6 +241,26 @@ addNew2DTag() {
           console.error('Error removing image:', error);
         }
       );
+    }
+  }
+
+  async upload2DArtwork(): Promise<void> {
+    try {
+      const response = await this.uploadArtworksService.upload2DArtwork(this.new2DArtwork).toPromise();
+      console.log('2D artwork upload successful', response);
+      this.new2DArtwork = {
+        title: '',
+        price: '',
+        thumbnail_url: '',
+        description: '',
+        category_id: '',
+        is3D: false,
+        tag_name: [],
+        tools: [],
+        fileFormats: []
+      };
+    } catch (error:any) {
+      console.log('error upoading 2d artwork', error);
     }
   }
 }

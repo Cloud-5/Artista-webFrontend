@@ -7,7 +7,7 @@
   margin: 12px;
   margin-right: -10px;
   overflow: hidden;
-  border-radius: 5px; /* Ensure border-radius is 10% */
+  border-radius: 10px; /* Ensure border-radius is 10% */
 }
 
 .image::before {
@@ -30,11 +30,13 @@
   vertical-align: top;
   transition: 0.6s;
   transition-property: opacity;
-  border-radius: 5px; /* Ensure border-radius is 10% */
+  border-radius: 10px;
+  /* Ensure border-radius is 10% */
 }
 
 .image:hover img {
   opacity: 1;
+  border-radius: 10px;
 }
 
 .image .details {
@@ -47,6 +49,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  transition: 0.8;
 }
 
 .image .details .remove-btn {
@@ -80,7 +84,7 @@
   font-weight: bold;
 }
 
-.image .details p {
+/* .image .details p {
   z-index: 2;
   position: absolute;
   margin: 30px 30px 0 30px;
@@ -91,13 +95,15 @@
   margin-top: 265px;
   opacity: 0;
   transition: 0.6s;
+  transition-delay:0.2s;
   transition-property: opacity, transform;
-}
 
-.image:hover .details p {
+} */
+
+/* .image:hover .details p {
   opacity: 1;
   transform: translateY(-40px);
-}
+} */
 
 .more {
   position: absolute;
@@ -115,28 +121,31 @@
   transition-property: bottom;
   padding-bottom: -10px;
   z-index: 2;
-  transition: bottom .4s ease-in;
+  transition: bottom .3s ease-in;
   box-shadow: 0 -10px 10px rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 5px; /* Ensure border-radius is 10% */
+  border-radius: 10px;
+ /* Ensure border-radius is 10% */
 }
 
 .image:hover .more {
+  border-radius: 10px;
   bottom: 0;
+
 }
 
-/* Update card CSS to ensure consistent border-radius */
+
 .card {
   position: relative;
   padding: 0;
   margin: 0 !important;
-  border-radius: 5px; /* Ensure border-radius is 10% */
   overflow: hidden;
   max-width: 100%;
   max-height: 100%;
   cursor: pointer;
   border: none;
   box-shadow: 0 5px 15px rgba(235, 8, 8, 0.2);
+  border-radius: 10px;
 }
 
 .card .card-content {
@@ -150,12 +159,16 @@
   transition: bottom 0.4s ease-in, background 0.4s ease-in;
   box-shadow: 0 -10px 10px rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 5px; /* Ensure border-radius is 10% */
+  border-radius: 10px;
+
+ /* Ensure border-radius is 10% */
 }
 
 .card:hover .card-content {
   bottom: 0px;
   background: rgba(0, 70, 131, 0.9);
+
+
 }
 
 .card .card-content .card-details {
@@ -163,6 +176,7 @@
   justify-content: space-between;
   width: 100%;
   padding: 0 10px;
+  border-radius: 10px;
 }
 
 .card .card-content .price,
@@ -171,7 +185,7 @@
   transition: 0.8s;
   opacity: 0;
   transform: translateY(-40px);
-  transition-delay: 0.2s;
+
 }
 
 .card:hover .card-content .price,
@@ -215,12 +229,13 @@
   transition: 0.5s;
   opacity: 0;
   transform: translateY(-40px);
-  transition-delay: 0.4s;
+
 }
 
 .card:hover .card-content .card-actions button {
   transform: translateY(10px);
   opacity: 1;
+  transition-delay: 0.9s;
 }
 
 @media(max-width: 991.5px) {
