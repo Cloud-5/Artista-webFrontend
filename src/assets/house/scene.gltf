@@ -1,0 +1,461 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1451,
+      "max": [
+        0.883275032043457,
+        1.1188286542892456,
+        5.479698181152344
+      ],
+      "min": [
+        -0.8790584206581116,
+        -1.597554087638855,
+        1.3969838619232178e-09
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 17412,
+      "componentType": 5126,
+      "count": 1451,
+      "max": [
+        0.9999929666519165,
+        0.9997968077659607,
+        0.9999984502792358
+      ],
+      "min": [
+        -0.999987781047821,
+        -0.9993228912353516,
+        -0.9999983906745911
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 1451,
+      "max": [
+        0.999298095703125,
+        0.9993283748626709,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -0.9995350241661072,
+        -0.9999322891235352,
+        -0.999332845211029,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1451,
+      "max": [
+        0.9994063973426819,
+        0.9938944578170776
+      ],
+      "min": [
+        0.0005936168017797172,
+        0.0005936168017797172
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 3684,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 34824,
+      "componentType": 5126,
+      "count": 1951,
+      "max": [
+        1.9959213733673096,
+        2.0365231037139893,
+        4.702856540679932
+      ],
+      "min": [
+        -2.0189857482910156,
+        -1.95582115650177,
+        1.3969838619232178e-09
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 58236,
+      "componentType": 5126,
+      "count": 1951,
+      "max": [
+        0.999713659286499,
+        0.9985188841819763,
+        0.9999339580535889
+      ],
+      "min": [
+        -0.9984327554702759,
+        -0.9988934993743896,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 23216,
+      "componentType": 5126,
+      "count": 1951,
+      "max": [
+        0.9985893368721008,
+        0.9999286532402039,
+        0.9999719262123108,
+        1.0
+      ],
+      "min": [
+        -0.9998621940612793,
+        -0.9986333847045898,
+        -0.9999904632568359,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 11608,
+      "componentType": 5126,
+      "count": 1951,
+      "max": [
+        0.9995130300521851,
+        0.9648672342300415
+      ],
+      "min": [
+        0.00048687850357964635,
+        -0.00084243796300143
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 27216,
+      "componentType": 5126,
+      "count": 1951,
+      "max": [
+        0.9995130300521851,
+        0.9648672342300415
+      ],
+      "min": [
+        0.00048687850357964635,
+        -0.00084243796300143
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 42824,
+      "componentType": 5126,
+      "count": 1951,
+      "max": [
+        0.9995130300521851,
+        0.9648672342300415
+      ],
+      "min": [
+        0.00048687850357964635,
+        -0.00084243796300143
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 14736,
+      "componentType": 5125,
+      "count": 8028,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Agustín Hönnun (https://sketchfab.com/Agustin_Honnun)",
+      "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+      "source": "https://sketchfab.com/3d-models/stylized-mushroom-house-a45ce69965ff4528aaabfab11a77d4f0",
+      "title": "Stylized Mushroom House"
+    },
+    "generator": "Sketchfab-16.16.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 46848,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 58432,
+      "byteOffset": 46848,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 81648,
+      "byteOffset": 105280,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 54432,
+      "byteOffset": 186928,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 241360,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/House_MAT_baseColor.png"
+    },
+    {
+      "uri": "textures/House_MAT_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/House_MAT_emissive.png"
+    },
+    {
+      "uri": "textures/House_MAT_normal.png"
+    },
+    {
+      "uri": "textures/Mushroom_MAT_baseColor.png"
+    },
+    {
+      "uri": "textures/Mushroom_MAT_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Mushroom_MAT_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 2
+      },
+      "name": "House_MAT",
+      "normalTexture": {
+        "index": 3
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "name": "Mushroom_MAT",
+      "normalTexture": {
+        "index": 6
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicRoughnessTexture": {
+          "index": 5
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "MushroomHouse_House_MAT_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "MushroomHouse_Mushroom_MAT_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8,
+            "TEXCOORD_1": 9,
+            "TEXCOORD_2": 10
+          },
+          "indices": 11,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.023256320506334305,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.163940498838905e-18,
+        -0.023256320506334305,
+        0.0,
+        0.0,
+        0.023256320506334305,
+        5.163940498838905e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "80acf6751f744d26bc724094032742cc.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5
+      ],
+      "matrix": [
+        -99.99999999999241,
+        1.2246465878873718e-14,
+        3.8941437775530106e-05,
+        0.0,
+        3.894143777553e-05,
+        7.549789982075339e-06,
+        99.99999999999213,
+        0.0,
+        -2.9277502948264183e-12,
+        99.9999999999997,
+        -7.549789970973109e-06,
+        0.0,
+        4.3839898109436035,
+        -0.6882503032684326,
+        -4.14961051940918,
+        1.0
+      ],
+      "name": "MushroomHouse"
+    },
+    {
+      "mesh": 0,
+      "name": "MushroomHouse_House_MAT_0"
+    },
+    {
+      "mesh": 1,
+      "name": "MushroomHouse_Mushroom_MAT_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    },
+    {
+      "sampler": 0,
+      "source": 6
+    }
+  ]
+}
