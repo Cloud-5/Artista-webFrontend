@@ -13,7 +13,7 @@ export class PurchaseImgCardComponent implements OnInit {
     private purchaseHistoryService: PurchaseHistoryService
   ){}
 
-  userId:string = "24";
+  userId:string = localStorage.getItem('user_id') || '';
   purchaseData: any[] =[];
 
 

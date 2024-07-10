@@ -12,19 +12,21 @@ export class FollowingArtistsComponent implements OnInit{
   FollowingArtistsData: any[] = [];
   filteredArtists: any[] = [];
   artistId: string = '';
-  router: any;
+
+  userId: string = localStorage.getItem('user_id') || '';
 
 
   constructor(
-    public followingArtistsService: FollowingArtistsServiceService
+    public followingArtistsService: FollowingArtistsServiceService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
-    this.getFollowingArtistsList();
+    this.getFollowingArtistsList(this.userId);
   }
 
-  getFollowingArtistsList(): void {
-    this.followingArtistsService.getFollowingArtistsList().subscribe(
+  getFollowingArtistsList(userId:string): void {
+    this.followingArtistsService.getFollowingArtistsList(userId).subscribe(
       (data: any) => {
         // this.FollowingArtistsData = data.map((artist: any) => ({
         //   fName: artist.fName,
@@ -33,6 +35,7 @@ export class FollowingArtistsComponent implements OnInit{
         //  artist_image_url: artist.artist_image_url,
         //   total_followers: artist.total_followers
         //  }));
+
         this.FollowingArtistsData = data;
         this.filteredArtists = this.FollowingArtistsData;
 
@@ -64,8 +67,8 @@ export class FollowingArtistsComponent implements OnInit{
   unfollow(artistId: string): void {
     console.log('Unfollowing artist with ID:', artistId); // Debug log
     console.log('Current FollowingArtistsData:', this.FollowingArtistsData); // Debug log
-    const userId: string = '24';
-    this.followingArtistsService.unfollow(artistId,userId).subscribe(
+
+    this.followingArtistsService.unfollow(artistId,this.userId).subscribe(
       (response: any) => {
         console.log(response.message);
         // Remove the artist from the FollowingArtistsData and filteredArtists arrays
@@ -82,8 +85,8 @@ export class FollowingArtistsComponent implements OnInit{
     );
   }
 
-  goToPortfolio(artist: any) {
-    this.router.navigate(['/artist-portfolio', this.artistId]);
+  goToPortfolio(user_id:string) {
+    this.router.navigate(['/artist-portfolio', user_id]);
     console.log('artist', this.artistId);
   }
 }

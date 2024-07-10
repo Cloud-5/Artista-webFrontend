@@ -11,7 +11,7 @@ describe('FeedbackListCardComponent', () => {
       declarations: [FeedbackListCardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(FeedbackListCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
