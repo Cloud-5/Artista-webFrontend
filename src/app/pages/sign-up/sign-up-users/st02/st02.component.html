@@ -15,7 +15,7 @@
                 <div *ngIf="Message" class="alert alert-success" role="alert">
                   {{ Message }}
                 </div>
-                <p>Step 2 of 2</p>
+                <p>Step 02 of 03</p>
                 <div class="col-md-6">
                   <label class="form-label">First Name</label>
                   <input type="text" class="form-control" formControlName="fName">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-12">
                   <label class="form-label">Registration Date</label>
-                  <input type="date" class="form-control" formControlName="registered_at">
+                  <input type="date" class="form-control" formControlName="registered_at" readonly>
                   <div *ngIf="signupForm.get('registered_at')?.invalid && signupForm.get('registered_at')?.touched" class="text-danger">
                    Registration Date  is required
                   </div>
