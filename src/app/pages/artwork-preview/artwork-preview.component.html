@@ -1,11 +1,11 @@
 <div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
     <div class="d-sm-flex justify-content-between align-items-center">
-        
+
             <div class="bar-header" style="margin-left: 20px;">
                 <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0;">{{artworkDetails.artwork_name}}</h3>
                 <p>by {{artworkDetails.artist}}</p>
             </div>
-      
+
         <div class="d-flex align-items-center gap-3" style="justify-content: center;">
             <div class="price">
                 <p class="fs-3 fw-medium">{{artworkDetails.price | currency}}</p>
@@ -26,7 +26,7 @@
         </div>
     </div>
 </div>
-<app-navbar></app-navbar>   
+<app-navbar></app-navbar>
 <section>
         <div class="container">
             <div class="row">
@@ -66,19 +66,19 @@
                                 {{artworkDetails.description}}
                             </p>
                         </div>
-                    
+
                         <h5 class="header-art">
                             Tags:
                             <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
                                 <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isTagsCollapsed, 'bi-caret-up-square-fill': isTagsCollapsed}"></i>
                             </button>
                         </h5>
-                        <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">  
+                        <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">
                             <div class="d-flex flex-wrap">
                                 <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: #c0ccff;">#{{ tag }}</span>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="tab-content">
@@ -115,7 +115,7 @@
                             <div class="d-grid gap-2">
                                 <button [ngClass]="['btn', addToGalleryButtonClass]" type="button"
                                     (click)="toggleAddToGallery()"><span class="">{{addToGalleryButtonText}}</span></button>
-                                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
+                                <button  *ngIf="artistRole==='artist'" class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
                             </div>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
             </div>
         </div>
     </div>
-    
+
 </section>
 <section class="related-artworks">
     <div class="container">

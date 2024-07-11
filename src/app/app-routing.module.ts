@@ -37,6 +37,7 @@ import { NewPasswordComponent } from './pages/fogot-password/new-password/new-pa
 import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 import { AuthGuard } from './shared/services/auth.Guard.service';
+import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
 const routes: Routes = [
 
   //gihan
@@ -81,7 +82,8 @@ const routes: Routes = [
   { path:'artist-followers', component: ArtistFollowersComponent },
   {path:'upload',component:UploadArtworksComponent},
   {path:'notification',component:NotificationComponent},
-  {path:'help',component:HelpCenterComponent}
+  {path:'help',component:HelpCenterComponent},
+  {path:'creationPreview',component:CreationPreviewComponent}
 ];
 
 @NgModule({
