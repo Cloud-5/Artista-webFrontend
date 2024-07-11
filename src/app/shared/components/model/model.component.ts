@@ -233,7 +233,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 export class ModelComponent implements OnInit, AfterViewInit {
 
   @Input() objectUrl: string = '';
-  @Input() textureUrl: string = 'assets/bg-1-full.jpg';
+  @Input() textureUrl: string = '';
 
   @ViewChild('canvas') private canvasRef: ElementRef | undefined;
 
@@ -293,7 +293,6 @@ export class ModelComponent implements OnInit, AfterViewInit {
     } else {
       this.scene!.background = new THREE.Color(0x1A1A1A);
     }
-
     this.loaderGLTF.load(this.objectUrl, (gltf: GLTF): void => {
       this.model = gltf.scene;
 
