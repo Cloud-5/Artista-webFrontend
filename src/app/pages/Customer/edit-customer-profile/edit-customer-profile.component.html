@@ -36,12 +36,19 @@
               <input
                 type="file"
                 class="form-control"
+                style="width:1050px; height: 200px; margin-left: 10px;"
                 id="banner-image"
                 name="banner-image"
                 (change)="onBannerFileSelected($event)"
               />
+              <img
+               *ngIf="customer.banner_img_url"
+               [src]="customer.banner_img_url"
+                alt="Banner Image"
+                style="width: 100%; height: auto; margin-left: 10px; margin-top: 10px;"
+                />
               <button
-                (click)="uploadBannerImage()"
+                (click)="uploadBannerImage('CustomerBanners','categoryBanner')"
                 class="btn btn-primary"
                 style="margin-top: 10px; margin-right: 10px"
                 type="button"
@@ -70,12 +77,19 @@
               <input
                 type="file"
                 class="form-control"
+                style="width:250px; height: 200px; margin-left: 10px;"
                 id="profile-image"
                 name="profile-image"
                 (change)="onFileSelected($event)"
               />
+              <img
+               *ngIf="customer.profile_photo_url"
+               [src]="customer.profile_photo_url"
+                alt="profile-image"
+                style="width: 100%; height: auto; margin-left: 10px; margin-top: 10px;"
+                />
               <button
-                (click)="newImageUpload()"
+                (click)="newImageUpload('Customer','profilePicture')"
                 class="btn btn-primary"
                 style="margin-top: 10px; margin-right: 10px"
                 type="button"
@@ -204,7 +218,7 @@
         <h2>Regional Details</h2>
         <div class="row mb-3">
           <div class="col-md-6">
-            <label for="country" class="form-label">Country:</label>
+            <label for="country" class="form-label">Location:</label>
             <input
               type="text"
               class="form-control"

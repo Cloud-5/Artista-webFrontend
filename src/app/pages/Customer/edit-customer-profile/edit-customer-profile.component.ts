@@ -40,6 +40,7 @@ export class EditCustomerProfileComponent implements OnInit {
   editDetails(editCustomerProfileForm: any) {
     if (editCustomerProfileForm.valid) {
       if (this.customer.newPassword && this.confirmPassword !== this.customer.newPassword) {
+        alert('Passwords do not match');
         return;
       }
 
@@ -59,10 +60,11 @@ export class EditCustomerProfileComponent implements OnInit {
         .EditCustomerProfile(this.editingCustomer, customerDetails)
         .subscribe(
           () => {
-            // Handle successful profile edit
+            alert('Profile saved successfully!');
           },
           (error) => {
             console.log('error editing customer', error);
+            alert('There was an error saving the profile. Please try again.');
           }
         );
     }
@@ -78,19 +80,23 @@ export class EditCustomerProfileComponent implements OnInit {
     this.bannerImageObj = FILE;
   }
 
-  newImageUpload() {
+  newImageUpload(folder: string, uploadType: string) {
     const imageForm = new FormData();
     imageForm.append('image', this.imageObj as Blob);
-    this.ImageUploadService.imageUpload(imageForm).subscribe((res: any) => {
+    this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res: any) => {
       this.customer.profile_photo_url = res.image.location;
+    }, (error) => {
+      console.log('error uploading image', error);
     });
   }
 
-  uploadBannerImage() {
+  uploadBannerImage(folder: string, uploadType: string) {
     const imageForm = new FormData();
     imageForm.append('image', this.bannerImageObj as Blob);
-    this.ImageUploadService.imageUpload(imageForm).subscribe((res: any) => {
+    this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res: any) => {
       this.customer.banner_img_url = res.image.location;
+    }, (error) => {
+      console.log('error uploading banner image', error);
     });
   }
 

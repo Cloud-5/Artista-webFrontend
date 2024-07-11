@@ -12,7 +12,7 @@ export class FeedbackListService {
 
   constructor(private http: HttpClient) { }
 
-  getFeedbackList(artistUserId: number): Observable<any> {
+  getFeedbackList(artistUserId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${artistUserId}`);
   }
 }

@@ -82,10 +82,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { NgxStarRatingModule } from 'ngx-star-rating';
 import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
+import { CreationsComponent } from './pages/Artist/artist-profile/creations/creations.component';
+import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
 import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
 
 
@@ -138,6 +139,8 @@ import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component
     ArtCardComponent,
     ArtistCreationsComponent,
     UploadArtworksComponent,
+    CreationsComponent,
+    CreationPreviewComponent,
     St03Component
 
 

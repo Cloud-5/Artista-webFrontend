@@ -39,5 +39,5 @@ export class ArtworkPreviewService {
   removeFromGallery(artworkId: string, userId: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${artworkId}/removefromgallery`, { userId });
   }
-  
+
 }

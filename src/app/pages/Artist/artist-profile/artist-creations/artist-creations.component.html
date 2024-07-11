@@ -22,82 +22,39 @@
       </div>
   </div> -->
 
-
-
-
-
-
   <div class="container">
-    <div class="card shadow mb-4 zoom-in-out-on-hover">
-      <img [src]="artworks.thumbnail_url" class="card-img-top" alt="Artwork Image">
-
-
-
-      <div class="name-arts">
-        <div class="d-flex justify-content-between align-items-center">
-          <p class="card-title"><strong>${{artworks.price}}</strong></p>
-          <div class="cart-container">
-            <p class="card-text price-text"><strong>{{artworks.title}}</strong></p>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let artwork of artworks">
+        <div class="card p-0 category-card">
+          <div class="card-image">
+            <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
+          </div>
+          <div class="card-body card-content d-flex flex-column align-items-center">
+            <div class="card-details d-flex justify-content-between w-100">
+              <div class="price"><strong>${{artwork.price}}</strong></div>
+              <div class="title"><strong>{{artwork.title}}</strong></div>
+            </div>
+            <div class="card-stats d-flex justify-content-between w-100 mt-2">
+              <div class="artist-name"><strong>{{artwork.artistName}}</strong></div>
+              <div class="purchase-count"><strong>Purchased: {{artwork.purchaseCount}}</strong></div>
+            </div>
+            <div class="card-stats d-flex justify-content-between w-100 mt-2">
+              <button type="button" class="btn btn-success btn-sm" style="width: fit-content;">
+                <i class="bi bi-hand-thumbs-up"></i>
+              </button>
+              <p class="like-count mb-0"><strong>{{artwork.likeCount}}</strong></p>
+            </div>
+            <div class="card-actions mt-3 w-100 d-flex justify-content-end">
+              <button type="button" class="btn btn-danger btn-sm" (click)="handleDelete()">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-
-
-
-
-      <div class="d-flex justify-content-between additional-texts newLikeCiunt ">
-        <p class="artist-name"><strong>{{artworks.artistName}}</strong></p>
-
-      </div>
-
-
-      <!-- {{formatLikeCount(art.likeCount)}} -->
-
-      <div class="card-body">
-
-        <!-- Purchase Count with Purchased Icon -->
-        <div class="purchased-count">
-          <div class="d-flex justify-content-start align-items-center me-2" >
-            <p class="purchased-count"><strong>Purchased:{{ artworks.purchaseCount }}</strong></p>
-
-          </div>
-        </div>
-
-
-
-        <div class="position-relative">
-          <!-- Parent container with relative positioning -->
-          <!-- Your other content goes here -->
-
-          <div class="likeIconAndLikeCount d-flex flex-column position-absolute bottom-0 start-0 p-0">
-            <button type="button" class="btn btn-success btn-sm ms-0 me-1" style="width: fit-content;">
-              <i class="bi bi-hand-thumbs-up"></i>
-            </button>
-            <p class="like-count mb-0"><strong>3</strong></p>
-          </div>
-        </div>
-
-
-
-
-        <div class="position-relative">
-          <!-- Parent container with relative positioning -->
-          <!-- Your other content goes here -->
-
-          <div class="d-flex position-absolute bottom-0 end-0 p-0 deleteButton">
-            <button type="button" class="btn btn-danger btn-sm ms-0" style="width: fit-content;" (click)="handleDelete">
-              <i class="bi bi-trash"></i> Delete
-            </button>
-          </div>
-        </div>
-
-
-
-
-
       </div>
     </div>
   </div>
+
 
 
 
@@ -128,3 +85,30 @@
   </div>
 
    -->
+
+<!--
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-4" *ngFor="let artwork of artworks">
+        <div class="card p-0">
+          <div class="card-image">
+            <img [src]="artwork.thumbnail_url" alt="{{artwork.title}}">
+          </div>
+          <div class="card-content d-flex flex-column align-items-center">
+            <div class="card-details d-flex justify-content-between w-100">
+              <div class="price">{{artwork.price | currency}}</div>
+              <div class="title">{{artwork.title}}</div>
+            </div>
+            <div class="card-stats d-flex justify-content-between w-100 mt-2">
+              <div class="purchase-count">{{artwork.purchaseCount}} Purchases</div>
+              <div class="like-count">{{artwork.likeCount}} Likes</div>
+            </div>
+            <div class="card-actions mt-3 w-100 d-flex justify-content-end">
+              <button class="btn btn-danger btn-sm" (click)="deleteArtwork(artwork.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ -->

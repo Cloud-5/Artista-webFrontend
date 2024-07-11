@@ -16,7 +16,7 @@ export class ArtistFeedbackComponent implements OnInit {
   }
 
   loadFeedback(): void {
-    const artistId = 1; // Set the artistId you want to fetch feedback for
+    const artistId = 'Ar-00001'; // Set the artistId you want to fetch feedback for
     this.artistFeedbackService.getFeedbackForArtist(artistId).subscribe(
       data => {
         this.feedbacks = data;

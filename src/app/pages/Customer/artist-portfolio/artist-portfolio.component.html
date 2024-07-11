@@ -7,7 +7,7 @@
       <div class="img__container">
         <img src="{{ artistData.profile_photo_url }}" alt="Artist Photo" />
       </div>
-      <h2>{{ artistData.artist_name }}</h2>
+      <h2>{{artistData.fName}} {{artistData.LName}}</h2>
       <p><b>{{ artistData.artist_location }}</b></p>
       <p><b>{{ artistData.artist_profession }}</b></p>
       <p><b>Rating : </b>{{ artistData.average_rating | number: '1.1-1'}}</p>
@@ -111,7 +111,7 @@
           </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
-          <app-feedback-list-card></app-feedback-list-card>
+          <app-feedback-list-card [artistId]="artistId" ></app-feedback-list-card>
         </div>
       </div>
     </div>

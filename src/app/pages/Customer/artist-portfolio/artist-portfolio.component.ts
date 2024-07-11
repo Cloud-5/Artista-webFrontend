@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArtistPortfolioService } from './artist-portfolio-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,8 +15,8 @@ export class ArtistPortfolioComponent implements OnInit {
   artistData: any = {};
   artistCreations: any[] = [];
   filteredArts: any[] = [];
-  customerId: string = '24';
-  artistId: string = '';
+  customerId: string = localStorage.getItem('user_id') || '';
+  @Output() artistId: string = '';
   isFollowing: boolean = false;
   followButtonText: string = "Follow";
   followButtonClass: string = "follow";

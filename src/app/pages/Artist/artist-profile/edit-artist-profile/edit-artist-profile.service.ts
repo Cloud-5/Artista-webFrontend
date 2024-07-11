@@ -16,7 +16,7 @@ export class EditArtistProfileService {
 
   constructor(private http: HttpClient) { }
 
-  updateArtistProfile(artistId: number, artistData: any): Observable<any> {
+  updateArtistProfile(artistId: string, artistData: any): Observable<any> {
     console.log('userdata', artistData);
     return this.http.put(`${this.apiUrl}/artist-edit/${artistId}`, artistData);
   }
