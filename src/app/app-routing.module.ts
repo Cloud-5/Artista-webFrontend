@@ -32,6 +32,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { St01Component } from './pages/sign-up/sign-up-users/st01/st01.component';
 import { St02Component } from './pages/sign-up/sign-up-users/st02/st02.component';
+import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
+
 import { ResetPasswordComponent } from './pages/fogot-password/reset-password/reset-password.component';
 import { NewPasswordComponent } from './pages/fogot-password/new-password/new-password.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -44,6 +46,7 @@ const routes: Routes = [
   { path: 'login', component: SignInComponent },
   { path: 'st01', component: St01Component },
   { path: 'st02', component: St02Component },
+  { path: 'st03', component: St03Component },
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'new', component: NewPasswordComponent },
   { path: 'chat', component: ChatScreenComponent },

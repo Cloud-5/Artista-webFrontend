@@ -49,34 +49,67 @@ export class St02Component implements OnInit {
     if (!data) this.router.navigate(['/st01']);
     
   }
-  createAccount() {
+  // createAccount() {
     
-     // Send HTTP request to backend to create user account
-     let userData = this.signupForm.value;
-     userData = {...userData, email: this.email, password: this.password};
-    //  console.log('Secondform submit',userData)
-     this.userService.signup(userData).subscribe(
-       (response) => {
-         console.log('User created successfully:', response);
-         const navigationExtras = {
-          state: {
-            Message: 'User created successfully. Verification mail sent.'
-          }
-        };
-         // Redirect to next step after successful signup
-         this.router.navigate(['/login'],navigationExtras); 
-       },
-       (error:any) => {
-         if (error.status === 400) {
-        this.errorMessage = 'Email Already Exists.';
-      } 
-         else {
-        console.error('Registered failed', error);
-        this.errorMessage = 'An error occurred during signup';
-      }
+  //    // Send HTTP request to backend to create user account
+  //    let userData = this.signupForm.value;
+  //    userData = {...userData, email: this.email, password: this.password};
+  //   //  console.log('Secondform submit',userData)
+  //    this.userService.signup(userData).subscribe(
+  //      (response) => {
+  //        console.log('User created successfully:', response);
+  //        const navigationExtras = {
+  //         state: {
+  //           Message: 'User created successfully. Verification mail sent.'
+  //         }
+  //       };
+  //        // Redirect to next step after successful signup
+  //        this.router.navigate(['/login'],navigationExtras); 
+  //      },
+  //      (error:any) => {
+  //        if (error.status === 400) {
+  //       this.errorMessage = 'Email Already Exists.';
+  //     } 
+  //        else {
+  //       console.error('Registered failed', error);
+  //       this.errorMessage = 'An error occurred during signup';
+  //     }
 
-       }
-     );
-  }
+  //      }
+  //    );
+  // }
   
+
+  createAccount() {
+    let userData = this.signupForm.value;
+    userData = { ...userData, email: this.email, password: this.password };
+
+    if (userData.role === 'artist') {
+      // Navigate to step 03 for artists
+      this.router.navigate(['/st03'], { state: { userData } });
+      
+    } else {
+      // Send HTTP request to backend to create user account
+      this.userService.signup(userData).subscribe(
+        (response) => {
+          console.log('User created successfully:', response);
+          const navigationExtras = {
+            state: {
+              Message: 'User created successfully. Verification mail sent.'
+            }
+          };
+          // Redirect to login after successful signup
+          this.router.navigate(['/login'], navigationExtras);
+        },
+        (error: any) => {
+          if (error.status === 400) {
+            this.errorMessage = 'Email Already Exists.';
+          } else {
+            console.error('Registered failed', error);
+            this.errorMessage = 'An error occurred during signup';
+          }
+        }
+      );
+    }
+  }
 }

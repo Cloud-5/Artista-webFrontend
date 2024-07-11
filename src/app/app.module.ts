@@ -86,6 +86,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
 import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
+import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
 
 
 @NgModule({
@@ -136,7 +137,8 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
     HelpCenterComponent,
     ArtCardComponent,
     ArtistCreationsComponent,
-    UploadArtworksComponent
+    UploadArtworksComponent,
+    St03Component
 
 
   ],
