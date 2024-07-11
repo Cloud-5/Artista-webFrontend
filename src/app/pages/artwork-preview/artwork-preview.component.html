@@ -34,10 +34,10 @@
                     <div class="preview-container">
                         <div class="artwork">
                             <div *ngIf="!is3D">
-                               <img [src]="imageUrl" alt="Artwork" class="artwork-preview">
+                               <img [src]="thumbnail" alt="Artwork" class="artwork-preview">
                              </div>
                              <div *ngIf="is3D">
-                               <app-model [objectUrl]="imageUrl"></app-model>
+                               <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model>
                              </div>
                        </div>
                     </div>

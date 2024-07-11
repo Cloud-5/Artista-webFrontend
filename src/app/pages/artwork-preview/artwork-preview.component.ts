@@ -49,7 +49,9 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addToGalleryButtonText: string = 'Add to Gallery';
   addToGalleryButtonClass: string = 'add-to-gallery';
 
+  thumbnail: string = '';
   imageUrl: string = '';
+  bg:string='';
   artistRole: string = localStorage.getItem('role') || '';
 
   //@Input() comments: CommentInterface[] = [];
@@ -91,12 +93,16 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
       (data: any) => {
         this.artworkDetails = data.artworkDetails[0];
+        console.log(this.artworkDetails);
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
         console.log('related',this.relatedArtworks.length);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
+        this.bg = this.artworkDetails.background;
+        this.thumbnail = this.artworkDetails.thumbnail;
         console.log('image',this.imageUrl);
+
         if(this.artworkDetails.category === '3D Modeling'){
           this.is3D = true;
         } else {
@@ -252,6 +258,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   }
 
   viewArtwork(artworkId: string) {
+    console.log('artworkId',artworkId);
     this.router.navigate(['/preview', artworkId]);
   }
 
