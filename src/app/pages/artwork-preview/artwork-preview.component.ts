@@ -30,7 +30,7 @@ import { CartItemService } from '../../shared/cards/arts/arts.service';
   ],
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
-  userId: string = '1';
+  userId: string = localStorage.getItem('user_id') || '';;
 
   artworkId: string = '';
   artistId: string = '';
