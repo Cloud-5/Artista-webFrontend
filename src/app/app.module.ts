@@ -87,6 +87,7 @@ import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
 import { CreationsComponent } from './pages/Artist/artist-profile/creations/creations.component';
 import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
+import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
 
 
 @NgModule({
@@ -139,7 +140,8 @@ import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation
     ArtistCreationsComponent,
     UploadArtworksComponent,
     CreationsComponent,
-    CreationPreviewComponent
+    CreationPreviewComponent,
+    St03Component
 
 
   ],

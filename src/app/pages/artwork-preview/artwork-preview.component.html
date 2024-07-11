@@ -115,7 +115,7 @@
                             <div class="d-grid gap-2">
                                 <button [ngClass]="['btn', addToGalleryButtonClass]" type="button"
                                     (click)="toggleAddToGallery()"><span class="">{{addToGalleryButtonText}}</span></button>
-                                <button  *ngIf="artistRole==='artist'" class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
+                                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
                             </div>
                         </div>
                     </div>
@@ -124,74 +124,94 @@
         </div>
 </section>
 <section class="artist-info">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="artist-menu">
-                    <div class="avatar-container">
-                        <a class="artist-page-link"><img [src]="artworkDetails.artist_profile_photo" class="artist-avatar rounded-circle" alt="visit artist profile">
-                        </a>
-                    </div>
-                    <div>
-                        <a class="artist-page-link">
-                            <h2 class="header-section">
-                                {{artworkDetails.artist}}
-                            </h2>
-                        </a>
-                        <div class="artist-summary">
-                            <div class="ratings">
-                                <i class="bi bi-star-fill fs-5" style="color: blue; "></i>&nbsp;
-                                <p class="count" style="margin-bottom: 0;">{{artworkDetails.avg_rating |
-                                    number: '1.0-0'}}</p>
-                            </div>
-                            <div class="ratings">
-                                <i class="bi bi-palette-fill fs-5" style="color: blue; "></i>&nbsp;
-                                <p class="count" style="margin-bottom: 0;">{{artworkDetails.total_creations |
-                                    number: '1.0-0'}}</p>
-                            </div>
-                            <div class="ratings">
-                                <i class="bi bi-people-fill fs-5" style="color: blue; "></i>&nbsp;
-                                <p class="count" style="margin-bottom: 0;">{{artworkDetails.followers_count |
-                                    number: '1.0-0'}}</p>
-                            </div>
-                        </div>
-                        <div class="button-group">
-                            <button [ngClass]="['btn', followButtonClass,'rounded']"
-                            type="button" (click)="toggleFollow()">{{followButtonText}}</button>
-                            <button class="btn message-btn" type="button">Message</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="artist-introduction col-lg-7">
-                <p class="body1" style="text-align: justify;">
-                    <i class="bi bi-geo-alt-fill fs-5" style="color: blue;"></i>&nbsp;{{artworkDetails.location}} <br><br>
-                    <strong>About artist</strong><br>
-                    {{artworkDetails.artist_description}}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="artist-menu">
+          <div class="avatar-container">
+            <a class="artist-page-link"
+              ><img
+                [src]="artworkDetails.artist_profile_photo"
+                class="artist-avatar rounded-circle"
+                alt="visit artist profile"
+              />
+            </a>
+          </div>
+          <div>
+            <a class="artist-page-link">
+              <h2 class="header-section">
+                {{ artworkDetails.artist }}
+              </h2>
+            </a>
+            <div class="artist-summary">
+              <div class="ratings">
+                <i class="bi bi-star-fill fs-5" style="color: blue"></i>&nbsp;
+                <p class="count" style="margin-bottom: 0">
+                  {{ artworkDetails.avg_rating | number : "1.0-0" }}
                 </p>
-            </div>
-        </div>
-
-        <!--carousal-->
-        <div class="carousel-container">
-            <div class="carousel">
-              <div class="card2 shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
-                <div class="badge1 editor-choice">Artist's Best</div>
-                <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner">
-                <section class="title">
-                  <p>{{artwork.title}}</p>
-                </section>
+              </div>
+              <div class="ratings">
+                <i class="bi bi-palette-fill fs-5" style="color: blue"></i
+                >&nbsp;
+                <p class="count" style="margin-bottom: 0">
+                  {{ artworkDetails.total_creations | number : "1.0-0" }}
+                </p>
+              </div>
+              <div class="ratings">
+                <i class="bi bi-people-fill fs-5" style="color: blue"></i>&nbsp;
+                <p class="count" style="margin-bottom: 0">
+                  {{ artworkDetails.followers_count | number : "1.0-0" }}
+                </p>
               </div>
             </div>
-            <button class="carousel-control prev" (click)="prev()">&#10094;</button>
-            <button class="carousel-control next" (click)="next()">&#10095;</button>
+            <div class="button-group">
+              <button
+                [ngClass]="['btn', followButtonClass, 'rounded']"
+                type="button"
+                (click)="toggleFollow()"
+              >
+                {{ followButtonText }}
+              </button>
+              <button class="btn message-btn" type="button">Message</button>
+            </div>
           </div>
-
-
-        <div class="row mt-4 d-flex justify-content-center">
-            <button class="btn btn-primary" style="width: 100px;">View All</button>
         </div>
+      </div>
+      <div class="artist-introduction col-lg-7">
+        <p class="body1" style="text-align: justify">
+          <i class="bi bi-geo-alt-fill fs-5" style="color: blue"></i>&nbsp;{{
+            artworkDetails.location
+          }}
+          <br /><br />
+          <strong>About artist</strong><br />
+          {{ artworkDetails.artist_description }}
+        </p>
+      </div>
     </div>
+
+    <!--carousal-->
+    <div class="carousel-container">
+      <div class="carousel">
+        <div
+          class="card2 shadow"
+          *ngFor="let artwork of bestArtworks"
+          (click)="viewArtwork(artwork.artwork_id)"
+        >
+          <div class="badge1 editor-choice">Artist's Best</div>
+          <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner" />
+          <section class="title">
+            <p>{{ artwork.title }}</p>
+          </section>
+        </div>
+      </div>
+      <button class="carousel-control prev" (click)="prev()">&#10094;</button>
+      <button class="carousel-control next" (click)="next()">&#10095;</button>
+    </div>
+
+    <div class="row mt-4 d-flex justify-content-center">
+      <button class="btn btn-primary" style="width: 100px">View All</button>
+    </div>
+  </div>
 </section>
 <section class="comments">
     <div class="col-12">
@@ -215,26 +235,29 @@
 
 </section>
 <section class="related-artworks">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="header-section">Related Artworks</h2>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="header-section">Related Artworks</h2>
+      </div>
     </div>
-    <div class="container">
-        <div class="gallery">
-            <div class="column" *ngFor="let column of columns">
-              <div class="gallery-item" *ngFor="let image of column" (click)="viewArtwork(image.artwork_id)">
-                <img [src]="image.thumbnail_url" alt={{image.title}}>
-                <section class="title">
-                    <p>{{image.title}}</p>
-                </section>
-              </div>
-            </div>
+  </div>
+  <div class="container">
+    <div class="gallery">
+      <div class="column" *ngFor="let column of columns">
+        <div
+          class="gallery-item"
+          *ngFor="let image of column"
+          (click)="viewArtwork(image.artwork_id)"
+        >
+          <img [src]="image.thumbnail_url" alt="{{ image.title }}" />
+          <section class="title">
+            <p>{{ image.title }}</p>
+          </section>
         </div>
+      </div>
     </div>
+  </div>
 </section>
-
 
 <app-footer></app-footer>

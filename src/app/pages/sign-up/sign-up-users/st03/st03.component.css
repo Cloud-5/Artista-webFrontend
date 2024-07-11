@@ -1,0 +1,118 @@
+.ss {
+    background-color: #055287 ;
+    padding-top: 7px;
+    padding: 7px;
+    height: 100vh;
+}
+
+/* Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
+    .ss {
+        padding: 5px;
+        height: auto; /* Adjust height as needed */
+    }
+}
+
+/* Tablets (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .ss {
+        padding: 10px;
+        height: auto; /* Adjust height as needed */
+    }
+}
+
+/* Small Laptops (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .ss {
+        padding: 15px;
+        height: auto; /* Adjust height as needed */
+    }
+}
+
+/* Desktops (1025px and up) */
+@media (min-width: 1025px) {
+    .ss {
+        padding: 20px;
+        height: 100%; /* Keep as is or adjust as needed */
+    }
+}
+
+.container
+{
+    background-image: linear-gradient(to right, #006ca5, #006ca5);
+    border-radius: 3%;
+  
+}
+h1
+{
+    color: #4D63D9;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.form
+{
+    
+   height: 600px;
+}
+p{
+    font-weight: bold;
+}
+label
+{
+    font-weight: bold;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+    display: block;
+    max-width: 500px;
+    justify-items: center;
+   
+}
+
+.ima{
+align-content: center;
+}
+/* For medium devices (tablets) */
+@media (min-width: 768px) {
+    .image {
+        margin: 20px;
+    }
+}
+
+/* For large devices (desktops) */
+@media (min-width: 1024px) {
+ .image {
+        margin: 30px;
+    }
+}
+
+.imageDiv{
+    position: relative;
+    top: 250px;
+}
+@media (max-width: 1200px) {
+    .imageDiv {
+        top: 200px; /* Adjust for large screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .imageDiv {
+        top: 150px; /* Adjust for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .imageDiv {
+        top: 100px; /* Adjust for small screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .imageDiv {
+        top: 50px; /* Adjust for extra small screens */
+    }
+}

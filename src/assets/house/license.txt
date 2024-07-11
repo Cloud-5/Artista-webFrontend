@@ -1,0 +1,8 @@
+Model Information:
+* title:	Stylized Mushroom House
+* source:	https://sketchfab.com/3d-models/stylized-mushroom-house-a45ce69965ff4528aaabfab11a77d4f0
+* author:	Agustín Hönnun (https://sketchfab.com/Agustin_Honnun)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
