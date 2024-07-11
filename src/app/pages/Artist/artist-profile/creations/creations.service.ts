@@ -8,12 +8,13 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CreationsService {
+  artistId: string = localStorage.getItem('user_id') || '';
 
   constructor(private http: HttpClient) { }
   private apiUrl: string = environment.apiUrl;
 
-  getArtworksForArtist(artistId:number){
-    return this.http.get(`${this.apiUrl}/artwork/all/${artistId}`);
+  getArtworksForArtist(artistId:string){
+    return this.http.get(`${this.apiUrl}/artwork/all/${this.artistId}`);
   }
    getLikeCountForArtwork(artId:number){
     return this.http.get(`${this.apiUrl}/artwork/likes/${artId}`);

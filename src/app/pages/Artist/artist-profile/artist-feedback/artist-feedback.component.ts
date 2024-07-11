@@ -20,6 +20,7 @@ export class ArtistFeedbackComponent implements OnInit {
     this.artistFeedbackService.getFeedbackForArtist(artistId).subscribe(
       data => {
         this.feedbacks = data;
+        console.log('Feedbackssss:', this.feedbacks);
       },
       error => {
         console.error('Error fetching feedback:', error);

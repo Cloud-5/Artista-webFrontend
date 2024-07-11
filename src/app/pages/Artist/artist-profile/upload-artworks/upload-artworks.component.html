@@ -309,18 +309,18 @@
           </form>
 
           <!-- 3D Artwork Form///////////////////////////////////////////////// -->
-          <!-- <form   (ngSubmit)="onSubmit3D()"  *ngIf="artType === '3d'" >
+          <form   (ngSubmit)="upload3DArtwork()"  *ngIf="artType === '3d'" >
             <div class="input-group mb-3">
-              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
-              <label class="input-group-text btn-custom">Choose File</label>
+              <input type="file" class="form-control input-area" (change)="onFileSelected1($event)" required>
+              <label class="input-group-text btn-custom" (click)="onthumbUpload('3DThumbnail','3DArtwork')">Choose File</label>
             </div>
             <div class="input-group mb-3">
-              <input type="file" class="form-control input-area" (change)="onFileSelect($event)" required>
-              <label class="input-group-text btn-custom">Choose File</label>
+              <input type="file" class="form-control input-area" (change)="onFileSelected2($event)" required>
+              <label class="input-group-text btn-custom"  (click)="onbgUpload('3DBackground','profilePicture')">Choose File</label>
             </div>
             <div class="input-group mb-3">
               <input type="file" (change)="onFolderSelect($event)" webkitdirectory mozdirectory odirectory directory />
-<label class="input-group-text btn-custom" (click)="newFolderUpload('3DArtwork', '3DArtwork')">Choose File</label>
+            <label class="input-group-text btn-custom" (click)="newFolderUpload('3DArtwork', '3DArtwork')">Choose File</label>
             </div>
             <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')">Delete Folder</button>
 
@@ -333,7 +333,7 @@
 
             <div class="form-group">
               <label for="price3D">Price</label>
-              <input type="number" id="price3D" name="price" class="form-control input-area" [(ngModel)]="new2DArtwork.price" ngModel required>
+              <input type="number" id="price3D" name="price" class="form-control input-area" [(ngModel)]="new3DArtwork.price" ngModel required>
             </div>
 
             <div class="form-group" >
@@ -343,14 +343,10 @@
               </select>
             </div>
 
-
-
             <div class="form-group">
               <label for="description3D">Description</label>
-              <textarea id="description3D" name="description" class="form-control input-area" [(ngModel)]="new2DArtwork.description" ngModel required></textarea>
+              <textarea id="description3D" name="description" class="form-control input-area" [(ngModel)]="new3DArtwork.description" ngModel required></textarea>
             </div>
-
-
 
             <div class="mb-3">
               <label for="categoryFileTypes" class="form-label">Tags</label>
@@ -358,11 +354,11 @@
                 <span *ngFor="let j of new3DArtwork.tag_name; let i = index" class="badge bg-primary"
                   style="margin-bottom: 5px; margin-right: 5px">
                   {{ j.tag_name }}
-                  <button type="button" class="btn-close" aria-label="Close" (click)="remove3DTag(i)"></button>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="remove2DTag(i)"></button>
                 </span>
               </div>
               <div class="input-group mt-2">
-                <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="new3DTag_name"
+                <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="Tag_Name"
                   name="new tag name" required #tag_nameInput="ngModel" />
                 <button class="btn btn-primary" type="button" (click)="addNew3DTag()" [disabled]="tag_nameInput.invalid">
                   Add
@@ -377,6 +373,56 @@
               </div>
             </div>
 
+            <div class="mb-3">
+              <label for="tools2D" class="form-label">Tools</label>
+              <div class="d-flex flex-wrap">
+                <span *ngFor="let tool of new2DArtwork.tools; let i = index" class="badge bg-primary"
+                      style="margin-bottom: 5px; margin-right: 5px">
+                  {{ tool.tool_name }}
+                  <button type="button" class="btn-close" aria-label="Close" (click)="removeTool(i)"></button>
+                </span>
+              </div>
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Add tool" [(ngModel)]="Tool_Name"
+                       name="new tool" required #toolInput="ngModel" />
+                <button class="btn btn-primary" type="button" (click)="addNewTool()" [disabled]="toolInput.invalid">
+                  Add
+                </button>
+              </div>
+              <div *ngIf="
+                  new2DArtwork.tools.length === 0 &&
+                  (toolInput.touched || toolInput.dirty) &&
+                  toolInput.invalid
+                " class="alert alert-danger mt-2 p-2">
+                At least one tool is required.
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="fileFormats2D" class="form-label">File Formats</label>
+              <div class="d-flex flex-wrap">
+                <span *ngFor="let format of new2DArtwork.fileFormats; let i = index" class="badge bg-primary"
+                      style="margin-bottom: 5px; margin-right: 5px">
+                  {{ format.file_format_name }}
+                  <button type="button" class="btn-close" aria-label="Close" (click)="removeFileFormat(i)"></button>
+                </span>
+              </div>
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Add file format" [(ngModel)]="Format_name"
+                       name="new file format" required #fileFormatInput="ngModel" />
+                <button class="btn btn-primary" type="button" (click)="addNewFileFormat()" [disabled]="fileFormatInput.invalid">
+                  Add
+                </button>
+              </div>
+              <div *ngIf="
+                  new2DArtwork.fileFormats.length === 0 &&
+                  (fileFormatInput.touched || fileFormatInput.dirty) &&
+                  fileFormatInput.invalid
+                " class="alert alert-danger mt-2 p-2">
+                At least one file format is required.
+              </div>
+            </div>
 
 
             <div class="form-group d-flex justify-content-between">
@@ -385,7 +431,7 @@
             </div>
 
             <div *ngIf="isUploading3D" class="uploading-animation">Uploading...</div>
-          </form> -->
+          </form>
         </div>
 
 

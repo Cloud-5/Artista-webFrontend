@@ -9,6 +9,7 @@ import { ImageUploadService } from '../../../../shared/services/image-upload.ser
   styleUrls: ['./upload-artworks.component.css']
 })
 export class UploadArtworksComponent {
+  artistId: string = localStorage.getItem('user_id') || '';
   artType: string = '2d';
   //fileName = '';
   isUploading = false;
@@ -24,9 +25,9 @@ export class UploadArtworksComponent {
   new3DArtwork: any = {
     title: '',
     price: '',
+    artist:'',
     thumbnail_url: '',
     description: '',
-    published_date: '',
     category_id: '',
     is3D: true,
     tag_name: [],
@@ -44,6 +45,7 @@ export class UploadArtworksComponent {
     const userId = localStorage.getItem('user_id');
     if (userId) {
       this.new2DArtwork.artist = userId;
+      this.new3DArtwork.artist = userId;
     }
     this.uploadArtworksService.getCategories().subscribe((categories: any) => {
       this.categories = categories;
@@ -94,6 +96,8 @@ export class UploadArtworksComponent {
     this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
       if (res.gltfFile) {
         this.subfolderName = res.subfolderName;
+        this.new3DArtwork.subfolder_name = this.subfolderName;
+        this.new3DArtwork.original_url = res.gltfFile;
         console.log('3D artwork upload successful', res);
         console.log('3D artwork', res.gltfFile);
       } else {
@@ -141,8 +145,8 @@ export class UploadArtworksComponent {
 
   thumb: File | undefined;
   thumbUrl: string = '';
-  ori: File | undefined;
-  OriUrl: string = '';
+  bg: File | undefined;
+  bgUrl: string = '';
 
   new2DArtwork:any={
     title:'',
@@ -187,7 +191,7 @@ export class UploadArtworksComponent {
   }
   onFileSelected2(event: any) {
     const FILE = (event.target as HTMLInputElement).files?.[0];
-    this.ori = FILE;
+    this.bg = FILE;
   }
 
   onthumbUpload(folder: string, uploadType: string) {
@@ -196,6 +200,11 @@ export class UploadArtworksComponent {
     this.imageUploadService.imageUpload(imageForm, folder, uploadType).subscribe(
       (res: any) => {
         this.thumbUrl = res.image.location;
+        if(this.artType === '3d'){
+          this.new3DArtwork.thumbnail_url = this.thumbUrl;
+        } else {
+          this.new2DArtwork.thumbnail_url = this.thumbUrl;
+        }
         this.new2DArtwork.thumbnail_url = this.thumbUrl;
         console.log('Image uploaded successfully:', this.thumbUrl);
 
@@ -218,24 +227,24 @@ export class UploadArtworksComponent {
     }
   }
 
-  onOriginalUpload(folder: string, uploadType: string) {
+  onbgUpload(folder: string, uploadType: string) {
     const imageForm = new FormData();
-    imageForm.append('image', this.ori as Blob);
+    imageForm.append('image', this.bg as Blob);
     this.imageUploadService.imageUpload(imageForm, folder, uploadType).subscribe(
       (res: any) => {
-        this.OriUrl = res.image.location;
-        this.new2DArtwork.original_url = this.OriUrl;
-        console.log('Image uploaded successfully:', this.OriUrl);
+        this.bgUrl = res.image.location;
+        this.new3DArtwork.modelBackground = this.bgUrl;
+        console.log('Image uploaded successfully:', this.bgUrl);
       });
   }
 
-  removeOri() {
-    if (this.OriUrl) {
-      const key = this.OriUrl.split('/').pop();
+  removeBg() {
+    if (this.bgUrl) {
+      const key = this.bgUrl.split('/').pop();
       this.imageUploadService.removeImage(key as any).subscribe(
         () => {
-          this.OriUrl = '';
-          this.new2DArtwork.original_url = '';
+          this.bgUrl = '';
+          this.new3DArtwork.modelBackground = '';
         },
         (error) => {
           console.error('Error removing image:', error);
@@ -261,6 +270,30 @@ export class UploadArtworksComponent {
       };
     } catch (error:any) {
       console.log('error upoading 2d artwork', error);
+    }
+  }
+
+  async upload3DArtwork(): Promise<void> {
+    try {
+
+      const response = await this.uploadArtworksService.upload3DArtwork(this.new3DArtwork).toPromise();
+      console.log('3D artwork upload successful', response);
+      this.new3DArtwork = {
+        title: '',
+        price: '',
+        thumbnail_url: '',
+        description: '',
+        category_id: '',
+        is3D: true,
+        tag_name: [],
+        tools: [],
+        fileFormats: [],
+        subfolder_name: '',
+        modelBackground: '',
+        original_url: ''
+      };
+    } catch (error:any) {
+      console.log('error upoading 3d artwork', error);
     }
   }
 }

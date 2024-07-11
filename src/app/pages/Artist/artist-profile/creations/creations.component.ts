@@ -1,5 +1,6 @@
 import { CreationsService } from './creations.service';
 import { Component ,Input} from '@angular/core';
+import { Router } from '@angular/router';
 
 
 
@@ -11,7 +12,10 @@ import { Component ,Input} from '@angular/core';
 export class CreationsComponent {
   @Input() artworks: any;
   @Input() deleteArtwork: any;
-  constructor(){}
+  artistId: string = localStorage.getItem('user_id') || '';
+  artwork_id:number = 0;
+  artistRole: string = localStorage.getItem('role') || '';
+  constructor(private router: Router){}
 
 
 
@@ -30,8 +34,13 @@ export class CreationsComponent {
       this.deleteArtwork(this.artworks.artwork_id);
     }
   }
-
-
+  viewArtwork(artworkId: string) {
+    this.router.navigate(['/preview', this.artworks.artwork_id]);
+  }
+  ngOnInit(): void {
+    console.log('this issssss artwork',this.artworks);
+    console.log('local storage artist(user)',this.artistRole);
+  }
 
 
 

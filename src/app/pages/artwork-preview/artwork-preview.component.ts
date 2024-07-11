@@ -50,6 +50,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addToGalleryButtonClass: string = 'add-to-gallery';
 
   imageUrl: string = '';
+  artistRole: string = localStorage.getItem('role') || '';
 
   //@Input() comments: CommentInterface[] = [];
 
@@ -67,7 +68,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       this.artworkId = params['artworkId'];
       console.log('artworkId',this.artworkId);
-      this.loadArtworkDetails(this.artworkId, this.userId); 
+      this.loadArtworkDetails(this.artworkId, this.userId);
       this.updateButtonStates();
       this.checkScreenSize();
       this.updateColumns();
@@ -80,7 +81,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.routeSub.unsubscribe();
       }
   }
-  
+
 
   oncommentsCount(count: number): void {
     this.TotalComments = count;
@@ -274,7 +275,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
   addCart(art: any) {
     console.log('art', art);
-    
+
     this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
       .subscribe(
         response => {
@@ -293,40 +294,40 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       if (this.currentIndex < this.bestArtworks.length - (100 / this.itemWidth)) {
         this.currentIndex++;
       } else {
-        this.currentIndex = 0; 
+        this.currentIndex = 0;
       }
       this.updateCarousel();
     }
-  
+
     prev() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       } else {
-        this.currentIndex = this.bestArtworks.length - (100 / this.itemWidth); 
+        this.currentIndex = this.bestArtworks.length - (100 / this.itemWidth);
       }
       this.updateCarousel();
     }
-  
+
     updateCarousel() {
       const carousel = document.querySelector('.carousel') as HTMLElement;
-      const gapAdjustment = (this.gap / window.innerWidth) * 100; 
+      const gapAdjustment = (this.gap / window.innerWidth) * 100;
       const translateValue = -(this.currentIndex * (this.itemWidth + gapAdjustment));
       carousel.style.transform = `translateX(${translateValue}%)`;
     }
     updateItemWidth() {
       const width = window.innerWidth;
       if (width >= 1200) {
-        this.itemWidth = 25; 
+        this.itemWidth = 25;
       } else if (width >= 992 && width < 1200) {
-        this.itemWidth = 33.33; 
+        this.itemWidth = 33.33;
       } else if (width >= 768 && width < 992) {
-        this.itemWidth = 50; 
+        this.itemWidth = 50;
       } else {
-        this.itemWidth = 100; 
+        this.itemWidth = 100;
       }
       this.updateCarousel();
     }
-  
+
 
 }
 
