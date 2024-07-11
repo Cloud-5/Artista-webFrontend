@@ -30,7 +30,7 @@ import { CartItemService } from '../../shared/cards/arts/arts.service';
   ],
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
-  userId: string = '1';
+  userId: string = localStorage.getItem('user_id') || '';;
 
   artworkId: string = '';
   artistId: string = '';
@@ -49,7 +49,10 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addToGalleryButtonText: string = 'Add to Gallery';
   addToGalleryButtonClass: string = 'add-to-gallery';
 
+  thumbnail: string = '';
   imageUrl: string = '';
+  bg:string='';
+  artistRole: string = localStorage.getItem('role') || '';
 
   //@Input() comments: CommentInterface[] = [];
 
@@ -67,7 +70,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       this.artworkId = params['artworkId'];
       console.log('artworkId',this.artworkId);
-      this.loadArtworkDetails(this.artworkId, this.userId); 
+      this.loadArtworkDetails(this.artworkId, this.userId);
       this.updateButtonStates();
       this.checkScreenSize();
       this.updateColumns();
@@ -80,7 +83,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.routeSub.unsubscribe();
       }
   }
-  
+
 
   oncommentsCount(count: number): void {
     this.TotalComments = count;
@@ -90,12 +93,16 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
       (data: any) => {
         this.artworkDetails = data.artworkDetails[0];
+        console.log(this.artworkDetails);
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
         console.log('related',this.relatedArtworks.length);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
+        this.bg = this.artworkDetails.background;
+        this.thumbnail = this.artworkDetails.thumbnail;
         console.log('image',this.imageUrl);
+
         if(this.artworkDetails.category === '3D Modeling'){
           this.is3D = true;
         } else {
@@ -251,6 +258,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   }
 
   viewArtwork(artworkId: string) {
+    console.log('artworkId',artworkId);
     this.router.navigate(['/preview', artworkId]);
   }
 
@@ -274,7 +282,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
   addCart(art: any) {
     console.log('art', art);
-    
+
     this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
       .subscribe(
         response => {
@@ -293,40 +301,40 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       if (this.currentIndex < this.bestArtworks.length - (100 / this.itemWidth)) {
         this.currentIndex++;
       } else {
-        this.currentIndex = 0; 
+        this.currentIndex = 0;
       }
       this.updateCarousel();
     }
-  
+
     prev() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       } else {
-        this.currentIndex = this.bestArtworks.length - (100 / this.itemWidth); 
+        this.currentIndex = this.bestArtworks.length - (100 / this.itemWidth);
       }
       this.updateCarousel();
     }
-  
+
     updateCarousel() {
       const carousel = document.querySelector('.carousel') as HTMLElement;
-      const gapAdjustment = (this.gap / window.innerWidth) * 100; 
+      const gapAdjustment = (this.gap / window.innerWidth) * 100;
       const translateValue = -(this.currentIndex * (this.itemWidth + gapAdjustment));
       carousel.style.transform = `translateX(${translateValue}%)`;
     }
     updateItemWidth() {
       const width = window.innerWidth;
       if (width >= 1200) {
-        this.itemWidth = 25; 
+        this.itemWidth = 25;
       } else if (width >= 992 && width < 1200) {
-        this.itemWidth = 33.33; 
+        this.itemWidth = 33.33;
       } else if (width >= 768 && width < 992) {
-        this.itemWidth = 50; 
+        this.itemWidth = 50;
       } else {
-        this.itemWidth = 100; 
+        this.itemWidth = 100;
       }
       this.updateCarousel();
     }
-  
+
 
 }
 
