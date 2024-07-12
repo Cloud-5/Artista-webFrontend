@@ -31,32 +31,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="preview-container">
-                        <div class="artwork">
+                    <div *ngIf="!is3D" class="preview-container">
+                        <div class="artwork " [ngStyle]="{'background-image': 'url(' + thumbnail + ')'}" >
                             <div *ngIf="!is3D">
                                <img [src]="thumbnail" alt="Artwork" class="artwork-preview">
                              </div>
-                             <div *ngIf="is3D">
-                               <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model>
-                             </div>
                        </div>
                     </div>
+                    <div *ngIf="is3D" class="preview-container">
+                      <div class="artwork1">
+                           <div *ngIf="is3D">
+                             <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model>
+                           </div>
+                     </div>
+                  </div>
                     <div class="likeCount-pubDate">
                         <div class="like">
+                            <p class="body1 m-0">Like</p>
                             <button (click)="toggleFavorite()" class="favorite-button">
                                 <i class="bi fs-5" style="color: blue;" aria-hidden="false"
                                     aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite"
                                     [class.bi-heart]="!isFavorite"></i>
                             </button>
-                            <p class="count">{{artworkDetails.cou}}/p>
+                            <p class="body2 m-0">{{artworkDetails.total_likes}}</p>
                         </div>
                         <div class="pub-date">
-                            <p class="pub-date-style">Published On: {{ artworkDetails.published_date | date }}</p>
+                            <p class="body2"> <span class="body1">Published On:</span>  {{ artworkDetails.published_date | date }}</p>
                         </div>
                     </div>
                     <div class="artwork-details">
-                        <h5 class="header-art">
-                            Artwork description:
+                        <h5 class="body2">
+                            Artwork description
                             <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('description')">
                                 <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isDescriptionCollapsed, 'bi-caret-up-square-fill': isDescriptionCollapsed}"></i>
                             </button>
@@ -67,15 +72,15 @@
                             </p>
                         </div>
 
-                        <h5 class="header-art">
-                            Tags:
+                        <h5 class="body2">
+                            Tags
                             <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
                                 <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isTagsCollapsed, 'bi-caret-up-square-fill': isTagsCollapsed}"></i>
                             </button>
                         </h5>
                         <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">
                             <div class="d-flex flex-wrap">
-                                <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: #c0ccff;">#{{ tag }}</span>
+                                <span *ngFor="let tag of tagsArray" class="tag" style="background-color: #c0ccff;">#{{ tag }}</span>
                             </div>
                         </div>
                     </div>
@@ -85,37 +90,36 @@
                         <h1 class="header-art header-margin">
                             {{artworkDetails.artwork_name}}
                         </h1>
-                        <h2 class="body1">
-                            {{artworkDetails.category}}&nbsp;
-                            <br>
-                            <span>by</span>&nbsp;
-                            {{artworkDetails.artist}}
+                        <h2 class="body1"><i><span>by</span>&nbsp;
+                          {{artworkDetails.artist}}</i>
                         </h2>
                         &nbsp;
-                        <p class="body1">
-                            <span class="header-art">{{artworkDetails.price | currency}}</span>
-                        </p>
-                        <table class="body1">
+                        <p class="body2">Category: {{artworkDetails.category}}</p>
+                        
+                        <table>
                             <tbody>
                                 <tr>
-                                    <th>Tools:</th>
+                                    <th>Tools</th>
                                 </tr>
                                 <tr>
                                     <td>{{artworkDetails.tools}}</td>
                                 </tr>
                                 <tr>
-                                    <th>File Formats:</th>
+                                    <th>File Formats</th>
                                 </tr>
                                 <tr>
                                     <td>{{artworkDetails.formats}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <p class="body1 mt-5">
+                          <span class="header-art">{{artworkDetails.price | currency}}</span>
+                        </p>
                         <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
                             <div class="d-grid gap-2">
                                 <button *ngIf="userRole=== 'customer' " [ngClass]="['btn', addToGalleryButtonClass]" type="button"
                                     (click)="toggleAddToGallery()"><span class="">{{addToGalleryButtonText}}</span></button>
-                                <button *ngIf="userRole=== 'customer' "  class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
+                                <button *ngIf="userRole=== 'customer' "  class="addToCart" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
                                 <button *ngIf="userRole=== 'artist' "  class="btn btn-custom"  type="button"  routerLink="/ed" ><span class="">Edit Artwork Details</span></button>
                             </div>
                         </div>

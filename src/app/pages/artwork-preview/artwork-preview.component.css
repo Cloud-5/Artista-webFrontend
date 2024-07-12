@@ -14,9 +14,9 @@
   }
 
   .likeCount-pubDate {
-    margin-top: 0.3125rem;
+    margin-top: 0.4125rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 32px;
   }
@@ -45,8 +45,8 @@
   .header-art {
     margin-bottom: 0.625rem;
     margin-top: 1.25rem;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.75rem;
+    font-weight: 500;
     line-height: 1.563rem;
     color: #150734;
   }
@@ -55,10 +55,63 @@
   }
   .body1 {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.625rem;
-    color: #150734;
+    color: #565656;
   }
+
+  .body2{
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+  }
+  .tag {
+    background-color: #0f969c;
+    color: #333; 
+    padding: 5px 10px; 
+    border-radius: 20px; 
+    font-size: 14px; 
+    font-weight: bold; 
+    margin: 5px; 
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    cursor: pointer; 
+}
+
+.tag:hover {
+    background-color: #0f969c; 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.625rem;
+
+    th{
+      text-align: left;
+      padding: 8px;
+      background-color: #f2f2f2; 
+    }
+    td{
+      padding: 8px;
+      background-color: #e0e0e0;
+      border: 1px solid #ddd;
+      transition: background-color 0.3s ease; 
+      font-weight: bold;
+      color: #333; 
+      text-align: left;
+    }
+    td:hover{
+      background-color: #c0c0c0; 
+      cursor: pointer; 
+    }
+  }
+
+
   .artwork-details {
     margin-top: 2.5rem;
   }
@@ -73,10 +126,24 @@
 
   .favorite-button {
     border: none;
+    border-radius: 4px;
     background: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    transition: transform 0.3s ease;
   }
+  .favorite-button:hover {
+    transform: scale(1.2);
+}
 
+.favorite-button:focus {
+    outline: none;
+}
+  
   .collapsible {
     height: 0;
     overflow: hidden;
@@ -198,6 +265,8 @@
   height: auto;
 }
 
+
+
   .filled {
     animation: scaleIn 0.5s ease-out, rotate 0.5s ease-out;
   }
@@ -228,24 +297,45 @@
     width: 50%;
   }
   .add-to-gallery {
+    padding: 10px;
+    border-radius: 4px;
     background-color: #ffffff !important;
     color: black !important;
-    border: #000000 solid 2px !important;
-    font-weight: 600;
+    border: #000000 solid 1px !important;
+
   }
   .add-to-gallery:hover {
-    background-color: #000000 !important;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #05161a  !important;
     color: white !important;
-    border: #000000 solid 2px !important;
-    font-weight: 600;
+    border: #05161a  solid 1px !important;
+
   }
 
   .added-to-gallery {
-    background-color: #000000 !important;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #05161a  !important;
     color: rgb(255, 255, 255) !important;
-    border: #000000 solid 2px !important;
-    font-weight: 600;
+    border: #05161a  solid 1px !important;
   }
+
+  .addToCart{
+    background-color: #0f969c;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .addToCart:hover {
+    background-color: #0c6d72;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
   .artwork-layout {
     margin-left: 10px;
     margin-right: 10px;
@@ -267,8 +357,43 @@
   .artwork {
     width: 100%;
     height: auto;
-  }
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+    align-items: center;
+    cursor: pointer;
+}
 
+.artwork::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 110%;
+    background: inherit; 
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    z-index: 1; 
+}
+
+.artwork img {
+    max-height: 600px;
+    min-height: 500px;
+    width: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+.artwork1 {
+  width: 100%;
+  height: auto;
+}
+  
   .sticky-bar {
     display: none;
     position: fixed;
