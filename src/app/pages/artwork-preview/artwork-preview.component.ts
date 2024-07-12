@@ -1,4 +1,4 @@
-import { Component,OnInit,HostListener,Input,SimpleChanges,OnDestroy} from '@angular/core';
+import { Component,OnInit,HostListener,Input,SimpleChanges,OnDestroy, AfterViewInit} from '@angular/core';
 import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { ArtworkPreviewService } from './artwork-preview.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { CommentInterface } from '../../shared/interfaces/comment.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartItemService } from '../../shared/cards/arts/arts.service';
+
 
 @Component({
   selector: 'app-artwork-preview',
@@ -29,7 +30,7 @@ import { CartItemService } from '../../shared/cards/arts/arts.service';
     ]),
   ],
 })
-export class ArtworkPreviewComponent implements OnInit,OnDestroy {
+export class ArtworkPreviewComponent implements OnInit,OnDestroy,AfterViewInit {
   userId: string = localStorage.getItem('user_id') || '';;
 
   artworkId: string = '';
@@ -78,12 +79,23 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     })
   }
 
+  ngAfterViewInit(): void {
+    this.loadArtworkDetails(this.artworkId, this.userId);
+    this.updateButtonStates();
+    this.checkScreenSize();
+    this.updateColumns();
+    this.updateItemWidth();
+  }
+
   ngOnDestroy(): void {
       if(this.routeSub){
         this.routeSub.unsubscribe();
       }
   }
 
+  get backgroundImage(): string {
+    return `url('${this.thumbnail}')`;
+  }
 
   oncommentsCount(count: number): void {
     this.TotalComments = count;
@@ -96,12 +108,11 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         console.log(this.artworkDetails);
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
-        console.log('related',this.relatedArtworks.length);
+        console.log('related',this.relatedArtworks);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
         this.bg = this.artworkDetails.background;
         this.thumbnail = this.artworkDetails.thumbnail;
-        console.log('image',this.imageUrl);
 
         if(this.artworkDetails.category === '3D Modeling'){
           this.is3D = true;
@@ -119,6 +130,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.isFollowing = this.artworkDetails.is_following;
         this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
         this.updateButtonStates();
+        this.updateColumns();
       },
       (error) => {
         console.error('Error fetching artwork details:', error);
@@ -258,13 +270,13 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   }
 
   viewArtwork(artworkId: string) {
-    console.log('artworkId',artworkId);
     this.router.navigate(['/preview', artworkId]);
   }
 
   columns: any[][] = [[], [], []];
 
   updateColumns() {
+    console.log('related is here');
     const width = window.innerWidth;
 
     let numColumns = 3;
@@ -276,6 +288,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
     this.columns = Array.from({ length: numColumns }, () => []);
     this.relatedArtworks.forEach((image, index) => {
+      console.log('image',image, index % numColumns)
       this.columns[index % numColumns].push(image);
     });
   }
@@ -283,7 +296,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addCart(art: any) {
     console.log('art', art);
 
-    this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
+    this.cartItemService.addItem(this.userId, art.artwork_id)
       .subscribe(
         response => {
           console.log('Item added to cart:', response);
