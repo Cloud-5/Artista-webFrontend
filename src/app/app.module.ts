@@ -41,7 +41,7 @@ import { ArtistFollowersComponent } from './pages/Artist/artist-profile/artist-f
 import { ArtistNewHomeComponent } from './pages/Artist/artist-profile/artist-new-home/artist-new-home.component';
 
 import { UploadArtworksComponent } from './pages/Artist/artist-profile/upload-artworks/upload-artworks.component';
-import { NotificationComponent } from './shared/components/notification/notification.component';
+// import { NotificationComponent } from './shared/components/notification/notification.component';
 import { HelpCenterComponent } from './shared/components/help-center/help-center.component';
 import { ArtistCreationsComponent } from './pages/Artist/artist-profile/artist-creations/artist-creations.component';
 
@@ -98,9 +98,12 @@ import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AngularFireModule } from '@angular/fire/compat';
 
+import { NotificationComponent } from "./notification/notification.component";
+import { messaging } from "../configs/firebase.config";
+
+
 @NgModule({
   declarations: [
-    AppComponent,
     EditCustomerProfileComponent,
     CustomerProfileGalleryComponent,
     FollowingArtistsComponent,
@@ -142,7 +145,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     NavbarComponent,
     ArtsComponent,
     ArtistNewHomeComponent,
-    NotificationComponent,
     HelpCenterComponent,
     ArtCardComponent,
     ArtistCreationsComponent,
@@ -171,14 +173,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-    AngularFireModule.initializeApp({
-      projectId: 'angular-chat-c21c3',
-      appId: '1:455184474056:web:cfa6398676083f316f6afd',
-      storageBucket: 'angular-chat-c21c3.appspot.com',
-      apiKey: 'AIzaSyDY2HU0m1AOkAbrydWIocDS9TRlD7lH93s',
-      authDomain: 'angular-chat-c21c3.firebaseapp.com',
-      messagingSenderId: '455184474056',
-    }),
+    NotificationComponent,
   ],
 
   providers: [
@@ -209,7 +204,8 @@ import { AngularFireModule } from '@angular/fire/compat';
       })
     ),
     provideFirestore(() => getFirestore()),
+    { provide: 'messaging', useValue: messaging}
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
 export class AppModule {}

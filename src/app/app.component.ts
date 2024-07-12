@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { Messaging } from 'firebase/messaging';
-import { mergeMapTo } from 'rxjs/operators';
+import { RouterOutlet } from '@angular/router';
+import { NotificationComponent } from './notification/notification.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, NotificationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+
+export class AppComponent {
   public form: FormGroup;
   rating3: number;
 
@@ -20,45 +24,4 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-  ngOnInit() {
-    this.requestPermission(); // Request permission on initialization
-    this.afMessaging.messages.subscribe((message) => {
-      console.log('Message received:', message);
-      // Handle the received message here
-    });
-
-    this.afMessaging.messages.subscribe((message) => {
-      console.log('Message received:', message);
-      // Handle the received message here
-    });
-
-    // Handle token refresh
-    this.afMessaging.requestToken
-      .pipe(
-        mergeMapTo(this.afMessaging.tokenChanges)
-      )
-      .subscribe(
-        (token) => {
-          console.log('Token refreshed:', token);
-          // Handle the new token here
-        },
-        (error) => {
-          console.log('Unable to retrieve token:', error);
-        }
-      );
-  }
-
-  requestPermission() {
-    this.afMessaging.requestPermission.subscribe(
-      () => {
-        console.log('Permission granted!');
-        // Handle successful permission grant
-      },
-      (error) => {
-        console.log('Permission denied:', error);
-        // Handle permission denied or error
-      }
-    );
-  }
 }
