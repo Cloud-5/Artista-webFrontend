@@ -93,13 +93,6 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.updateItemWidth();
   }
 
-  ngAfterViewInit(): void {
-    this.loadArtworkDetails(this.artworkId, this.userId);
-    this.updateButtonStates();
-    this.checkScreenSize();
-    this.updateColumns();
-    this.updateItemWidth();
-  }
 
   ngOnDestroy(): void {
       if(this.routeSub){
