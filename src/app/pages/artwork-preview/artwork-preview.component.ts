@@ -6,6 +6,7 @@ import { CommentInterface } from '../../shared/interfaces/comment.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartItemService } from '../../shared/cards/arts/arts.service';
+import { ArtServiceService } from '../home/service/art-service.service';
 
 @Component({
   selector: 'app-artwork-preview',
@@ -30,7 +31,9 @@ import { CartItemService } from '../../shared/cards/arts/arts.service';
   ],
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
-  userId: string = localStorage.getItem('user_id') || '';;
+  userId: string = localStorage.getItem('user_id') || '';
+  userRole: string = localStorage.getItem('role') || '';
+
 
   artworkId: string = '';
   artistId: string = '';
@@ -58,12 +61,15 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
   TotalComments: number = 0;
   routeSub: Subscription | undefined;
+  artsData: any = {};
+  dataLoaded: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private cartItemService: CartItemService,
     private artworkService: ArtworkPreviewService,
-    private router: Router
+    private router: Router,
+    private  ArtServiceService: ArtServiceService
   ) {}
 
   ngOnInit() {
@@ -75,6 +81,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       this.checkScreenSize();
       this.updateColumns();
       this.updateItemWidth();
+      this.getArtwork();
     })
   }
 
@@ -84,6 +91,19 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       }
   }
 
+
+  getArtwork(): void {
+    this.ArtServiceService.getArtwork().subscribe(
+      (data: any[]) => {
+        console.log(data);
+        this.artsData = data;
+        this.dataLoaded = true;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
 
   oncommentsCount(count: number): void {
     this.TotalComments = count;
