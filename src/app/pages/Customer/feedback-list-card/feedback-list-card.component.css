@@ -4,13 +4,12 @@
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 30px;
-  padding: 10px;
+  padding: 20px;
   transition: transform 0.3s ease;
-  border: 1.0px solid rgba(17, 18, 18, 0.128); /* Semi-transparent border */
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(13, 13, 13, 0.1);
   backdrop-filter: blur(-10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(-10px); /* Safari support */
+  -webkit-backdrop-filter: blur(-10px);
 }
 
 
