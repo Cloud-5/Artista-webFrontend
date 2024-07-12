@@ -12,7 +12,7 @@ section.banner {
   max-width: 2386px;
   margin: 0 auto;
   text-align: center;
-  
+
 }
 canvas {
   width: 100% !important;
@@ -106,7 +106,7 @@ canvas {
   width: 100%;
   position: relative;
   max-width: 1100px;
-  padding-top: 60%;  
+  padding-top: 60%;
   justify-content: center;
   align-items: center;
 }
@@ -150,7 +150,7 @@ canvas {
 
 
 .d-flex {
-  
+
   gap: 25px;
 }
 
@@ -168,7 +168,6 @@ canvas {
   .navbar-nav .nav-link {
       margin-right: 20px;
       font-size: 1rem;
-      
 
   }
 
@@ -183,6 +182,8 @@ canvas {
       padding: 0.4rem 0.8rem;
   }
 }
+
+
 
 @media (max-width: 576px) {
   .custom-logo {
@@ -208,22 +209,22 @@ canvas {
 }
 
 
-.title {     
-  font-size: 6vw;  /* Using viewport width to make the font size responsive */
+.title {
+  font-size: 6vw;
   font-weight: bold;
   color: white;
   margin-top: 60px;
-  
+
 }
 
 .hero-body {
-  background-image: url("../../../assets/images/background.jpg"); 
+  background-image: url("../../../assets/images/background.jpg");
   background-size: cover;
   background-position: center center;
-  height: 50vh;  /* Use viewport height for responsive height */
-  min-height: 50px;  /* Ensures a minimum height of 500px */
-  
-  
+  height: 50vh;
+  min-height: 50px;
+
+
 }
 .row{
   gap: 10px;
@@ -268,12 +269,12 @@ canvas {
   }
   .model-viewer {
     width: 95%;
-    padding-top: 53%;  
+    padding-top: 53%;
 }
 
   .title {
       font-size: 4vw;  /* Adjust font size for large screens */
-      
+
   }
 
   .hero-body {
@@ -285,13 +286,13 @@ canvas {
 .card-container {
     display: flex;
     row-gap: 10px;
-   
+
   }
-  
+
   .card-container-artist {
     display: flex;
   }
- 
+
 
 
 .paragraph{
@@ -334,7 +335,7 @@ canvas {
     #search-button {
         width: 15%;
         padding: 8px;
-      
+
     }
 }
 
@@ -342,22 +343,22 @@ canvas {
   h1{
     font-weight: bold;
     font-size: 30px;
-    color:black;
-    
+    color:darkblue;
+
   }
 
   h3{
-    
+
     font-size: 15px;
   }
   h2{
-    
+
     font-weight: bold;
     font-size: 15px;
   }
 
 
- 
+
 
  /* Add this to your styles.css or home.component.css */
 
@@ -374,11 +375,11 @@ canvas {
 
 .card2 {
   min-width: calc(100% / 5); /* Adjust based on itemWidth */
- 
+
 }
 .card1 {
   min-width: calc(100% / 4); /* Adjust based on itemWidth */
- 
+
 }
 
 .carousel-control {
@@ -399,9 +400,4 @@ canvas {
 .carousel-control.next {
   right: 0;
 }
- 
-@media (min-width: 1440px) {
-  .model-viewer {
-      width: 70%;
-  }
-}
+

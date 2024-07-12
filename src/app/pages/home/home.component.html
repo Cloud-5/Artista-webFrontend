@@ -4,18 +4,18 @@
 <div class="main">
 
    <!-- Navbar -->
-  <div> 
+  <div>
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top" data-bs-theme="dark">
       <div class="container-fluid">
         <!-- Artista Logo -->
         <img src="../../../assets/artista logo.jpg" alt="Artista Logo" class="custom-logo img-fluid" />
-  
-  
+
+
          <!-- Search Bar -->
     <form class="d-flex" (submit)="onSearchSubmit()">
       <input class="form-control me-sm-2" type="search" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm">
       <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
-</form> 
+</form>
 
         <div class="d-flex">
           <!-- <button type="button" class="btn btn-secondary btn-sm follow"  (click)="logout()"><strong>Log Out</strong></button> -->
@@ -24,54 +24,31 @@
         </div>
       </div>
     </nav>
-  </div> 
+  </div>
 <!-- Banner -->
   <div>
-    <!-- <div class="hero-body">
+    <div class="hero-body">
       <div class="container">
       <br>
       <div class="col-md-6">
         <p class="title">Discover a World of Digital Artistry</p>
       </div>
-      
-      <div class="col-md-4">
-        
-      </div>
-      
-    
-       
-      
-      </div>
-    </div> -->
 
-  <section class="banner banner-light" style="background-image: url(https://qhstatic-us-s3.coohom.com/image/jpg/1714026479319/54B52904A8F1F9406013DFDBF68407A9.jpg);">
-    <div class="inner">
-      <div class="banner-div">
-        <h1>Discover a World of Digital Artistry</h1>
-        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit!</h2>
-        <button type="button" class="sign-up-button">Join Now</button>
+      <div class="col-md-4">
+
       </div>
-      <div class="banner-canvas">
-        <div class="model-viewer">
-          <span class="model-hint">
-            Click and drag to rotate
-          </span>
-          <div *ngIf="loading" id="loader" class="loader">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <p>Loading 3D Model...</p>
-          </div>
-          <canvas #canvas id="canvas" class="model-canvas"></canvas>
-        </div>
-      </div>
+
+
+
+
     </div>
-  </section>
+  </div>
+  <br>
 
 
 <!-- Display Trending Artworks -->
   <div class="container">
-   <br>
+
   <div>
     <h1>Our Trending Original Art for Sale</h1>
   </div>
@@ -97,7 +74,6 @@
 </div>
 
   <br><br>
-  </div>
 
 
   <!-- Display Trending Artists -->
@@ -109,7 +85,7 @@
   <div>
     <h2>SEE ALL TRENDING ARTISTS</h2>
   </div>
-  
+
   <div class="carousel-container" *ngIf="dataLoaded">
     <div class="carousel artist-carousel">
       <div class="card1 shadow" *ngFor="let artist of artistsData" >
@@ -130,9 +106,9 @@
     <h1>About Us </h1>
     <div style="display: flex; align-items: center;">
         <div style="flex: 1;">
-           
-            <p class="paragraph">Whether you're an artist looking to sell your work or an admirer seeking to find unique digital art pieces, Artista is the perfect place to explore, inspire, and be inspired. Join our vibrant 
-              community and experience the future of digital art marketing. Sure, here's a brief description. Welcome to Artista, your ultimate destination for discovering and showcasing stunning digital art. Dive into a world where creativity knows no bounds and where artists can share their masterpieces with a global audience. At Artista, we believe in empowering artists 
+
+            <p class="paragraph">Whether you're an artist looking to sell your work or an admirer seeking to find unique digital art pieces, Artista is the perfect place to explore, inspire, and be inspired. Join our vibrant
+              community and experience the future of digital art marketing. Sure, here's a brief description. Welcome to Artista, your ultimate destination for discovering and showcasing stunning digital art. Dive into a world where creativity knows no bounds and where artists can share their masterpieces with a global audience. At Artista, we believe in empowering artists
               by providing them with the tools and platform to connect with art enthusiasts and collectors...........</p>
             <div class="col text-center">
                 <button class="btn btn-primary">More</button>
@@ -145,11 +121,9 @@
 </div>
 <br><br>
   </div>
-</div>
 
   <div>
     <!-- footer -->
     <app-footer></app-footer>
  </div>
 
-  

@@ -90,6 +90,8 @@ import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation
 import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -166,9 +168,12 @@ import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component
     MatSidenavModule,
     MatAutocompleteModule,
 
+
+
   ],
 
   providers: [
+
     provideClientHydration(),
     ArtistPortfolioService,
     CommentsService,
