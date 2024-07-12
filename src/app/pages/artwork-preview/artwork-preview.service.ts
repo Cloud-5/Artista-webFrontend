@@ -9,6 +9,7 @@ import { environment } from "../../../environments/environment";
 export class ArtworkPreviewService {
 
   private apiUrl: string = environment.apiUrl + '/artwork-preview';
+  private apiUrl2: string =environment.apiUrl+ '/art';
 
   constructor(private http: HttpClient) { }
 
@@ -39,5 +40,10 @@ export class ArtworkPreviewService {
   removeFromGallery(artworkId: string, userId: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${artworkId}/removefromgallery`, { userId });
   }
+
+  getArtwork(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl2}`);
+
+}
 
 }

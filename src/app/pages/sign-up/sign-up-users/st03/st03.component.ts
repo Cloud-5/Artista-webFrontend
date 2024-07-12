@@ -15,7 +15,8 @@ export class St03Component implements OnInit {
   artistForm!: FormGroup;
   userData: any;
   platforms: Platform[] = [];
-
+  errorMessage: string | null =null;
+  Message: string | null =null;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -56,6 +57,7 @@ export class St03Component implements OnInit {
     });
   }
 
+  
   submitArtistDetails() {
    
     const artistData = this.artistForm.value;
@@ -72,8 +74,17 @@ export class St03Component implements OnInit {
         };
         this.router.navigate(['/login'], navigationExtras);
       },
+      // (error: any) => {
+      //   console.error('Artist registration failed', error);
+      // }
+
       (error: any) => {
-        console.error('Artist registration failed', error);
+        if (error.status === 400) {
+          this.errorMessage = 'Email Already Exists.';
+        } else {
+          console.error('Registered failed', error);
+          this.errorMessage = 'An error occurred during signup';
+        }
       }
     );
   }
