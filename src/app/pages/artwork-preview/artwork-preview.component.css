@@ -67,11 +67,12 @@
   }
   .tag {
     background-color: #0f969c;
-    color: #333; 
+    letter-spacing: 1px;
+    color: white; 
     padding: 5px 10px; 
-    border-radius: 20px; 
+    border-radius: 4px; 
     font-size: 14px; 
-    font-weight: bold; 
+    font-weight: 200;
     margin: 5px; 
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -79,7 +80,7 @@
 }
 
 .tag:hover {
-    background-color: #0f969c; 
+    background-color: #0c6d72; 
     transform: translateY(-2px); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
@@ -173,14 +174,19 @@
   }
 
   .artist-info {
-    background-color: #dee4ff;
+    background-color: rgb(235, 235, 235);
   }
   .artist-info .container .artist-menu {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     justify-content: flex-start;
   }
   .artist-info .container .artist-avatar {
     margin-left: -5px;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   .artist-menu .artist-avatar {
     margin-right: 22px;
@@ -189,9 +195,16 @@
     height: 161px;
     border: 1px solid transparent;
   }
-  .artist-page-link .artist-avatar {
+  .artist-page-link {
     cursor: pointer;
   }
+
+  .brief{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   section .container > p,
   section .header-section {
     margin-bottom: 0.625rem;
@@ -589,7 +602,7 @@
 
   @media (min-width: 992px) {
     section {
-      padding-bottom: 80px;
+      padding-bottom: 50px;
     }
 
     .container{
