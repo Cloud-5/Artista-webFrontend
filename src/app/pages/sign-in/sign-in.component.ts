@@ -1,7 +1,7 @@
 
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './Service/auth.service';
+import { AuthService } from './Service/Auth.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
@@ -24,7 +24,14 @@ export class SignInComponent implements OnInit, AfterViewInit {
   successMessage: string | null = null;
   recaptchaToken: string | null = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+
+  constructor(
+    private fb: FormBuilder, 
+    private AuthService: AuthService, 
+    private router: Router,
+
+  ) 
+  {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { Message: string };
     if (state) {
@@ -37,10 +44,11 @@ export class SignInComponent implements OnInit, AfterViewInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+
   }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+  }
   ngAfterViewInit(): void {
     // Wait for the reCAPTCHA to fully load and bind the callback
     window.grecaptchaCallback = this.recaptchaLoaded.bind(this);
@@ -74,7 +82,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
       const password = this.loginForm.get('password')?.value;
 
       if (email && password && this.recaptchaToken) {
-        this.authService.login(email, password, this.recaptchaToken).subscribe(
+        this.AuthService.login(email, password, this.recaptchaToken).subscribe(
           (response: any) => {
             // Decode the JWT token
             const decodedToken: any = jwtDecode(response.accessToken);
@@ -91,7 +99,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
             if (decodedToken.role === 'artist') {
               this.router.navigate(['/artist/new-home']);
             } else {
-              this.authService.checkPreferences(response.data.user_id).subscribe(
+              this.AuthService.checkPreferences(response.data.user_id).subscribe(
                 (prefResponse: any) => {
                  // console.log('Preferences response', prefResponse);
                   if (prefResponse.hasPreferences) {
