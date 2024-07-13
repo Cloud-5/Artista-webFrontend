@@ -18,6 +18,12 @@ export class ArtsComponent {
   private cartItemService: CartItemService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {
     //this.isBrowser = isPlatformBrowser(this.platformId);
   }
+
+  ngOnInit() {
+    // Check if the artwork is liked by the current user
+    this.checkLikedStatus();
+    this.getTotalLikes();
+  }
   addCart(art: any) {
     
       this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
@@ -31,9 +37,62 @@ export class ArtsComponent {
         );
    
   }
-
+  checkLikedStatus() {
+    this.cartItemService.getLikedStatus(this.userId, this.art.artwork_id)
+      .subscribe(
+        response => {
+          this.art.liked = response.liked; // Update liked status for the artwork
+          this.art.total_likes = response.total_likes ||0; // Update total likes count
+        },
+        error => {
+          console.error('Error fetching liked status:', error);
+        }
+      );
+  }
+  likeArtwork(art: any) {
+    if (art.liked) {
+      // Unlike artwork
+      this.cartItemService.likeArtwork(this.userId, art.artwork_id)
+        .subscribe(
+          response => {
+            console.log('Artwork unliked successfully', response);
+            art.liked = false;
+            art.total_likes = response.total_likes ||0;
+          },
+          error => {
+            console.error('Error unliking artwork:', error);
+          }
+        );
+    } else {
+      // Like artwork
+      this.cartItemService.likeArtwork(this.userId, art.artwork_id)
+        .subscribe(
+          response => {
+            console.log('Artwork liked successfully', response);
+            art.liked = true;
+            art.total_likes = response.total_likes || 0;
+          },
+          error => {
+            console.error('Error liking artwork:', error);
+          }
+        );
+    }
+  }
+  
   goToPreview(art: any) {
     this.router.navigate(['/preview', art.artwork_id]);
     console.log('art', art.artwork_id);
+  }
+
+  getTotalLikes() {
+    this.cartItemService.getTotalLikes(this.art.artwork_id)
+      .subscribe(
+        response => {
+          this.art.total_likes = response.total_likes || 0; // Update total likes count for the artwork
+        },
+        error => {
+          console.error('Error fetching total likes:', error);
+        }
+      );
   }
 }
