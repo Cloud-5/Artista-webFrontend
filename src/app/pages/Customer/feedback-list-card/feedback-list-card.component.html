@@ -5,7 +5,7 @@
         <img src="{{feedback.profile_photo_url}}" alt="Profile Picture" class="rounded-pill profile-pic">
         <h5 class="mb-1 ml-2">{{feedback.fName}} {{feedback.LName}}</h5>
       </div>
-      <small>{{ feedback.timestamp | date:'yyyy-MM-dd' }}</small>
+      <small style="padding-right: 20px;">{{ feedback.timestamp | date:'yyyy-MM-dd' }}</small>
     </div>
     <p class="mb-1">{{ feedback.feedback_content }}</p>
   </a>

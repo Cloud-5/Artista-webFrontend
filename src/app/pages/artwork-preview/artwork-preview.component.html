@@ -1,153 +1,260 @@
-<div class="sticky-bar" [ngClass]="{'show': showStickyBar}" style="background-color: rgb(241, 241, 241); border: 0.5px solid rgb(207, 207, 207);">
-    <div class="d-sm-flex justify-content-between align-items-center">
-
-            <div class="bar-header" style="margin-left: 20px;">
-                <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0;">{{artworkDetails.artwork_name}}</h3>
-                <p>by {{artworkDetails.artist}}</p>
-            </div>
-
-        <div class="d-flex align-items-center gap-3" style="justify-content: center;">
-            <div class="price">
-                <p class="fs-3 fw-medium">{{artworkDetails.price | currency}}</p>
-            </div>
-            <div>
-                <button (click)="toggleFavorite()" class="favorite-button">
-                    <i class="bi fs-5" style="color: blue;" aria-hidden="false" aria-label="Favorite icon"
-                        [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
-                </button>
-            </div>
-            <div>
-                <button [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]" type="button"
-                    (click)="toggleAddToGallery()">{{addToGalleryButtonText}}</button>
-            </div>
-            <div>
-                <button class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
-            </div>
-        </div>
+<div
+  class="sticky-bar"
+  [ngClass]="{ show: showStickyBar }"
+  style="
+    background-color: rgb(241, 241, 241);
+    border: 0.5px solid rgb(207, 207, 207);
+  "
+>
+  <div class="d-sm-flex justify-content-between align-items-center">
+    <div class="bar-header" style="margin-left: 20px">
+      <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0">
+        {{ artworkDetails.artwork_name }}
+      </h3>
+      <p>by {{ artworkDetails.artist }}</p>
     </div>
+
+    <div
+      class="d-flex align-items-center gap-3"
+      style="justify-content: center"
+    >
+      <div class="price">
+        <p class="fs-3 fw-medium">{{ artworkDetails.price | currency }}</p>
+      </div>
+      <div>
+        <button (click)="toggleFavorite()" class="favorite-button">
+          <i
+            class="bi fs-5"
+            style="color: blue"
+            aria-hidden="false"
+            aria-label="Favorite icon"
+            [class.bi-heart-fill]="isFavorite"
+            [class.bi-heart]="!isFavorite"
+          ></i>
+        </button>
+      </div>
+      <div>
+        <button
+          [ngClass]="['btn', 'btn-outline-info', addToGalleryButtonClass]"
+          type="button"
+          (click)="toggleAddToGallery()"
+        >
+          {{ addToGalleryButtonText }}
+        </button>
+      </div>
+      <div>
+        <button
+          class="btn"
+          style="background: #0d6efd; color: white; font-weight: 600"
+          type="button"
+          (click)="addCart(artworkDetails)"
+        >
+          <span class="">Add To Cart</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 <app-navbar></app-navbar>
 <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="preview-container">
-                        <div class="artwork">
-                            <div *ngIf="!is3D">
-                               <img [src]="thumbnail" alt="Artwork" class="artwork-preview">
-                             </div>
-                             <div *ngIf="is3D">
-                               <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model>
-                             </div>
-                       </div>
-                    </div>
-                    <div class="likeCount-pubDate">
-                        <div class="like">
-                            <button (click)="toggleFavorite()" class="favorite-button">
-                                <i class="bi fs-5" style="color: blue;" aria-hidden="false"
-                                    aria-label="Favorite icon" [class.bi-heart-fill]="isFavorite"
-                                    [class.bi-heart]="!isFavorite"></i>
-                            </button>
-                            <p class="count">{{artworkDetails.cou}}/p>
-                        </div>
-                        <div class="pub-date">
-                            <p class="pub-date-style">Published On: {{ artworkDetails.published_date | date }}</p>
-                        </div>
-                    </div>
-                    <div class="artwork-details">
-                        <h5 class="header-art">
-                            Artwork description:
-                            <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('description')">
-                                <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isDescriptionCollapsed, 'bi-caret-up-square-fill': isDescriptionCollapsed}"></i>
-                            </button>
-                        </h5>
-                        <div class="collapsible" [class.expanded]="isDescriptionCollapsed || !isSmallScreen">
-                            <p class="body1" style="text-align: justify;">
-                                {{artworkDetails.description}}
-                            </p>
-                        </div>
-
-                        <h5 class="header-art">
-                            Tags:
-                            <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
-                                <i class="bi" [ngClass]="{'bi-caret-down-square-fill': !isTagsCollapsed, 'bi-caret-up-square-fill': isTagsCollapsed}"></i>
-                            </button>
-                        </h5>
-                        <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">
-                            <div class="d-flex flex-wrap">
-                                <span *ngFor="let tag of tagsArray" class="badge fs-6 me-2 mb-2 text-dark fw-medium" style="background-color: #c0ccff;">#{{ tag }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="tab-content">
-                        <h1 class="header-art header-margin">
-                            {{artworkDetails.artwork_name}}
-                        </h1>
-                        <h2 class="body1">
-                            {{artworkDetails.category}}&nbsp;
-                            <br>
-                            <span>by</span>&nbsp;
-                            {{artworkDetails.artist}}
-                        </h2>
-                        &nbsp;
-                        <p class="body1">
-                            <span class="header-art">{{artworkDetails.price | currency}}</span>
-                        </p>
-                        <table class="body1">
-                            <tbody>
-                                <tr>
-                                    <th>Tools:</th>
-                                </tr>
-                                <tr>
-                                    <td>{{artworkDetails.tools}}</td>
-                                </tr>
-                                <tr>
-                                    <th>File Formats:</th>
-                                </tr>
-                                <tr>
-                                    <td>{{artworkDetails.formats}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
-                            <div class="d-grid gap-2">
-                                <button *ngIf="userRole=== 'customer' " [ngClass]="['btn', addToGalleryButtonClass]" type="button"
-                                    (click)="toggleAddToGallery()"><span class="">{{addToGalleryButtonText}}</span></button>
-                                <button *ngIf="userRole=== 'customer' "  class="btn" style="background:#0D6EFD; color: white; font-weight: 600;" type="button" (click)="addCart(artworkDetails)"><span class="">Add To Cart</span></button>
-                                <button *ngIf="userRole=== 'artist' "  class="btn btn-custom"  type="button"  routerLink="/ed" ><span class="">Edit Artwork Details</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 d-flex justify-content-end">
-          <button class="btn btn-custom" *ngIf="userRole=== 'artist' "  class="btn btn btn-custom" type="button" (click)="addCart(artworkDetails)"><span class="">Upload Creations</span></button>
-          <button class="btn btn-custom" *ngIf="userRole=== 'artist' "  class="btn btn btn-custom" type="button" (click)="addCart(artworkDetails)"><span class="">Back To Home</span></button>
-
-        </div>
-
-
-</section>
-<section  class="artist-info">
   <div class="container">
-    <div class="row" >
-      <div class="col-lg-5" *ngIf="userRole==='customer'" >
+    <div class="row">
+      <div class="col-lg-8">
+        <div *ngIf="!is3D" class="preview-container">
+          <div
+            class="artwork"
+            [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')' }"
+          >
+            <div *ngIf="!is3D">
+              <img [src]="thumbnail" alt="Artwork" class="artwork-preview" />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="is3D" class="preview-container">
+          <div class="artwork1">
+            <div *ngIf="is3D">
+              <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model>
+            </div>
+          </div>
+        </div>
+        <div class="likeCount-pubDate">
+          <div class="like">
+            <p class="body1 m-0">Like</p>
+            <button (click)="toggleFavorite()" class="favorite-button">
+              <i
+                class="bi fs-5"
+                style="color: blue"
+                aria-hidden="false"
+                aria-label="Favorite icon"
+                [class.bi-heart-fill]="isFavorite"
+                [class.bi-heart]="!isFavorite"
+              ></i>
+            </button>
+            <p class="body2 m-0">{{ artworkDetails.total_likes }}</p>
+          </div>
+          <div class="pub-date">
+            <p class="body2">
+              <span class="body1">Published On:</span>
+              {{ artworkDetails.published_date | date }}
+            </p>
+          </div>
+        </div>
+        <div class="artwork-details">
+          <h5 class="body2">
+            Artwork description
+            <button
+              *ngIf="isSmallScreen"
+              type="button"
+              class="btn btn-link"
+              (click)="toggleCollapse('description')"
+            >
+              <i
+                class="bi"
+                [ngClass]="{
+                  'bi-caret-down-square-fill': !isDescriptionCollapsed,
+                  'bi-caret-up-square-fill': isDescriptionCollapsed
+                }"
+              ></i>
+            </button>
+          </h5>
+          <div
+            class="collapsible"
+            [class.expanded]="isDescriptionCollapsed || !isSmallScreen"
+          >
+            <p class="body1" style="text-align: justify">
+              {{ artworkDetails.description }}
+            </p>
+          </div>
+
+          <h5 class="body2">
+            Tags
+            <button
+              *ngIf="isSmallScreen"
+              type="button"
+              class="btn btn-link"
+              (click)="toggleCollapse('tags')"
+            >
+              <i
+                class="bi"
+                [ngClass]="{
+                  'bi-caret-down-square-fill': !isTagsCollapsed,
+                  'bi-caret-up-square-fill': isTagsCollapsed
+                }"
+              ></i>
+            </button>
+          </h5>
+          <div
+            class="collapsible"
+            [class.expanded]="isTagsCollapsed || !isSmallScreen"
+          >
+            <div class="d-flex flex-wrap">
+              <span *ngFor="let tag of tagsArray" class="tag">#{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="tab-content">
+          <h1 class="header-art header-margin">
+            {{ artworkDetails.artwork_name }}
+          </h1>
+          <h2 class="body1">
+            <i><span>by</span>&nbsp; {{ artworkDetails.artist }}</i>
+          </h2>
+          &nbsp;
+          <p class="body2">Category: {{ artworkDetails.category }}</p>
+
+          <table>
+            <tbody>
+              <tr>
+                <th>Tools</th>
+              </tr>
+              <tr>
+                <td>{{ artworkDetails.tools }}</td>
+              </tr>
+              <tr>
+                <th>File Formats</th>
+              </tr>
+              <tr>
+                <td>{{ artworkDetails.formats }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="body1 mt-5">
+            <span class="header-art">{{
+              artworkDetails.price | currency
+            }}</span>
+          </p>
+          <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
+            <div class="d-grid gap-2">
+              <button
+                *ngIf="userRole === 'customer'"
+                [ngClass]="['btn', addToGalleryButtonClass]"
+                type="button"
+                (click)="toggleAddToGallery()"
+              >
+                <span class="">{{ addToGalleryButtonText }}</span>
+              </button>
+              <button
+                *ngIf="userRole === 'customer'"
+                class="addToCart"
+                type="button"
+                (click)="addCart(artworkDetails)"
+              >
+                <span class="">Add To Cart</span>
+              </button>
+              <button
+                *ngIf="userRole === 'artist'"
+                class="btn btn-custom"
+                type="button"
+                routerLink="/ed"
+              >
+                <span class="">Edit Artwork Details</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 d-flex justify-content-end">
+    <button
+      class="btn btn-custom"
+      *ngIf="userRole === 'artist'"
+      class="btn btn btn-custom"
+      type="button"
+      (click)="addCart(artworkDetails)"
+    >
+      <span class="">Upload Creations</span>
+    </button>
+    <button
+      class="btn btn-custom"
+      *ngIf="userRole === 'artist'"
+      class="btn btn btn-custom"
+      type="button"
+      (click)="addCart(artworkDetails)"
+    >
+      <span class="">Back To Home</span>
+    </button>
+  </div>
+</section>
+<section class="artist-info">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-5" *ngIf="userRole === 'customer'">
         <div class="artist-menu">
           <div class="avatar-container">
             <a class="artist-page-link"
               ><img
                 [src]="artworkDetails.artist_profile_photo"
-                class="artist-avatar rounded-circle"
+                class="artist-avatar"
                 alt="visit artist profile"
               />
             </a>
           </div>
-          <div  >
+          <div class="brief">
             <a class="artist-page-link">
-              <h2 class="header-section">
+              <h2 class="header-art mt-0">
                 {{ artworkDetails.artist }}
               </h2>
             </a>
@@ -186,7 +293,7 @@
         </div>
       </div>
 
-      <div *ngIf="userRole===''artist"  class="artist-introduction col-lg-7">
+      <div *ngIf="userRole === 'customer'" class="artist-introduction col-lg-7">
         <p class="body1" style="text-align: justify">
           <i class="bi bi-geo-alt-fill fs-5" style="color: blue"></i>&nbsp;{{
             artworkDetails.location
@@ -197,25 +304,25 @@
         </p>
       </div>
 
+      <!-- view trending artworks for artist -->
+      <div *ngIf="userRole === 'artist'" class="container">
+        <br />
+        <div>
+          <h1>Trending Artwoks in Artista</h1>
+        </div>
+        <br />
+        <div>
+          <h3>
+            UNLEASH YOUR CREATIVITY: SHARE YOUR MASTERPIECES WITH THE WORLD
+          </h3>
+        </div>
+        <br />
+        <div>
+          <h2>SEE ALL TRENDING ARTWORKS</h2>
+        </div>
+        <br />
 
-        <!-- view trending artworks for artist -->
-  <div *ngIf="userRole=== 'artist' " class="container">
-    <br>
-   <div>
-     <h1>Trending  Artwoks  in Artista</h1>
-   </div>
-   <br>
-   <div>
-     <h3  >UNLEASH YOUR CREATIVITY: SHARE YOUR MASTERPIECES WITH THE WORLD</h3>
-
-   </div>
-   <br>
-   <div>
-     <h2>SEE ALL TRENDING ARTWORKS</h2>
-   </div>
-   <br>
-
-   <!-- <div class="carousel-container">
+        <!-- <div class="carousel-container">
      <div class="carousel artwork-carousel">
        <div class="card2 shadow" *ngFor="let art of artsData" >
          <app-card [art]="art"></app-card>
@@ -225,12 +332,10 @@
      <button class="carousel-control prev" (click)="prev()">&#10094;</button>
      <button class="carousel-control next" (click)="next()">&#10095;</button>
    </div> -->
-
- </div>
+      </div>
     </div>
 
-    <!--carousal-->
-    <div *ngIf="userRole==='customer'" class="carousel-container">
+    <div *ngIf="userRole === 'customer'" class="carousel-container">
       <div class="carousel">
         <div
           class="card2 shadow"
@@ -248,14 +353,9 @@
       <button class="carousel-control next" (click)="next()">&#10095;</button>
     </div>
 
-
-
-
-
-    <div class="carousel-container" >    <!-- *ngIf="dataLoaded" -->
-
+    <div class="carousel-container"  *ngIf="userRole === 'artist'" >
       <div class="carousel artwork-carousel">
-        <div class="card2 shadow" *ngFor="let art of artsData" >
+        <div class="card2 shadow" *ngFor="let art of artsData">
           <app-card [art]="art"></app-card>
           <div class="badge1 editor-choice">Trending</div>
         </div>
@@ -264,41 +364,34 @@
       <button class="carousel-control next" (click)="next()">&#10095;</button>
     </div>
 
-
-
-
-
-
-
-
-
-
-
     <div class="row mt-4 d-flex justify-content-center">
       <button class="btn btn-primary" style="width: 100px">View All</button>
     </div>
   </div>
 </section>
 <section class="comments">
-    <div class="col-12">
-        <div class="container mt-5">
-            <div class="row">
-                <hr>
-                <div class="row">
-                    <div class="col d-flex justify-content-center gap-3">
-                        <i class="bi bi-chat-square-text-fill fs-4"></i>
-                        <p class="pub-date-style">Comments  :</p>
-                        <p class="pub-date-style">{{TotalComments}}</p>
-                    </div>
-                </div>
-                <hr>
-            </div>
-            <div class="row border comment-area">
-                <app-comment-list [currentUserId]="userId" [artworkId]="artworkId" (commentsCount)="oncommentsCount($event)"></app-comment-list>
-            </div>
+  <div class="col-12">
+    <div class="container mt-5">
+      <div class="row">
+        <hr />
+        <div class="row">
+          <div class="col d-flex justify-content-center gap-3">
+            <i class="bi bi-chat-square-text-fill fs-4"></i>
+            <p class="pub-date-style">Comments :</p>
+            <p class="pub-date-style">{{ TotalComments }}</p>
+          </div>
         </div>
+        <hr />
+      </div>
+      <div class="row border comment-area">
+        <app-comment-list
+          [currentUserId]="userId"
+          [artworkId]="artworkId"
+          (commentsCount)="oncommentsCount($event)"
+        ></app-comment-list>
+      </div>
     </div>
-
+  </div>
 </section>
 
 <section class="related-artworks">
@@ -326,6 +419,5 @@
     </div>
   </div>
 </section>
-
 
 <app-footer></app-footer>

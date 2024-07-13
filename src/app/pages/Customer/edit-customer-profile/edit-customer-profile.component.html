@@ -36,19 +36,24 @@
               <input
                 type="file"
                 class="form-control"
-                style="width:1050px; height: 200px; margin-left: 10px;"
+                style="width: 1050px; height: 200px; margin-left: 10px"
                 id="banner-image"
                 name="banner-image"
                 (change)="onBannerFileSelected($event)"
               />
               <img
-               *ngIf="customer.banner_img_url"
-               [src]="customer.banner_img_url"
+                *ngIf="customer.banner_img_url"
+                [src]="customer.banner_img_url"
                 alt="Banner Image"
-                style="width: 100%; height: auto; margin-left: 10px; margin-top: 10px;"
-                />
+                style="
+                  width: 100%;
+                  height: auto;
+                  margin-left: 10px;
+                  margin-top: 10px;
+                "
+              />
               <button
-                (click)="uploadBannerImage('CustomerBanners','categoryBanner')"
+                (click)="uploadBannerImage('CustomerBanners', 'categoryBanner')"
                 class="btn btn-primary"
                 style="margin-top: 10px; margin-right: 10px"
                 type="button"
@@ -73,23 +78,30 @@
               Remove
             </button>
             <div class="mb-3" *ngIf="!customer.profile_photo_url">
-              <label for="profile-image" class="form-label">Profile Image:</label>
+              <label for="profile-image" class="form-label"
+                >Profile Image:</label
+              >
               <input
                 type="file"
                 class="form-control"
-                style="width:250px; height: 200px; margin-left: 10px;"
+                style="width: 250px; height: 200px; margin-left: 10px"
                 id="profile-image"
                 name="profile-image"
                 (change)="onFileSelected($event)"
               />
               <img
-               *ngIf="customer.profile_photo_url"
-               [src]="customer.profile_photo_url"
+                *ngIf="customer.profile_photo_url"
+                [src]="customer.profile_photo_url"
                 alt="profile-image"
-                style="width: 100%; height: auto; margin-left: 10px; margin-top: 10px;"
-                />
+                style="
+                  width: 100%;
+                  height: auto;
+                  margin-left: 10px;
+                  margin-top: 10px;
+                "
+              />
               <button
-                (click)="newImageUpload('Customer','profilePicture')"
+                (click)="newImageUpload('Customer', 'profilePicture')"
                 class="btn btn-primary"
                 style="margin-top: 10px; margin-right: 10px"
                 type="button"
@@ -115,7 +127,9 @@
                     #newfname="ngModel"
                   />
                   <div
-                    *ngIf="newfname.invalid && (newfname.dirty || newfname.touched)"
+                    *ngIf="
+                      newfname.invalid && (newfname.dirty || newfname.touched)
+                    "
                     class="alert"
                   >
                     <div
@@ -137,8 +151,16 @@
                     required
                     #newlname="ngModel"
                   />
-                  <div *ngIf="newlname.invalid && (newlname.dirty || newlname.touched)" class="alert">
-                    <div *ngIf="newlname.errors?.['required']" class="text-danger lead fs-6">
+                  <div
+                    *ngIf="
+                      newlname.invalid && (newlname.dirty || newlname.touched)
+                    "
+                    class="alert"
+                  >
+                    <div
+                      *ngIf="newlname.errors?.['required']"
+                      class="text-danger lead fs-6"
+                    >
                       Last Name is required
                     </div>
                   </div>
@@ -170,14 +192,25 @@
               id="email"
               required
               [(ngModel)]="customer.email"
-               name="email"
+              name="email"
               #emailInput="ngModel"
             />
-            <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="alert">
-              <div *ngIf="emailInput.errors?.['required']" class="text-danger lead fs-6">
+            <div
+              *ngIf="
+                emailInput.invalid && (emailInput.dirty || emailInput.touched)
+              "
+              class="alert"
+            >
+              <div
+                *ngIf="emailInput.errors?.['required']"
+                class="text-danger lead fs-6"
+              >
                 Email is required
               </div>
-              <div *ngIf="emailInput.errors?.['email']" class="text-danger lead fs-6">
+              <div
+                *ngIf="emailInput.errors?.['email']"
+                class="text-danger lead fs-6"
+              >
                 Please enter a valid email address
               </div>
             </div>
@@ -194,7 +227,9 @@
             />
           </div>
           <div class="col-md-6">
-            <label for="confirm-password" class="form-label">Confirm Password:</label>
+            <label for="confirm-password" class="form-label"
+              >Confirm Password:</label
+            >
             <input
               type="password"
               class="form-control"
@@ -203,13 +238,17 @@
               name="confirm-password"
               #confirmPasswordInput="ngModel"
             />
-            <div *ngIf="customer.newPassword && confirmPassword !== customer.newPassword && (confirmPasswordInput.dirty || confirmPasswordInput.touched)" class="alert">
-              <div class="text-danger lead fs-6">
-                Passwords do not match
-              </div>
+            <div
+              *ngIf="
+                customer.newPassword &&
+                confirmPassword !== customer.newPassword &&
+                (confirmPasswordInput.dirty || confirmPasswordInput.touched)
+              "
+              class="alert"
+            >
+              <div class="text-danger lead fs-6">Passwords do not match</div>
             </div>
           </div>
-
         </div>
       </div>
       <br />
@@ -232,7 +271,7 @@
       </div>
       <div class="d-flex justify-content-center mt-5 mb-3">
         <div style="padding-right: 400px">
-          <button type="button" class="btn btn-secondary">
+          <button type="button" class="btn btn-secondary" (click)="discardChanges()">
             Discard Profile
           </button>
         </div>

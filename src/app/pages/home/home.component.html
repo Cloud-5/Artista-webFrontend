@@ -24,31 +24,29 @@
     </nav>
   </div>
   <div>
-
-
-  <section class="banner banner-light" style="background-image: url(https://qhstatic-us-s3.coohom.com/image/jpg/1714026479319/54B52904A8F1F9406013DFDBF68407A9.jpg);">
-    <div class="inner">
-      <div class="banner-div">
-        <h1>Discover a World of Digital Artistry</h1>
-        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit!</h2>
-        <button type="button" class="sign-up-button">Join Now</button>
-      </div>
-      <div class="banner-canvas">
-        <div class="model-viewer">
-          <span class="model-hint">
-            Click and drag to rotate
-          </span>
-          <div *ngIf="loading" id="loader" class="loader">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+    <section class="banner banner-light" style="background-image: url(https://qhstatic-us-s3.coohom.com/image/jpg/1714026479319/54B52904A8F1F9406013DFDBF68407A9.jpg);">
+      <div class="inner">
+        <div class="banner-div">
+          <h1>Discover a World of Digital Artistry</h1>
+          <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit!</h2>
+          <button type="button" class="sign-up-button">Join Now</button>
+        </div>
+        <div class="banner-canvas">
+          <div class="model-viewer">
+            <span class="model-hint">
+              Click and drag to rotate
+            </span>
+            <div *ngIf="loading" id="loader" class="loader">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p>Loading 3D Model...</p>
             </div>
-            <p>Loading 3D Model...</p>
+            <canvas #canvas id="canvas" class="model-canvas"></canvas>
           </div>
-          <canvas #canvas id="canvas" class="model-canvas"></canvas>
         </div>
       </div>
-    </div>
-</section>
+    </section>
   <br>
 
   <div class="container">
