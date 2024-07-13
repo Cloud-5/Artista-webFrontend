@@ -343,7 +343,7 @@ canvas {
   h1{
     font-weight: bold;
     font-size: 30px;
-    color:darkblue;
+    color: black;
 
   }
 
@@ -401,3 +401,41 @@ canvas {
   right: 0;
 }
 
+
+ 
+
+.wrapper {
+  -webkit-text-size-adjust: 100%;
+  color: #313131;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1440px;
+}
+
+.ss
+{
+ 
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  letter-spacing: 1px;
+  color: #333;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  min-height: 1px;
+  padding: 0 0;
+  width: 100%;
+}
+
+.ss .row {
+  padding-left: 35px;
+  
+}

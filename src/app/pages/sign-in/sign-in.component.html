@@ -1,5 +1,5 @@
 
-
+<div class="ss">
 
 <div class="container" id="container">
         
@@ -16,8 +16,10 @@
               {{ successMessage }}
             </div>
           <h1>Sign In</h1>
-         
-          
+        
+         <div class="social-icons">
+          <!-- google auth -->
+       </div>
           <input type="email" id="inputEmail" formControlName="email" class="form-control" placeholder=" Email">
           <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">Please enter a valid email</div>
    
@@ -35,8 +37,9 @@
   <div class="toggle-container">
       <div class="toggle">
           <div class="toggle-panel toggle-right">
-              <!-- <img src="../../../assets/ArtistaLogo.jpg" alt="ARTISTA Logo"> -->
+            <img class="image" src="../../../assets/logo5.jpg" alt="ARTISTA Logo" style="width: 250px; height: 250px;">
           </div>
       </div>
   </div>
+</div>
 </div>
