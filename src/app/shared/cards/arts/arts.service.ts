@@ -37,4 +37,15 @@ export class CartItemService {
   clearCart(userId: string): Observable<any> {
     return this.http.request('delete', `${this.apiUrl}/clear`, { body: { userId } });
   }
+  likeArtwork(userId: string, artworkId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/like`, { userId,artworkId });
+  }
+  getLikedStatus(userId: string, artworkId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/liked-status`, { userId, artworkId });
+  }
+
+  getTotalLikes(artworkId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/total-likes/${artworkId}`);
+  }
+
 }  

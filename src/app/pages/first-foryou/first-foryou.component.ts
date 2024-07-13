@@ -54,6 +54,11 @@ export class FirstForyouComponent implements OnInit {
   }
 
   postPreferences(): void {
+    if (this.selectedCategoryIds.length === 0) {
+      alert('Please select at least one category.');
+      console.log('No categories selected. Alert displayed to user.');
+      return;
+    }
     console.log('Posting preferences', this.selectedCategoryIds);
     this.saveSelectedCategoryIds();
     this.preferencesService.addpreferences(this.userId, this.selectedCategoryIds).subscribe(
