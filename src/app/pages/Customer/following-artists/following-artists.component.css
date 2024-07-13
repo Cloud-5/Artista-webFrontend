@@ -1,4 +1,5 @@
 .request-card{
+  background: rgba(216, 216, 222, 0.901); /* Semi-transparent background */
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 10px;
@@ -17,6 +18,8 @@
   width: 100%;
   text-decoration: none;
   color: #000;
+  backdrop-filter: blur(-10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(-10px);
 }
 
 .buttons{
