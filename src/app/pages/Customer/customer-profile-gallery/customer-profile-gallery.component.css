@@ -22,10 +22,88 @@ a {
   justify-content: space-between;
 }
 
+.edit-profile-btn {
+  background-color: #0052cc; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for size */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Adjust width as needed */
+  margin-left: 30px;
+}
+
+.edit-profile-btn .bi {
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 14px; /* Adjust icon size if needed */
+}
+
+.edit-profile-btn:hover {
+  background-color: #003a99; /* Darker blue on hover */
+}
+
+.delete-btn {
+  background-color: #6c757d; /* Grey background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for size */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Adjust width as needed */
+  margin-top: 5px;
+  margin-left: 30px;
+}
+
+.delete-btn .bi {
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 14px; /* Adjust icon size if needed */
+}
+
+.delete-btn:hover {
+  background-color: #5a6268; /* Darker grey on hover */
+}
+
+.logout-btn {
+  background-color: #0F969C; /* Red background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for size */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Adjust width as needed */
+  margin-top: 5px;
+  margin-left: 30px;
+}
+
+.logout-btn .bi {
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 14px; /* Adjust icon size if needed */
+}
+
+.logout-btn:hover {
+  background-color: #0F969C; /* Darker red on hover */
+}
+
+
 .header__wrapper .cols__container .left__col {
   padding: 25px 20px;
   text-align: center;
-  max-width: 350px;
+  max-width: 500px;
   position: relative;
   margin: 0 auto;
 }

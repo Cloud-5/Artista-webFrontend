@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 <div class="container">
-
   <div class="find-art-column">
     <h3>Find An Art</h3>
     <br>
-    <h5>Category</h5>
+    <button class="btnrx"><h5>Category</h5></button>
+    <br>
     <ul>
       <li *ngFor="let category of categories">
         <input type="checkbox" id="{{ category.category_id }}" name="category" [value]="category.name"
@@ -13,7 +13,8 @@
       </li>
     </ul>
     <br>
-    <h5>Price Range</h5>
+    <button class="btnrx"><h5>Price Range</h5></button>
+    <br>
     <label for="customRange2" class="form-label">Min - Max ($) </label>
     <input type="range" class="form-range" min="10" max="1000" id="customRange2" (input)="onPriceRangeChange($event)">
     <div class="d-flex justify-content-between">
@@ -22,10 +23,9 @@
     </div>
 
     <br>
-    <br>
 
     <div class="dropdown-container">
-      <label for="sort-options"><h5><b>Sort by: </b></h5></label>
+      <button class="btnrx"><h5> Sort By </h5></button>
       <br>
       <select id="sort-options" name="sort-options" [(ngModel)]="selectedOption" (change)="onSortChange($event)">
         <option value="name-asc">Name (A-Z)</option>
@@ -48,10 +48,12 @@
           <div class="col-md-12 text-center mt-5">
             <h3 class="text-color">Embark on a journey through our art gallery to find your perfect masterpiece!</h3>
             <br>
-            <div class="text-left">
-              <p>{{ searchResults.length }} results found</p>
-            </div>
-          </div>
+            <button class="btn">
+              <i class="bi bi-filter"></i>
+              <p style="margin-left: 10px;">{{ searchResults.length }} results found</p>
+            </button>
+
+             </div>
       </div>
         <div class="container mt-5 mb-3">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" style="max-height:1000px;overflow-y: scroll; overflow-x: hidden;">

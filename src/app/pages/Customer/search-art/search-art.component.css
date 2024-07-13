@@ -15,10 +15,6 @@
   margin-left: 0;
 }
 
-.search-button {
-  margin-left: 1px;
-}
-
 .find-art-column {
   width: 100%;
   padding: 1rem;
@@ -45,6 +41,39 @@ label {
 select {
   padding: 5px;
   font-size: 14px;
+}
+.btn {
+  background-color: #0F969C; /* Red background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Bold text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px; /* Adjust width as needed */
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-left: 30px;
+}
+.btnrx {
+  background-color: #4b5358; /* Red background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  font-weight: bold; /* Bold text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px; /* Adjust width as needed */
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.btn .bi-filter {
+  font-size: 30px; /* Adjust this value to increase/decrease the icon size */
 }
 
 @media (min-width: 768px) {

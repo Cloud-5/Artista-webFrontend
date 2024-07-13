@@ -15,6 +15,12 @@
       <h2>{{CustomerData.fName}} {{CustomerData.LName}}</h2>
       <p><b>{{CustomerData.location}}</b></p>
       <p><b>Member Since : </b>{{CustomerData.joined_date | date:'yyyy-MM-dd'}}</p>
+      <br>
+
+      <a [routerLink]="['/edit-customer-profile',userId]"  class="edit-profile-btn">
+        <i class="bi bi-pencil"></i>
+        Edit Your Profile
+    </a>
 
       <ul class="about">
         <li>{{CustomerData.total_gallery_items}}<span></span>Gallery</li>
@@ -24,18 +30,16 @@
      <div class="content" style="margin: 50px 0 0 0">
       <p style="max-height: 420px; overflow-y: scroll;">
           {{CustomerData.description}}</p>
-        <div class="row" style="margin: 100px 0 0 0">
-          <div class="d-flex" style="justify-content: space-between">
-            <a [routerLink]="['/edit-customer-profile',userId]" class="btn btn-primary" style="width: 48%">Edit Profile</a>
-            <button type="button" class="btn btn-secondary" style="width: 48%" (click)="deactivateCustomer()">
-              Delete Profile
-            </button>
-          </div>
-          <div class="row" style="margin: 10px 0 0 0">
-            <button type="button" class="btn btn-success" (click)="logout()">Log Out</button>
-          </div>
+          <br>
 
-        </div>
+        <button class="delete-btn" (click)="deactivateCustomer()">
+          <i class="bi bi-trash"></i>
+          Delete Profile
+      </button>
+      <button class="logout-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </button>
 
       </div>
     </div>
