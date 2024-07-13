@@ -21,25 +21,25 @@ html, body {
     height: 100%;
   }
   
-  .customer-sidebar {
+  .user-sidebar {
     background-color: #f8f9fa;
     border-right: 1px solid #dee2e6;
     padding: 10px;
     overflow-y: auto; /* Makes the customer list scrollable if it grows too big */
   }
   
-  .customer-sidebar .customer-selection label {
+  .user-sidebar .user-selection label {
     font-size: 1.2em; /* Increase font size */
     font-weight: bold; /* Make the text bold */
     text-align: center; /* Center the text */
     display: block; /* Ensure the label takes up the full width */
   }
   
-  .customer-sidebar .list-group-item {
+  .user-sidebar .list-group-item {
     cursor: pointer;
   }
   
-  .customer-sidebar .list-group-item.active {
+  .user-sidebar .list-group-item.active {
     background-color: #007bff;
     color: white;
   }
@@ -49,6 +49,7 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 350px; /* Adjust this height as needed */
+
   }
   
   .messages {
@@ -56,24 +57,35 @@ html, body {
     flex-grow: 1;
     padding: 10px;
     border-bottom: 1px solid #dee2e6;
+    background-image: url(../../../../assets/chat\ background.jpg);
+    display: flex;
+    flex-direction: column;
+    
   }
   
   .message {
-    margin-bottom: 10px;
-    padding: 5px;
+    margin: 5px;
+    padding: 10px;
     border-radius: 10px;
+  
+    position: relative;
   }
   
   .sent-message {
     text-align: right;
     background-color: #b4f0b4; /* Set background color for sent messages */
     align-self: flex-end; /* Align the message to the right */
+    width:fit-content;
+    border-top-right-radius: 0;
   }
   
   .received-message {
     color: green;
     background-color: #f5f7f5; /* Set a background color for received messages */
     align-self: flex-start; /* Align the message to the left */
+   width:fit-content;
+    border-top-left-radius: 0;
+  
   }
   
   .input-container {
@@ -82,3 +94,24 @@ html, body {
     border-top: 1px solid #dee2e6;
   }
   
+
+  .context-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: red;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .context-menu:hover {
+    background-color: darkred;
+  }
+  
+  .card
+  {
+    width: 100%;
+  }

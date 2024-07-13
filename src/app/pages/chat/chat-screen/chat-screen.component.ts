@@ -1,11 +1,13 @@
+
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ChatServiceService } from '../chat-screen/service/chat-service.service';
 import { Observable, from, of } from 'rxjs';
-import {  map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { map, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
-interface Customer {
+interface User {
   firebaseUid: string;
   name: string;
+  unreadCount?: number;
 }
 
 @Component({
@@ -20,13 +22,14 @@ export class ChatScreenComponent implements OnInit {
   artistName: string = '';
   newMessage: string = '';
   userRole: string = '';
-  customers$: Observable<Customer[]> = of([]); // List of customers who have sent messages
-  selectedCustomerMessages$!: Observable<any[]>; // Messages from selected customer
+  users$: Observable<User[]> = of([]);
+  selectedUserMessages$!: Observable<any[]>;
   selectedMessageId: string = '';
 
-  filteredCustomers$: Observable<Customer[]> = of([]);
+  filteredUsers$: Observable<User[]> = of([]);
   searchTerm: string = '';
 
+  unreadCounts: { [key: string]: number } = {};
 
   constructor(private chatService: ChatServiceService) {}
 
@@ -38,10 +41,29 @@ export class ChatScreenComponent implements OnInit {
       if (this.userRole === 'customer') {
         this.recipientId = this.getFromLocalStorage('artistFirebaseUid', '');
         this.loadMessages();
+        this.loadArtistsWhoSentMessages();
       } else if (this.userRole === 'artist') {
-        this.loadCustomersWhoSentMessages();
+        this.loadUsersWhoSentMessages();
       }
-    } 
+    }
+  }
+
+  loadUnreadCounts(): void {
+    this.chatService.getUnreadMessageCount(this.senderId).subscribe(unreadCounts => {
+      this.unreadCounts = unreadCounts;
+      this.updateUserUnreadCounts();
+    });
+  }
+
+  updateUserUnreadCounts(): void {
+    this.users$ = this.users$.pipe(
+      map(users => users.map(user => ({
+        ...user,
+        unreadCount: this.unreadCounts[user.firebaseUid] || 0
+      })))
+    );
+
+    this.filteredUsers$ = this.users$;
   }
 
   private getFromLocalStorage(key: string, defaultValue: string): string {
@@ -52,52 +74,57 @@ export class ChatScreenComponent implements OnInit {
     }
   }
 
-//   loadCustomersWhoSentMessages(): void {
-//     this.customers$ = this.chatService.getUniqueCustomersForArtist(this.senderId).pipe(
-//       switchMap((customerIds: string[]) =>
-//         from(customerIds).pipe(
-//           mergeMap(id =>
-//             this.chatService.getCustomerDetailsByUid(id).pipe(
-//               map(customerDetails => ({
-//                 firebaseUid: id,
-//                 name: customerDetails ? customerDetails.displayName : `Customer`
-//               }))
-//             )
-//           ),
-//           toArray()
-//         )
-//   )
-// );}
-
-loadCustomersWhoSentMessages(): void {
-  this.customers$ = this.chatService.getUniqueCustomersForArtist(this.senderId).pipe(
-    switchMap((customerIds: string[]) =>
-      from(customerIds).pipe(
-        mergeMap(id =>
-          this.chatService.getCustomerDetailsByUid(id).pipe(
-            map(customerDetails => ({
-              firebaseUid: id,
-              name: customerDetails ? customerDetails.displayName : `Customer`
-            }))
-          )
-        ),
-        toArray()
+  loadUsersWhoSentMessages(): void {
+    this.users$ = this.chatService.getUniqueUsersForRole(this.senderId, this.userRole).pipe(
+      switchMap((userIds: string[]) =>
+        from(userIds).pipe(
+          mergeMap(id =>
+            this.chatService.getUserDetailsByUid(id).pipe(
+              map(userDetails => ({
+                firebaseUid: id,
+                name: userDetails ? userDetails.displayName : `User`,
+                unreadCount: this.unreadCounts[id] || 0
+              }))
+            )
+          ),
+          toArray()
+        )
       )
-    )
-  );
+    );
 
-  this.filteredCustomers$ = this.customers$; // Initialize the filtered list with all customers
-}
+    this.filteredUsers$ = this.users$;
+    this.loadUnreadCounts();
+  }
 
-filterCustomers(): void {
-  this.filteredCustomers$ = this.customers$.pipe(
-    map(customers => customers.filter(customer => customer.name.toLowerCase().includes(this.searchTerm.toLowerCase())))
-  );
-}
+  filterUsers(): void {
+    this.filteredUsers$ = this.users$.pipe(
+      map(users => users.filter(user => user.name.toLowerCase().includes(this.searchTerm.toLowerCase())))
+    );
+  }
 
-  onCustomerSelect(customer: Customer): void {
-    this.recipientId = customer.firebaseUid;
+  onUserSelect(user: User): void {
+    this.recipientId = user.firebaseUid;
     this.loadMessages();
+    this.chatService.markMessagesAsRead(user.firebaseUid, this.senderId);
+    this.resetUnreadCount(user.firebaseUid);
+  }
+
+  resetUnreadCount(userId: string): void {
+    this.unreadCounts[userId] = 0;
+
+    this.users$ = this.users$.pipe(
+      map(users => users.map(user => ({
+        ...user,
+        unreadCount: user.firebaseUid === userId ? 0 : user.unreadCount
+      })))
+    );
+
+    this.filteredUsers$ = this.filteredUsers$.pipe(
+      map(users => users.map(user => ({
+        ...user,
+        unreadCount: user.firebaseUid === userId ? 0 : user.unreadCount
+      })))
+    );
   }
 
   loadMessages(): void {
@@ -142,10 +169,10 @@ filterCustomers(): void {
     }
   }
 
-  @HostListener('document:click')
-  closeContextMenu(): void {
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
     const contextMenu = document.getElementById('context-menu');
-    if (contextMenu) {
+    if (contextMenu && !contextMenu.contains(event.target as Node)) {
       contextMenu.style.display = 'none';
     }
   }
@@ -153,8 +180,32 @@ filterCustomers(): void {
   deleteSelectedMessage(): void {
     if (this.selectedMessageId) {
       this.deleteMessage(this.selectedMessageId);
-      this.selectedMessageId = '';
+      const contextMenu = document.getElementById('context-menu');
+      if (contextMenu) {
+        contextMenu.style.display = 'none';
+      }
     }
-    this.closeContextMenu();
-}
+  }
+
+  loadArtistsWhoSentMessages(): void {
+    this.users$ = this.chatService.getUniqueUsersForRole(this.senderId, this.userRole).pipe(
+      switchMap((userIds: string[]) =>
+        from(userIds).pipe(
+          mergeMap(id =>
+            this.chatService.getUserDetailsByUid(id).pipe(
+              map(userDetails => ({
+                firebaseUid: id,
+                name: userDetails ? userDetails.displayName : `User`,
+                unreadCount: this.unreadCounts[id] || 0
+              }))
+            )
+          ),
+          toArray()
+        )
+      )
+    );
+
+    this.filteredUsers$ = this.users$;
+    this.loadUnreadCounts();
+  }
 }

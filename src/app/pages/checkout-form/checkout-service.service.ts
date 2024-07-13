@@ -18,6 +18,7 @@ export class CheckoutServiceService {
 
   // Function to create purchase
   createPurchase(userId: string, data: any): Observable<any> {
+    console.log('data in service', data);
     return this.http.post(`${this.apiUrl}/${userId}`, data);
   }
 
