@@ -202,14 +202,13 @@ h2, .sub-title {
 .artist-details{
   background-color: rgba(20, 147, 221, 0.5); /* Adjust the RGBA values and opacity as needed */
   backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
-  max-height: 1000px;
 }
 
 
 
 .content{
   position: relative;
-  top: 200px;
+  top:28%
 }
 
 
@@ -233,21 +232,20 @@ h2, .sub-title {
 
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////new blue */
-.header__wrapper .cols__container .right__col .Creations {
+ .header__wrapper .cols__container .right__col .Creations {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px; /* Reduce the gap between grid items */
+  gap: 10px;
   max-height: 1000px;
   overflow-y: scroll;
   overflow-x: hidden;
+
 }
 
 
 
-/* Importing fonts from Google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Resetting */
 * {
   margin: 0;
   padding: 0;

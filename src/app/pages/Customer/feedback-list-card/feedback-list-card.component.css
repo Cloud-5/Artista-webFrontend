@@ -1,19 +1,15 @@
 .list-group-item {
-  background: #9cdafc; /* Fallback background color */
+  background: rgba(216, 216, 222, 0.901); /* Semi-transparent background */
   margin-bottom: 20px;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 30px;
-  padding: 10px;
+  padding: 20px;
   transition: transform 0.3s ease;
-  border: 1.0px solid #bcc7c7;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(13, 13, 13, 0.1);
-
-  background-image: url('https://img.freepik.com/free-vector/abstract-watercolor-pastel-background_87374-139.jpg?w=996&t=st=1720111082~exp=1720111682~hmac=8af53b3f4c1904101fff67a381a9b9e27175cf6be909bbe45980427dac5446c5');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  backdrop-filter: blur(-10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(-10px);
 }
 
 
@@ -23,8 +19,9 @@
 }
 
 .profile-pic {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
+  border: 5px solid #fff;
 }
 
 .ml-2 {
@@ -48,4 +45,9 @@
 
 .list-group-item p.mb-1 {
   margin-top: 10px; /* Adjust for spacing between elements */
+
+}
+
+.small{
+  margin-right: 20px;
 }

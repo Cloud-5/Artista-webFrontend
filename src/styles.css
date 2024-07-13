@@ -18,8 +18,8 @@
 } */
 
 html, body { height: 100%; width: auto;margin: 0;padding: 0; display: flex;
-    flex-direction: column;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    flex-direction: column; }
+body { margin: 0; font-family: 'Montserrat', sans-serif !important; }
 
 .main {
     flex: 1;

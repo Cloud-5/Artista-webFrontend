@@ -2,52 +2,37 @@
 
 <div class="header__wrapper">
   <header></header>
-  <div class="cols__container" >
+  <div class="cols__container">
 
 
     <div class="left__col artist-details" style="width: 450px;">
       <div class="img__container">
-        <img [src]="userData.ProfilePhoto" alt={{userData.name}}/>
+        <img [src]="userData.ProfilePhoto" alt={{userData.name}} />
         <span></span>
       </div>
       <h2>{{userData.FName + " " + userData.LName}}</h2>
       <p class="sub-title"><b>{{userData.Location}}</b></p>
       <div class="ratings">
-        <span
-        class="fa fa-star star"
-        [ngClass]="{
+        <span class="fa fa-star star" [ngClass]="{
           'star-active': userData.AverageRating >= 1,
           'star-half': userData.AverageRating >= 0.5 && userData.AverageRating < 1
-        }"
-      ></span>
-      <span
-        class="fa fa-star star"
-        [ngClass]="{
+        }"></span>
+        <span class="fa fa-star star" [ngClass]="{
           'star-active': userData.AverageRating >= 2,
           'star-half': userData.AverageRating >= 1.5 && userData.AverageRating < 2
-        }"
-      ></span>
-      <span
-        class="fa fa-star star"
-        [ngClass]="{
+        }"></span>
+        <span class="fa fa-star star" [ngClass]="{
           'star-active': userData.AverageRating >= 3,
           'star-half': userData.AverageRating >= 2.5 && userData.AverageRating < 3
-        }"
-      ></span>
-      <span
-        class="fa fa-star star"
-        [ngClass]="{
+        }"></span>
+        <span class="fa fa-star star" [ngClass]="{
           'star-active': userData.AverageRating >= 4,
           'star-half': userData.AverageRating >= 3.5 && userData.AverageRating < 4
-        }"
-      ></span>
-      <span
-        class="fa fa-star star"
-        [ngClass]="{
+        }"></span>
+        <span class="fa fa-star star" [ngClass]="{
           'star-active': userData.AverageRating >= 5,
           'star-half': userData.AverageRating >= 4.5 && userData.AverageRating < 5
-        }"
-      ></span>
+        }"></span>
 
       </div>
       <ul class="about">
@@ -58,43 +43,43 @@
       <p>{{userData.Description}}</p>
 
       <div class="content">
-
-        <br />
-        <br />
         <div class="row" style="margin: 0">
           <div class="d-flex" style="justify-content: space-between">
 
-            <button class="btn btn-primary" style="width: 48%" [routerLink]="['/artist/edit', userData.UserID]"> Edit profile</button>
-                 <button type="button" class="btn btn-primary uploadArtworks" routerLink="/upload" style="width: 48%">Upload Artwoks</button>
+            <button class="btn btn-primary" style="width: 48%" [routerLink]="['/artist/edit', userData.UserID]"> Edit
+              profile</button>
+            <button type="button" class="btn btn-primary uploadArtworks" routerLink="/upload" style="width: 48%">Upload
+              Artwoks</button>
           </div>
           <div class="row" style="margin: 10px 0 0 0">
-            <button type="button" class="btn btn-success"  (click)="logout()">Log Out</button>
+            <button type="button" class="btn btn-success" (click)="logout()">Log Out</button>
 
           </div>
         </div>
       </div>
     </div>
 
-
-
-
-
-
     <div class="right__col" style="width: 900px; ">
+
+      <!-- 3Tabs -->
+
+
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">My Creations</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab"
+          <a class="nav-link" data-bs-toggle="tab" href="#Followers" aria-selected="false" role="tab"
             tabindex="-1">Followers</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" data-bs-toggle="tab" href="#history" aria-selected="false" tabindex="-1"
+          <a class="nav-link" data-bs-toggle="tab" href="#feedbacks" aria-selected="false" tabindex="-1"
             role="tab">Feedbacks</a>
         </li>
       </ul>
+
       <div id="myTabContent" class="tab-content">
+
         <div class="tab-pane fade active show" id="home" role="tabpanel">
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
@@ -107,17 +92,20 @@
               </form>
             </div>
           </nav>
-<!-- ////////////////////////////////////////////////////////////creations -->
+          <!-- ////////////////////////////////////////////////////////////creations -->
 
-<div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
-  <div class="col mb-3" *ngFor="let art of artworks">
-    <app-creations [artworks]="art"></app-creations>
-  </div>
-</div>
+          <div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+            <div class="col mb-3" *ngFor="let art of artworks">
+              <app-creations [artworks]="art"></app-creations>
+            </div>
+          </div>
+
+        </div>
 
 
 
-        <div class="tab-pane fade" id="profile" role="tabpanel">
+ <!-- ////////////////////////////////////////////////////////////Followers -->
+        <div class="tab-pane fade" id="Followers" role="tabpanel">
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
 
@@ -131,40 +119,46 @@
               </form>
 
 
-              <app-artist-followers></app-artist-followers>
+             <app-artist-followers></app-artist-followers>
 
             </div>
           </nav>
         </div>
 
 
-        <div id="myTabContentx" class="tab-content">
-          <div class="tab-pane fade" id="history" role="tabpanel">
+ <!-- ////////////////////////////////////////////////////////////feedback -->
+
+          <div class="tab-pane fade" id="feedbacks" role="tabpanel">
             <nav class="navbar bg-body-tertiary">
               <div class="container-fluid">
                 <form class="d-flex" role="search" style="width: 100%">
-                  <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
-                    aria-label="Search" />
+                  <input class="form-control me-2 rounded-pill border border-primary" type="search"
+                    placeholder="Search" aria-label="Search" />
                   <button class="btn btn-outline-success" type="submit">
                     Search
                   </button>
                 </form>
+
                 <app-artist-feedback></app-artist-feedback>
               </div>
             </nav>
           </div>
-        </div>
+
+
+
+
 
 
       </div>
     </div>
   </div>
-</div>
-<!--
+  <!--
 <app-footer></app-footer> -->
+
+  <!--
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks"> <!-- Use mb-2 for smaller bottom margin -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks">
       <div class="card p-0 category-card">
         <div class="card-image">
           <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
@@ -191,7 +185,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks">  <!-- Use mb-2 for smaller bottom margin -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks">
       <div class="card p-0 category-card">
         <div class="card-image">
           <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
@@ -214,4 +208,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<app-creation-preview></app-creation-preview>

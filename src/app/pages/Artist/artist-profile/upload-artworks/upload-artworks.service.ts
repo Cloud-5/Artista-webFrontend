@@ -1,3 +1,4 @@
+
 // upload-artworks.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,10 +18,19 @@ export class UploadArtworksService {
     return this.http.post(`${this.apiUrl}/artwork/upload`, formData);
   }
 
+  upload2DArtwork(art2D:any): Observable<any>{
+    console.log('art2d in service',art2D);
+    return this.http.post(`${this.apiUrl}/artist-upload-artworks/2d`, art2D);
+  }
 
-
+  upload3DArtwork(art3D:any): Observable<any>{
+    console.log('art3d in service',art3D);
+    return this.http.post(`${this.apiUrl}/artist-upload-artworks/3d`, art3D);
+  }
 
   getCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/artist-upload-artworks/`);
   }
+
+
 }

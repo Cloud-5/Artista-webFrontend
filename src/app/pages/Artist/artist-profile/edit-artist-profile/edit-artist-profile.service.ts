@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EditArtistProfileService {
+  artistId: string = localStorage.getItem('user_id') || '';
 
   public userData: any = {};
   public artworks: any = [];

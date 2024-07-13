@@ -9,6 +9,7 @@ import { SearchArtService } from './search-art.service';
 })
 export class SearchArtComponent implements OnInit {
   searchResults: any[] = [];
+  originalSearchResults: any[] = []; // Add this line to store original search results
   categories: any[] = [];
   selectedCategories: string[] = [];
   selectedOption: string = 'name-asc';
@@ -22,20 +23,17 @@ export class SearchArtComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe((params) => {
       this.searchQuery = params['q'];
-      //console.log('Search query:', this.searchQuery);
       if (this.searchQuery) {
         this.searchArtService.searchArtworks(this.searchQuery).subscribe(
           (results: any[]) => {
-            //console.log('Search results:', results);
             this.searchResults = results;
-            this.applyFilters(); // Apply filters with the current search query
+            this.originalSearchResults = [...results]; // Store original results
+            this.applyFilters();
           },
           (error: any) => {
             console.error('Error fetching search results:', error);
-            // Handle error
           }
         );
       } else {
@@ -43,14 +41,12 @@ export class SearchArtComponent implements OnInit {
       }
     });
 
-    // Fetch categories from API
     this.searchArtService.fetchCategories().subscribe(
       (categories: any[]) => {
         this.categories = categories;
       },
       (error: any) => {
         console.error('Error fetching categories:', error);
-        // Handle error
       }
     );
   }
@@ -61,11 +57,11 @@ export class SearchArtComponent implements OnInit {
     this.searchArtService.searchArtworks(searchKeyword).subscribe(
       (results: any[]) => {
         this.searchResults = results;
-        this.applyFilters(); // Apply filters with the current search keyword
+        this.originalSearchResults = [...results]; // Store original results
+        this.applyFilters();
       },
       (error: any) => {
         console.error('Error fetching search results:', error);
-        // Handle error
       }
     );
   }
@@ -92,46 +88,38 @@ export class SearchArtComponent implements OnInit {
   }
 
   applyFilters(): void {
-    // Apply category filter
     let filteredResults = this.searchResults;
+
     if (this.selectedCategories.length > 0) {
       filteredResults = filteredResults.filter(art =>
         this.selectedCategories.includes(art.category_name)
       );
+    } else {
+      filteredResults = [...this.originalSearchResults]; // Reset to original results if no categories are selected
     }
 
-    // Apply price range filter
     filteredResults = filteredResults.filter(
       art =>
         art.artwork_price >= this.priceMin &&
         art.artwork_price <= this.selectedPrice
     );
 
-    // Sort filtered artworks based on current sorting option
     this.sortArts(filteredResults);
   }
 
   sortArts(results: any[]): void {
     switch (this.selectedOption) {
       case 'name-asc':
-        results.sort((a, b) =>
-          a.artwork_name.localeCompare(b.artwork_name)
-        );
+        results.sort((a, b) => a.artwork_name.localeCompare(b.artwork_name));
         break;
       case 'name-desc':
-        results.sort((a, b) =>
-          b.artwork_name.localeCompare(a.artwork_name)
-        );
+        results.sort((a, b) => b.artwork_name.localeCompare(a.artwork_name));
         break;
       case 'date-asc':
-        results.sort(
-          (a, b) => new Date(a.published_date).getTime() - new Date(b.published_date).getTime()
-        );
+        results.sort((a, b) => new Date(a.published_date).getTime() - new Date(b.published_date).getTime());
         break;
       case 'date-desc':
-        results.sort(
-          (a, b) => new Date(b.published_date).getTime() - new Date(a.published_date).getTime()
-        );
+        results.sort((a, b) => new Date(b.published_date).getTime() - new Date(a.published_date).getTime());
         break;
       case 'price-asc':
         results.sort((a, b) => a.artwork_price - b.artwork_price);
@@ -151,4 +139,3 @@ export class SearchArtComponent implements OnInit {
     this.searchResults = results;
   }
 }
-

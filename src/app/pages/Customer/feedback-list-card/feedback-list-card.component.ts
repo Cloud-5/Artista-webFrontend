@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FeedbackListService } from './feedback-list.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { FeedbackListService } from './feedback-list.service';
 })
 export class FeedbackListComponent implements OnInit {
   feedbackList: any[] = [];
+  @Input () artistId: string='';
 
   constructor(private FeedbackListService: FeedbackListService) { }
 
@@ -16,7 +17,8 @@ export class FeedbackListComponent implements OnInit {
   }
 
   loadFeedbackList() {
-    this.FeedbackListService.getFeedbackList(25)
+    console.log('artistId:==================', this.artistId);
+    this.FeedbackListService.getFeedbackList(this.artistId)
       .subscribe((data: any[]) => {
         this.feedbackList = data;
       }, (error: any) => {

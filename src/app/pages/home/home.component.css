@@ -1,5 +1,136 @@
+section.banner {
 
+  padding: 160px 24px 110px;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: 70% top;
+}
 
+.inner{
+  display: block;
+  max-width: 2386px;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  z-index: 10;
+}
+
+.loader p {
+  font-size: large;
+  margin: 0;
+}
+
+.banner-div{
+  flex: 0 0 586px;
+
+  h1{
+    margin: 0;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 56px;
+    color: white !important;
+  }
+  h2{
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 20px 0 36px;
+    color: white !important;
+  }
+  .sign-up-button{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color:#0F969C;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: hidden;
+    min-width: 260px;
+    height: 62px;
+    font-size: 20px;
+    padding: 0px 20px;
+    font-weight: 500;
+    line-height: 24px;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  .sign-up-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -35%;
+    height: 100%;
+    width: 0;
+    background: rgba(255, 255, 255, 0.137);
+    transform: skew(50deg);
+    transition: width 0.6s;
+    transform-origin: top left;
+  }
+
+  .sign-up-button:hover::after {
+    width: 135%;
+  }
+
+  .sign-up-button:hover{
+    background: #072e33;
+  }
+}
+
+.banner-canvas{
+  flex: 1 1 auto;
+  margin-top: 36px;
+}
+
+.model-viewer {
+  width: 100%;
+  position: relative;
+  max-width: 1100px;
+  padding-top: 60%;  
+  justify-content: center;
+  align-items: center;
+}
+
+.model-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1;
+  z-index: 1;
+  color: #ccc;
+  text-shadow: 0 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+.model-canvas {
+  background-color: initial !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .custom-logo {
   margin-left: 50px;
@@ -24,7 +155,7 @@
 
 
 .navbar{
-  background-color: #055287;
+  background-color: #05161A;
 }
 @media (max-width: 768px) {
   .custom-logo {
@@ -116,6 +247,29 @@
 
 /* For large devices (desktops) */
 @media (min-width: 1024px) {
+
+  section.banner {
+    background-size: cover;
+    background-position: 50%;
+    padding: 160px 82px 110px 134px;
+  }
+  .inner{
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+
+  .banner-canvas{
+    display: flex;
+    margin-top: 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .model-viewer {
+    width: 95%;
+    padding-top: 53%;  
+}
+
   .title {
       font-size: 4vw;  /* Adjust font size for large screens */
       
@@ -187,7 +341,7 @@
   h1{
     font-weight: bold;
     font-size: 30px;
-    color:darkblue;
+    color:black;
     
   }
 
@@ -245,3 +399,8 @@
   right: 0;
 }
  
+@media (min-width: 1440px) {
+  .model-viewer {
+      width: 70%;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component,OnInit,HostListener,Input,SimpleChanges,OnDestroy} from '@angular/core';
+import { Component,OnInit,HostListener,Input,SimpleChanges,OnDestroy, AfterViewInit} from '@angular/core';
 import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { ArtworkPreviewService } from './artwork-preview.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { CommentInterface } from '../../shared/interfaces/comment.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartItemService } from '../../shared/cards/arts/arts.service';
+import { ArtServiceService } from '../home/service/art-service.service';
 
 @Component({
   selector: 'app-artwork-preview',
@@ -30,7 +31,9 @@ import { CartItemService } from '../../shared/cards/arts/arts.service';
   ],
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
-  userId: string = '1';
+  userId: string = localStorage.getItem('user_id') || '';
+  userRole: string = localStorage.getItem('role') || '';
+
 
   artworkId: string = '';
   artistId: string = '';
@@ -49,38 +52,70 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addToGalleryButtonText: string = 'Add to Gallery';
   addToGalleryButtonClass: string = 'add-to-gallery';
 
+  thumbnail: string = '';
   imageUrl: string = '';
+  bg:string='';
+  artistRole: string = localStorage.getItem('role') || '';
 
   //@Input() comments: CommentInterface[] = [];
 
   TotalComments: number = 0;
   routeSub: Subscription | undefined;
+  artsData: any = {};
+  dataLoaded: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private cartItemService: CartItemService,
     private artworkService: ArtworkPreviewService,
-    private router: Router
+    private router: Router,
+    private  ArtServiceService: ArtServiceService
   ) {}
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
       this.artworkId = params['artworkId'];
       console.log('artworkId',this.artworkId);
-      this.loadArtworkDetails(this.artworkId, this.userId); 
+      this.loadArtworkDetails(this.artworkId, this.userId);
       this.updateButtonStates();
       this.checkScreenSize();
       this.updateColumns();
       this.updateItemWidth();
+      this.getArtwork();
     })
   }
+
+  ngAfterViewInit(): void {
+    this.loadArtworkDetails(this.artworkId, this.userId);
+    this.updateButtonStates();
+    this.checkScreenSize();
+    this.updateColumns();
+    this.updateItemWidth();
+  }
+
 
   ngOnDestroy(): void {
       if(this.routeSub){
         this.routeSub.unsubscribe();
       }
   }
-  
+
+  get backgroundImage(): string {
+    return `url('${this.thumbnail}')`;
+  }
+
+  getArtwork(): void {
+    this.ArtServiceService.getArtwork().subscribe(
+      (data: any[]) => {
+        console.log(data);
+        this.artsData = data;
+        this.dataLoaded = true;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
 
   oncommentsCount(count: number): void {
     this.TotalComments = count;
@@ -90,12 +125,15 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
       (data: any) => {
         this.artworkDetails = data.artworkDetails[0];
+        console.log(this.artworkDetails);
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
-        console.log('related',this.relatedArtworks.length);
+        console.log('related',this.relatedArtworks);
         this.artistId = this.artworkDetails.artist_id;
         this.imageUrl = this.artworkDetails.url_link;
-        console.log('image',this.imageUrl);
+        this.bg = this.artworkDetails.background;
+        this.thumbnail = this.artworkDetails.thumbnail;
+
         if(this.artworkDetails.category === '3D Modeling'){
           this.is3D = true;
         } else {
@@ -112,6 +150,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.isFollowing = this.artworkDetails.is_following;
         this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
         this.updateButtonStates();
+        this.updateColumns();
       },
       (error) => {
         console.error('Error fetching artwork details:', error);
@@ -257,6 +296,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   columns: any[][] = [[], [], []];
 
   updateColumns() {
+    console.log('related is here');
     const width = window.innerWidth;
 
     let numColumns = 3;
@@ -268,14 +308,15 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
     this.columns = Array.from({ length: numColumns }, () => []);
     this.relatedArtworks.forEach((image, index) => {
+      console.log('image',image, index % numColumns)
       this.columns[index % numColumns].push(image);
     });
   }
 
   addCart(art: any) {
     console.log('art', art);
-    
-    this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
+
+    this.cartItemService.addItem(this.userId, art.artwork_id)
       .subscribe(
         response => {
           console.log('Item added to cart:', response);
@@ -293,40 +334,40 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       if (this.currentIndex < this.bestArtworks.length - (100 / this.itemWidth)) {
         this.currentIndex++;
       } else {
-        this.currentIndex = 0; 
+        this.currentIndex = 0;
       }
       this.updateCarousel();
     }
-  
+
     prev() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       } else {
-        this.currentIndex = this.bestArtworks.length - (100 / this.itemWidth); 
+        this.currentIndex = this.bestArtworks.length - (100 / this.itemWidth);
       }
       this.updateCarousel();
     }
-  
+
     updateCarousel() {
       const carousel = document.querySelector('.carousel') as HTMLElement;
-      const gapAdjustment = (this.gap / window.innerWidth) * 100; 
+      const gapAdjustment = (this.gap / window.innerWidth) * 100;
       const translateValue = -(this.currentIndex * (this.itemWidth + gapAdjustment));
       carousel.style.transform = `translateX(${translateValue}%)`;
     }
     updateItemWidth() {
       const width = window.innerWidth;
       if (width >= 1200) {
-        this.itemWidth = 25; 
+        this.itemWidth = 25;
       } else if (width >= 992 && width < 1200) {
-        this.itemWidth = 33.33; 
+        this.itemWidth = 33.33;
       } else if (width >= 768 && width < 992) {
-        this.itemWidth = 50; 
+        this.itemWidth = 50;
       } else {
-        this.itemWidth = 100; 
+        this.itemWidth = 100;
       }
       this.updateCarousel();
     }
-  
+
 
 }
 

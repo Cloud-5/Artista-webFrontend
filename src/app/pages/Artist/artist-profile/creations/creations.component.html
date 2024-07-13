@@ -2,9 +2,9 @@
   <div class="image">
 
     <img src="{{ artworks.thumbnail_url }}" alt="Artwork Image" />
-    <div class="details">
+    <div class="details" (click)="viewArtwork(artworks.artwork_id)">
           <!-- <h2>name</h2> -->
-          <p>{{ artworks.title }}</p>
+          <!-- <p>{{ artworks.title }}</p> -->
             <!-- Conditionally show the remove button in the top right corner -->
     <button class="btn btn-danger remove-btn" >
       Remove
@@ -23,8 +23,8 @@
             <div class="title">{{artworks.title}}</div>
           </div>
           <div class="card-stats d-flex justify-content-between w-100 mt-2">
-            <div class="purchase-count">{{artworks.purchaseCount}} Purchases</div>
-            <div class="like-count">{{artworks.likeCount}} Likes</div>
+            <div class="purchase-count">Purchases: {{artworks.purchaseCount}} </div>
+            <div class="like-count"> Likes:{{artworks.likeCount}}</div>
           </div>
           <div class="card-actions mt-3 w-100 d-flex justify-content-end">
             <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artworks.id)">

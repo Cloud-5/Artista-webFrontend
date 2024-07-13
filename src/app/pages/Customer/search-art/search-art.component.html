@@ -25,7 +25,7 @@
     <br>
 
     <div class="dropdown-container">
-      <label for="sort-options"><b>Sort by: </b></label>
+      <label for="sort-options"><h5><b>Sort by: </b></h5></label>
       <br>
       <select id="sort-options" name="sort-options" [(ngModel)]="selectedOption" (change)="onSortChange($event)">
         <option value="name-asc">Name (A-Z)</option>
@@ -47,8 +47,12 @@
         <div class="row">
           <div class="col-md-12 text-center mt-5">
             <h3 class="text-color">Embark on a journey through our art gallery to find your perfect masterpiece!</h3>
+            <br>
+            <div class="text-left">
+              <p>{{ searchResults.length }} results found</p>
+            </div>
           </div>
-        </div>
+      </div>
         <div class="container mt-5 mb-3">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" style="max-height:1000px;overflow-y: scroll; overflow-x: hidden;">
             <div class="col mb-3" *ngFor="let art of searchResults">
