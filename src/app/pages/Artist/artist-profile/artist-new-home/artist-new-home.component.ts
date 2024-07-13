@@ -1,5 +1,5 @@
 import { ArtistCreationsService } from './../artist-creations/artist-creations.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { ArtistNewHomeServiceService } from './artist-new-home-service.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class ArtistNewHomeComponent implements OnInit {
   public artworksCount: number = 0;
   private rank:number = 0;
   artistId: string = localStorage.getItem('user_id') || '';
-
+  loading = false;
+  // artistsData: Artist[] = [];
 
 
 
@@ -109,6 +110,15 @@ export class ArtistNewHomeComponent implements OnInit {
   //   { artImgUrl: '../assets/imgs/graphicDesign.jpg', artworkName: 'Cityscape Symphony', price: 170,purchaseCount:2,  likeCount: 2900,purchased:1 },
   //   { artImgUrl: '../assets/imgs/creations (7).jpeg', artworkName: 'Galactic Groove', price: 260, purchaseCount:2, likeCount: 4400,purchased:1 },
   // ];
+
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && !this.loading) {
+
+      this.loadArtistData(); // Load more data
+    }
+  }
 
 }
 

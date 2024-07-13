@@ -240,3 +240,143 @@ body {
 }
 
 
+
+
+
+
+
+
+
+/* for artist edit upload  */
+
+
+
+body{
+  background-color:#545454;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+ }
+
+ .small-container{
+  height: 40vh;
+  margin-bottom: -5px;
+  margin-top: 140px;
+
+
+
+ }
+
+ .card{
+
+  width: 380px;
+  border: none;
+  border-radius: 15px;
+  padding: 8px;
+  background-color:  rgba(179, 179, 179, 0.8);
+  position: relative;
+  height: 370px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  position: relative ;
+  bottom: 100px;
+
+ }
+
+ .card:hover {
+  transform: scale(1.05); /* Scale up on hover */
+
+}
+
+ .upper{
+
+  height: 100px;
+
+ }
+
+ .upper img{
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+ }
+
+ .user{
+  position: relative;
+ }
+
+ .profile img{
+
+height: 100%;
+width: 100%;
+
+  margin-top:2px;
+  object-fit: cover;
+  object-position: center;
+
+ }
+
+ .profile{
+
+  position: absolute;
+  top:-50px;
+  height: 100px; /* Increased size */
+  width: 100px;
+  border-radius: 50%;
+ 
+
+ }
+
+ .location {
+  margin-bottom: 2px; /* Reduce bottom margin */
+}
+
+.profession {
+  margin-top: -15px; /* Reduce top margin */
+}
+
+
+ .follow{
+
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 35px;
+ }
+
+ .stats span{
+
+  font-size: 20px;
+ }
+ @keyframes shine {
+  0% {
+    box-shadow: 0 0 5px rgba(221, 91, 21, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+}
+ .status {
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: rgb(35, 57, 255);
+color: white;
+padding: 5px 10px;
+border-radius: 12px;
+border-color: #ffffff;
+border: 1px solid #5660f5;
+font-size: 12px;
+font-weight: bold;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+animation: shine 2s infinite; /* Apply the shining animation */
+}
+
+
+
