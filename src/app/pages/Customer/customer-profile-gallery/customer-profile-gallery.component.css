@@ -35,7 +35,7 @@ a {
   align-items: center;
   justify-content: center;
   width: 200px; /* Adjust width as needed */
-  margin-left: 30px;
+  margin-left: 120px;
 }
 
 .edit-profile-btn .bi {
@@ -61,7 +61,7 @@ a {
   justify-content: center;
   width: 200px; /* Adjust width as needed */
   margin-top: 5px;
-  margin-left: 30px;
+  margin-left: 120px;
 }
 
 .delete-btn .bi {
@@ -87,7 +87,7 @@ a {
   justify-content: center;
   width: 200px; /* Adjust width as needed */
   margin-top: 5px;
-  margin-left: 30px;
+  margin-left: 120px;
 }
 
 .logout-btn .bi {
@@ -98,12 +98,9 @@ a {
 .logout-btn:hover {
   background-color: #0F969C; /* Darker red on hover */
 }
-
-
 .header__wrapper .cols__container .left__col {
   padding: 25px 20px;
   text-align: center;
-  max-width: 500px;
   position: relative;
   margin: 0 auto;
 }
@@ -253,7 +250,6 @@ a {
 .tab-content {
   background: #fff;
   padding: 20px;
-  width:880px;
 }
 
 .bi {
