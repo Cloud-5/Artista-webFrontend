@@ -18,10 +18,14 @@ export class EditArtistProfileService {
   constructor(private http: HttpClient) { }
 
   updateArtistProfile(artistId: string, artistData: any): Observable<any> {
-    console.log('userdata', artistData);
+    console.log('userdatammmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm', artistData);
     return this.http.put(`${this.apiUrl}/artist-edit/${artistId}`, artistData);
   }
 
+  getArtistDetail(artistId: string): Observable<any> {
+    console.log('artistId', artistId);
+    return this.http.get(`${this.apiUrl}/artist-new-home/${artistId}`);
+  }
 
 
 

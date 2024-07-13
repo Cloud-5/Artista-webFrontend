@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ArtistNewHomeServiceService } from '../artist-new-home/artist-new-home-service.service';
 
+
 @Component({
   selector: 'app-edit-artist-profile',
   templateUrl: './edit-artist-profile.component.html',
@@ -17,7 +18,7 @@ export class EditArtistProfileComponent implements OnInit {
     LName:'',
     location:'',
     description:'',
-    profile_photo_url:null,
+    profile_photo_url:'',
     profession:'',
 
       month: '',
@@ -31,7 +32,10 @@ export class EditArtistProfileComponent implements OnInit {
 
 
   userData: any = {}
+  userData2: any = {};
   profilePhoto: any;
+  private socialAccounts: any[] = [];
+  private rank:number = 0;
 
 
   months: { name: string, value: number }[] = [
@@ -82,14 +86,26 @@ export class EditArtistProfileComponent implements OnInit {
   routeSub: Subscription | undefined;
 
 
-  constructor(private artistService: EditArtistProfileService, private ImageUploadService:ImageUploadService, private route: ActivatedRoute,private artist:ArtistNewHomeServiceService) { }
+  constructor(private artistService: EditArtistProfileService, private ImageUploadService:ImageUploadService, private route: ActivatedRoute,private artist:ArtistNewHomeServiceService,private artistServices: ArtistNewHomeServiceService) { }
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.userId = params['userId'];
       console.log('userId',this.userId)
       this.loadArtistData(this.userId);
+      this.loadArtistData2();
     });
+  }
+
+  loadArtistData2(): void {
+    this.artistServices.getArtistDetail(this.artistId).subscribe((data: any) => {
+      this.userData2 = data.artistData[0];
+      this.socialAccounts = data.socialAccounts;
+      this.rank = data.rank.featured;
+      this.userData2.AverageRating=4.5;
+
+      //this.artworks.reverse();
+    })
   }
 
   loadArtistData(userId:string): void {
@@ -102,6 +118,7 @@ export class EditArtistProfileComponent implements OnInit {
       this.updateDetails.description = this.userData.description;
       this.updateDetails.profession = this.userData.profession;
       this.updateDetails.profile_photo_url = this.userData.profile_photo_url;
+
     })
     // this.artistService.getArtistDetail(userId).subscribe((data: any) => {
     //   this.userData = data;
@@ -117,7 +134,7 @@ export class EditArtistProfileComponent implements OnInit {
   updateProfile(): void {
     console.log('data',this.userData);
     this.artistService.updateArtistProfile(this.artistId, this.updateDetails).subscribe((response: any) => {
-      console.log('data 2 --',this.userData);
+      console.log('data 222222222222222222222222222222222 --',this.userData);
       console.log(response.message);
     });
   }
@@ -140,22 +157,24 @@ export class EditArtistProfileComponent implements OnInit {
   onFileSelected(event: any) {
     const FILE = (event.target as HTMLInputElement).files?.[0];
     this.profilePhoto = FILE;
+
   }
 
   newImageUpload(folder: string, uploadType: string) {
     const imageForm = new FormData();
     imageForm.append('image', this.profilePhoto as Blob);
     this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res:any) => {
-      this.userData.ProfilePhoto = res.image.location;
+      this.userData.profile_photo_url = res.image.location;
+      console.log('photo',this.userData.profile_photo_url);
     });
   }
 
   removeExistingImage() {
-    if (this.userData.ProfilePhoto) {
-      const key = this.userData.ProfilePhoto.split('/').pop();
+    if (this.userData.profile_photo_url) {
+      const key = this.userData.profile_photo_url.split('/').pop();
       this.ImageUploadService.removeImage(key as any).subscribe(
         () => {
-          this.userData.ProfilePhoto = '';
+          this.userData.profile_photo_url = '';
         },
         (error) => {
           console.log('error removing image', error);
