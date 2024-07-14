@@ -7,7 +7,7 @@
   width: 1250px;
   padding: 20px;
   transition: transform 0.3s ease;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 8px 16px rgba(13, 13, 13, 0.1);
   backdrop-filter: blur(-10px); /* Glass effect */
   -webkit-backdrop-filter: blur(-10px);
@@ -15,7 +15,7 @@
 
 
 .list-group-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
