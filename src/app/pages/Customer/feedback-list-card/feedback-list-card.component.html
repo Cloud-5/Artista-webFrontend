@@ -1,12 +1,12 @@
 <div class="list-group">
   <a *ngFor="let feedback of feedbackList" href="#" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center"  style="padding-left: 20px;">
         <img src="{{feedback.profile_photo_url}}" alt="Profile Picture" class="rounded-pill profile-pic">
-        <h5 class="mb-1 ml-2">{{feedback.fName}} {{feedback.LName}}</h5>
+        <h5 class="mb-1 ml-2" style="font-size: 24px; font-weight: 600;">{{feedback.fName}} {{feedback.LName}}<i class="bi bi-chat-left-quote" style="font-size: 25px; margin-left: 15px;"></i></h5>
       </div>
-      <small style="padding-right: 20px;">{{ feedback.timestamp | date:'yyyy-MM-dd' }}</small>
+      <small style="padding-right: 20px;" >{{ feedback.timestamp | date:'yyyy-MM-dd' }}  <i class="bi bi-calendar-check" style="font-size: 20px; margin-left: 10px;"></i></small>
     </div>
-    <p class="mb-1">{{ feedback.feedback_content }}</p>
+    <p class="mb-1"  style="padding-left: 20px;">{{ feedback.feedback_content }}</p>
   </a>
 </div>
