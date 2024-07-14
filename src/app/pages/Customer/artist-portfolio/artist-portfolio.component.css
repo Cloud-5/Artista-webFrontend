@@ -179,7 +179,10 @@ a {
 
   font-size: 20px;
  }
- 
+ .social-icons .social-icon:hover i {
+  color: #6c6f73; /* Change to your desired hover color */
+}
+
 
 @media (min-width: 868px) {
   .header__wrapper .cols__container {
