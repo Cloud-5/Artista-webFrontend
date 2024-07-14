@@ -1,69 +1,80 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <div class="find-art-column">
-       <h3>Find An Art</h3>
-    <br>
-    <button class="btnrx"><h5>Category</h5></button>
-    <br>
-    <ul>
-      <li *ngFor="let category of categories">
-        <input type="checkbox" id="{{ category.category_id }}" name="category" [value]="category.name"
-          (change)="updateCategoryFilter($event, category.name)">
-        <label for="{{ category.category_id }}">{{ category.name }}</label>
-      </li>
-    </ul>
-    <br>
-    <button class="btnrx"><h5>Price Range</h5></button>
-    <br>
-    <label for="customRange2" class="form-label">Min - Max ($) </label>
-    <input type="range" class="form-range" min="10" max="1000" id="customRange2" (input)="onPriceRangeChange($event)">
-    <div class="d-flex justify-content-between">
-      <small>10$</small>
-      <small>1000$</small>
-    </div>
-
-    <br>
-
-    <div class="dropdown-container">
-      <button class="btnrx"><h5> Sort By </h5></button>
+<div class="container mt-5" style="margin-left: 100px; margin-right: 100px;">
+  <div class="row">
+    <div class="col-lg-3 find-art-column" style="width: 300px;">
+      <h3>Find An Art</h3>
       <br>
-      <select id="sort-options" name="sort-options" [(ngModel)]="selectedOption" (change)="onSortChange($event)">
-        <option value="name-asc">Name (A-Z)</option>
-        <option value="name-desc">Name (Z-A)</option>
-        <option value="date-asc">Date (Oldest to Newest)</option>
-        <option value="date-desc">Date (Newest to Oldest)</option>
-        <option value="price-asc">Price (Low to High)</option>
-        <option value="price-desc">Price (High to Low)</option>
-        <option value="popularity-asc">Total Likes (Low to High)</option>
-        <option value="popularity-desc">Total Likes (High to Low)</option>
-      </select>
+      <button class="btnrx"><h5>Category</h5></button>
+      <br>
+      <ul>
+        <li *ngFor="let category of categories">
+          <input type="checkbox" id="{{ category.category_id }}" name="category" [value]="category.name"
+            (change)="updateCategoryFilter($event, category.name)">
+          <label for="{{ category.category_id }}">{{ category.name }}</label>
+        </li>
+      </ul>
+      <br>
+      <button class="btnrx"><h5>Price Range</h5></button>
+      <br>
+      <label for="customRange2" class="form-label">Min - Max ($)</label>
+      <input type="range" class="form-range" style="width:240px;" min="10" max="1000" id="customRange2" (input)="onPriceRangeChange($event)">
+      <div class="d-flex justify-content-between" style="width: 240px;">
+        <small>10$</small>
+        <small>1000$</small>
+      </div>
+      <br>
+      <div class="dropdown-container">
+        <button class="btnrx"><h5>Sort By</h5></button>
+        <br>
+        <select id="sort-options" name="sort-options" [(ngModel)]="selectedOption" (change)="onSortChange($event)">
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+          <option value="date-asc">Date (Oldest to Newest)</option>
+          <option value="date-desc">Date (Newest to Oldest)</option>
+          <option value="price-asc">Price (Low to High)</option>
+          <option value="price-desc">Price (High to Low)</option>
+          <option value="popularity-asc">Total Likes (Low to High)</option>
+          <option value="popularity-desc">Total Likes (High to Low)</option>
+        </select>
+      </div>
     </div>
 
-  </div>
+    <div class="col-lg-9 art-gallery-column">
+      <section class="head-title-section" style="width: 1200px;">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 text-center mt-5">
+              <h4 class="text-color">Embark on a journey through our art gallery to find your perfect masterpiece!</h4>
+              <br>
+              <div class="results-container">
+              <button class="btn">
+                <i class="bi bi-filter"></i>
+                <p style="margin-left: 10px;">{{ searchResults.length }} results found</p>
+              </button>
 
-  <div class="art-gallery-column">
-    <section class="head-title-section">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 text-center mt-5">
-            <h3 class="text-color">Embark on a journey through our art gallery to find your perfect masterpiece!</h3>
-            <br>
-            <button class="btn">
-              <i class="bi bi-filter"></i>
-              <p style="margin-left: 10px;">{{ searchResults.length }} results found</p>
-            </button>
-
-             </div>
-      </div>
-        <div class="container mt-5 mb-3">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" style="max-height:1000px;overflow-y: scroll; overflow-x: hidden;">
-            <div class="col mb-3" *ngFor="let art of searchResults">
-              <app-art-card [art]="art"></app-art-card>
+              <div class="suggested-tags">
+                <button class="tag-button">design <span class="remove-tag">&times;</span></button>
+                <button class="tag-button">2D <span class="remove-tag">&times;</span></button>
+                <button class="tag-button">Art <span class="remove-tag">&times;</span></button>
+                <button class="tag-button">Digital<span class="remove-tag">&times;</span></button>
+                <button class="tag-button">painting <span class="remove-tag">&times;</span></button>
+                <button class="tag-button">colorful <span class="remove-tag">&times;</span></button>
+                <button class="tag-button">illustration <span class="remove-tag">&times;</span></button>
+                <button class="tag-button">3D <span class="remove-tag">&times;</span></button>
+            </div>
+              </div>
+            </div>
+          </div>
+          <div class="container mt-5 mb-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" style="max-height:800px; overflow-y: scroll; overflow-x: hidden;">
+              <div class="col" *ngFor="let art of searchResults">
+                <app-art-card [art]="art"></app-art-card>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
 
