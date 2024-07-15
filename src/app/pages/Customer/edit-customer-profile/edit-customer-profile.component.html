@@ -35,7 +35,7 @@
             <input #bannerFileInput type="file" class="form-control visually-hidden" id="banner-image" name="banner-image"
               (change)="onBannerFileSelected($event)" />
             <br>
-            <button (click)="uploadBannerImage('Customer', 'bannerImage')" class="btn btn-primary" style="font-size: 12px;" type="button">Upload Image
+            <button (click)="uploadBannerImage('Customer', 'profilePicture')" class="btn btn-primary" style="font-size: 12px;" type="button">Upload Image
             </button>
             <br>
             <button *ngIf="customer.banner_img_url" (click)="removeBannerImage()" class="btn btn-danger"
