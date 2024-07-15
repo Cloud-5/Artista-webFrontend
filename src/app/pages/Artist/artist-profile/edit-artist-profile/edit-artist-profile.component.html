@@ -446,3 +446,33 @@
 </form> -->
 
 
+<div  class="col-md-8">
+
+  <form (ngSubmit)="changePassword()">
+    <div class="form-section1" style="border: 1px solid #ccc; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+      <h2>Change Password</h2>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" required />
+        </div>
+        <div class="col-md-6">
+          <label for="old-password" class="form-label">Old Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="oldPassword" name="old-password" required />
+        </div>
+        <div class="col-md-6">
+          <label for="new-password" class="form-label">New Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="newPassword" name="new-password" required />
+        </div>
+        <div class="col-md-6">
+          <label for="confirm-password" class="form-label">Confirm Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirm-password" required />
+        </div>
+      </div>
+    </div>
+    <div style="padding-left: 400px">
+      <button type="submit" class="btn btn-primary" style="margin-left: 550px;">Change Password</button>
+    </div>
+  </form>
+
+</div>

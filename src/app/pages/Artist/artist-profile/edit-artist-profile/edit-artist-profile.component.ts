@@ -56,6 +56,11 @@ export class EditArtistProfileComponent implements OnInit {
     { name: 'December', value: 12 }
   ];
 
+  email: string = '';
+  oldPassword: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
+
   public userId:string =this.artistId;
 
 
@@ -208,7 +213,22 @@ export class EditArtistProfileComponent implements OnInit {
     }
   }
 
+  changePassword() {
+    if (this.newPassword !== this.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
 
+    this.artistService.changePassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
+      (response) => {
+        console.log('Password changed successfully', response);
+        // Optionally reset form fields or navigate to another page
+      },
+      (error) => {
+        console.error('Error changing password', error);
+      }
+    );
+  }
 
 
 }
