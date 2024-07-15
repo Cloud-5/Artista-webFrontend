@@ -1,16 +1,16 @@
-<div class="container d-flex">
+<div class="container d-flex p-0 mt-1 mb-1">
   <div class="comment-image-container">
-    <img [src]="comment.profile_photo_url" class="rounded-circle profile-photo"/>
+    <img [src]="userPhoto" class="rounded-circle profile-photo"/>
   </div>
   <div class="comment-right-part">
-    <div class="comment-name-content">
+    <div class="comment-name-content" (click)="toggleCommentActions()">
       <div class="comment-content">
-        <div class="fw-medium">{{ comment.username }}</div>
-        &nbsp;&bull;
+        <div class="body2">{{ comment.username }}</div>
         &nbsp;
-        <div class="fw-medium">{{ createdAt }}</div>
+        &nbsp;
+        <div class="body1">{{ createdAt }}</div>
       </div>
-      <div class="comment-text" *ngIf="!isEditing()">{{ comment.content }}</div>
+      <div class="body1" *ngIf="!isEditing()">{{ comment.content }}</div>
       <app-comment-form
         *ngIf="isEditing()"
         submitLabel="Update"
@@ -20,7 +20,7 @@
         (handleCancel)="setActiveComment.emit(null)"
       ></app-comment-form>
     </div>
-    <div class="comment-actions">
+    <div class="comment-actions body3" *ngIf="showActions">
       <div
         *ngIf="canReply"
         class="comment-action"

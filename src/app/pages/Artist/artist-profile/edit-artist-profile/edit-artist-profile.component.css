@@ -326,7 +326,7 @@ width: 100%;
   height: 100px; /* Increased size */
   width: 100px;
   border-radius: 50%;
- 
+
 
  }
 
@@ -380,3 +380,125 @@ animation: shine 2s infinite; /* Apply the shining animation */
 
 
 
+/* //socoal media platforms */
+
+
+/* edit-artist-profile.component.css */
+
+/* edit-artist-profile.component.css */
+/* edit-artist-profile.component.css */
+/* edit-artist-profile.component.css */
+/* edit-artist-profile.component.css */
+
+body {
+  background-color: #181e2d;
+}
+
+.bbb-wrapper {
+  margin-top: 200px;
+}
+
+.fl-wrap {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+.bbb-wrapper .subcribe-form p {
+  color: #fff;
+  font-size: 14px;
+}
+
+.bbb-wrapper .subcribe-form form {
+  max-width: 450px;
+  margin: 15px auto;
+  position: relative;
+}
+
+.subscribe-message {
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+  text-align: left;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.color-bg {
+  background: #4DB7FE;
+}
+
+#subscribe-button:hover {
+  background: #2C3B5A;
+  color: #fff;
+}
+
+.social-media-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.social-media-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.social-media-logo {
+  width: 30px; /* Adjust the size of the logo here */
+  height: 30px; /* Adjust the size of the logo here */
+  margin-right: 10px;
+}
+
+.platform-name {
+  margin-right: 10px;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.social-media-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 200px; /* Ensure the input fields don't get too small */
+}
+
+.save-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .social-media-label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-media-input {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+.socialMedia{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

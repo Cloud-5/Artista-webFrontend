@@ -15,6 +15,7 @@ export class CommentComponent implements OnInit{
   @Input() replies!: CommentInterface[];
   @Input() currentUserId!: string;
   @Input() parentId!: string | null;
+  @Input() userPhoto!: string;
 
   @Output()
   setActiveComment = new EventEmitter<ActiveCommentInterface | null>();
@@ -31,6 +32,7 @@ export class CommentComponent implements OnInit{
   canDelete: boolean = false;
   activeCommentType = ActiveCommentTypeEnum;
   replyId: string | null = null;
+  showActions: boolean = false;
 
 
   ngOnInit(): void {
@@ -85,5 +87,8 @@ export class CommentComponent implements OnInit{
       this.activeComment.id === this.comment.comment_id &&
       this.activeComment.type === this.activeCommentType.editing
     );
+  }
+  toggleCommentActions(): void {
+    this.showActions = !this.showActions;
   }
 }

@@ -15,6 +15,9 @@ export class SearchArtService {
   searchArtworks(searchTerm: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/search/${searchTerm}`);
   }
+  searchArtworksByCategory(categoryId: string): Observable<any[]> {
+    return this.http.get<any[]>(`/api/artworks?category_id=${categoryId}`);
+  }
 
   fetchCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/`);

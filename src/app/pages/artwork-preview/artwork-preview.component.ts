@@ -13,21 +13,21 @@ import { ArtServiceService } from '../home/service/art-service.service';
   templateUrl: './artwork-preview.component.html',
   styleUrl: './artwork-preview.component.css',
   animations: [
-    trigger('toggleFavorite', [
-      state(
-        'true',
-        style({
-          color: 'red', // Change color
-        })
-      ),
-      state(
-        'false',
-        style({
-          color: 'blue',
-        })
-      ),
-      transition('true <=> false', [animate('0.5s')]),
-    ]),
+    // trigger('toggleFavorite', [
+    //   state(
+    //     'true',
+    //     style({
+    //       color: 'red', // Change color
+    //     })
+    //   ),
+    //   state(
+    //     'false',
+    //     style({
+    //       color: 'blue',
+    //     })
+    //   ),
+    //   transition('true <=> false', [animate('0.5s')]),
+    // ]),
   ],
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
@@ -56,6 +56,8 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   imageUrl: string = '';
   bg:string='';
   artistRole: string = localStorage.getItem('role') || '';
+  customer_profile_photo: string = '';
+  relatedLike:boolean = false;
 
   //@Input() comments: CommentInterface[] = [];
 
@@ -69,7 +71,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     private cartItemService: CartItemService,
     private artworkService: ArtworkPreviewService,
     private router: Router,
-    private  ArtServiceService: ArtServiceService
+    private ArtServiceService: ArtServiceService
   ) {}
 
   ngOnInit() {
@@ -133,6 +135,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         this.imageUrl = this.artworkDetails.url_link;
         this.bg = this.artworkDetails.background;
         this.thumbnail = this.artworkDetails.thumbnail;
+        this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
 
         if(this.artworkDetails.category === '3D Modeling'){
           this.is3D = true;
@@ -316,7 +319,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   addCart(art: any) {
     console.log('art', art);
 
-    this.cartItemService.addItem(this.userId, art.artwork_id)
+    this.cartItemService.addItem(this.userId, Number(this.artworkId))
       .subscribe(
         response => {
           console.log('Item added to cart:', response);
@@ -326,6 +329,20 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         }
       );
     }
+    addCart2(art: any) {
+      console.log('art', art);
+  
+      this.cartItemService.addItem(this.userId, art.artwork_id)
+        .subscribe(
+          response => {
+            console.log('Item added to cart:', response);
+          },
+          error => {
+            console.error('Error adding item to cart:', error);
+          }
+        );
+      }
+  
 
     currentIndex = 0;
     itemWidth = 25;
@@ -368,7 +385,34 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       this.updateCarousel();
     }
 
+    toggleFavorite1(image:any) {
+      if(image.is_liked){
+        this.artworkService.unlike(image.artwork_id, this.userId).subscribe(
+          ()=> {
+            image.is_liked = false;
+            image.like_count -= 1;
+          },
+          (error)=> {
+            console.error('Error unliking artwork:', error);
+          }
+        )
+      } else {
+        this.artworkService.toggleLike(image.artwork_id, this.userId).subscribe(
+          ()=> {
+            image.is_liked = true;
+            image.like_count += 1;
+          },
+          (error)=> {
+            console.error('Error liking artwork:', error);
+          }
+        )
+      }
+    }
 
+    goToPortfolio() {
+      this.router.navigate(['/artist-portfolio', this.artistId]);
+      console.log('artist', this.artistId);
+    }
 }
 
 
