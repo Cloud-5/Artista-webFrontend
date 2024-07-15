@@ -4,6 +4,7 @@
   position: relative;
   flex: 1;
   height: 300px;
+  width: 250px;
   margin: 12px;
   margin-right: -10px;
   overflow: hidden;

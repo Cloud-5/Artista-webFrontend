@@ -41,7 +41,6 @@ export class SearchArtComponent implements OnInit {
           }
         );
       } else {
-        // Handle case when no search query is provided, perhaps load all artworks
       }
     });
 

@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 
 <div class="header__wrapper">
   <div class="banner-container">
@@ -6,8 +6,8 @@
 
   </div>
  <header></header>
-  <div class="cols__container">
-    <div class="left__col">
+  <div class="cols__container" style="margin-left: 50px; margin-right: 50px;">
+    <div class="left__col" style="width: 450px;">
       <div class="img__container">
         <img src="{{CustomerData.profile_photo_url}}" alt="profile photo" />
         <span></span>
@@ -15,6 +15,12 @@
       <h2>{{CustomerData.fName}} {{CustomerData.LName}}</h2>
       <p><b>{{CustomerData.location}}</b></p>
       <p><b>Member Since : </b>{{CustomerData.joined_date | date:'yyyy-MM-dd'}}</p>
+      <br>
+
+      <a [routerLink]="['/edit-customer-profile',userId]"  class="edit-profile-btn">
+        <i class="bi bi-pencil"></i>
+        Edit Your Profile
+    </a>
 
       <ul class="about">
         <li>{{CustomerData.total_gallery_items}}<span></span>Gallery</li>
@@ -24,24 +30,26 @@
      <div class="content" style="margin: 50px 0 0 0">
       <p style="max-height: 420px; overflow-y: scroll;">
           {{CustomerData.description}}</p>
-        <div class="row" style="margin: 100px 0 0 0">
-          <div class="d-flex" style="justify-content: space-between">
-            <a [routerLink]="['/edit-customer-profile',userId]" class="btn btn-primary" style="width: 48%">Edit Profile</a>
-            <button type="button" class="btn btn-secondary" style="width: 48%" (click)="deactivateCustomer()">
-              Delete Profile
-            </button>
-          </div>
-          <div class="row" style="margin: 10px 0 0 0">
-            <button type="button" class="btn btn-success" (click)="logout()">Log Out</button>
-          </div>
+          <br>
 
-        </div>
+          <br>
+
+          <br>
+
+        <button class="delete-btn" (click)="deactivateCustomer()">
+          <i class="bi bi-trash"></i>
+          Delete Profile
+      </button>
+      <button class="logout-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </button>
 
       </div>
     </div>
-    <div class="right__col">
+    <div class="right__col" style="width: 1100px; margin-left: 10px;">
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
+        <li class="nav-item"  role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Gallery</a>
         </li>
         <li class="nav-item" role="presentation">
@@ -52,7 +60,7 @@
         </li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active show" id="home" role="tabpanel">
+        <div class="tab-pane fade active show" id="home" role="tabpanel" style="width: 1100px">
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
               <form class="d-flex" role="search" style="width: 100%">
@@ -66,7 +74,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" style="width: 100%;">
+        <div class="tab-pane fade" id="profile" role="tabpanel" style="width: 1100px">
           <nav class="navbar bg-body-tertiary" style="max-height: 800px; overflow-y: scroll; overflow-x: hidden;">
             <div class="container-fluid" style="width: 100%;">
               <form class="d-flex" role="search" style="width: 100%">
@@ -77,7 +85,7 @@
           </nav>
         </div>
         <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade" id="history" role="tabpanel">
+          <div class="tab-pane fade" id="history" role="tabpanel" style="width: 1100px">
             <nav class="navbar bg-body-tertiary" style="max-height: 800px; overflow-y: scroll; overflow-x: hidden;">
               <div class="container-fluid">
                 <app-purchase-img-card ></app-purchase-img-card>
@@ -91,4 +99,102 @@
 </div>
 
 <app-footer></app-footer>
+ -->
+
+ <app-navbar></app-navbar>
+
+ <div class="header__wrapper">
+   <img src="{{ CustomerData.banner_img_url }}" alt="Banner Image" style="width: 100%; height: 200px" />
+
+   <div class="cols__container" style="margin-left: 50px; margin-right: 50px;">
+     <div class="left__col" style="width: 400px;">
+       <div class="img__container">
+         <img src="{{ CustomerData.profile_photo_url }}" alt="profile photo" />
+       </div>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <div class="d-flex">
+         <a [routerLink]="['/edit-customer-profile', userId]" class="edit-profile-btn" style="margin-left:100px;">
+           <i class="bi bi-pencil"></i> Edit Your Profile
+         </a>
+       </div>
+       <br>
+       <ul class="about">
+         <li><span>{{ CustomerData.total_gallery_items }}</span> Gallery</li>
+         <li><span>{{ CustomerData.total_following_count }}</span> Following</li>
+         <li><span>{{ CustomerData.total_purchases }}</span> Purchases</li>
+       </ul>
+       <div class="content" style="margin: 50px 0 0 0">
+         <p style="max-height: 420px; overflow-y: scroll;">{{ CustomerData.description }}</p>
+         <br>
+         <br>
+         <br>
+         <button class="delete-btn" (click)="deactivateCustomer()">
+           <i class="bi bi-trash"></i> Delete Profile
+         </button>
+         <button class="logout-btn" (click)="logout()">
+           <i class="bi bi-box-arrow-right"></i> Logout
+         </button>
+       </div>
+     </div>
+
+     <div class="right__col" style="width: 1100px; margin-left: 10px; margin-top: 30px;">
+       <div class="customer-info" style="display: flex; align-items: center;">
+         <h2 class="customer-name" style="margin: 0;">{{ CustomerData.fName }} {{ CustomerData.LName }}</h2>
+         <button class="datebtn" style="border-radius: 10px; font-size: 14px; margin-left: 600px; display: flex; align-items: center;">
+           <i class="bi bi-calendar-check" style="font-size: 20px; margin-right: 10px;"></i>
+           <b>Member Since:</b> {{ CustomerData.joined_date | date: 'yyyy-MM-dd' }}
+         </button>
+       </div>
+       <p class="customer-location" style="font-weight: 200; margin-top: 10px; color: rgb(112, 112, 185);">
+         <i class="bi bi-geo-alt-fill" style="font-size: 20px;"></i> {{ CustomerData.location }}
+       </p>
+
+       <div class="row" style="margin: 0">
+         <ul class="nav nav-tabs" role="tablist" style="margin-top: 20px;">
+           <li class="nav-item" role="presentation">
+             <a class="nav-link active" data-bs-toggle="tab" href="#gallery" aria-selected="true" role="tab">Gallery</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" data-bs-toggle="tab" href="#following" aria-selected="false" role="tab" tabindex="-1">Following</a>
+           </li>
+           <li class="nav-item" role="presentation">
+             <a class="nav-link" data-bs-toggle="tab" href="#purchaseHistory" aria-selected="false" role="tab" tabindex="-1">Purchase History</a>
+           </li>
+         </ul>
+         <div id="myTabContent" class="tab-content" style="width: 1100px">
+           <div class="tab-pane fade active show" id="gallery" role="tabpanel" style="width: 1100px">
+             <nav class="navbar bg-body-tertiary">
+               <div class="container-fluid">
+                 <form class="d-flex" role="search" style="width: 100%">
+                   <input #searchkeyword (keyup)="searchByKeyword(searchkeyword.value)" class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search" aria-label="Search" />
+                 </form>
+               </div>
+             </nav>
+             <div class="Gallery" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+               <div class="col mb-3" *ngFor="let art of filteredArts">
+                 <app-art-card [art]="art" [showRemoveButton]="true" [customerUserId]="userId" (removeGalleryItem)="onItemRemoved(art.artwork_id)"></app-art-card>
+               </div>
+             </div>
+           </div>
+           <div class="tab-pane fade" id="following" role="tabpanel" style="width: 1100px">
+             <nav class="navbar bg-body-tertiary">
+               <div class="container-fluid" style="width: 100%;">
+                 <app-following-artists></app-following-artists>
+               </div>
+             </nav>
+           </div>
+           <div class="tab-pane fade" id="purchaseHistory" role="tabpanel" style="width: 1100px; max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+             <app-purchase-img-card></app-purchase-img-card>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <app-footer></app-footer>
 
