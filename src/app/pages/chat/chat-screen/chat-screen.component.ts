@@ -3,6 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ChatServiceService } from '../chat-screen/service/chat-service.service';
 import { Observable, from, of } from 'rxjs';
 import { map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 interface User {
   firebaseUid: string;
@@ -30,7 +31,9 @@ export class ChatScreenComponent implements OnInit {
   searchTerm: string = '';
 
   unreadCounts: { [key: string]: number } = {};
-
+  private subscriptions: Subscription[] = [];
+  private unreadCountSubscription: Subscription | undefined;
+  
   constructor(private chatService: ChatServiceService) {}
 
   ngOnInit(): void {
@@ -45,8 +48,27 @@ export class ChatScreenComponent implements OnInit {
       } else if (this.userRole === 'artist') {
         this.loadUsersWhoSentMessages();
       }
+      this.subscribeToUnreadCounts();
+    }
+
+    const messagesSubscription = this.loadMessages();
+  this.subscriptions.push(messagesSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+    if (this.unreadCountSubscription) {
+      this.unreadCountSubscription.unsubscribe();
     }
   }
+  
+
+subscribeToUnreadCounts(): void {
+  this.unreadCountSubscription = this.chatService.getUnreadMessageCount(this.senderId).subscribe(unreadCounts => {
+    this.unreadCounts = unreadCounts;
+    this.updateUserUnreadCounts();
+  });
+}
 
   loadUnreadCounts(): void {
     this.chatService.getUnreadMessageCount(this.senderId).subscribe(unreadCounts => {
@@ -55,6 +77,17 @@ export class ChatScreenComponent implements OnInit {
     });
   }
 
+  // updateUserUnreadCounts(): void {
+  //   this.users$ = this.users$.pipe(
+  //     map(users => users.map(user => ({
+  //       ...user,
+  //       unreadCount: this.unreadCounts[user.firebaseUid] || 0
+  //     })))
+  //   );
+
+  //   this.filteredUsers$ = this.users$;
+  // }
+
   updateUserUnreadCounts(): void {
     this.users$ = this.users$.pipe(
       map(users => users.map(user => ({
@@ -62,7 +95,7 @@ export class ChatScreenComponent implements OnInit {
         unreadCount: this.unreadCounts[user.firebaseUid] || 0
       })))
     );
-
+  
     this.filteredUsers$ = this.users$;
   }
 
@@ -127,13 +160,25 @@ export class ChatScreenComponent implements OnInit {
     );
   }
 
-  loadMessages(): void {
+  // loadMessages(): void {
+  //   if (this.senderId && this.recipientId) {
+  //     this.messages$ = this.chatService.getMessages(this.senderId, this.recipientId);
+  //   } else {
+  //     console.error('Sender ID or Recipient ID is missing');
+  //   }
+  // }
+
+  loadMessages(): Subscription {
     if (this.senderId && this.recipientId) {
-      this.messages$ = this.chatService.getMessages(this.senderId, this.recipientId);
+      return this.chatService.getMessages(this.senderId, this.recipientId).subscribe(messages => {
+        this.messages$ = of(messages);
+      });
     } else {
       console.error('Sender ID or Recipient ID is missing');
+      return new Subscription(); // return empty subscription
     }
   }
+  
 
   sendMessage(): void {
     if (this.newMessage.trim()) {
@@ -151,33 +196,33 @@ export class ChatScreenComponent implements OnInit {
     this.chatService.deleteMessage(messageId)
       .then(() => {
         console.log('Message deleted successfully');
-        this.loadMessages(); // Refresh the message list after deletion
+        this.loadMessages();
       })
       .catch(error => {
         console.error('Error deleting message:', error);
       });
   }
 
-  onRightClick(event: MouseEvent, message: any): void {
-    event.preventDefault();
-    this.selectedMessageId = message.id; // Assuming message has an 'id' field
-    const contextMenu = document.getElementById('context-menu');
-    if (contextMenu) {
-      contextMenu.style.display = 'block';
-      contextMenu.style.left = `${event.clientX}px`;
-      contextMenu.style.top = `${event.clientY}px`;
-    }
-  }
-
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
+  onClickOutside(event: MouseEvent) {
     const contextMenu = document.getElementById('context-menu');
     if (contextMenu && !contextMenu.contains(event.target as Node)) {
       contextMenu.style.display = 'none';
     }
   }
 
-  deleteSelectedMessage(): void {
+  onRightClick(event: MouseEvent, message: any) {
+    event.preventDefault();
+    this.selectedMessageId = message.id;
+    const contextMenu = document.getElementById('context-menu');
+    if (contextMenu) {
+      contextMenu.style.display = 'block';
+      contextMenu.style.left = `${event.pageX}px`;
+      contextMenu.style.top = `${event.pageY}px`;
+    }
+  }
+
+  deleteSelectedMessage() {
     if (this.selectedMessageId) {
       this.deleteMessage(this.selectedMessageId);
       const contextMenu = document.getElementById('context-menu');

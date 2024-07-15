@@ -155,8 +155,51 @@ canvas {
 
 
 .navbar{
-  background-color: #05161A;
+  background-color: #055287;
 }
+
+.navbar .sign-up-button
+{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color:#0F969C;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  min-width: 150px;
+  height: 47px;
+  font-size: 20px;
+ 
+  font-weight: 500;
+  line-height: 24px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.navbar .sign-up-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -35%;
+  height: 100%;
+  width: 0;
+  background: rgba(255, 255, 255, 0.137);
+  transform: skew(50deg);
+  transition: width 0.6s;
+  transform-origin: top left;
+}
+
+.navbar .sign-up-button:hover::after {
+  width: 135%;
+}
+
+.navbar .sign-up-button:hover{
+  background: #072e33;
+}
+
 @media (max-width: 768px) {
   .custom-logo {
       margin-left: 10px;
@@ -215,15 +258,6 @@ canvas {
   
 }
 
-.hero-body {
-  background-image: url("../../../assets/images/background.jpg"); 
-  background-size: cover;
-  background-position: center center;
-  height: 50vh;  /* Use viewport height for responsive height */
-  min-height: 50px;  /* Ensures a minimum height of 500px */
-  
-  
-}
 .row{
   gap: 10px;
 }

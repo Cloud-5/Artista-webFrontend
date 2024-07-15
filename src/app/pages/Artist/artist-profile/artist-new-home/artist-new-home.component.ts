@@ -35,6 +35,7 @@ export class ArtistNewHomeComponent implements OnInit {
     this.loadArtistData();
     this.loadArtworks();
     this.loadArtworksCount();;
+   console.log('artist data in home component',this.userData);
 
   }
 
@@ -43,7 +44,6 @@ export class ArtistNewHomeComponent implements OnInit {
       this.userData = data.artistData[0];
       this.socialAccounts = data.socialAccounts;
       this.rank = data.rank.featured;
-      console.log("Artist Details:========================== ", this.userData);
       this.userData.AverageRating=4.5;
 
       //this.artworks.reverse();

@@ -11,7 +11,6 @@ import { ImageUploadService } from '../../../shared/services/image-upload.servic
 })
 export class EditCustomerProfileComponent implements OnInit {
 
-  confirmPassword: any;
   initialCustomerData: any = {}; // To store the initial customer data
 
   constructor(
@@ -27,6 +26,10 @@ export class EditCustomerProfileComponent implements OnInit {
   imageObj: File | undefined;
   bannerImageObj: File | undefined;
 
+  email: string = '';
+  oldPassword: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.editingCustomer = params['userId'];
@@ -136,6 +139,23 @@ export class EditCustomerProfileComponent implements OnInit {
         }
       );
     }
+  }
+
+  changePassword() {
+    if (this.newPassword !== this.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+
+    this.editCustomerProfileService.changePassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
+      (response) => {
+        console.log('Password changed successfully', response);
+        // Optionally reset form fields or navigate to another page
+      },
+      (error) => {
+        console.error('Error changing password', error);
+      }
+    );
   }
 }
 

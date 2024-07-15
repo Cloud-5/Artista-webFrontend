@@ -1,4 +1,4 @@
-<div class="comments mt-3">
+<div class="comments mt-1">
     <app-comment-form
       submitLabel="Write"
       (handleSubmit)="addComment({ text: $event, parentId: null })"
@@ -15,6 +15,7 @@
         (deleteComment)="deleteComment($event)"
         (updateComment)="updateComment($event.text, $event.commentId)"
         [currentUserId]="currentUserId"
+        [userPhoto]="userPhoto"
       >
       </app-comment>
     </div>

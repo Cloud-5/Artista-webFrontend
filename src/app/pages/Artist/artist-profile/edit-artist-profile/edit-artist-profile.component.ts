@@ -4,7 +4,9 @@ import { EditArtistProfileService } from './edit-artist-profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ArtistNewHomeServiceService } from '../artist-new-home/artist-new-home-service.service';
-
+import { get } from 'http';
+import { Platform } from '../../../../shared/interfaces/platform.interface';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-artist-profile',
@@ -36,7 +38,8 @@ export class EditArtistProfileComponent implements OnInit {
   profilePhoto: any;
   private socialAccounts: any[] = [];
   private rank:number = 0;
-
+   socialMediaPlatforms: any[] = [];
+   socialMediaLinks: { [key: number]: string } = {};
 
   months: { name: string, value: number }[] = [
     { name: 'January', value: 1 },
@@ -52,6 +55,11 @@ export class EditArtistProfileComponent implements OnInit {
     { name: 'November', value: 11 },
     { name: 'December', value: 12 }
   ];
+
+  email: string = '';
+  oldPassword: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
 
   public userId:string =this.artistId;
 
@@ -86,26 +94,39 @@ export class EditArtistProfileComponent implements OnInit {
   routeSub: Subscription | undefined;
 
 
-  constructor(private artistService: EditArtistProfileService, private ImageUploadService:ImageUploadService, private route: ActivatedRoute,private artist:ArtistNewHomeServiceService,private artistServices: ArtistNewHomeServiceService) { }
+  constructor(private artistService: EditArtistProfileService,
+    private ImageUploadService:ImageUploadService, private route: ActivatedRoute,
+    private artist:ArtistNewHomeServiceService,private artistServices: ArtistNewHomeServiceService
+  , private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
+    console.log('userId',this.userId)
     this.routeSub = this.route.params.subscribe(params => {
       this.userId = params['userId'];
-      console.log('userId',this.userId)
       this.loadArtistData(this.userId);
-      this.loadArtistData2();
+      console.log('LogArtistDataaaaaaaaaaaaaaaaaaa',this.userId)
+      this.getSocialMediaPlatforms();
+
     });
+
   }
 
-  loadArtistData2(): void {
-    this.artistServices.getArtistDetail(this.artistId).subscribe((data: any) => {
-      this.userData2 = data.artistData[0];
-      this.socialAccounts = data.socialAccounts;
-      this.rank = data.rank.featured;
-      this.userData2.AverageRating=4.5;
 
-      //this.artworks.reverse();
-    })
+   getSocialMediaPlatforms():void{
+    this.artistService.getSocialMediaPlatforms().subscribe((data:any)=>{
+      this.socialMediaPlatforms=data;
+       console.log('social media  platforms',data);
+    });
+   }
+
+
+
+   updateSocialMediaLink(platformId: number): void {
+    const accountUrl = this.socialMediaLinks[platformId];
+    this.artistService.updateSocialMediaLink(this.artistId, platformId, accountUrl).subscribe((response: any) => {
+      console.log(response.message);
+    });
   }
 
   loadArtistData(userId:string): void {
@@ -131,13 +152,22 @@ export class EditArtistProfileComponent implements OnInit {
     // });
   }
 
+
+
   updateProfile(): void {
     console.log('data',this.userData);
     this.artistService.updateArtistProfile(this.artistId, this.updateDetails).subscribe((response: any) => {
-      console.log('data 222222222222222222222222222222222 --',this.userData);
       console.log(response.message);
     });
   }
+
+
+  getFollowers():void{
+    this.artistService.getFollowers(this.artistId).subscribe((data:any)=>{
+      console.log('followersssssssssssssssssssssssssssssssssssss',data);
+    })
+  }
+
 
   // onFileSelected(event: any): void {
   //   const file: File = event.target.files[0];
@@ -182,4 +212,23 @@ export class EditArtistProfileComponent implements OnInit {
       );
     }
   }
+
+  changePassword() {
+    if (this.newPassword !== this.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+
+    this.artistService.changePassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
+      (response) => {
+        console.log('Password changed successfully', response);
+        // Optionally reset form fields or navigate to another page
+      },
+      (error) => {
+        console.error('Error changing password', error);
+      }
+    );
+  }
+
+
 }

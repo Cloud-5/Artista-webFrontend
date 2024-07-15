@@ -29,4 +29,9 @@ export class CommentFormComponent implements OnInit {
     this.form.reset();
     
   }
+  showSubmitButton = false;
+
+  checkInput() {
+    this.showSubmitButton = this.form.controls['title'].value.trim().length > 0;
+  }
 }

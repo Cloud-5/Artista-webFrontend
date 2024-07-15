@@ -239,10 +239,14 @@
 
 
 </div>
+<div class="row">
+
+
+</div>
 
 
 
-    </div>
+</div>
 
 
 
@@ -338,7 +342,8 @@
     </div>
     <div class="col-md-4">
       <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center experience">
+
+        <!-- <div class="d-flex justify-content-between align-items-center experience">
           <span>Edit Experience</span>
           <span class="border px-3 p-1 add-experience">
             <i class="fa fa-plus"></i>&nbsp;Experience
@@ -369,284 +374,106 @@
             <span class="d-block text-black-50 labels">Google Inc.</span>
             <span class="d-block text-black-50 labels">March,2017 - May 2020</span>
           </div>
-        </div>
+        </div> -->
+
+
+<!-- edit-artist-profile.component.html -->
+
+<form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
+
+</form>
+<div class="bbb-wrapper socialMedia">
+  <div class="subcribe-form fl-wrap">
+    <p style="color: black;">Update your social media links:</p>
+    <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
+      <div *ngFor="let platform of socialMediaPlatforms" class="social-media-item">
+        <label class="social-media-label">
+          <img [src]="platform.logo_url" alt="{{platform.platform_name}} logo" class="social-media-logo">
+          <!-- <span class="platform-name">{{ platform.platform_name }}</span> -->
+          <input
+            type="text"
+            placeholder="Enter your {{ platform.platform_name }} link"
+            class="social-media-input"
+            style="width: 50px;"
+            [(ngModel)]="socialMediaLinks[platform.id]"
+            name="socialMediaLink{{ platform.id }}"
+          />
+        </label>
+      </div>
+      <button type="submit" class="save-button"  >Save Social Media Links</button>
+    </form>
+
+  </div>
+</div>
+
+
+
+
       </div>
     </div>
   </div>
 </div>
-
 
 
 
 <!-- before -->
 
-<!-- <div class="d-flex justify-content-center">
-  <div class="upload-box">
-    <h2>Edit Profile</h2>
-    <div class="image">
-      <div class="img__container">
-        <img [src]="userData.profile_photo_url" alt="{{userData.fName}}" style="height: 100px; width: 100px;" />
-      </div>
-    </div>
-    <div class="custom-file-upload">
-      <input type="file" id="profile-photo" (change)="onFileSelected($event)" />
-      <label for="profile-photo" class="upload-button">
-        <span>Upload Picture</span>
-      </label>
-    </div>
-    <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
-      <div class="form-field">
-        <label for="artist-name">Name</label>
-        <input type="text" id="artist-name" [(ngModel)]="updateDetails.fName" name="artist-fName" />
-      </div>
-      <div class="form-field">
-        <label for="artist-name">Name</label>
-        <input type="text" id="artist-name" [(ngModel)]="updateDetails.LName" name="artist-lName" />
-      </div>
 
-      <div class="form-field">
-        <label for="location">Location</label>
-        <input type="text" id="location" [(ngModel)]="updateDetails.location" name="location" />
-      </div>
-      <div class="form-field">
-        <label for="location">Location</label>
-        <input type="text" id="location" [(ngModel)]="updateDetails.profession" name="profession" />
-      </div>
-      <div class="form-field">
-        <label for="bio">Bio</label>
-        <textarea id="bio" [(ngModel)]="updateDetails.description" name="bio" rows="4"></textarea>
-      </div>
-      <div class="button-container">
-        <button type="submit" class="upload-button">Submit</button>
-        <button type="button" (click)="cancelEdit()" class="cancel-button">Cancel</button>
-      </div>
-    </form>
+<!-- edit-artist-profile.component.html -->
+<!-- edit-artist-profile.component.html -->
+<!-- edit-artist-profile.component.html -->
+<!-- edit-artist-profile.component.html -->
+<!-- <form [formGroup]="artistForm" >
+
+
+  <div class=" col-12 form-array-container" formArrayName="platforms">
+    <div *ngFor="let platform of platformsFormArray.controls; let i = index" [formGroupName]="i" class="col-12 mb-3">
+
+
+        <div class="row ">
+        <div class=" justify-content-start col-2">
+          <img [src]="platforms[i].logo_url" alt="" style="width: 20px;">
+        </div>
+      <div class="col-10">
+      <input type="text" class="form-control" formControlName="url" placeholder="Enter your {{ platforms[i].platform_name }} URL">
+    </div>
   </div>
+      </div>
+  </div>
+  <div>
+  <button type="submit" class="btn btn-primary">Complete Registration</button>
 </div>
-
-<app-navbar></app-navbar>
-<div class="container rounded bg-green mt-5 mb-5 main-form">
-  <div class="row">
-      <div class="col-md-3 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" [src]="userData.profile_photo_url"  height="90" width="90">
-            <span class="font-weight-bold">   {{userData.fName+" "+userData.LName}}</span>
-            <span class="font-weight-bold">   {{userData.profession}}</span>
-              <span class="text-black-50">{{userData.email}}</span>
-                 <span>{{userData.location}}</span></div>
-      </div>
-      <div class="col-md-5 border-right">
-          <div class="p-3 py-5">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h6 class="text-right">Edit your profile</h6>
-              </div>
-              <div class="row mt-2">
-                  <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="first name" value="John"></div>
-                  <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="Doe" placeholder="Doe"></div>
-              </div>
-              <div class="row mt-3">
-                  <div class="col-md-12"><label class="labels">profession</label><input type="text" class="form-control" placeholder="headline" value="UI/UX Developer"></div>
-                  <div class="col-md-12"><label class="labels">Location</label><input type="text" class="form-control" placeholder="headline" value="UI/UX Developer at Boston"></div>
-                  <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value="Boston University"></div>
-              </div>
-              <div class="row mt-3">
-                  <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value="USA"></div>
-                  <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="Boston" placeholder="state"></div>
-              </div>
-              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="p-3 py-5">
-              <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div>
-              <div class="d-flex flex-row mt-3 exp-container"><img src="https://i.imgur.com/azSfBM3.png" width="45" height="45">
-                  <div class="work-experience ml-1"><span class="font-weight-bold d-block">Senior UI/UX Designer</span><span class="d-block text-black-50 labels">Twitter Inc.</span><span class="d-block text-black-50 labels">March,2017 - May 2020</span></div>
-              </div>
-              <hr>
-              <div class="d-flex flex-row mt-3 exp-container"><img src="https://img.icons8.com/color/100/000000/facebook.png" width="45" height="45">
-                  <div class="work-experience ml-1"><span class="font-weight-bold d-block">Senior UI/UX Designer</span><span class="d-block text-black-50 labels">Facebook Inc.</span><span class="d-block text-black-50 labels">March,2017 - May 2020</span></div>
-              </div>
-              <hr>
-              <div class="d-flex flex-row mt-3 exp-container"><img src="https://img.icons8.com/color/50/000000/google-logo.png" width="45" height="45">
-                  <div class="work-experience ml-1"><span class="font-weight-bold d-block">UI/UX Designer</span><span class="d-block text-black-50 labels">Google Inc.</span><span class="d-block text-black-50 labels">March,2017 - May 2020</span></div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div> -->
+</form> -->
 
 
-
-<app-navbar></app-navbar>
-<div class="container rounded bg-green mt-5 mb-5 main-form">
-  <div class="row">
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5" [src]="userData.profile_photo_url" height="90" width="90">
-        <span class="font-weight-bold">{{userData.fName + " " + userData.LName}}</span>
-        <span class="font-weight-bold">{{userData.profession}}</span>
-        <span class="text-black-50">{{userData.email}}</span>
-        <span>{{userData.location}}</span>
-      </div>
-
-      <h2>Profile Image</h2>
-      <div class="col-md-4">
-        <button
-                *ngIf="userData.profile_photo_url"
-                (click)="removeExistingImage()"
-                class="btn btn-danger"
-                style="margin-top: 5px; margin-right: 10px"
-                type="button"
-              >
-                Remove
-              </button>
-        <div class="mb-3" *ngIf="!userData.profile_photo_url">
-          <label for="profile-image" class="form-label">Profile Image:</label>
-          <input
-            type="file"
-            class="form-control"
-            id="profile-image"
-            name="profile-image"
-            (change)="onFileSelected($event)"
-          />
-          <button
-                (click)="newImageUpload('Artist','profilePicture')"
-                class="btn btn-primary"
-                style="margin-top: 10px; margin-right: 10px"
-                type="button"
-              >
-                Upload Image
-              </button>
+<div  class="col-md-8">
+<div class="sss">
+  <form (ngSubmit)="changePassword()">
+    <div class="form-section1" style="border: 1px solid #ccc; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+      <h2>Change Password</h2>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" required />
+        </div>
+        <div class="col-md-6">
+          <label for="old-password" class="form-label">Old Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="oldPassword" name="old-password" required />
+        </div>
+        <div class="col-md-6">
+          <label for="new-password" class="form-label">New Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="newPassword" name="new-password" required />
+        </div>
+        <div class="col-md-6">
+          <label for="confirm-password" class="form-label">Confirm Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirm-password" required />
         </div>
       </div>
-
+      <button type="submit" class="btn btn-primary  "style="margin-left: 550px;">Change Password</button>
     </div>
-    <div class="col-md-5 border-right">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h6 class="text-right">Edit your profile</h6>
-        </div>
-        <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
-          <div class="row mt-2">
-            <div class="col-md-6">
-              <label class="labels">First Name</label>
-              <input type="text" class="form-control" placeholder="first name" [(ngModel)]="updateDetails.fName" name="artist-fName">
-            </div>
-            <div class="col-md-6">
-              <label class="labels">Last Name</label>
-              <input type="text" class="form-control" placeholder="last name" [(ngModel)]="updateDetails.LName" name="artist-LName">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <label class="labels">Profession</label>
-              <input type="text" class="form-control" placeholder="profession" [(ngModel)]="updateDetails.profession" name="profession">
-            </div>
+ 
+     
+    
+  </form>
 
-
-
-            <div class="col-md-6">
-              <label class="labels">Date of Birth</label>
-              <div class="input-group">
-                <select class="form-control" [(ngModel)]="updateDetails.month" name="month" aria-placeholder="month">
-                  <option value="" disabled selected>month</option>
-                  <option  *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
-                </select>
-                <select class="form-control" [(ngModel)]="updateDetails.day" name="day">
-                  <option value="" disabled selected>day</option>
-                  <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-                </select>
-                <select class="form-control" [(ngModel)]="updateDetails.year" name="year">
-                  <option value="" disabled selected>year</option>
-                  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                </select>
-              </div>
-            </div>
-
-
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-6">
-              <label class="labels">description</label>
-              <input type="text" class="form-control" placeholder="bio" [(ngModel)]="updateDetails.description" name="description">
-            </div>
-
-
-            <div class="col-md-6">
-              <label class="labels">Country</label>
-              <select class="form-control custom-select" [(ngModel)]="updateDetails.location" name="location">
-                <option value="" disabled>Select your country</option>
-                <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
-              </select>
-            </div>
-            <!-- <div class="form-field">
-              <label for="location">Location</label>
-              <input type="text" id="location" [(ngModel)]="updateDetails.location" name="location" />
-            </div> -->
-
-            <div class="form-group">
-
-              <div class="input-group date" id="datepicker">
-
-              </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-          </div>
-          <div class="mt-5 d-flex justify-content-end">
-            <button class="btn btn-primary profile-button me-3" type="submit">Save Profile</button>
-            <button type="button" (click)="cancelEdit()"  routerLink="/artist/new-home" class="btn btn-secondary cancel-button">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center experience">
-          <span>Edit Experience</span>
-          <span class="border px-3 p-1 add-experience">
-            <i class="fa fa-plus"></i>&nbsp;Experience
-          </span>
-        </div>
-        <div class="d-flex flex-row mt-3 exp-container">
-          <img src="https://i.imgur.com/azSfBM3.png" width="45" height="45">
-          <div class="work-experience ml-1">
-            <span class="font-weight-bold d-block">Senior UI/UX Designer</span>
-            <span class="d-block text-black-50 labels">Twitter Inc.</span>
-            <span class="d-block text-black-50 labels">March,2017 - May 2020</span>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex flex-row mt-3 exp-container">
-          <img src="https://img.icons8.com/color/100/000000/facebook.png" width="45" height="45">
-          <div class="work-experience ml-1">
-            <span class="font-weight-bold d-block">Senior UI/UX Designer</span>
-            <span class="d-block text-black-50 labels">Facebook Inc.</span>
-            <span class="d-block text-black-50 labels">March,2017 - May 2020</span>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex flex-row mt-3 exp-container">
-          <img src="https://img.icons8.com/color/50/000000/google-logo.png" width="45" height="45">
-          <div class="work-experience ml-1">
-            <span class="font-weight-bold d-block">UI/UX Designer</span>
-            <span class="d-block text-black-50 labels">Google Inc.</span>
-            <span class="d-block text-black-50 labels">March,2017 - May 2020</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<app-footer></app-footer>
+</div></div>
