@@ -153,7 +153,7 @@
             [class.expanded]="isTagsCollapsed || !isSmallScreen"
           >
             <div class="d-flex flex-wrap">
-              <span *ngFor="let tag of tagsArray" class="tag">#{{ tag }}</span>
+              <span *ngFor="let tag of tagsArray" class="tag" (click)="searchTag(tag)">#{{ tag }}</span>
             </div>
           </div>
         </div>
