@@ -413,6 +413,10 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       this.router.navigate(['/artist-portfolio', this.artistId]);
       console.log('artist', this.artistId);
     }
+
+    searchTag(tag: string){
+      this.router.navigate(['/search-art'], { queryParams: { q: tag } });
+    }
 }
 
 
