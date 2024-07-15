@@ -2,8 +2,11 @@
 <section class="head-title-section">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-md-12 text-center mt-5">
-                <div class="row justify-content-center">
+            <div class="col-md-12 mt-5">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-2 text-start">
+                        <h2 class="for-you-text">Discover Art Tailored Just for You</h2>
+                    </div>
                   <div class="col-md-8 text-center">
                     <div class="position-fixed top-2 end-0 p-3 z-custom-button">
                         <button type="button" class="btn shadow btn-primary btn-lg custom-button"  routerLink="/categories" >
@@ -15,8 +18,20 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-5 mb-3 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 card-index" (window:scroll)="onScroll()" >
+        <div class="container mt-5 mb-3">
+          
+            <div class="category-bar">
+                <h3 class="explore-categories-text">Explore Art Categories</h3>
+                <div class="marquee">
+                <button *ngFor="let category of categoryData" class="btn btn-category"  [ngStyle]="{'background-image': 'url(' + category.banner + ')'}" (click)="navigateToCategory(category.category_id)">
+                    {{ category.name }}
+                </button>
+                <button *ngFor="let category of categoryData" class="btn btn-category" [ngStyle]="{'background-image': 'url(' + category.banner + ')'}" (click)="navigateToCategory(category.category_id)">
+                    {{ category.name }}
+                </button>
+            </div></div></div>
+        <div class="card-container mt-5 mb-3 ">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 card-index" (window:scroll)="onScroll()" >
                 <div class="col mb-3" *ngFor="let art of artsData" >
                     <app-arts [art]="art"  [userId]="userId"></app-arts>                
                 </div>

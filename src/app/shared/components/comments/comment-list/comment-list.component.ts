@@ -13,8 +13,10 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   @Input() currentUserId!: string;
   @Input() artworkId!: string;
+  @Input() userPhoto!:string;
   @Input() comments: CommentInterface[] = [];
   @Output() commentsCount = new EventEmitter<number>();
+  
 
   //comments: CommentInterface[] = [];
   activeComment: ActiveCommentInterface | null = null;
@@ -87,7 +89,7 @@ export class CommentListComponent implements OnInit, OnChanges {
   }
 
   addComment({ text, parentId }: { text: string; parentId: string | null }): void {
-    const artworkId = '3'; 
+    const artworkId = this.artworkId;
     const userId = this.currentUserId; 
   
     this.commentsService.createComment(text, artworkId, userId, parentId).subscribe(

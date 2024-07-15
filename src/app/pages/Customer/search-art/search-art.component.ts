@@ -24,6 +24,10 @@ export class SearchArtComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      const categoryId = params['category_id'];
+      if (categoryId) {
+        this.fetchArtworksByCategory(categoryId);
+      }
       this.searchQuery = params['q'];
       if (this.searchQuery) {
         this.searchArtService.searchArtworks(this.searchQuery).subscribe(
@@ -37,7 +41,6 @@ export class SearchArtComponent implements OnInit {
           }
         );
       } else {
-        // Handle case when no search query is provided, perhaps load all artworks
       }
     });
 
@@ -137,5 +140,18 @@ export class SearchArtComponent implements OnInit {
         break;
     }
     this.searchResults = results;
+  }
+
+  fetchArtworksByCategory(categoryId: string): void {
+    this.searchArtService.searchArtworksByCategory(categoryId).subscribe(
+      (results: any[]) => {
+        this.searchResults = results;
+        this.originalSearchResults = [...results]; // Store original results
+        this.applyFilters();
+      },
+      (error: any) => {
+        console.error('Error fetching artworks by category:', error);
+      }
+    );
   }
 }

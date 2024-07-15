@@ -255,6 +255,7 @@ export class UploadArtworksComponent {
 
   async upload2DArtwork(): Promise<void> {
     try {
+      console.log('2D artwork==================', this.new2DArtwork);
       const response = await this.uploadArtworksService.upload2DArtwork(this.new2DArtwork).toPromise();
       console.log('2D artwork upload successful', response);
       this.new2DArtwork = {

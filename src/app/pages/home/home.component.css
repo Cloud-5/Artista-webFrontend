@@ -155,7 +155,7 @@ canvas {
 
 
 .navbar{
-  background-color: #05161A;
+  background-color: #055287;
 }
 @media (max-width: 768px) {
   .custom-logo {
@@ -215,15 +215,6 @@ canvas {
   
 }
 
-.hero-body {
-  background-image: url("../../../assets/images/background.jpg"); 
-  background-size: cover;
-  background-position: center center;
-  height: 50vh;  /* Use viewport height for responsive height */
-  min-height: 50px;  /* Ensures a minimum height of 500px */
-  
-  
-}
 .row{
   gap: 10px;
 }
@@ -403,4 +394,13 @@ canvas {
   .model-viewer {
       width: 70%;
   }
+}
+
+.ss .row
+{
+  padding-left: 50px;
+}
+.ss h2
+{
+  text-align: center;
 }
