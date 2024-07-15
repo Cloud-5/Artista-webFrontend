@@ -8,21 +8,19 @@
 }
 .comment-content{
     display: flex;
-    width: 100%;
-
+    width: 100%; 
 }
 .comment-name-content{
-    background: #dee4ff;
     border-radius: 5px;
-    padding: 10px;
     width: fit-content;
-
+    padding: 2px 4px;
+}
+.comment-name-content:hover{
+    background-color: #f2f2f2;
 }
 
 .comment-actions{
     display: flex;
-    font-size: 12px;
-    font-weight: 800;
     gap: 10px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -31,6 +29,25 @@
 
 .profile-photo{
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
 }
+
+.body1 {
+    font-size:  0.9rem;
+    font-weight: 500;
+    line-height: 1.625rem;
+    color: #6c6c6c;
+  }
+  
+  .body2 {
+    font-size:  0.9rem;
+    font-weight: 600;
+    line-height: 1.625rem;
+  }
+  .body3{
+    font-size: 0.7rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: #0f969c;
+  }
