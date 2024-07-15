@@ -1,9 +1,9 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 <div class="header__wrapper">
   <img src="{{ artistData.banner_img_url }}" alt="Banner Image" style="width: 100%; height: 200px" />
 
-  <div class="cols__container">
-    <div class="left__col">
+  <div class="cols__container" style="margin-left: 50px; margin-right: 50px;">
+    <div class="left__col" style="width: 500px;">
       <div class="img__container">
         <img src="{{ artistData.profile_photo_url }}" alt="Artist Photo" />
       </div>
@@ -79,8 +79,8 @@
         </div>
       </div>
     </div>
-    <div class="right__col">
-      <ul class="nav nav-tabs" role="tablist">
+    <div class="right__col" style="width: 1100px; margin-left: 10px;">
+      <ul class="nav nav-tabs" role="tablist"  style="margin-top: 200px;">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Creations</a>
         </li>
@@ -88,8 +88,8 @@
           <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" tabindex="-1">Feedbacks</a>
         </li>
       </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active show" id="home" role="tabpanel">
+      <div id="myTabContent" class="tab-content" style="width: 1100px">
+        <div class="tab-pane fade active show" id="home" role="tabpanel" style="width: 1100px">
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
               <form class="d-flex" role="search" style="width: 100%">
@@ -110,11 +110,158 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+        <div class="tab-pane fade" id="profile" role="tabpanel" style=" width:1100px;  max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
           <app-feedback-list-card [artistId]="artistId" ></app-feedback-list-card>
         </div>
       </div>
     </div>
   </div>
 </div>
+<app-footer></app-footer> -->
+<app-navbar></app-navbar>
+<div class="header__wrapper">
+  <img src="{{ artistData.banner_img_url }}" alt="Banner Image" style="width: 100%; height: 200px" />
+
+  <div class="cols__container" style="margin-left: 50px; margin-right: 50px;">
+    <div class="left__col" style="width: 400px;">
+      <div class="img__container">
+        <img src="{{ artistData.profile_photo_url }}" alt="Artist Photo" />
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="d-flex" style="width:300px; justify-content: space-between; margin-left: 40px;">
+        <div class="follow-button">
+          <button
+            [ngClass]="['btn', 'btn-outline-info', followButtonClass, 'rounded']"
+            type="button"
+            (click)="toggleFollow()"
+            style="width: 140px; height: 50px;"
+          >
+            {{ followButtonText }}
+          </button>
+        </div>
+        <button type="button" class="btn btn-secondary" style="width: 140px; height: 50px; background-color: #0F969C;" (click)="messageArtist(artistData.firebase_uid, artistData.artist_name); $event.stopPropagation()">Message</button>
+      </div>
+      <ul class="about">
+        <li><span>{{ artistData.total_likes }}</span>Likes</li>
+        <li><span>{{ artistData.total_followers }}</span>Followers</li>
+        <li><span>{{ artistData.total_creations }}</span>Creations</li>
+      </ul>
+
+      <div class="content">
+        <p>{{ artistData.description }}</p>
+      </div>
+    <br>
+      <h3 class="ratingtext" style="font-size: 24px; font-weight: 600;">How was the experience?</h3>
+      <form [formGroup]="ratingForm" (ngSubmit)="onSubmitRating()">
+        <div class="rating-section">
+          <span class="fa fa-star" (click)="onStarClick(1)" [ngClass]="{'checked': rating >= 1}"></span>
+          <span class="fa fa-star" (click)="onStarClick(2)" [ngClass]="{'checked': rating >= 2}"></span>
+          <span class="fa fa-star" (click)="onStarClick(3)" [ngClass]="{'checked': rating >= 3}"></span>
+          <span class="fa fa-star" (click)="onStarClick(4)" [ngClass]="{'checked': rating >= 4}"></span>
+          <span class="fa fa-star" (click)="onStarClick(5)" [ngClass]="{'checked': rating >= 5}"></span>
+        </div>
+        <div class="form-group" style="margin: 20px 0">
+          <input
+            type="number"
+            formControlName="rating"
+            min="1"
+            max="5"
+            placeholder="Enter rating (1-5)"
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn btn-success"  style="background-color: #0F969C;" [disabled]="ratingForm.invalid">Submit Rating</button>
+      </form>
+      <br />
+      <div class="feedback-section">
+        <form [formGroup]="feedbackForm" (ngSubmit)="onSubmitFeedback()">
+          <div class="form-group" style="margin: 20px 0">
+            <h2 class="feedtext" style="font-size: 24px; font-weight: 600;">Submit your feedback</h2>
+            <textarea
+              class="form-control"
+              id="feedback"
+              formControlName="feedback"
+              rows="5"
+              maxlength="200"
+            ></textarea>
+            <small id="wordCount" class="text-muted">0 words (Max 100 words)</small>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success" style="background-color: #0F969C;" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="right__col" style="width: 1100px; margin-left: 10px; margin-top: 30px;">
+      <div class="artist-info" style="display: flex; align-items: center;">
+        <h2 class="artist-name" style="margin: 0;">{{ artistData.fName }} {{ artistData.LName }}</h2>
+        <button class="datebtn" style="border-radius: 10px; font-size: 14px; margin-left: 600px; display: flex; align-items: center;">
+          <i class="bi bi-calendar-check" style="font-size: 20px; margin-right: 10px;"></i>
+          <b>Member Since:</b> {{ artistData.joined_date | date: "yyyy-MM-dd" }}
+        </button>
+      </div>
+      <p class="artist-location" style="font-weight: 200; margin-top: 10px;color: rgb(112, 112, 185);">
+        <i class="bi bi-geo-alt-fill" style="font-size: 20px;"></i> {{ artistData.artist_location }}
+      </p>
+      <p class="artist-profession-rating-sincedate" style="margin-top: 10px; display: flex; align-items: center;">
+        <i class="bi bi-person-fill" style="margin-right: 10px; font-size: 20px;"></i>{{ artistData.artist_profession }}
+        <span style="margin-left: 20px; display: flex; align-items: center; color: rgb(51, 203, 226);">
+          <b>Rating :</b> {{ artistData.average_rating | number: '1.1-1'}}
+          <i class="bi bi-star-fill" style="font-size: 20px; margin-left: 5px;"></i>
+          <span class="social-icons" style="margin-left: 30px; display: flex; align-items: center;">
+            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-twitter" style="font-size: 25px;"></i></a>
+            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-facebook" style="font-size: 25px;"></i></a>
+            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-instagram" style="font-size: 25px;"></i></a>
+            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-linkedin" style="font-size: 25px;"></i></a>
+            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-pinterest" style="font-size: 25px;"></i></a>
+          </span>
+        </span>
+      </p>
+
+
+      <div class="row" style="margin: 0">
+      <ul class="nav nav-tabs" role="tablist" style="margin-top: 20px;">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">Creations</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" tabindex="-1">Feedbacks</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content" style="width: 1100px">
+        <div class="tab-pane fade active show" id="home" role="tabpanel" style="width: 1100px">
+          <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <form class="d-flex" role="search" style="width: 100%">
+                <input
+                  #searchkeyword
+                  (keyup)="searchByKeyword(searchkeyword.value)"
+                  class="form-control me-2 rounded-pill border border-primary"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </form>
+            </div>
+          </nav>
+          <div class="Creations" style="max-height: 1100px; overflow-y: scroll; overflow-x: hidden;">
+            <div class="col mb-3" *ngFor="let art of filteredArts">
+              <app-art-card [art]="art"></app-art-card>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" style=" width:1100px; margin-left: 20px;  max-height: 1100px; overflow-y: scroll; overflow-x: hidden;">
+          <app-feedback-list-card [artistId]="artistId" ></app-feedback-list-card>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
 <app-footer></app-footer>
+

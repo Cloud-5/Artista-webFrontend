@@ -1,20 +1,21 @@
 .list-group-item {
-  background: rgba(216, 216, 222, 0.901); /* Semi-transparent background */
+  background: #c6e3e5; /* Semi-transparent background */
   margin-bottom: 20px;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 30px;
   margin-right: 30px;
+  width: 1250px;
   padding: 20px;
   transition: transform 0.3s ease;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(13, 13, 13, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(13, 13, 13, 0.1);
   backdrop-filter: blur(-10px); /* Glass effect */
   -webkit-backdrop-filter: blur(-10px);
 }
 
 
 .list-group-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -33,14 +34,11 @@
   align-items: center;
 }
 
-.list-group-item h5.mb-1 {
-  margin-bottom: 0; /* Ensure no margin-bottom for inline alignment */
-}
-
-
 .list-group-item-action {
   padding: 15px; /* Adjust as needed for spacing */
-  width: 730px;
+  width: 1050px;
+  margin-left:10px;
+  margin-right:10px;
 }
 
 .list-group-item p.mb-1 {

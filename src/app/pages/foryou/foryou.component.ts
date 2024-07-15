@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { ForyouServiceService } from './foryou-service.service';
+import { PreferencesService } from '../first-foryou/preferences.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-foryou',
@@ -15,13 +17,33 @@ export class ForyouComponent implements OnInit {
   pageSize: number = 20;
   loading: boolean = false;
   allDataLoaded: boolean = false;
+  categoryData: any[] = [];
 
-  constructor(private foryouService: ForyouServiceService) { }
+  constructor(private foryouService: ForyouServiceService,
+    private preferencesService: PreferencesService,
+    private router: Router  
+  ) { }
 
   ngOnInit(): void {
      this.fetchArtworks();
+     this.loadCategoryData();
   
   }
+  loadCategoryData(): void {
+    this.preferencesService.showPreferences().subscribe((data: any[]) => {
+      console.log('Category data: ', data);
+      console.log('Category data: ', data[0].category_id);
+
+
+      this.categoryData = data;
+
+    }, (error) => {
+      console.error('Error fetching category data: ', error);
+    });
+
+
+  }
+  
 
   fetchArtworks(): void {
     
@@ -55,5 +77,10 @@ export class ForyouComponent implements OnInit {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.fetchArtworks();
     }
+  }
+
+  navigateToCategory(categoryId: string): void {
+    console.log('Navigating to category:', categoryId);
+    this.router.navigate(['/search-art'], { queryParams: { category_id: categoryId } });
   }
 }

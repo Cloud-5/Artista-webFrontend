@@ -4,6 +4,15 @@
  /* Set a lower z-index for the container */
 }
 
+.for-you-text {
+    font-size: 20px;
+    font-weight:600;
+    color: #0b466e; /* Adjust the color as needed */
+    white-space: nowrap;
+    position: relative;
+    top: 2px;
+    margin-left: 38px;
+}
 .custom-button {
     position: absolute; /* Position the button relative to the container */
     top: -90%; /* Adjust positioning as needed */
@@ -18,7 +27,7 @@
 .custom-button:hover {
   color: rgb(145, 222, 250);
   transform: scale(1.1); /* Zoom-in effect */
-  background-color: #013558;
+  background-color: #ffffff;
 }
 
 .z-custom-button {
@@ -29,5 +38,89 @@
 @media (max-width: 576px) {
     .custom-button {
         font-size: 80%;
+    }
+}
+
+.category-bar {
+    width: 114%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    margin-left: -90px;
+    margin-right: -100px;
+    background-color: rgba(162, 162, 162, 0.398);
+    margin-top: -10px;
+    
+}
+.explore-categories-text {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: -2px;
+    margin-top: 8px;
+    color: #0b466e; /* Adjust the color as needed */
+}
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 50s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.btn-category {
+    display: inline-block;
+    width: 175px;
+    height: 125px;
+    margin: 5px;
+    background-size: cover;
+    background-position: center;
+    background-color: #93b7c5;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Prevents button text from wrapping */
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8) !important; /* Makes the background a bit darker */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-category:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+    font-weight: bold;
+    color: #ffffff;
+   
+}
+.category-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgb(0, 0, 0,0.8); /* Adds a semi-transparent background to the text */
+    padding: 10px;
+    transition: font-weight 0.3s ease;
+}
+
+.btn-category:hover .category-content {
+    font-weight: bold; /* Bolds the text on hover */
+}
+
+@media (max-width: 576px) {
+    .btn-category {
+        font-size: 80%;
+        width: 150px;
+        height: 200px;
+        padding: 8px 16px;
     }
 }

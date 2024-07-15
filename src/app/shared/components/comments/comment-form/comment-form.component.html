@@ -1,10 +1,10 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="comment-form">
-  <div class="row">
-    <textarea class="form-control comment-area" formControlName="title" placeholder="Join The Discussion..."></textarea>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="comment-form p-0">
+  <div class="input-area">
+    <textarea class="form-control comment-area" formControlName="title" placeholder="Join The Discussion..." (input)="checkInput()"></textarea>
   </div>
   <div class="row">
-    <div class="col d-flex justify-content-end m-0 p-0 gap-3">
-      <button class="btn write-btn" type="submit" [disabled]="form.invalid">
+    <div class="col d-flex justify-content-end mt-1 gap-3">
+      <button class="btn write-btn" type="submit" [disabled]="form.invalid" *ngIf="showSubmitButton">
         {{ submitLabel }}
       </button>
       <button
