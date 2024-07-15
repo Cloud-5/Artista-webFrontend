@@ -19,7 +19,7 @@ export class EditArtistProfileService {
 
 
   private apiUrl: string = environment.apiUrl;
-
+private apiurl: String = environment.apiUrl +'/user'
   constructor(private http: HttpClient) { }
 
   updateArtistProfile(artistId: string, artistData: any): Observable<any> {
@@ -47,12 +47,18 @@ return this.http.get(`${this.apiUrl}/artist-edit/social-media-platforms`)
   }
 
 
-  updateSocialMediaLink(userId: string, platformId: number, accountUrl: string): Observable<any> {
+  updateSocialMediaLink(artistId: string, platformId: number, accountUrl: string): Observable<any> {
+
+    console.log('artistIdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', artistId);
       const body = {
         platform_id: platformId,
         account_url: accountUrl
       };
-      return this.http.put(`${this.apiUrl}/artist-edit/${userId}/social-media`, body);
+      return this.http.put(`${this.apiUrl}/artist-edit/social-media`,body);
+    }
+
+    changePassword( email: string,oldPassword: string,newPassword: string, confirmPassword: string): Observable<any> {
+      return this.http.post(`${this.apiurl}/changePassword`, {email,oldPassword,newPassword, confirmPassword });
     }
 
 }

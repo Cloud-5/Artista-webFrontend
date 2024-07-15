@@ -502,3 +502,17 @@ body {
   justify-content: space-between;
   margin-top: 20px;
 }
+
+
+
+.sss{
+  position: relative;
+  background-color: rgba(179, 179, 179, 0.8); /* Slightly transparent background color */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+align-content: center;
+ 
+  border-radius: 10px; /* Optional: Add rounded corners */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+}
+

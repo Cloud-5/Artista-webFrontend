@@ -1,11 +1,10 @@
-<div class="container">
+<!-- <div class="container">
   <div class="image">
 
     <img src="{{ art.artwork_image_url }}" alt="Artwork Image" />
     <div class="details">
           <h2>{{ art.artwork_name }}</h2>
           <p>{{ art.artist_name }}</p>
-            <!-- Conditionally show the remove button in the top right corner -->
     <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery()">
       Remove
     </button>
@@ -17,4 +16,28 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <div class="container" (click)="goToPreview(art)">
+    <div class="image">
+        <img [src]="art.artwork_image_url" alt="Artwork Image">
+        <div class="details">
+            <h2>{{art.artwork_name}}</h2>
+            <p>{{art.artist_name}}</p>
+            <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery()">
+              Remove
+            </button>
+        
+           
+        </div>
+            <div class="more">
+                <p class="price">{{art.artwork_price | currency:'USD':'symbol':'1.2-2'}}</p>
+                <p class="like-count"> <button class="btn like-btn" (click)="likeArtwork(art); $event.stopPropagation()">
+                    <i class="bi" [ngClass]="art.liked ? 'bi-heart-fill' : 'bi-heart'"></i>
+                  </button>
+                  {{ formatLikeCount(art.total_likes) }}
+                </p>
+                <button class="btn cart-icon-btn" (click)="addCart(art); $event.stopPropagation()"> <i class="bi bi-cart-plus-fill"></i></button>
+            </div>
+        </div>
+    </div>

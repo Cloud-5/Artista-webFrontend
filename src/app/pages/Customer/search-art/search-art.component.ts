@@ -9,7 +9,7 @@ import { SearchArtService } from './search-art.service';
 })
 export class SearchArtComponent implements OnInit {
   searchResults: any[] = [];
-  originalSearchResults: any[] = []; // Add this line to store original search results
+  originalSearchResults: any[] = []; 
   categories: any[] = [];
   selectedCategories: string[] = [];
   selectedOption: string = 'name-asc';
@@ -25,6 +25,7 @@ export class SearchArtComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const categoryId = params['category_id'];
+      console.log('Category ID:', categoryId);
       if (categoryId) {
         this.fetchArtworksByCategory(categoryId);
       }
@@ -33,7 +34,7 @@ export class SearchArtComponent implements OnInit {
         this.searchArtService.searchArtworks(this.searchQuery).subscribe(
           (results: any[]) => {
             this.searchResults = results;
-            this.originalSearchResults = [...results]; // Store original results
+            this.originalSearchResults = [...results];
             this.applyFilters();
           },
           (error: any) => {
@@ -142,7 +143,8 @@ export class SearchArtComponent implements OnInit {
     this.searchResults = results;
   }
 
-  fetchArtworksByCategory(categoryId: string): void {
+  fetchArtworksByCategory(categoryId: number): void {
+    console.log('Fetching artworks by category:', categoryId);
     this.searchArtService.searchArtworksByCategory(categoryId).subscribe(
       (results: any[]) => {
         this.searchResults = results;

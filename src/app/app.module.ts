@@ -88,6 +88,7 @@ import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
 import { CreationsComponent } from './pages/Artist/artist-profile/creations/creations.component';
 import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
 import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 
 
@@ -143,7 +144,8 @@ import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component
     UploadArtworksComponent,
     CreationsComponent,
     CreationPreviewComponent,
-    St03Component
+    St03Component,
+    AlertComponent
 
 
   ],

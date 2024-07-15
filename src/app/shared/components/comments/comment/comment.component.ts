@@ -57,15 +57,6 @@ export class CommentComponent implements OnInit{
     ) {
       this.canDelete = true;
     }
-    // this.canEdit = true;
-    //   // this.currentUserId === this.comment.user_id &&
-    //   // !timePassed &&
-    //   // !this.isReplying(); 
-    // this.canDelete = true;
-    //   // this.currentUserId === this.comment.user_id &&
-    //   // this.replies.length === 0 && 
-    //   // !timePassed &&
-    //   // !this.isReplying(); 
     this.replyId = this.parentId ? this.parentId : this.comment.comment_id;
   }
   
