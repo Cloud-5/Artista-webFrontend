@@ -24,11 +24,11 @@
         <div class="details">
             <h2>{{art.artwork_name}}</h2>
             <p>{{art.artist_name}}</p>
-            <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery()">
+            <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery(); $event.stopPropagation()">
               Remove
             </button>
-        
-           
+
+
         </div>
             <div class="more">
                 <p class="price">{{art.artwork_price | currency:'USD':'symbol':'1.2-2'}}</p>
