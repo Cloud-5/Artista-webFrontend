@@ -1,41 +1,23 @@
 import { Component,OnInit,HostListener,Input,SimpleChanges,OnDestroy, AfterViewInit} from '@angular/core';
-import {trigger,state,style,animate,transition,} from '@angular/animations';
 import { ArtworkPreviewService } from './artwork-preview.service';
 import { ActivatedRoute } from '@angular/router';
-import { CommentInterface } from '../../shared/interfaces/comment.interface';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { CartItemService } from '../../shared/cards/arts/arts.service';
 import { ArtServiceService } from '../home/service/art-service.service';
 import { AlertService } from '../../shared/services/alert.service';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-artwork-preview',
   templateUrl: './artwork-preview.component.html',
   styleUrl: './artwork-preview.component.css',
-  animations: [
-    // trigger('toggleFavorite', [
-    //   state(
-    //     'true',
-    //     style({
-    //       color: 'red', // Change color
-    //     })
-    //   ),
-    //   state(
-    //     'false',
-    //     style({
-    //       color: 'blue',
-    //     })
-    //   ),
-    //   transition('true <=> false', [animate('0.5s')]),
-    // ]),
-  ],
 })
 export class ArtworkPreviewComponent implements OnInit,OnDestroy {
+
   userId: string = localStorage.getItem('user_id') || '';
   userRole: string = localStorage.getItem('role') || '';
-
-
+  artistRole: string = localStorage.getItem('role') || '';
   artworkId: string = '';
   artistId: string = '';
   is3D: boolean = false;
@@ -44,28 +26,32 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   tagsArray: string[] = [];
   bestArtworks: any[] = [];
   relatedArtworks: any[] = [];
-
   isFollowing: boolean = false;
   followButtonText: string = '';
   followButtonClass: string = '';
-
   isAddedToGallery: boolean = false;
   addToGalleryButtonText: string = 'Add to Gallery';
   addToGalleryButtonClass: string = 'add-to-gallery';
-
   thumbnail: string = '';
   imageUrl: string = '';
   bg:string='';
-  artistRole: string = localStorage.getItem('role') || '';
   customer_profile_photo: string = '';
   relatedLike:boolean = false;
-
-  //@Input() comments: CommentInterface[] = [];
-
   TotalComments: number = 0;
   routeSub: Subscription | undefined;
   artsData: any = {};
   dataLoaded: boolean = false;
+  isFavorite: boolean = false;
+  showStickyBar: boolean = false;
+  isDescriptionCollapsed = false;
+  isTagsCollapsed = false;
+  isSmallScreen = false;
+  columns: any[][] = [[], [], []];
+  currentIndex = 0;
+  itemWidth = 25;
+  gap = 16;
+  private destroy$ = new Subject<void>();
+
 
   constructor(
     private route: ActivatedRoute,
@@ -79,29 +65,36 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
       this.artworkId = params['artworkId'];
-      console.log('artworkId',this.artworkId);
-      this.loadArtworkDetails(this.artworkId, this.userId);
-      this.updateButtonStates();
-      this.checkScreenSize();
-      this.updateColumns();
-      this.updateItemWidth();
-      this.getArtwork();
-    })
+      this.initializeComponent();
+    });
   }
 
   ngAfterViewInit(): void {
+    this.initializeComponent();
+  }
+
+  ngOnDestroy(): void {
+    this.routeSub?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private initializeComponent(): void {
     this.loadArtworkDetails(this.artworkId, this.userId);
     this.updateButtonStates();
     this.checkScreenSize();
     this.updateColumns();
     this.updateItemWidth();
+    this.getArtwork();
   }
 
+  private handleError(error: any, message: string): void {
+    console.error(message, error);
+    this.alertService.showMessage(message, false, error.message);
+  }
 
-  ngOnDestroy(): void {
-      if(this.routeSub){
-        this.routeSub.unsubscribe();
-      }
+  private setLoading(isLoading: boolean): void {
+    this.dataLoaded = !isLoading;
   }
 
   get backgroundImage(): string {
@@ -109,15 +102,16 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   }
 
   getArtwork(): void {
-    this.ArtServiceService.getArtwork().subscribe(
+    this.ArtServiceService.getArtwork().pipe(takeUntil(this.destroy$)).subscribe(
       (data: any[]) => {
         console.log(data);
         this.artsData = data;
         this.dataLoaded = true;
+        this.setLoading(false);
       },
       (error: any) => {
-        console.log(error);
-        this.alertService.showMessage('Error fetching artwork', false, error.message);
+        this.handleError(error, 'Error fetching artwork');
+        this.setLoading(false);
       }
     );
   }
@@ -127,42 +121,31 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   }
 
   loadArtworkDetails(artworkId: string, userId: string): void {
-    this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
-      (data: any) => {
+    this.artworkService.getArtworkDetails(artworkId, userId).pipe(takeUntil(this.destroy$)).subscribe(
+      data => {
         this.artworkDetails = data.artworkDetails[0];
-        console.log(this.artworkDetails);
         this.bestArtworks = data.bestArtworks;
         this.relatedArtworks = data.relatedArtworks[0];
-        console.log('related',this.relatedArtworks);
-        this.artistId = this.artworkDetails.artist_id;
-        this.imageUrl = this.artworkDetails.url_link;
-        this.bg = this.artworkDetails.background;
-        this.thumbnail = this.artworkDetails.thumbnail;
-        this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
-
-        if(this.artworkDetails.category === '3D Modeling'){
-          this.is3D = true;
-        } else {
-          this.is3D = false;
-        }
-        if (this.artworkDetails.tags) {
-          this.tags = this.artworkDetails.tags;
-          this.tagsArray = this.tags.split(',');
-        } else {
-          this.tags = '';
-          this.tagsArray = [];
-        }
-        this.isFavorite = this.artworkDetails.is_liked;
-        this.isFollowing = this.artworkDetails.is_following;
-        this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
-        this.updateButtonStates();
-        this.updateColumns();
+        this.initializeArtworkDetails();
       },
-      (error) => {
-        console.error('Error fetching artwork details:', error);
-        this.alertService.showMessage('Error fetching artwork details', false, error.message);
-      }
+      error => this.handleError(error, 'Error fetching artwork details')
     );
+  }
+
+  private initializeArtworkDetails(): void {
+    this.artistId = this.artworkDetails.artist_id;
+    this.imageUrl = this.artworkDetails.url_link;
+    this.bg = this.artworkDetails.background;
+    this.thumbnail = this.artworkDetails.thumbnail;
+    this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
+    this.is3D = this.artworkDetails.category === '3D Modeling';
+    this.tags = this.artworkDetails.tags || '';
+    this.tagsArray = this.tags.split(',');
+    this.isFavorite = this.artworkDetails.is_liked;
+    this.isFollowing = this.artworkDetails.is_following;
+    this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
+    this.updateButtonStates();
+    this.updateColumns();
   }
 
   updateButtonStates(): void {
@@ -172,96 +155,40 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.addToGalleryButtonClass = this.isAddedToGallery ? 'added-to-gallery' : 'add-to-gallery';
   }
 
-  isFavorite: boolean = false;
-
-  showStickyBar: boolean = false;
-
   toggleFavorite() {
-    if (this.isFavorite) {
-      this.artworkService.unlike(this.artworkId, this.userId).subscribe(
-        () => {
-          this.isFavorite = false;
-          this.artworkDetails.total_likes -= 1;
-        },
-        (error) => {
-          console.error('Error unliking artwork:', error);
-          this.alertService.showMessage('Error unliking artwork', false, error.message);
-        }
-      );
-    } else {
-      this.artworkService.toggleLike(this.artworkId, this.userId).subscribe(
-        () => {
-          this.isFavorite = true;
-          this.artworkDetails.total_likes += 1;
-        },
-        (error) => {
-          console.error('Error liking artwork:', error);
-          this.alertService.showMessage('Error liking artwork', false, error.message);
-        }
-      );
-    }
+    const action = this.isFavorite ? this.artworkService.unlike(this.artworkId, this.userId) : this.artworkService.toggleLike(this.artworkId, this.userId);
+    action.pipe(takeUntil(this.destroy$)).subscribe(
+      () => {
+        this.isFavorite = !this.isFavorite;
+        this.artworkDetails.total_likes += this.isFavorite ? 1 : -1;
+      },
+      error => this.handleError(error, this.isFavorite ? 'Error unliking artwork' : 'Error liking artwork')
+    );
   }
 
   toggleFollow(): void {
-    if (this.isFollowing) {
-      this.artworkService.unfollow(this.artistId, this.userId).subscribe(
-        () => {
-          this.isFollowing = false;
-          this.followButtonText = 'Follow';
-          this.followButtonClass = 'follow';
-          this.artworkDetails.followers_count -= 1;
-        },
-        (error) => {
-          console.error('Error unfollowing artist:', error);
-          this.alertService.showMessage('Error unfollowing artist', false, error.message);
-        }
-      );
-    } else {
-      this.artworkService.toggleFollow(this.artistId, this.userId).subscribe(
-        () => {
-          this.isFollowing = true;
-          this.followButtonText = 'Following';
-          this.followButtonClass = 'following';
-          this.artworkDetails.followers_count += 1;
-        },
-        (error) => {
-          console.error('Error following artist:', error);
-          this.alertService.showMessage('Error following artist', false, error.message);
-        }
-      );
-    }
+    const action = this.isFollowing ? this.artworkService.unfollow(this.artistId, this.userId) : this.artworkService.toggleFollow(this.artistId, this.userId);
+    action.pipe(takeUntil(this.destroy$)).subscribe(
+      () => {
+        this.isFollowing = !this.isFollowing;
+        this.followButtonText = this.isFollowing ? 'Following' : 'Follow';
+        this.followButtonClass = this.isFollowing ? 'following' : 'follow';
+        this.artworkDetails.followers_count += this.isFollowing ? 1 : -1;
+      },
+      error => this.handleError(error, this.isFollowing ? 'Error unfollowing artist' : 'Error following artist')
+    );
   }
 
   toggleAddToGallery(): void {
-    if (this.isAddedToGallery) {
-      this.artworkService
-        .removeFromGallery(this.artworkId, this.userId)
-        .subscribe(
-          () => {
-            this.isAddedToGallery = false;
-            this.addToGalleryButtonText = 'Add to Gallery';
-            this.addToGalleryButtonClass = 'add-to-gallery';
-          },
-          (error) => {
-            console.error('Error removing from gallery:', error);
-            this.alertService.showMessage('Error removing from gallery', false, error.message);
-          }
-        );
-    } else {
-      this.artworkService
-        .toggleAddToGallery(this.artworkId, this.userId)
-        .subscribe(
-          () => {
-            this.isAddedToGallery = true;
-            this.addToGalleryButtonText = 'Added to Gallery';
-            this.addToGalleryButtonClass = 'added-to-gallery';
-          },
-          (error) => {
-            console.error('Error adding to gallery:', error);
-            this.alertService.showMessage('Error adding to gallery', false, error.message);
-          }
-        );
-    }
+    const action = this.isAddedToGallery ? this.artworkService.removeFromGallery(this.artworkId, this.userId) : this.artworkService.toggleAddToGallery(this.artworkId, this.userId);
+    action.pipe(takeUntil(this.destroy$)).subscribe(
+      () => {
+        this.isAddedToGallery = !this.isAddedToGallery;
+        this.addToGalleryButtonText = this.isAddedToGallery ? 'Added to Gallery' : 'Add to Gallery';
+        this.addToGalleryButtonClass = this.isAddedToGallery ? 'added-to-gallery' : 'add-to-gallery';
+      },
+      error => this.handleError(error, this.isAddedToGallery ? 'Error removing from gallery' : 'Error adding to gallery')
+    );
   }
 
   @HostListener('window:scroll', [])
@@ -280,9 +207,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.showStickyBar = scrollPosition > screenHeight;
   }
 
-  isDescriptionCollapsed = false;
-  isTagsCollapsed = false;
-  isSmallScreen = false;
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.checkScreenSize();
@@ -305,8 +230,6 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
   viewArtwork(artworkId: string) {
     this.router.navigate(['/preview', artworkId]);
   }
-
-  columns: any[][] = [[], [], []];
 
   updateColumns() {
     console.log('related is here');
@@ -340,7 +263,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         }
       );
     }
-    addCart2(art: any) {
+  addCart2(art: any) {
       console.log('art', art);
   
       this.cartItemService.addItem(this.userId, art.artwork_id)
@@ -353,12 +276,8 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
             this.alertService.showMessage('Error adding item to cart', false, error.message);
           }
         );
-      }
+    }
   
-
-    currentIndex = 0;
-    itemWidth = 25;
-    gap = 16;
     next() {
       if (this.currentIndex < this.bestArtworks.length - (100 / this.itemWidth)) {
         this.currentIndex++;
@@ -433,6 +352,11 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     searchCategory(categoryId:number){
       console.log('Category ID:', categoryId);
       this.router.navigate(['/search-art'], { queryParams: { category_id: categoryId } });  
+    }
+    messageArtist(firebase_uid:string, artistName:string){
+      localStorage.setItem('artistFirebaseUid', firebase_uid);
+      localStorage.setItem('artistName', artistName);
+      this.router.navigate(['/chat']);
     }
 }
 
