@@ -249,13 +249,13 @@
               </form>
             </div>
           </nav>
-          <div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+          <div class="Creations" style="max-height: 1100px; overflow-y: scroll; overflow-x: hidden;">
             <div class="col mb-3" *ngFor="let art of filteredArts">
               <app-art-card [art]="art"></app-art-card>
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" style=" width:1100px; margin-left: 20px;  max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+        <div class="tab-pane fade" id="profile" role="tabpanel" style=" width:1100px; margin-left: 20px;  max-height: 1100px; overflow-y: scroll; overflow-x: hidden;">
           <app-feedback-list-card [artistId]="artistId" ></app-feedback-list-card>
         </div>
       </div>
