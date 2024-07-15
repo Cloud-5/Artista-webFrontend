@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartItemService } from '../../shared/cards/arts/arts.service';
 import { ArtServiceService } from '../home/service/art-service.service';
+import { AlertService } from '../../shared/services/alert.service';
 
 @Component({
   selector: 'app-artwork-preview',
@@ -71,7 +72,8 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     private cartItemService: CartItemService,
     private artworkService: ArtworkPreviewService,
     private router: Router,
-    private ArtServiceService: ArtServiceService
+    private ArtServiceService: ArtServiceService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -115,6 +117,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       },
       (error: any) => {
         console.log(error);
+        this.alertService.showMessage('Error fetching artwork', false, error.message);
       }
     );
   }
@@ -157,6 +160,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       },
       (error) => {
         console.error('Error fetching artwork details:', error);
+        this.alertService.showMessage('Error fetching artwork details', false, error.message);
       }
     );
   }
@@ -181,6 +185,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         },
         (error) => {
           console.error('Error unliking artwork:', error);
+          this.alertService.showMessage('Error unliking artwork', false, error.message);
         }
       );
     } else {
@@ -191,6 +196,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         },
         (error) => {
           console.error('Error liking artwork:', error);
+          this.alertService.showMessage('Error liking artwork', false, error.message);
         }
       );
     }
@@ -207,6 +213,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         },
         (error) => {
           console.error('Error unfollowing artist:', error);
+          this.alertService.showMessage('Error unfollowing artist', false, error.message);
         }
       );
     } else {
@@ -219,6 +226,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         },
         (error) => {
           console.error('Error following artist:', error);
+          this.alertService.showMessage('Error following artist', false, error.message);
         }
       );
     }
@@ -236,6 +244,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
           },
           (error) => {
             console.error('Error removing from gallery:', error);
+            this.alertService.showMessage('Error removing from gallery', false, error.message);
           }
         );
     } else {
@@ -249,6 +258,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
           },
           (error) => {
             console.error('Error adding to gallery:', error);
+            this.alertService.showMessage('Error adding to gallery', false, error.message);
           }
         );
     }
@@ -326,6 +336,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
         },
         error => {
           console.error('Error adding item to cart:', error);
+          this.alertService.showMessage('Error adding item to cart', false, error.message);
         }
       );
     }
@@ -339,6 +350,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
           },
           error => {
             console.error('Error adding item to cart:', error);
+            this.alertService.showMessage('Error adding item to cart', false, error.message);
           }
         );
       }
@@ -416,6 +428,11 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
     searchTag(tag: string){
       this.router.navigate(['/search-art'], { queryParams: { q: tag } });
+    }
+
+    searchCategory(categoryId:number){
+      console.log('Category ID:', categoryId);
+      this.router.navigate(['/search-art'], { queryParams: { category_id: categoryId } });  
     }
 }
 

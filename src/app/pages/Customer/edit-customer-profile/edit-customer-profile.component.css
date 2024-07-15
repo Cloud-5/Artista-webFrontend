@@ -7,9 +7,6 @@
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
-  /* background-image: url('https://img.freepik.com/free-vector/abstract-watercolor-pastel-background_87374-139.jpg?w=996&t=st=1720111082~exp=1720111682~hmac=8af53b3f4c1904101fff67a381a9b9e27175cf6be909bbe45980427dac5446c5'); */
-  background-size: cover;
-
 }
 input[type="file"] {
   display: none;

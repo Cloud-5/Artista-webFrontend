@@ -94,4 +94,6 @@ background-color:  #055287;
 
 .searchbox{
   margin-left:2px;
+  justify-content: center;
+  align-items: center;
 }
