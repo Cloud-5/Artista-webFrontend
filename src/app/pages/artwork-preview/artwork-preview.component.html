@@ -292,7 +292,7 @@
               >
                 {{ followButtonText }}
               </button>
-              <button class="btn message-btn" type="button">Message</button>
+              <button class="btn message-btn" type="button" (click)="messageArtist(artworkDetails.firebase_uid, artworkDetails.artist)" >Message</button>
             </div>
           </div>
         </div>

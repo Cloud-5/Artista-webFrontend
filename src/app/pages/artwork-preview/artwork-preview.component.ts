@@ -353,6 +353,11 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       console.log('Category ID:', categoryId);
       this.router.navigate(['/search-art'], { queryParams: { category_id: categoryId } });  
     }
+    messageArtist(firebase_uid:string, artistName:string){
+      localStorage.setItem('artistFirebaseUid', firebase_uid);
+      localStorage.setItem('artistName', artistName);
+      this.router.navigate(['/chat']);
+    }
 }
 
 
