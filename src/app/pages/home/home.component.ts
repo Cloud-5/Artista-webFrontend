@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   gap: number = 16;
   dataLoaded: boolean = false;
   artData: any;
+  categoryData: any[] = [];
 
   @ViewChild('canvas') private canvasRef: ElementRef | undefined
   @Input() public fieldOfView: number = 75;

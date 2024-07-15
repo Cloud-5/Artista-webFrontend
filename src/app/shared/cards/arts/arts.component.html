@@ -38,7 +38,11 @@
         </div>
             <div class="more">
                 <p class="price">{{art.price | currency:'USD':'symbol':'1.2-2'}}</p>
-                <p class="like-count"><i class="bi bi-heart-fill"></i>{{art.total_likes}}</p>
+                <p class="like-count"> <button class="btn like-btn" (click)="likeArtwork(art); $event.stopPropagation()">
+                    <i class="bi" [ngClass]="art.liked ? 'bi-heart-fill' : 'bi-heart'"></i>
+                  </button>
+                  {{art.total_likes}}
+                </p>
                 <button class="btn cart-icon-btn" (click)="addCart(art); $event.stopPropagation()"> <i class="bi bi-cart-plus-fill"></i></button>
             </div>
         </div>

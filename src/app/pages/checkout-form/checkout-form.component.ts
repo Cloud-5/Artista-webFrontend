@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { CheckoutServiceService } from './checkout-service.service';
 import { CartItemService } from '../../shared/cards/arts/arts.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import intlTelInput from 'intl-tel-input';
+
 import { group } from 'node:console';
+import { ElementRef } from '@angular/core';
 
 
 
@@ -16,6 +19,8 @@ import { group } from 'node:console';
 })
 export class CheckoutFormComponent implements OnInit {
 
+
+  title='intlInputNew';
   reactiveForm: FormGroup;
   submitted: boolean = false;
   submissionSuccess = false;
@@ -25,12 +30,13 @@ export class CheckoutFormComponent implements OnInit {
   cartItems: any[] = []; // Array to store cart items
   userId: string = localStorage.getItem('user_id') || '';
 
-
-
   fiName: string = '';
   lastName: string = '';
   email: string = '';
+  location: string = '';
 
+  private iti: any;
+  @ViewChild('phoneNumberInput', { static: false }) phoneNumberInput: ElementRef | undefined;
 
   constructor(private route: ActivatedRoute,
      private formBuilder: FormBuilder,
@@ -45,8 +51,8 @@ export class CheckoutFormComponent implements OnInit {
         lastNameInput: [null, Validators.required],
         emailInput: [null, [Validators.required, Validators.email]],
         locationInput: [null, Validators.required],
-        phoneNumberInput: [null, [Validators.required, this.validatePhoneNumber]],
-        descriptionInput: [null, Validators.maxLength(200)],
+        phoneNumberInput: [null, [Validators.required, this.validatePhoneNumber.bind(this)]],
+        
         paymentOption: [null, Validators.required],
         agreeTermsCheckbox: [false, Validators.requiredTrue],
         agreePrivacyCheckbox: [false, Validators.requiredTrue],
@@ -88,6 +94,8 @@ export class CheckoutFormComponent implements OnInit {
       // Handle invalid cart items (e.g., show error message to the user)
       return;
     }
+
+    const phoneNumber = this.iti ? this.iti.getNumber() : '';
   
     // Get form data
     const formData = {
@@ -95,8 +103,8 @@ export class CheckoutFormComponent implements OnInit {
       lName: this.reactiveForm.value.lastNameInput,
       email: this.reactiveForm.value.emailInput,
       location: this.reactiveForm.value.locationInput,
-      pNumber: this.reactiveForm.value.phoneNumberInput,
-      description: this.reactiveForm.value.descriptionInput,
+      phoneNumber: phoneNumber, 
+     
       paymentMethod: this.reactiveForm.value.paymentOption,
       cartItems: cartItemsData
     };
@@ -116,8 +124,6 @@ export class CheckoutFormComponent implements OnInit {
       }
     );
   }
-  
-  
 
 
   ngOnInit(): void {
@@ -132,6 +138,14 @@ export class CheckoutFormComponent implements OnInit {
       console.log('Cart items: ', this.cartItems);
     });
     this.getCustomerData(this.userId);
+    const inputElement =document.getElementById('phoneNumberInput');
+    if(inputElement){
+      this.iti = intlTelInput(inputElement, {
+        initialCountry: 'US',
+        separateDialCode: true,
+        utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+      });
+    }
   }
 
   getCustomerData(userId: string): void {
@@ -140,24 +154,31 @@ export class CheckoutFormComponent implements OnInit {
       this.fiName = data.fName;
       this.email = data.email;
       this.lastName = data.LName;
+      this.location = data.location;
       console.log(this.fiName);
     });
   }
 
 
-
-
-
-
-
-  validatePhoneNumber(control: AbstractControl): { [key: string]: any } | null {
-    const phoneNumberPattern = /^\+\d{11}$/;
-    if (!phoneNumberPattern.test(control.value)) {
-      return { 'invalidPhoneNumber': true };
+  // validatePhoneNumber(control: AbstractControl): { [key: string]: any } | null {
+  //   const phoneNumberPattern = /^\+\d{11}$/;
+  //   if (!phoneNumberPattern.test(control.value)) {
+  //     return { 'phoneInvalid': true };
+  //   }
+  //   return null;
+  // }
+  validatePhoneNumber(control: AbstractControl) {
+    if (this.iti && !this.iti.isValidNumber()) {
+      return { invalidPhoneNumber: true };
     }
     return null;
   }
 
-  
-
+  showMessage(event: Event) {
+    event.preventDefault();
+    alert('You cannot change this field');
+  }
 }
+
+
+

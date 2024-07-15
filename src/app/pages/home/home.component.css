@@ -404,3 +404,12 @@ canvas {
       width: 70%;
   }
 }
+
+.ss .row
+{
+  padding-left: 50px;
+}
+.ss h2
+{
+  text-align: center;
+}

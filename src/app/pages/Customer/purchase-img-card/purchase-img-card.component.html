@@ -1,4 +1,4 @@
-<div *ngFor="let purchase of purchaseData" class="card request-card" style="width: 720px;">
+<div *ngFor="let purchase of purchaseData" class="card request-card" style="width: 1000px;">
   <div class="d-flex" style="height: auto">
     <div class="card-body">
       <div class="d-flex justify-content-between">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="buttons d-flex flex-column align-items-end mt-2">
-        <button class="btn btn-danger" type="button" (click)="deletePurchase(purchase.purchase_id)">Remove</button>
+        <button class="btn btn-rm" style="color:#fff; background-color: #0f4d55; border-color: #fff;"  type="button" (click)="deletePurchase(purchase.purchase_id)">Remove</button>
       </div>
     </div>
   </div>

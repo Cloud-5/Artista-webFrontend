@@ -22,96 +22,75 @@
         <h2>Banner Image</h2>
         <div class="row mb-3">
           <div class="col-md-4">
-            <button
-              *ngIf="customer.banner_img_url"
-              (click)="removeBannerImage()"
-              class="btn btn-danger"
-              style="margin-top: 5px; margin-right: 10px"
-              type="button"
-            >
-              Remove
-            </button>
-            <div class="mb-3" *ngIf="!customer.banner_img_url">
-              <label for="banner-image" class="form-label">Banner Image:</label>
-              <input
-                type="file"
-                class="form-control"
-                style="width: 1050px; height: 200px; margin-left: 10px"
-                id="banner-image"
-                name="banner-image"
-                (change)="onBannerFileSelected($event)"
-              />
-              <img
-                *ngIf="customer.banner_img_url"
-                [src]="customer.banner_img_url"
-                alt="Banner Image"
-                style="
-                  width: 100%;
-                  height: auto;
-                  margin-left: 10px;
-                  margin-top: 10px;
-                "
-              />
-              <button
-                (click)="uploadBannerImage('CustomerBanners', 'categoryBanner')"
-                class="btn btn-primary"
-                style="margin-top: 10px; margin-right: 10px"
-                type="button"
-              >
-                Upload Image
-              </button>
+            <div class="banner-image-box rounded border d-flex justify-content-center align-items-center"
+              style="width:1060px; height: 200px; overflow: hidden; background-color: #f8f9fa; cursor: pointer;"
+              (click)="bannerFileInput.click()">
+              <img *ngIf="customer.banner_img_url" src="{{customer.banner_img_url}}" alt="Banner Image" class="img-thumbnail"
+                style="width:1060px; height: 200px; object-fit: cover;" />
+              <div *ngIf="!customer.banner_img_url" class="empty-box text-center">
+                <i class="bi bi-camera-fill fs-1" style="width: 40px; height: 40px;"></i>
+                <p class="m-0">Upload Image</p>
+              </div>
             </div>
+            <input #bannerFileInput type="file" class="form-control visually-hidden" id="banner-image" name="banner-image"
+              (change)="onBannerFileSelected($event)" />
+            <br>
+            <button (click)="uploadBannerImage('Customer', 'bannerImage')" class="btn btn-primary" style="font-size: 12px;" type="button">Upload Image
+            </button>
+            <br>
+            <button *ngIf="customer.banner_img_url" (click)="removeBannerImage()" class="btn btn-danger"
+              style="margin-top: 5px; font-size: 12px; background-color: rgb(132, 135, 138); border-color:rgb(132, 135, 138) ;" type="button">Remove Image </button>
           </div>
         </div>
       </div>
       <div class="form-section">
         <div class="row mb-3">
           <h2>Profile Image</h2>
-          <div class="col-md-4">
-            <button
-              *ngIf="customer.profile_photo_url"
-              (click)="removeExistingImage()"
-              class="btn btn-danger"
-              style="margin-top: 5px; margin-right: 10px"
-              type="button"
-            >
-              Remove
-            </button>
-            <div class="mb-3" *ngIf="!customer.profile_photo_url">
-              <label for="profile-image" class="form-label"
-                >Profile Image:</label
-              >
-              <input
-                type="file"
-                class="form-control"
-                style="width: 250px; height: 200px; margin-left: 10px"
-                id="profile-image"
-                name="profile-image"
-                (change)="onFileSelected($event)"
-              />
-              <img
-                *ngIf="customer.profile_photo_url"
-                [src]="customer.profile_photo_url"
-                alt="profile-image"
-                style="
-                  width: 100%;
-                  height: auto;
-                  margin-left: 10px;
-                  margin-top: 10px;
-                "
-              />
-              <button
-                (click)="newImageUpload('Customer', 'profilePicture')"
-                class="btn btn-primary"
-                style="margin-top: 10px; margin-right: 10px"
-                type="button"
-              >
-                Upload Image
-              </button>
-            </div>
-          </div>
-
-          <div class="col-md-8">
+<div class="col-md-4">
+  <div class="profile-image-box rounded-circle border d-flex justify-content-center align-items-center"
+  style="width:150px; height: 150px; overflow: hidden;
+   background-color: #f8f9fa; cursor: pointer;" (click)="fileInput.click()">
+    <img
+      *ngIf="customer.profile_photo_url"
+      src="{{ customer.profile_photo_url }}"
+      alt="Profile Photo"
+      class="img-thumbnail"
+      style="width: 150px; height: 150px; object-fit: cover;"
+    />
+    <div *ngIf="!customer.profile_photo_url" class="empty-box text-center">
+      <i class="bi bi-camera-fill fs-1" style="width: 40px; height: 40px;"></i>
+      <p class="m-0">Upload Image</p>
+    </div>
+  </div>
+  <input
+    #fileInput
+    type="file"
+    class="form-control visually-hidden"
+    id="profile-image"
+    name="profile-image"
+    (change)="onFileSelected($event)"
+  />
+  <br>
+  <button
+    (click)="newImageUpload('Customer', 'profilePicture')"
+    class="btn btn-primary"
+    type="button"
+    style="margin-left:15px; font-size: 12px;"
+  >
+    Upload Image
+  </button>
+  <br>
+  <button
+    *ngIf="customer.profile_photo_url"
+    (click)="removeExistingImage()"
+    class="btn btn-danger"
+    style="margin-top: 5px; margin-left: 15px; font-size: 12px; background-color: rgb(132, 135, 138);border-color:rgb(132, 135, 138) ;"
+    type="button"
+  >
+    Remove Image
+  </button>
+</div>
+   <div class="col-md-8">
             <div class="form-section">
               <div class="row mb-3">
                 <h2>Basic Information</h2>
@@ -265,6 +244,16 @@
               required
               [(ngModel)]="customer.location"
               name="country"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="phone-number" class="form-label">Phone Number:</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone-number"
+              [(ngModel)]="customer.phone"
+              name="phone-number"
             />
           </div>
         </div>
