@@ -47,16 +47,15 @@
               <h4 class="text-color">Embark on a journey through our art gallery to find your perfect masterpiece!</h4>
               <br>
               <div class="results-container">
-              <button class="btn">
-                <i class="bi bi-filter"></i>
-                <p style="margin-left: 10px;">{{ searchResults.length }} results found</p>
-              </button>
+                <div class="found" style="border: 1px solid #0F969C;border-radius: 5px; padding: 10px; padding-left:20px; padding-right: 20px; color: white; background-color: #0F969C; margin-left: 20px;">
+                {{ searchResults.length }} results found </div>
 
-              <div class="suggested-tags">
 
-                <button class="tag-button">{{searchQuery}} <span class="remove-tag">&times;</span></button>
-            </div>
+                <div class="suggested-tags" style="margin-left: 650px; font-weight: 300;"> Searched Term :
+                  <div class="rounded-text"> {{ searchQuery }}</div>
+                </div>
               </div>
+
             </div>
           </div>
           <div class="container mt-5 mb-3">
