@@ -1,6 +1,6 @@
 
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './Service/Auth.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -42,11 +42,36 @@ export class SignInComponent implements OnInit, AfterViewInit {
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        this.passwordStrengthValidator()
+      ]]
     });
 
   }
-
+  passwordStrengthValidator() {
+    return (control: AbstractControl) => {
+      const value = control.value;
+      if (!value) {
+        return null;
+      }
+      const hasUpperCase = /[A-Z]/.test(value);
+      const hasLowerCase = /[a-z]/.test(value);
+      const hasDigit = /\d/.test(value);
+      const hasSpecial = /[!@#$%^&*]/.test(value);
+      const valid = hasUpperCase && hasLowerCase && hasDigit && hasSpecial;
+      if (!valid) {
+        return { 
+          uppercase: !hasUpperCase,
+          lowercase: !hasLowerCase,
+          digit: !hasDigit,
+          special: !hasSpecial
+        };
+      }
+      return null;
+    };
+  }
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
@@ -73,7 +98,13 @@ export class SignInComponent implements OnInit, AfterViewInit {
   showSuccessMessage() {
     setTimeout(() => {
       this.successMessage = null;
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 6000); // 6000 milliseconds = 6 seconds
+  }
+
+  showErrorMessage() {
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 6000); // 6000 milliseconds = 6seconds
   }
   
   signIn() {
@@ -119,17 +150,20 @@ export class SignInComponent implements OnInit, AfterViewInit {
             if (error.status === 403) {
               this.errorMessage = 'Wait for Admin Approval';
             }
-            else if (error.status === 404) {
-              this.errorMessage = 'Invalid Credentials';
-            } else {
+            else if (error.status === 400 && error.error.message === 'Invalid Credentials') {
+              this.errorMessage = 'Email or Password Incorrect. Please try again later.';
+            }
+           else {
               console.error('Login failed', error);
               this.errorMessage = 'Email or Password Incorrect. Please try again later.';
             }
+            this.showErrorMessage(); // Call to disable error message
           }
         );
         console.log(email, password, this.recaptchaToken);
       } else {
         this.errorMessage =  ' Please confirm reCAPTCHA verification';
+        this.showErrorMessage(); // Call to disable error message
       }
     }
   }

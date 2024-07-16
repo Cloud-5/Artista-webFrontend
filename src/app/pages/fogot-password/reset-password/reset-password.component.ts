@@ -26,7 +26,12 @@ export class ResetPasswordComponent implements OnInit {
   showSuccessMessage() {
     setTimeout(() => {
       this.Message = null;
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 6000); // 6000 milliseconds = 6 seconds
+  }
+  showErrorMessage() {
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 6000); // 6000 milliseconds = 6 seconds
   }
   submitForm(): void {
     if (this.resetForm && this.resetForm.valid) {
@@ -37,13 +42,10 @@ export class ResetPasswordComponent implements OnInit {
           this.Message = 'Password reset link sent to your email address.';
           this.showSuccessMessage();
         },
-        error => {
+        (error: any) =>{
     
-          if (error.status === 404) {
             this.errorMessage = 'User not found. Please register or try a different email.';
-          } else {
-            this.errorMessage = 'An error occurred. Please try again later.';
-          }
+          this.showErrorMessage(); // Call to disable error message
         }
       );
     }

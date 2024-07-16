@@ -57,7 +57,11 @@ export class St03Component implements OnInit {
     });
   }
 
-  
+  showErrorMessage() {
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 6000); // 6000 milliseconds = 6 seconds
+  }
   submitArtistDetails() {
    
     const artistData = this.artistForm.value;
@@ -85,6 +89,7 @@ export class St03Component implements OnInit {
           console.error('Registered failed', error);
           this.errorMessage = 'An error occurred during signup';
         }
+        this.showErrorMessage(); // Call to disable error message
       }
     );
   }
