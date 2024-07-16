@@ -7,6 +7,14 @@
 .custom-button{
     margin-bottom: 20px;
     width: 30%;
-    font-weight: bold;
+    border-color: #047977;
+    background-color: #0f969c;
+    border-radius: 4px;
+    transition: transform 0.3s ease, color 0.3s ease; /* Added transform */
+}
 
+.custom-button:hover {
+  color: rgb(145, 222, 250);
+  transform: scale(1.1); /* Zoom-in effect */
+  background-color: #115d70;
 }

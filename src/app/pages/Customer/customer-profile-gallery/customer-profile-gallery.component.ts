@@ -104,5 +104,9 @@ export class CustomerProfileGalleryComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  onUnfollowing(){
+    
+  }
+
 }
 
