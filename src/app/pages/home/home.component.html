@@ -1,28 +1,32 @@
 
 <div class="main">
 
-   <!-- Navbar -->
   <div>
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top" data-bs-theme="dark">
       <div class="container-fluid">
-        <!-- Artista Logo -->
+      
         <img src="../../../assets/artista logo.jpg" alt="Artista Logo" class="custom-logo img-fluid" />
 
 
-         <!-- Search Bar -->
+       
     <form class="d-flex" (submit)="onSearchSubmit()">
-      <input class="form-control me-sm-2" type="search" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm">
-      <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+      <div class="xx d-flex">
+      <input class="form-control" type="search" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm">
+      <button class="btn btn-light" type="submit">Search</button>
+    </div>
 </form>
 
         <div class="d-flex">
-          <!-- <button type="button" class="btn btn-secondary btn-sm follow"  (click)="logout()"><strong>Log Out</strong></button> -->
-          <button type="button" class="sign-up-button" routerLink="/st01">Sign Up</button>
-          <button type="button" class="sign-up-button" routerLink="/login">Sign In</button>
+
+          <button type="button" class="btn btn-primary" routerLink="/st01">Sign Up</button>
+          <button type="button" class="btn btn-primary" routerLink="/login">Sign In</button>
         </div>
       </div>
     </nav>
-  </div>
+  </div> 
+
+
+  
   <div>
 
     <section class="banner banner-light" style="background-image: url(assets/bg-banner.jpg);">
@@ -55,12 +59,7 @@
     
   <div class="wrapper  row ">
     <div class="flex">
-    <!-- <div class="picture hide-mobile order-last">
-    <img alt="26_3.jpg" width="472" height="436" src="//s3.amazonaws.com/louvre.turningart.com/production/paperclip/website_placement_values/images/17//cta_image_desktop/26_3.jpg?1642004231">
-    </div>
-    <div class="picture hide-desktop mobile-edges">
-    <img alt="26_3.jpg" width="376" height="262" src="//s3.amazonaws.com/louvre.turningart.com/production/paperclip/website_placement_values/images/17//cta_image_mobile/26_3.jpg?1642004231">
-    </div> -->
+   
     <div class="text ">
     <h2>Our Mission</h2>
     <h3 >We believe in the power of art to create a more inspired world.</h3>
@@ -170,7 +169,6 @@
 </section>
 
 <br><br><br>
-  <!-- Display Trending Artists -->
   <div class="container">
   <div>
     <h1>Discover the Future of Creativity: Meet the Trendsetters in Digital Art!</h1>
@@ -195,7 +193,7 @@
   <br><br>
 
 
-  <!-- About Us -->
+
   <div>
     <h1>About Us </h1>
     <div style="display: flex; align-items: center;">
