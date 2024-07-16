@@ -16,7 +16,5 @@ export class ArtistServieService {
         return this.http.get(`${this.apiUrl}/`);
     }
 
-    getTrendingArtists(duration: number): Observable<any> {
-        return this.http.get(`${this.apiUrl}/trending?duration=${duration}`);
-    }
+  
 }
