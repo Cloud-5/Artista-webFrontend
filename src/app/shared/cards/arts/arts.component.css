@@ -181,3 +181,14 @@ body {
         font-size: 16px;
     }
 }
+
+.bi-heart{
+    color: rgb(255, 255, 255);
+}
+
+.bi-heart-fill{
+    color: rgb(8, 233, 233);
+    border: 5px;
+    border-color: #fff;
+    
+}

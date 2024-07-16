@@ -17,7 +17,7 @@ private apiurl: String = environment.apiUrl +'/user'
     console.log('data', data);
     return this.http.put<any>(`${this.apiUrl}/${userId}`, data);
   }
-  resetPassword( email: string,oldPassword: string,newPassword: string, confirmPassword: string): Observable<any> {
+  changePassword( email: string,oldPassword: string,newPassword: string, confirmPassword: string): Observable<any> {
     return this.http.post(`${this.apiurl}/changePassword`, {email,oldPassword,newPassword, confirmPassword });
   }
 }

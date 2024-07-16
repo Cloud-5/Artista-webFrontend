@@ -1,3 +1,4 @@
+<app-alert></app-alert>
 <div
   class="sticky-bar"
   [ngClass]="{ show: showStickyBar }"
@@ -167,7 +168,7 @@
             <i><span>by</span>&nbsp; {{ artworkDetails.artist }}</i>
           </h2>
           &nbsp;
-          <p class="body2">Category: {{ artworkDetails.category }}</p>
+          <p class="body2">Category: <span class="under" style="cursor: pointer;" (click)="searchCategory(artworkDetails.category_id)" >{{ artworkDetails.category }}</span> </p>
 
           <table>
             <tbody>
@@ -291,7 +292,7 @@
               >
                 {{ followButtonText }}
               </button>
-              <button class="btn message-btn" type="button">Message</button>
+              <button class="btn message-btn" type="button" (click)="messageArtist(artworkDetails.firebase_uid, artworkDetails.artist)" >Message</button>
             </div>
           </div>
         </div>

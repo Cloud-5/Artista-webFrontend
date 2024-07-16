@@ -147,7 +147,7 @@ export class EditCustomerProfileComponent implements OnInit {
       return;
     }
 
-    this.editCustomerProfileService.resetPassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
+    this.editCustomerProfileService.changePassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
       (response) => {
         console.log('Password changed successfully', response);
         // Optionally reset form fields or navigate to another page

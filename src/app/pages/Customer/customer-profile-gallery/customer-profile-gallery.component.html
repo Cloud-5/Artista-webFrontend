@@ -144,10 +144,10 @@
      <div class="right__col" style="width: 1100px; margin-left: 10px; margin-top: 30px;">
        <div class="customer-info" style="display: flex; align-items: center;">
          <h2 class="customer-name" style="margin: 0;">{{ CustomerData.fName }} {{ CustomerData.LName }}</h2>
-         <button class="datebtn" style="border-radius: 10px; font-size: 14px; margin-left: 600px; display: flex; align-items: center;">
-           <i class="bi bi-calendar-check" style="font-size: 20px; margin-right: 10px;"></i>
-           <b>Member Since:</b> {{ CustomerData.joined_date | date: 'yyyy-MM-dd' }}
-         </button>
+         <div class="datebtn" style="border-radius: 10px; font-size: 14px; margin-left: 600px; display: flex; align-items: center;">
+          <i class="bi bi-calendar-check" style="font-size: 20px; margin-right: 10px;"></i>
+          <b>Member Since: </b> {{ CustomerData.joined_date | date: "yyyy-MM-dd" }}
+        </div>
        </div>
        <p class="customer-location" style="font-weight: 200; margin-top: 10px; color: rgb(112, 112, 185);">
          <i class="bi bi-geo-alt-fill" style="font-size: 20px;"></i> {{ CustomerData.location }}
@@ -183,7 +183,7 @@
            <div class="tab-pane fade" id="following" role="tabpanel" style="width: 1100px">
              <nav class="navbar bg-body-tertiary">
                <div class="container-fluid" style="width: 100%;">
-                 <app-following-artists></app-following-artists>
+                 <app-following-artists (unfollowArtist)="onUnfollowing()"></app-following-artists>
                </div>
              </nav>
            </div>

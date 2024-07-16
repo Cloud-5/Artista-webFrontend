@@ -200,12 +200,12 @@
     <div class="right__col" style="width: 1100px; margin-left: 10px; margin-top: 30px;">
       <div class="artist-info" style="display: flex; align-items: center;">
         <h2 class="artist-name" style="margin: 0;">{{ artistData.fName }} {{ artistData.LName }}</h2>
-        <button class="datebtn" style="border-radius: 10px; font-size: 14px; margin-left: 600px; display: flex; align-items: center;">
+        <div class="datebtn" style="border-radius: 10px; font-size: 14px; margin-left: 500px; display: flex; align-items: center;">
           <i class="bi bi-calendar-check" style="font-size: 20px; margin-right: 10px;"></i>
-          <b>Member Since:</b> {{ artistData.joined_date | date: "yyyy-MM-dd" }}
-        </button>
+          <b>Member Since: </b> {{ artistData.joined_date | date: "yyyy-MM-dd" }}
+        </div>
       </div>
-      <p class="artist-location" style="font-weight: 200; margin-top: 10px;color: rgb(112, 112, 185);">
+      <p class="artist-location-profession-rating" style="font-weight: 200; margin-top: 10px;color: rgb(112, 112, 185);">
         <i class="bi bi-geo-alt-fill" style="font-size: 20px;"></i> {{ artistData.artist_location }}
       </p>
       <p class="artist-profession-rating-sincedate" style="margin-top: 10px; display: flex; align-items: center;">
@@ -213,13 +213,15 @@
         <span style="margin-left: 20px; display: flex; align-items: center; color: rgb(51, 203, 226);">
           <b>Rating :</b> {{ artistData.average_rating | number: '1.1-1'}}
           <i class="bi bi-star-fill" style="font-size: 20px; margin-left: 5px;"></i>
-          <span class="social-icons" style="margin-left: 30px; display: flex; align-items: center;">
-            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-twitter" style="font-size: 25px;"></i></a>
-            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-facebook" style="font-size: 25px;"></i></a>
-            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-instagram" style="font-size: 25px;"></i></a>
-            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-linkedin" style="font-size: 25px;"></i></a>
-            <a href="#" class="btn btn-link text-dark social-icon"><i class="bi bi-pinterest" style="font-size: 25px;"></i></a>
-          </span>
+          <div *ngIf="socialMediaLinks.length > 0" class="social-media-links">
+            <ul>
+              <li *ngFor="let link of socialMediaLinks" style="margin-left:8px ;">
+                <a [href]="link.account_url" target="_blank">
+                  <img [src]="link.logo_url" alt="{{ link.platform_name }}" style="width: 30px;"/>
+                </a>
+              </li>
+            </ul>
+          </div>
         </span>
       </p>
 
