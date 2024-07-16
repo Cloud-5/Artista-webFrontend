@@ -432,10 +432,7 @@ h1 > a {
   background-color: #444;
 }
 
-.form-control {
-  border: 2px solid #000;
-  border-radius: 5px;
-}
+
 
 .input-group-text {
   border: 2px solid #000;
@@ -474,7 +471,7 @@ h1 > a {
   background-color: rgba(255, 255, 255, 0.606); /* Transparent background */
   color: #000000; /* Text color */
   border: 2px solid #000; /* Black border */
-  border-radius: 0px; /* No border radius */
+  border-radius: 5px; /* No border radius */
   padding: 10px;
 }
 
@@ -521,4 +518,156 @@ select.input-area option {
 .artwork-type{
   padding: 0 10px;
 
+}
+
+/* buddhi */
+.artwork {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  align-items: center;
+  cursor: pointer;
+}
+
+.artwork::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 110%;
+  background: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  z-index: 1;
+}
+
+.artwork img {
+  max-height: 600px;
+  min-height: 500px;
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+.artwork-preview {
+  width: 100%;
+  height: auto;
+}
+.artwork1 {
+  width: 100%;
+  height: auto;
+}
+.likeCount-pubDate {
+  margin-top: 0.4125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+}
+.pub-date-style {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.body1 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.625rem;
+  color: #565656;
+}
+
+.body2 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.625rem;
+}
+.body3{
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.tag {
+  background-color: #0f969c;
+  letter-spacing: 1px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 200;
+  margin: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.tag:hover {
+  background-color: #0c6d72;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.625rem;
+
+  th {
+    text-align: left;
+    padding: 8px;
+    background-color: #f2f2f2;
+  }
+  td {
+    padding: 8px;
+    background-color: #e0e0e0;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+  }
+  td:hover {
+    background-color: #c0c0c0;
+    cursor: pointer;
+  }
+}
+
+.artwork-details {
+  margin-top: 2.5rem;
+}
+.header-art {
+  margin-bottom: 0.625rem;
+  margin-top: 1.25rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.563rem;
+  color: #150734;
+}
+.header-margin {
+  margin-top: 0 !important;
+}
+
+
+
+/*choose 2D button */
+
+
+.form-group select {
+  width: 100%; /* Ensure the select box takes the full width of its container */
+  max-width: 100%; /* Ensure it doesn't exceed the container's width */
+  white-space: nowrap; /* Prevent wrapping of the text */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis if the text overflows */
+  padding: 0;
+  padding-left: 10px; /* Add padding to accommodate the dropdown arrow */
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }

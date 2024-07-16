@@ -194,7 +194,7 @@
 
      <div class="profile">
 
-       <img routerLink="/artist/new-home" src="../../../../../assets/images/profile12.jpg" class="btn rounded-circle" width="80">
+       <img routerLink="/artist/new-home" [src]="userData.profile_photo_url || '../../../../../../../assets/images/profile2.png'" class="btn rounded-circle" width="80">
 
      </div>
 
@@ -240,7 +240,44 @@
 
 </div>
 <div class="row">
+  <!-- <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <img class="rounded-circle mt-5" [src]="userData.ProfilePhoto" height="90" width="90">
+    <span class="font-weight-bold">{{userData.fName + " " + userData.LName}}</span>
+    <span class="font-weight-bold">{{userData.profession}}</span>
+    <span class="text-black-50">{{userData.email}}</span>
+    <span>{{userData.location}}</span>
+  </div> -->
 
+
+  <div class="col-md-4">
+    <button
+            *ngIf="userData.ProfilePhoto"
+            (click)="removeExistingImage()"
+            class="btn btn-danger"
+            style="margin-top: 5px; margin-right: 10px"
+            type="button"
+          >profile_photo_url
+            Remove
+          </button>
+    <div class="mb-3" *ngIf="!userData.ProfilePhoto">
+      <label for="profile-image" class="form-label">Profile Image:</label>
+      <input
+        type="file"
+        class="form-control"
+        id="profile-image"
+        name="profile-image"
+        (change)="onFileSelected($event)"
+      />
+      <button
+            (click)="newImageUpload('Artist','profilePicture')"
+            class="btn btn-primary"
+            style="margin-top: 10px; margin-right: 10px"
+            type="button"
+          >
+            Upload Image
+          </button>
+    </div>
+  </div>
 
 </div>
 
@@ -416,13 +453,7 @@
 
 
 
-<!-- before -->
 
-
-<!-- edit-artist-profile.component.html -->
-<!-- edit-artist-profile.component.html -->
-<!-- edit-artist-profile.component.html -->
-<!-- edit-artist-profile.component.html -->
 <!-- <form [formGroup]="artistForm" >
 
 
