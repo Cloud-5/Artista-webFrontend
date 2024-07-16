@@ -33,4 +33,11 @@ export class UploadArtworksService {
   }
 
 
+
+  //from buddi part
+  getArtworkDetails(artworkId: string, userId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${artworkId}?userId=${userId}`);
+  }
+
+
 }

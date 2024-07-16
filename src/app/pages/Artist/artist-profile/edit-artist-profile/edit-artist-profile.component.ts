@@ -15,6 +15,10 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 })
 export class EditArtistProfileComponent implements OnInit {
   artistId: string = localStorage.getItem('user_id') || '';
+
+
+
+
   public updateDetails: any = {
     fName:'',
     LName:'',
@@ -34,7 +38,7 @@ export class EditArtistProfileComponent implements OnInit {
 
 
   userData: any = {}
-  userData2: any = {};
+
   profilePhoto: any;
   private socialAccounts: any[] = [];
   private rank:number = 0;
