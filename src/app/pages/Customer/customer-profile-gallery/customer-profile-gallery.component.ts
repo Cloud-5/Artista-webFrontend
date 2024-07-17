@@ -32,6 +32,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
   }
 
   getCustomerDetails(userId: string): void {
+    console.log(userId,'user idddddddd');
     this.customerService.getCustomerDetails(userId).subscribe(
       (data: any[]) => {
         this.CustomerData = data[0];
@@ -102,6 +103,10 @@ export class CustomerProfileGalleryComponent implements OnInit {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('admin_id');
     this.router.navigate(['/']);
+  }
+
+  onUnfollowing(){
+
   }
 
 }

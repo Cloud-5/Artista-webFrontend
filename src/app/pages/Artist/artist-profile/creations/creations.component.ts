@@ -11,11 +11,28 @@ import { Router } from '@angular/router';
 })
 export class CreationsComponent {
   @Input() artworks: any;
-  @Input() deleteArtwork: any;
+  // @Input() deleteArtwork: any;
   artistId: string = localStorage.getItem('user_id') || '';
   artwork_id:number = 0;
   artistRole: string = localStorage.getItem('role') || '';
-  constructor(private router: Router){}
+  constructor(private router: Router,private creation:CreationsService){}
+
+
+
+
+  deleteArtwork(artworkId: number): void {
+    if (confirm('Are you sure you want to mark this artwork as unavailable?')) {
+      this.creation.putArtworkAvailability(artworkId).subscribe(
+        response => {
+          console.log(response.message);
+          // Optionally update the UI to reflect the change
+        },
+        error => {
+          console.error('Error marking artwork as unavailable:', error);
+        }
+      );
+    }
+  }
 
 
 
@@ -38,8 +55,8 @@ export class CreationsComponent {
     this.router.navigate(['/preview', this.artworks.artwork_id]);
   }
   ngOnInit(): void {
-    console.log('this issssss artwork',this.artworks);
-    console.log('local storage artist(user)',this.artistRole);
+
+
   }
 
 

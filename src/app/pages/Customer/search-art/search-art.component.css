@@ -2,7 +2,7 @@
   margin-top: 20px;
 }
 
-.text-color {
+.theme-color {
   color: var(--body-text-color);
   font-size: 130%;
   font-weight: bold;
@@ -20,23 +20,6 @@
   padding: 1rem; /* Adjust padding as needed */
 }
 
-.btn {
-  background-color: #0F969C; /* Custom button background */
-  color: white; /* Custom button text color */
-  border: none;
-  border-radius: 10px; /* Rounded corners */
-  font-size: 14px; /* Font size */
-  font-weight: bold; /* Bold text */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 180px; /* Adjust width as needed */
-  padding-top: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-left: 30px;
-}
-
 .btnrx {
   background-color: #4b5358; /* Custom button background */
   color: white; /* Custom button text color */
@@ -47,13 +30,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px; /* Adjust width as needed */
-  padding-top: 20px;
+  width: 100% ; /* Full width */
+  padding-top: 10px;
   padding-bottom: 10px;
-}
-
-.btn .bi-filter {
-  font-size: 30px; /* Adjust this value to increase/decrease the icon size */
 }
 
 .results-container {
@@ -63,38 +42,25 @@
   margin: 20px 0;
 }
 
-.results-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
+.rounded-text {
+  display: inline-block;
+  padding: 5px 50px;
+  border: 1px solid black;
+  border-radius: 50px; /* Makes the border rounded */
+  text-align: center;
+  font-weight: 400;
+  background-color: #b6b6b6; /* Optional: add background color */
+  transition: background-color 0.3s ease; /* Optional: smooth background color transition on hover */
+}
+
+.rounded-text:hover {
+  background-color: #dad6d6; /* Optional: change background color on hover */
+}
+
+.found {
+  border: 1px solid #0F969C;
   border-radius: 5px;
-  cursor: pointer;
-}
-
-.suggested-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.tag-button {
-  background-color: #bdb7b7;
-  border: none;
-  border-radius: 20px;
   padding: 10px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.5s;
+  color: white;
+  background-color: #0F969C;
 }
-
-.tag-button:hover {
-  background-color: #d7d5d5;
-}
-
-.tag-button .remove-tag {
-  margin-left: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
-

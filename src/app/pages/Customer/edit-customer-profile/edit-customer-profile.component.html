@@ -145,37 +145,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <label for="email" class="form-label">Email:</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  required
-                  [(ngModel)]="customer.email"
-                  name="email"
-                  #emailInput="ngModel"
-                />
-                <div
-                  *ngIf="
-                    emailInput.invalid && (emailInput.dirty || emailInput.touched)
-                  "
-                  class="alert"
-                >
-                  <div
-                    *ngIf="emailInput.errors?.['required']"
-                    class="text-danger lead fs-6"
-                  >
-                    Email is required
-                  </div>
-                  <div
-                    *ngIf="emailInput.errors?.['email']"
-                    class="text-danger lead fs-6"
-                  >
-                    Please enter a valid email address
-                  </div>
-                </div>
-              </div>
               <div class="mb-3">
                 <label for="description" class="form-label">Description:</label>
                 <textarea
@@ -302,7 +271,7 @@
     </div>
   </form>
 
-  <div class ="changepswd" style="padding: 80px;">
+
   <!-- <form>
     <div class="form-section1" style="border: 1px solid #ccc; padding: 20px;
     border-radius: 5px;
@@ -352,7 +321,7 @@
       <button type="submit" class="btn btn-primary" style="margin-left:550px;">Change Password</button>
     </div>
   </form> -->
-
+  <div class ="changepswd" style="padding: 80px;">
   <form (ngSubmit)="changePassword()">
     <div class="form-section1" style="border: 1px solid #ccc; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
       <h2>Change Password</h2>
@@ -380,6 +349,6 @@
     </div>
   </form>
 
-  
+
 </div>
 </div>

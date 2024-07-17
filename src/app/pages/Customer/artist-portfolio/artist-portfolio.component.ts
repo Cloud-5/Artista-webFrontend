@@ -21,6 +21,8 @@ export class ArtistPortfolioComponent implements OnInit {
   followButtonText: string = "Follow";
   followButtonClass: string = "follow";
   rating: number = 0;
+  socialMediaLinks: any[] = [];
+  CurrentcustomerId: string = localStorage.getItem('user_id') || '';
 
   routeSub: Subscription | undefined;
 
@@ -45,14 +47,19 @@ export class ArtistPortfolioComponent implements OnInit {
       this.getArtistDetails(this.artistId);
       this.getArtistCreations(this.artistId);
 
+
     })
 
   }
 
   getArtistDetails(artistId: string): void {
-    this.artistPortfolioService.getArtistDetails(artistId).subscribe(
-      (data: any[]) => {
-        this.artistData = data[0];
+    console.log('customweeeeeeeeeee',this.CurrentcustomerId)
+    this.artistPortfolioService.getArtistDetails(artistId, this.CurrentcustomerId).subscribe(
+      (data: any) => {
+        console.log('artistData=======', data);
+        this.artistData = data.artistDetails[0];
+        this.socialMediaLinks = data.social;
+        console.log('socialMediaLinks', this.socialMediaLinks);
         this.isFollowing = this.artistData.is_following;
         this.updateFollowButton();
       },

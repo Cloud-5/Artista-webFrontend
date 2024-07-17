@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UploadArtworksService } from './upload-artworks.service';
 import { ImageUploadService } from '../../../../shared/services/image-upload.service';
+import { ArtworkPreviewService } from '../../../artwork-preview/artwork-preview.service';
 
 @Component({
   selector: 'app-upload-artworks',
@@ -20,7 +21,98 @@ export class UploadArtworksComponent {
   isUploading2D: boolean = false;
   isUploading3D: boolean = false;
 
+  //buddi previewArtwork
+  is3D: boolean = false;
+  artworkDetails: any = {};
+  imageUrl: string = '';
+  thumbnail: string = '';
+  customer_profile_photo: string = '';
+  tags: string = '';
+  tagsArray: string[] = [];
+  isFavorite: boolean = false;
+  showStickyBar: boolean = false;
+  isFollowing: boolean = false;
+  followButtonText: string = '';
+  followButtonClass: string = '';
+  isAddedToGallery: boolean = false;
+  addToGalleryButtonText: string = 'Add to Gallery';
+  addToGalleryButtonClass: string = 'add-to-gallery';
+  bg:string='';
 
+
+  file1SizeError = false;
+  file2SizeError = false;
+  folderSizeError = false;
+  titlePatternError = false;
+  descriptionLengthError = false;
+  isUploadingFolder: boolean = false;
+  uploadProgress: number = 0;
+
+
+
+  constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService , private artworkService: ArtworkPreviewService) {}
+
+
+    validateForm(type: string) {
+    if (type === '2d') {
+      this.titlePatternError = !/^[a-zA-Z\s]*$/.test(this.new2DArtwork.title);
+      this.descriptionLengthError = this.new2DArtwork.description.length > 500;
+    } else if (type === '3d') {
+      this.titlePatternError = !/^[a-zA-Z\s]*$/.test(this.new3DArtwork.title);
+      this.descriptionLengthError = this.new3DArtwork.description.length > 500;
+    }
+  }
+
+  formIsValid(type: string): boolean {
+    if (type === '2d') {
+      return !this.file1SizeError && !this.titlePatternError && !this.descriptionLengthError;
+    } else if (type === '3d') {
+      return !this.file1SizeError && !this.file2SizeError && !this.folderSizeError && !this.titlePatternError && !this.descriptionLengthError;
+    }
+    return false;
+  }
+
+
+
+  loadArtworkDetails(artworkId: string, userId: string): void {
+    this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
+      (data: any) => {
+        this.artworkDetails = data.artworkDetails[0];
+        console.log(this.artworkDetails);
+        this.imageUrl = this.artworkDetails.url_link;
+        this.bg = this.artworkDetails.background;
+        this.thumbnail = this.artworkDetails.thumbnail;
+        this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
+
+        if(this.artworkDetails.category === '3D Modeling'){
+          this.is3D = true;
+        } else {
+          this.is3D = false;
+        }
+        if (this.artworkDetails.tags) {
+          this.tags = this.artworkDetails.tags;
+          this.tagsArray = this.tags.split(',');
+        } else {
+          this.tags = '';
+          this.tagsArray = [];
+        }
+        this.isFavorite = this.artworkDetails.is_liked;
+        this.isFollowing = this.artworkDetails.is_following;
+        this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
+
+      },
+      (error) => {
+        console.error('Error fetching artwork details:', error);
+      }
+    );
+  }
+
+
+
+
+
+
+  //my ts files
 
   new3DArtwork: any = {
     title: '',
@@ -38,7 +130,7 @@ export class UploadArtworksComponent {
     original_url: ''
   };
 
-  constructor(private uploadArtworksService: UploadArtworksService,private imageUploadService: ImageUploadService) {}
+
 
   ngOnInit(): void {
 
@@ -91,7 +183,24 @@ export class UploadArtworksComponent {
       this.files = Array.from(folder);
     }
   }
+
+ 
+
+
   newFolderUpload(folder: string, uploadType: string) {
+
+    this.isUploadingFolder = true;
+    this.uploadProgress = 0;
+
+    const uploadInterval = setInterval(() => {
+      if (this.uploadProgress < 100) {
+        this.uploadProgress += 10; // increment progress
+      } else {
+        clearInterval(uploadInterval);
+        this.isUploadingFolder = false; // hide loader when upload is complete
+      }
+    }, 300); // update every 300ms
+
     const subfolderName = `Subfolder_${Date.now()}`;
     this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
       if (res.gltfFile) {
@@ -144,8 +253,8 @@ export class UploadArtworksComponent {
 
 
   thumb: File | undefined;
+  bg1: File | undefined;
   thumbUrl: string = '';
-  bg: File | undefined;
   bgUrl: string = '';
 
   new2DArtwork:any={
@@ -191,7 +300,7 @@ export class UploadArtworksComponent {
   }
   onFileSelected2(event: any) {
     const FILE = (event.target as HTMLInputElement).files?.[0];
-    this.bg = FILE;
+    this.bg1 = FILE;
   }
 
   onthumbUpload(folder: string, uploadType: string) {
@@ -211,6 +320,7 @@ export class UploadArtworksComponent {
       });
   }
 
+
   removeThumb() {
     if (this.thumbUrl) {
       const key = this.thumbUrl.split('/').pop();
@@ -229,7 +339,7 @@ export class UploadArtworksComponent {
 
   onbgUpload(folder: string, uploadType: string) {
     const imageForm = new FormData();
-    imageForm.append('image', this.bg as Blob);
+    imageForm.append('image', this.bg1 as Blob);
     this.imageUploadService.imageUpload(imageForm, folder, uploadType).subscribe(
       (res: any) => {
         this.bgUrl = res.image.location;

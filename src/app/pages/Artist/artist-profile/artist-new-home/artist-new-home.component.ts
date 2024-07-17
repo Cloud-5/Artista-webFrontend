@@ -1,6 +1,7 @@
 import { ArtistCreationsService } from './../artist-creations/artist-creations.service';
 import { Component, OnInit,HostListener } from '@angular/core';
 import { ArtistNewHomeServiceService } from './artist-new-home-service.service';
+import { EditArtistProfileService } from '../edit-artist-profile/edit-artist-profile.service';
 
 @Component({
   selector: 'app-artist-new-home',
@@ -15,13 +16,16 @@ export class ArtistNewHomeComponent implements OnInit {
   router: any;
   public artworksCount: number = 0;
   private rank:number = 0;
+  numberOfFollowers:number=0;
   artistId: string = localStorage.getItem('user_id') || '';
   loading = false;
   // artistsData: Artist[] = [];
 
 
 
-  constructor(private artistServices: ArtistNewHomeServiceService,ArtistCreationsService:ArtistCreationsService) { }
+  constructor(private artistServices: ArtistNewHomeServiceService,
+                      ArtistCreationsService:ArtistCreationsService,
+                      artistEdit:EditArtistProfileService                       ) { }
 
 
   changeRating(newRating: number): void {
@@ -42,9 +46,10 @@ export class ArtistNewHomeComponent implements OnInit {
   loadArtistData(): void {
     this.artistServices.getArtistDetail(this.artistId).subscribe((data: any) => {
       this.userData = data.artistData[0];
+      this.numberOfFollowers=this.userData.NumberOfFollowers;
       this.socialAccounts = data.socialAccounts;
       this.rank = data.rank.featured;
-      this.userData.AverageRating=4.5;
+      this.userData.AverageRating=data.artistData[0];
 
       //this.artworks.reverse();
     })
@@ -83,15 +88,14 @@ export class ArtistNewHomeComponent implements OnInit {
   loadArtworksCount(): void {
     this.artistServices.getArtworksCountForArtist(this.artistId).subscribe((data: any) => {
       this.artworksCount = data.count;
-      console.log("Artworks Count: ", data.count);
     });
   }
 
-  deleteArtwork(artId: number): void {
-    this.artistServices.deleteArtwork(artId).subscribe(() => {
-      this.loadArtworks();
-    })
-  }
+  // deleteArtwork(artId: number): void {
+  //   this.artistServices.deleteArtwork(artId).subscribe(() => {
+  //     this.loadArtworks();
+  //   })
+  // }
 
   updateArtwork(artId: number, artwork: any): void {
     this.artistServices.updateArtwork(artId, artwork).subscribe(() => {
@@ -99,17 +103,7 @@ export class ArtistNewHomeComponent implements OnInit {
     })
   }
 
-  // artsData = [
-  //   { artImgUrl: '../assets/imgs/creations (1).jpeg', artworkName: 'Mystic Mountains',purchaseCount:2, price: 150,likeCount: 2350 ,purchased:1},
-  //   { artImgUrl: '../assets/imgs/3DIMG.jpg', artworkName: 'Cosmic Dream', price: 220, purchaseCount:2, likeCount: 4100,purchased:1 },
-  //   { artImgUrl: '../assets/imgs/creations (4).jpeg', artworkName: 'Enchanted Forest', price: 180, purchaseCount:2, likeCount: 3120,purchased:1 },
-  //   { artImgUrl: '../assets/imgs/creations (3).jpeg', artworkName: 'Neon Nights', price: 200, purchaseCount:2, likeCount: 2750,purchased:1 },
-  //   { artImgUrl: '../assets/imgs/creations (2).jpeg', artworkName: 'Pixel Pioneers', price: 120, purchaseCount:2, likeCount: 1980 ,purchased:1},
-  //   { artImgUrl: '../assets/imgs/motionArt.png', artworkName: 'Eternal Waves', price: 250, purchaseCount:2, likeCount: 4200 ,purchased:1},
-  //   { artImgUrl: '../assets/imgs/generativeArts.jpg', artworkName: 'Digital Eden', price: 190, purchaseCount:2, likeCount: 3600,purchased:1 },
-  //   { artImgUrl: '../assets/imgs/graphicDesign.jpg', artworkName: 'Cityscape Symphony', price: 170,purchaseCount:2,  likeCount: 2900,purchased:1 },
-  //   { artImgUrl: '../assets/imgs/creations (7).jpeg', artworkName: 'Galactic Groove', price: 260, purchaseCount:2, likeCount: 4400,purchased:1 },
-  // ];
+
 
 
   @HostListener('window:scroll', ['$event'])

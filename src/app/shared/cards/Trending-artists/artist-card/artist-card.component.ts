@@ -26,11 +26,5 @@ export class ArtistCardComponent implements OnInit{
       return (followerCount / 1000000).toFixed(1) + 'M';
     }
   }
-  // messageArtist(firebase_uid: string, artistName: string): void {
-  //   // Save the firebase_uid to local storage
-  //   localStorage.setItem('artistFirebaseUid', firebase_uid);
-  //   localStorage.setItem('artistName', artistName);
-  //   // Navigate to the chat route
-  //   this.router.navigate(['/chat']);
-  // }
+
 }
