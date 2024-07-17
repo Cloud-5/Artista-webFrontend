@@ -16,12 +16,10 @@ a {
   text-decoration: none;
 }
 
-.button-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.edit-profile-btn {
+/* Button Styles */
+.edit-profile-btn,
+.delete-btn,
+.logout-btn {
   background-color: #0052cc; /* Blue background */
   color: white; /* White text */
   border: none;
@@ -33,14 +31,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px; /* Adjust width as needed */
-  margin-top: 80px;
-  margin-left: 50px;
+  width:200px;
 }
 
-.edit-profile-btn .bi {
-  margin-right: 10px; /* Space between icon and text */
-  font-size: 14px; /* Adjust icon size if needed */
+.edit-profile-btn {
+  background-color: #0052cc; /* Blue background */
+  margin-top: 60px;
+  margin-left: 60px;
+  margin-right: 50px;
 }
 
 .edit-profile-btn:hover {
@@ -49,24 +47,8 @@ a {
 
 .delete-btn {
   background-color: #6c757d; /* Grey background */
-  color: white; /* White text */
-  border: none;
-  border-radius: 10px; /* Rounded corners */
-  padding: 10px 20px; /* Padding for size */
-  font-size: 14px; /* Font size */
-  font-weight: bold; /* Bold text */
-  cursor: pointer; /* Pointer cursor on hover */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px; /* Adjust width as needed */
-  margin-top: 20px;
   margin-left: 50px;
-}
-
-.delete-btn .bi {
-  margin-right: 10px; /* Space between icon and text */
-  font-size: 14px; /* Adjust icon size if needed */
+  margin-top: 50px;
 }
 
 .delete-btn:hover {
@@ -74,30 +56,37 @@ a {
 }
 
 .logout-btn {
-  background-color: #0F969C; /* Red background */
-  color: white; /* White text */
-  border: none;
-  border-radius: 10px; /* Rounded corners */
-  padding: 10px 20px; /* Padding for size */
-  font-size: 14px; /* Font size */
-  font-weight: bold; /* Bold text */
-  cursor: pointer; /* Pointer cursor on hover */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px; /* Adjust width as needed */
-  margin-top: 5px;
-  margin-right: 0 auto;
+  background-color: #0F969C; /* Teal background */
   margin-left: 50px;
+  margin-top: 5px;
 }
 
+.logout-btn:hover {
+  background-color: #0d8288; /* Darker teal on hover */
+}
+
+.edit-profile-btn .bi,
+.delete-btn .bi,
 .logout-btn .bi {
   margin-right: 10px; /* Space between icon and text */
   font-size: 14px; /* Adjust icon size if needed */
 }
 
-.logout-btn:hover {
-  background-color: #0F969C; /* Darker red on hover */
+/* Flexbox Container for Buttons */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .edit-profile-btn,
+  .delete-btn,
+  .logout-btn {
+    width: 100%; /* Full width on small screens */
+  }
 }
 
 .header__wrapper .cols__container .left__col {
@@ -206,5 +195,20 @@ a {
 }
 
 .tab-content {
-  padding-top: 20px;
+  padding-top: 10px;
+}
+.Gallery {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.Gallery::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Hide scrollbar for other browsers */
+.Gallery {
+  scrollbar-width: none; /* Firefox */
 }

@@ -12,6 +12,8 @@ import { ImageUploadService } from '../../../shared/services/image-upload.servic
 export class EditCustomerProfileComponent implements OnInit {
 
   initialCustomerData: any = {}; // To store the initial customer data
+emailInput: any;
+confirmPasswordInput: any;
 
   constructor(
     private editCustomerProfileService: EditCustomerProfileService,
@@ -146,10 +148,12 @@ export class EditCustomerProfileComponent implements OnInit {
     this.editCustomerProfileService.changePassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
       (response) => {
         console.log('Password changed successfully', response);
+        alert('Password changed successfully!');
         // Optionally reset form fields or navigate to another page
       },
       (error) => {
         console.error('Error changing password', error);
+        alert('Error changing password. Please try again.');
       }
     );
   }
