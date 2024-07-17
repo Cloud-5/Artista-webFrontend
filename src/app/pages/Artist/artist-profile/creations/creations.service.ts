@@ -25,5 +25,10 @@ export class CreationsService {
   updateArtwork(artId:number,artwork:any){
     return this.http.put(`${this.apiUrl}/artwork/${artId}`,artwork);
   }
+  putArtworkAvailability(artId:number):Observable<any>{
+    // return this.http.put(`${this.apiUrl}/artist-edit/artwork-availability/${artId}`)
+    return this.http.put(`${this.apiUrl}/artist-edit/artwork-availability/${artId}`,artId);
+
+  }
 
 }

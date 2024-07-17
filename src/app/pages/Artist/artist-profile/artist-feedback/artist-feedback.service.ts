@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArtistFeedbackService {
-  private apiUrl = 'http://localhost:3000'; // Update with your backend API URL
-
+  private apiUrl: string = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   getFeedbackForArtist(artistId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/artist-feedback/${artistId}`);
   }
 
-  deleteFeedback(feedbackId: number, artistId: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/artist-feedback/${feedbackId}`);
+  getFeedbacks(artistId:string):Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/artist-feedback/${artistId}`)
+
   }
+
 }
