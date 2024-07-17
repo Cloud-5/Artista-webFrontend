@@ -35,6 +35,7 @@ a {
   justify-content: center;
   width: 200px; /* Adjust width as needed */
   margin-top: 80px;
+  margin-left: 50px;
 }
 
 .edit-profile-btn .bi {
@@ -59,7 +60,8 @@ a {
   align-items: center;
   justify-content: center;
   width: 200px; /* Adjust width as needed */
-  margin-top: 5px;
+  margin-top: 20px;
+  margin-left: 50px;
 }
 
 .delete-btn .bi {
@@ -86,6 +88,7 @@ a {
   width: 200px; /* Adjust width as needed */
   margin-top: 5px;
   margin-right: 0 auto;
+  margin-left: 50px;
 }
 
 .logout-btn .bi {

@@ -58,11 +58,9 @@ export class EditCustomerProfileComponent implements OnInit {
         location: this.customer.location,
         phone: this.customer.phone,
       };
-      console.log('customerDetails', customerDetails);  
+      console.log('customerDetailsSSSSSSSSSSSSSSSSSSSS', customerDetails);
 
-      this.editCustomerProfileService
-        .EditCustomerProfile(this.editingCustomer, customerDetails)
-        .subscribe(
+      this.editCustomerProfileService.EditCustomerProfile(this.editingCustomer, customerDetails).subscribe(
           () => {
             alert('Profile saved successfully!');
           },
