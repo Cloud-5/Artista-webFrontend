@@ -55,12 +55,10 @@ export class EditCustomerProfileComponent implements OnInit {
         firstName: this.customer.fName,
         lastName: this.customer.LName,
         description: this.customer.description,
-        email: this.customer.email,
-        newPassword: this.customer.newPassword,
         location: this.customer.location,
         phone: this.customer.phone,
       };
-      console.log('customerDetails', customerDetails);
+      console.log('customerDetails', customerDetails);  
 
       this.editCustomerProfileService
         .EditCustomerProfile(this.editingCustomer, customerDetails)

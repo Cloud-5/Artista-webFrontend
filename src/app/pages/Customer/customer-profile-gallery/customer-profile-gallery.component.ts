@@ -32,6 +32,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
   }
 
   getCustomerDetails(userId: string): void {
+    console.log(userId,'user idddddddd');
     this.customerService.getCustomerDetails(userId).subscribe(
       (data: any[]) => {
         this.CustomerData = data[0];
@@ -105,7 +106,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
   }
 
   onUnfollowing(){
-    
+
   }
 
 }

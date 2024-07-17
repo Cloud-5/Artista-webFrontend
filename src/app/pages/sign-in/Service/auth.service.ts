@@ -23,10 +23,6 @@ checkPreferences(uid: string): Observable<any> {
 }
 
 
-googleLogin(idToken: string) {
-  console.log('idToken', idToken)
-  return this.http.post<any>(`${this.apiUrl}/google-login`, { idToken });
-}
 }
 
 
