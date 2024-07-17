@@ -31,9 +31,9 @@ private apiurl: String = environment.apiUrl +'/user'
     console.log('artistId', artistId);
     return this.http.get(`${this.apiUrl}/artist-new-home/${artistId}`);
   }
-  getSocialAccounts(artistId: string,platformId:number): Observable<any> {
-    console.log('artistId', artistId);
-    return this.http.get(`${this.apiUrl}/artist-edit/${artistId}/social-media/${platformId}`);
+  getSocialAccounts(artistId: string): Observable<any> {
+    console.log('artistId in service', artistId);
+    return this.http.get(`${this.apiUrl}/artist-edit/social-accounts/${artistId}`);
 
   }
 
