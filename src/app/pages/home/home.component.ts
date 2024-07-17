@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   }
 
   loadArtistData(): void {
+   
     this.ArtistServieService.getArtist().subscribe(
       (data: any[]) => {
         console.log(data);
