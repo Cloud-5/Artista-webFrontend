@@ -12,8 +12,9 @@ export class ArtistNewHomeServiceService {
 
   constructor(private http: HttpClient) { }
 
+
+
   getArtistDetail(artistId: string): Observable<any> {
-    console.log('artistId', artistId);
     return this.http.get(`${this.apiUrl}/artist-new-home/${artistId}`);
   }
 

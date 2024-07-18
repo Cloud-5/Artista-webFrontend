@@ -88,7 +88,7 @@ export class ArtsComponent {
     this.cartItemService.getTotalLikes(this.art.artwork_id)
       .subscribe(
         response => {
-          this.art.total_likes = response.total_likes || 0; // Update total likes count for the artwork
+          this.art.total_likes = response.total_likes ; // Update total likes count for the artwork
         },
         error => {
           console.error('Error fetching total likes:', error);

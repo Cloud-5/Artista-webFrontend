@@ -1,5 +1,5 @@
 import { ImageUploadService } from './../../../../shared/services/image-upload.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { EditArtistProfileService } from './edit-artist-profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,41 +11,49 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 @Component({
   selector: 'app-edit-artist-profile',
   templateUrl: './edit-artist-profile.component.html',
-  styleUrls: ['./edit-artist-profile.component.css']
+  styleUrls: ['./edit-artist-profile.component.css'],
 })
 export class EditArtistProfileComponent implements OnInit {
-  artistId: string = localStorage.getItem('user_id') || '';
-
-
-
 
   public updateDetails: any = {
-    fName:'',
-    LName:'',
-    location:'',
-    description:'',
-    profile_photo_url:'',
-    profession:'',
-
-      month: '',
-      day: '',
-      year: ''
+    fName: '',
+    LName: '',
+    location: '',
+    description: '',
+    profile_photo_url: '',
+    banner_img_url:'',
+    profession: '',
+    month: '',
+    day: '',
+    year: '',
+    phone:'',
+    dob:'',
 
   };
 
   days: number[] = Array.from({ length: 31 }, (v, k) => k + 1);
-  years: number[] = Array.from({ length: 101 }, (v, k) => new Date().getFullYear() - k);
+  years: number[] = Array.from(
+    { length: 101 },
+    (v, k) => new Date().getFullYear() - k
+  );
 
-
-  userData: any = {}
+  userData: any = {};
 
   profilePhoto: any;
-  private socialAccounts: any[] = [];
-  private rank:number = 0;
-   socialMediaPlatforms: any[] = [];
-   socialMediaLinks: { [key: number]: string } = {};
+  socialAccounts: any[] = [];
+  private rank: number = 0;
+  socialMediaPlatforms: any[] = [];
+  socialMediaLinks: { [key: number]: string } = {};
 
-  months: { name: string, value: number }[] = [
+
+  imageObj: File | undefined;
+  bannerImageObj: File | undefined;
+
+  @ViewChild('profileInput') profileInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('bannerInput') bannerInput!: ElementRef<HTMLInputElement>;
+
+
+  months: { name: string; value: number }[] = [
     { name: 'January', value: 1 },
     { name: 'February', value: 2 },
     { name: 'March', value: 3 },
@@ -57,7 +65,7 @@ export class EditArtistProfileComponent implements OnInit {
     { name: 'September', value: 9 },
     { name: 'October', value: 10 },
     { name: 'November', value: 11 },
-    { name: 'December', value: 12 }
+    { name: 'December', value: 12 },
   ];
 
   email: string = '';
@@ -65,142 +73,299 @@ export class EditArtistProfileComponent implements OnInit {
   newPassword: string = '';
   confirmPassword: string = '';
 
-  public userId:string =this.artistId;
-
-
+  public userId: string = ''
 
   public countries: string[] = [
-    'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan',
-    'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi',
-    'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada', 'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros', 'Congo, Democratic Republic of the', 'Congo, Republic of the', 'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic',
-    'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'East Timor (Timor-Leste)', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia',
-    'Fiji', 'Finland', 'France',
-    'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana',
-    'Haiti', 'Honduras', 'Hungary',
-    'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy',
-    'Jamaica', 'Japan', 'Jordan',
-    'Kazakhstan', 'Kenya', 'Kiribati', 'Korea, North', 'Korea, South', 'Kosovo', 'Kuwait', 'Kyrgyzstan',
-    'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg',
-    'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico', 'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar (Burma)',
-    'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Macedonia', 'Norway',
+    'Afghanistan',
+    'Albania',
+    'Algeria',
+    'Andorra',
+    'Angola',
+    'Antigua and Barbuda',
+    'Argentina',
+    'Armenia',
+    'Australia',
+    'Austria',
+    'Azerbaijan',
+    'Bahamas',
+    'Bahrain',
+    'Bangladesh',
+    'Barbados',
+    'Belarus',
+    'Belgium',
+    'Belize',
+    'Benin',
+    'Bhutan',
+    'Bolivia',
+    'Bosnia and Herzegovina',
+    'Botswana',
+    'Brazil',
+    'Brunei',
+    'Bulgaria',
+    'Burkina Faso',
+    'Burundi',
+    'Cabo Verde',
+    'Cambodia',
+    'Cameroon',
+    'Canada',
+    'Central African Republic',
+    'Chad',
+    'Chile',
+    'China',
+    'Colombia',
+    'Comoros',
+    'Congo, Democratic Republic of the',
+    'Congo, Republic of the',
+    'Costa Rica',
+    'Croatia',
+    'Cuba',
+    'Cyprus',
+    'Czech Republic',
+    'Denmark',
+    'Djibouti',
+    'Dominica',
+    'Dominican Republic',
+    'East Timor (Timor-Leste)',
+    'Ecuador',
+    'Egypt',
+    'El Salvador',
+    'Equatorial Guinea',
+    'Eritrea',
+    'Estonia',
+    'Eswatini',
+    'Ethiopia',
+    'Fiji',
+    'Finland',
+    'France',
+    'Gabon',
+    'Gambia',
+    'Georgia',
+    'Germany',
+    'Ghana',
+    'Greece',
+    'Grenada',
+    'Guatemala',
+    'Guinea',
+    'Guinea-Bissau',
+    'Guyana',
+    'Haiti',
+    'Honduras',
+    'Hungary',
+    'Iceland',
+    'India',
+    'Indonesia',
+    'Iran',
+    'Iraq',
+    'Ireland',
+    'Israel',
+    'Italy',
+    'Jamaica',
+    'Japan',
+    'Jordan',
+    'Kazakhstan',
+    'Kenya',
+    'Kiribati',
+    'Korea, North',
+    'Korea, South',
+    'Kosovo',
+    'Kuwait',
+    'Kyrgyzstan',
+    'Laos',
+    'Latvia',
+    'Lebanon',
+    'Lesotho',
+    'Liberia',
+    'Libya',
+    'Liechtenstein',
+    'Lithuania',
+    'Luxembourg',
+    'Madagascar',
+    'Malawi',
+    'Malaysia',
+    'Maldives',
+    'Mali',
+    'Malta',
+    'Marshall Islands',
+    'Mauritania',
+    'Mauritius',
+    'Mexico',
+    'Micronesia',
+    'Moldova',
+    'Monaco',
+    'Mongolia',
+    'Montenegro',
+    'Morocco',
+    'Mozambique',
+    'Myanmar (Burma)',
+    'Namibia',
+    'Nauru',
+    'Nepal',
+    'Netherlands',
+    'New Zealand',
+    'Nicaragua',
+    'Niger',
+    'Nigeria',
+    'North Macedonia',
+    'Norway',
     'Oman',
-    'Pakistan', 'Palau', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal',
+    'Pakistan',
+    'Palau',
+    'Panama',
+    'Papua New Guinea',
+    'Paraguay',
+    'Peru',
+    'Philippines',
+    'Poland',
+    'Portugal',
     'Qatar',
-    'Romania', 'Russia', 'Rwanda',
-    'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa', 'Spain', 'Sri Lanka', 'Sudan', 'Sudan, South', 'Suriname', 'Sweden', 'Switzerland', 'Syria',
-    'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Tuvalu',
-    'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan',
-    'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam',
+    'Romania',
+    'Russia',
+    'Rwanda',
+    'Saint Kitts and Nevis',
+    'Saint Lucia',
+    'Saint Vincent and the Grenadines',
+    'Samoa',
+    'San Marino',
+    'Sao Tome and Principe',
+    'Saudi Arabia',
+    'Senegal',
+    'Serbia',
+    'Seychelles',
+    'Sierra Leone',
+    'Singapore',
+    'Slovakia',
+    'Slovenia',
+    'Solomon Islands',
+    'Somalia',
+    'South Africa',
+    'Spain',
+    'Sri Lanka',
+    'Sudan',
+    'Sudan, South',
+    'Suriname',
+    'Sweden',
+    'Switzerland',
+    'Syria',
+    'Taiwan',
+    'Tajikistan',
+    'Tanzania',
+    'Thailand',
+    'Togo',
+    'Tonga',
+    'Trinidad and Tobago',
+    'Tunisia',
+    'Turkey',
+    'Turkmenistan',
+    'Tuvalu',
+    'Uganda',
+    'Ukraine',
+    'United Arab Emirates',
+    'United Kingdom',
+    'United States',
+    'Uruguay',
+    'Uzbekistan',
+    'Vanuatu',
+    'Vatican City',
+    'Venezuela',
+    'Vietnam',
     'Yemen',
-    'Zambia', 'Zimbabwe'
+    'Zambia',
+    'Zimbabwe',
   ];
 
   routeSub: Subscription | undefined;
 
-
-  constructor(private artistService: EditArtistProfileService,
-    private ImageUploadService:ImageUploadService, private route: ActivatedRoute,
-    private artist:ArtistNewHomeServiceService,private artistServices: ArtistNewHomeServiceService
-  , private fb: FormBuilder) { }
+  constructor(
+    private artistService: EditArtistProfileService,
+    private ImageUploadService: ImageUploadService,
+    private route: ActivatedRoute,
+    private artist: ArtistNewHomeServiceService,
+    private artisNewHometServices: ArtistNewHomeServiceService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-
-    console.log('userId',this.userId)
-    this.routeSub = this.route.params.subscribe(params => {
+    console.log('userId', this.userId);
+    this.routeSub = this.route.params.subscribe((params) => {
       this.userId = params['userId'];
       this.loadArtistData(this.userId);
-      console.log('LogArtistDataaaaaaaaaaaaaaaaaaa',this.userId)
+      console.log('LogArtistDataaaaaaaaaaaaaaaaaaa', this.userId);
       this.getSocialMediaPlatforms();
+      this.getSocialAccounts();
+    });
+  }
+
+  getSocialAccounts():void{
+    // console.log('artist in TSSSSSSSSSSSSSSS', this.userId)
+    this.artistService.getSocialAccounts(this.userId).subscribe((data:any)=>{
+      this.socialAccounts=data;
+      console.log('Social eccountsssssss',this.socialAccounts);
+      console.log('Social eccountsssssss',this.socialAccounts[0]);
+
 
     });
 
   }
 
-
-   getSocialMediaPlatforms():void{
-    this.artistService.getSocialMediaPlatforms().subscribe((data:any)=>{
-      this.socialMediaPlatforms=data;
-       console.log('social media  platforms',data);
+  getSocialMediaPlatforms(): void {
+    this.artistService.getSocialMediaPlatforms().subscribe((data: any) => {
+      this.socialMediaPlatforms = data;
+      console.log('social media  platforms', data);
     });
-   }
+  }
 
-
-
-   updateSocialMediaLink(platformId: number): void {
+  updateSocialMediaLink(platformId: number): void {
     const accountUrl = this.socialMediaLinks[platformId];
-    this.artistService.updateSocialMediaLink(this.artistId, platformId, accountUrl).subscribe((response: any) => {
-      console.log(response.message);
-    });
+    this.artistService
+      .updateSocialMediaLink(this.userId, platformId, accountUrl)
+      .subscribe((response: any) => {
+        console.log(response.message);
+      });
   }
 
-  loadArtistData(userId:string): void {
+  loadArtistData(userId: string): void {
     this.artist.getArtistDetail(userId).subscribe((data: any) => {
       this.userData = data.artistData[0];
-      console.log('data',this.userData)
+      // console.log('Userdataffffffffffffffffffffffff', this.userData);
       this.updateDetails.fName = this.userData.FName;
       this.updateDetails.LName = this.userData.LName;
-      this.updateDetails.location = this.userData.location;
-      this.updateDetails.description = this.userData.description;
-      this.updateDetails.profession = this.userData.profession;
-      this.updateDetails.profile_photo_url = this.userData.profile_photo_url;
+      this.updateDetails.location = this.userData.Location;
+      this.updateDetails.description = this.userData.Description;
+      this.updateDetails.profession = this.userData.Profession;
+      this.updateDetails.profile_photo_url = this.userData.ProfilePhoto;
+      this.updateDetails.banner_img_url = this.userData.banner_img_url;
+      this.updateDetails.dob= this.userData.dob;
 
-    })
-    // this.artistService.getArtistDetail(userId).subscribe((data: any) => {
-    //   this.userData = data;
-    //   this.updateDetails.fName = this.userData.fName;
-    //   this.updateDetails.LName = this.userData.LName;
-    //   this.updateDetails.location = this.userData.location;
-    //   this.updateDetails.description = this.userData.description;
-    //   this.updateDetails.profession = this.userData.profession;
-    //   this.updateDetails.profile_photo_url = this.userData.profile_photo_url;
-    // });
+    });
+    console.log('USER DATA', this.userData);
   }
-
-
 
   updateProfile(): void {
-    console.log('data',this.userData);
-    this.artistService.updateArtistProfile(this.artistId, this.updateDetails).subscribe((response: any) => {
-      console.log(response.message);
-    });
+    console.log('data', this.userData);
+    console.log('updated ',this.updateDetails);
+    this.artistService.updateArtistProfile(this.userId, this.updateDetails).subscribe((response: any) => {
+        console.log(response.message);
+      });
   }
 
-
-  getFollowers():void{
-    this.artistService.getFollowers(this.artistId).subscribe((data:any)=>{
-      console.log('followersssssssssssssssssssssssssssssssssssss',data);
-    })
+  getFollowers(): void {
+    this.artistService.getFollowers(this.userId).subscribe((data: any) => {});
   }
-
-
-  // onFileSelected(event: any): void {
-  //   const file: File = event.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       this.userData.profile_photo_url = e.target.result;
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
 
   cancelEdit(): void {
-    alert("Edit profile cancelled.");
+    alert('Edit profile cancelled.');
+  }
+
+  onProfileImageClick() {
+    this.profileInput.nativeElement.click();
   }
 
   onFileSelected(event: any) {
     const FILE = (event.target as HTMLInputElement).files?.[0];
-    this.profilePhoto = FILE;
-
-  }
-
-  newImageUpload(folder: string, uploadType: string) {
-    const imageForm = new FormData();
-    imageForm.append('image', this.profilePhoto as Blob);
-    this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res:any) => {
-      this.userData.profile_photo_url = res.image.location;
-      console.log('photo',this.userData.profile_photo_url);
-    });
+    if (FILE) {
+      this.imageObj = FILE;
+      this.removeExistingImage();
+    }
   }
 
   removeExistingImage() {
@@ -209,12 +374,69 @@ export class EditArtistProfileComponent implements OnInit {
       this.ImageUploadService.removeImage(key as any).subscribe(
         () => {
           this.userData.profile_photo_url = '';
+          this.newImageUpload( 'Artist','profilePicture');
         },
         (error) => {
           console.log('error removing image', error);
         }
       );
+    } else {
+      this.newImageUpload('Artist','profilePicture');
     }
+  }
+
+  newImageUpload(folder: string, uploadType: string) {
+    const imageForm = new FormData();
+    imageForm.append('image', this.imageObj as Blob);
+    this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res: any) => {
+      this.userData.profile_photo_url = res.image.location;
+      this.updateDetails.profile_photo_url = res.image.location;
+      console.log('photo', this.updateDetails.profile_photo_url);
+      console.log('photo i',this.userData.profile_photo_url);
+    }, (error)=>{
+      console.log('error uploading profile',error);
+    } );
+  }
+
+  onBannerImageClick() {
+    this.bannerInput.nativeElement.click();
+  }
+
+  onBannerFileSelected(event: any) {
+    const FILE = (event.target as HTMLInputElement).files?.[0];
+    if (FILE) {
+      this.bannerImageObj = FILE;
+      this.removeBannerImage();
+    }
+  }
+
+  removeBannerImage() {
+    if (this.userData.banner_img_url) {
+      const key = this.userData.banner_img_url.split('/').pop();
+      this.ImageUploadService.removeImage(key as any).subscribe(
+        () => {
+          this.userData.banner_img_url = '';
+          this.uploadBannerImage( 'ArtistBanners','profilePicture');
+        },
+        (error) => {
+          console.log('error removing banner image', error);
+        }
+      );
+    } else {
+      this.uploadBannerImage('ArtistBanners','profilePicture');
+    }
+  }
+
+  uploadBannerImage(folder: string, uploadType: string) {
+    const imageForm = new FormData();
+    imageForm.append('image', this.bannerImageObj as Blob);
+    this.ImageUploadService.imageUpload(imageForm, folder, uploadType).subscribe((res: any) => {
+      this.userData.banner_img_url = res.image.location;
+      this.updateDetails.banner_img_url = res.image.location;
+      console.log('Image uploaded successfully:', this.userData.banner_img_url);
+    }, (error) => {
+      console.log('error uploading banner image', error);
+    });
   }
 
   changePassword() {
@@ -223,16 +445,21 @@ export class EditArtistProfileComponent implements OnInit {
       return;
     }
 
-    this.artistService.changePassword(this.email, this.oldPassword, this.newPassword, this.confirmPassword).subscribe(
-      (response) => {
-        console.log('Password changed successfully', response);
-        // Optionally reset form fields or navigate to another page
-      },
-      (error) => {
-        console.error('Error changing password', error);
-      }
-    );
+    this.artistService
+      .changePassword(
+        this.email,
+        this.oldPassword,
+        this.newPassword,
+        this.confirmPassword
+      )
+      .subscribe(
+        (response) => {
+          console.log('Password changed successfully', response);
+          // Optionally reset form fields or navigate to another page
+        },
+        (error) => {
+          console.error('Error changing password', error);
+        }
+      );
   }
-
-
 }
