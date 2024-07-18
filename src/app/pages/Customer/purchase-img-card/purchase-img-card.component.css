@@ -1,6 +1,6 @@
 .request-card{
   background: #c6cfd1; /* Semi-transparent background */
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 10px;
   margin-left: 10px;
   padding: 10px;
@@ -31,10 +31,6 @@
 .request-card {
   transition: transform 0.3s ease;
   cursor: pointer;
-}
-
-.request-card:hover {
-  transform: scale(1.02);
 }
 
 .gray-background {
