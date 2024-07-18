@@ -192,8 +192,18 @@ subscribeToUnreadCounts(): void {
     }
   }
 
+  // deleteMessage(messageId: string): void {
+  //   this.chatService.deleteMessage(messageId)
+  //     .then(() => {
+  //       console.log('Message deleted successfully');
+  //       this.loadMessages();
+  //     })
+  //     .catch(error => {
+  //       console.error('Error deleting message:', error);
+  //     });
+  // }
   deleteMessage(messageId: string): void {
-    this.chatService.deleteMessage(messageId)
+    this.chatService.deleteMessage(messageId, this.senderId)
       .then(() => {
         console.log('Message deleted successfully');
         this.loadMessages();
