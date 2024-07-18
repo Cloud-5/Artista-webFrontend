@@ -98,7 +98,7 @@
 <div class="container rounded bg-green mt-5 mb-5 main-form">
   <div class="row">
     <div class="col-md-3 border-right">
-       <!-- <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+      <!-- <div class="d-flex flex-column align-items-center text-center p-3 py-5">
         <img class="rounded-circle mt-5" [src]="userData.ProfilePhoto" height="90" width="90">
         <span class="font-weight-bold">{{userData.fName + " " + userData.LName}}</span>
         <span class="font-weight-bold">{{userData.profession}}</span>
@@ -136,7 +136,7 @@
               </button>
         </div>
       </div> -->
-<!-- <div class= "card artist-card shadow zoom-in-out-on-hover d-flex">
+      <!-- <div class= "card artist-card shadow zoom-in-out-on-hover d-flex">
 
     <img [src]="artist.banner_img_url" class="card-img-top" alt="Banner Image">
 
@@ -177,122 +177,100 @@
  -->
 
 
- <div class="small-container d-flex justify-content-center align-items-center ">
+      <div class="small-container d-flex justify-content-center align-items-center ">
 
-  <div class="card">
-    <div class="status" >
-      {{userData.Status}}
+        <div class="card">
+          <div class="status">
+            {{userData.Status}}
+          </div>
+          <div class="upper">
+            <img src="{{ userData.banner_img_url || '../../../../../assets/images/background.jpg' }}"
+                 class="img-fluid"
+                 (click)="onBannerImageClick()">
+            <input type="file" #bannerInput (change)="onBannerFileSelected($event)" style="display: none;">
+          </div>
+          <div class="user text-center">
+            <div class="profile">
+              <img
+                   [src]="userData.ProfilePhoto || '../../../../../../../assets/images/profile2.png'"
+                   class="btn rounded-circle"
+                   width="80"
+                   (click)="onProfileImageClick()">
+              <input type="file" #profileInput (change)="onFileSelected($event)" style="display: none;">
+            </div>
+          </div>
+          <div class="mt-5 text-center" style="padding-top: 20px;">
+            <h4 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0">
+
+              <span class="text-muted d-block mb-2 ">{{updateDetails.fName+' '+updateDetails.LName}} </span>
+              <span class="text-muted d-block mb-2 profession">{{userData.Profession}} </span>
+              <span class="text-muted d-block mb-2 location" >{{userData.Location}}</span>
+            </h4>
+
+            <div class="d-flex justify-content-between align-items-center mt-4 px-4 container-fluid">
+              <div class="stats">
+                <h6 class="mb-0">Followers</h6>
+                <span>{{userData.NumberOfFollowers}}</span>
+              </div>
+              <div class="stats">
+                <h6 class="mb-0">Creations</h6>
+                <span>{{userData.NumberOfArtworks}}</span>
+              </div>
+              <div class="stats">
+                <h6 class="mb-0">Rating</h6>
+                <span>{{userData.ratings | number: '1.1-1'}} 3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <!-- <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <img class="rounded-circle mt-5" [src]="userData.ProfilePhoto" height="90" width="90">
+    <span class="font-weight-bold">{{userData.fName + " " + userData.LName}}</span>
+    <span class="font-weight-bold">{{userData.profession}}</span>
+    <span class="text-black-50">{{userData.email}}</span>
+    <span>{{userData.location}}</span>
+  </div> -->
+
+      </div>
     </div>
-
-   <div class="upper">
-
-     <img src="../../../../../assets/images/background.jpg" class="img-fluid">
-
-   </div>
-
-   <div class="user text-center">
-
-     <div class="profile">
-
-       <img routerLink="/artist/new-home" src="../../../../../assets/images/profile12.jpg" class="btn rounded-circle" width="80">
-
-     </div>
-
-   </div>
-
-
-   <div class="mt-5 text-center">
-
-     <h4 class="mb-0">{{userData.name}}</h4>
-     <span class="text-muted d-block mb-2 profession">{{userData.Profession}} UX UI designer</span>
-     <span class="text-muted d-block mb-2 location">{{userData.Location}}</span>
-
-
-
-     <div class="d-flex justify-content-between align-items-center mt-4 px-4 container-fluid">
-
-       <div class="stats">
-         <h6 class="mb-0">Followers</h6>
-         <span>{{userData.NumberOfFollowers}}</span>
-
-       </div>
-
-
-       <div class="stats">
-         <h6 class="mb-0">Creations</h6>
-         <span>{{userData.NumberOfArtworks}}</span>
-
-       </div>
-
-
-       <div class="stats">
-         <h6 class="mb-0">Rating</h6>
-         <span>{{userData.ratings | number: '1.1-1'}} 3</span>
-
-       </div>
-
-     </div>
-
-   </div>
-
-  </div>
-
-
-</div>
-<div class="row">
-
-
-</div>
-
-
-
-</div>
-
-
-
-
 
 
     <div class="col-md-5 border-right">
       <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3" style="padding-top: 0;">
           <h6 class="text-right">Edit your profile</h6>
         </div>
         <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
           <div class="row mt-2">
             <div class="col-md-6">
               <label class="labels">First Name</label>
-              <input type="text" class="form-control" placeholder="first name" [(ngModel)]="updateDetails.fName" name="artist-fName">
+              <input type="text" class="form-control" placeholder="first name" [(ngModel)]="updateDetails.fName"
+                name="artist-fName">
             </div>
             <div class="col-md-6">
               <label class="labels">Last Name</label>
-              <input type="text" class="form-control" placeholder="last name" [(ngModel)]="updateDetails.LName" name="artist-LName">
+              <input type="text" class="form-control" placeholder="last name" [(ngModel)]="updateDetails.LName"
+                name="artist-LName">
             </div>
           </div>
           <div class="row mt-3">
             <div class="col-md-12">
               <label class="labels">Profession</label>
-              <input type="text" class="form-control" placeholder="profession" [(ngModel)]="updateDetails.profession" name="profession">
+                <input type="text" value="Dhanushka"  class="form-control" [(ngModel)]="updateDetails.profession"
+                name="profession">
             </div>
 
 
 
             <div class="col-md-6">
               <label class="labels">Date of Birth</label>
-              <div class="input-group">
-                <select class="form-control" [(ngModel)]="updateDetails.month" name="month" aria-placeholder="month">
-                  <option value="" disabled selected>month</option>
-                  <option  *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
-                </select>
-                <select class="form-control" [(ngModel)]="updateDetails.day" name="day">
-                  <option value="" disabled selected>day</option>
-                  <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-                </select>
-                <select class="form-control" [(ngModel)]="updateDetails.year" name="year">
-                  <option value="" disabled selected>year</option>
-                  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                </select>
-              </div>
+
+
+              <input type="date"  name="dob" class="form-control" formControlName="dob" [(ngModel)]="updateDetails.dob">
+
             </div>
 
 
@@ -300,7 +278,8 @@
           <div class="row mt-3">
             <div class="col-md-6">
               <label class="labels">description</label>
-              <input type="text" class="form-control" placeholder="bio" [(ngModel)]="updateDetails.description" name="description">
+              <input style="height: 100px; width: 250px;" type="text" class="form-control" placeholder="bio" [(ngModel)]="updateDetails.description"
+                name="description">
             </div>
 
 
@@ -322,23 +301,51 @@
 
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
           </div>
           <div class="mt-5 d-flex justify-content-end">
-            <button class="btn btn-primary profile-button me-3" type="submit">Save Profile</button>
-            <button type="button"   routerLink="/artist/new-home" class="btn btn-secondary cancel-button">Cancel</button>
+            <button class="btn btn-primary profile-button me-3 save-button" type="submit">Save Profile details </button>
           </div>
         </form>
+
+
       </div>
+
+
+
+
+      <div class="col-md-12" style="padding: 0; ">
+        <div class="sss">
+          <form (ngSubmit)="changePassword()">
+            <div class="form-section1"
+              style="border: 1px solid rgba(179, 179, 179, 0.8);  padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+              <h2>Change Password</h2>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" [(ngModel)]="email" name="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="old-password" class="form-label">Old Password:</label>
+                <input type="password" class="form-control" [(ngModel)]="oldPassword" name="old-password" required />
+              </div>
+              <div class="mb-3">
+                <label for="new-password" class="form-label">New Password:</label>
+                <input type="password" class="form-control" [(ngModel)]="newPassword" name="new-password" required />
+              </div>
+              <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirm Password:</label>
+                <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirm-password"
+                  required />
+              </div>
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary save-button">Change Password</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
     </div>
     <div class="col-md-4">
       <div class="p-3 py-5">
@@ -377,52 +384,52 @@
         </div> -->
 
 
-<!-- edit-artist-profile.component.html -->
+        <!-- edit-artist-profile.component.html -->
 
-<form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
+        <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
 
-</form>
-<div class="bbb-wrapper socialMedia">
-  <div class="subcribe-form fl-wrap">
-    <p style="color: black;">Update your social media links:</p>
-    <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
-      <div *ngFor="let platform of socialMediaPlatforms" class="social-media-item">
-        <label class="social-media-label">
-          <img [src]="platform.logo_url" alt="{{platform.platform_name}} logo" class="social-media-logo">
-          <!-- <span class="platform-name">{{ platform.platform_name }}</span> -->
-          <input
-            type="text"
-            placeholder="Enter your {{ platform.platform_name }} link"
-            class="social-media-input"
-            style="width: 50px;"
-            [(ngModel)]="socialMediaLinks[platform.id]"
-            name="socialMediaLink{{ platform.id }}"
-          />
-        </label>
+        </form>
+        <div class="bbb-wrapper socialMedia">
+          <div class="subcribe-form fl-wrap">
+            <p style="color: black;">Update your social media links:</p>
+            <form #editArtistDetailsForm="ngForm" (ngSubmit)="updateProfile()">
+              <div *ngFor="let platform of socialAccounts[0];let i = index" class="social-media-item" >
+                <label class="social-media-label">
+                  <img [src]="platform.logo_url" alt="{{platform.platform_name}} logo" class="social-media-logo">
+                  <!-- <span class="platform-name">{{ platform.platform_name }}</span> -->
+                  <input type="text"
+                    class="social-media-input" style="width: 50px;"
+                    [(ngModel)]="platform.account_url"
+
+
+                    name="socialMediaLink{{ platform.id }}" />
+                </label>
+              </div>
+              <button type="submit" class="save-button ">Save Social Media Links</button>
+            </form>
+
+               <button style=" background-color: red; border: none ; margin-top: 315px;" type="button" routerLink="/artist/new-home" class="btn btn-secondary save-button ">Cancel</button>
+
+
+
+          </div>
+        </div>
+
+
+
+
+
       </div>
-      <button type="submit" class="save-button"  >Save Social Media Links</button>
-    </form>
 
-  </div>
-</div>
-
-
-
-
-      </div>
     </div>
+
   </div>
+
 </div>
 
 
 
-<!-- before -->
 
-
-<!-- edit-artist-profile.component.html -->
-<!-- edit-artist-profile.component.html -->
-<!-- edit-artist-profile.component.html -->
-<!-- edit-artist-profile.component.html -->
 <!-- <form [formGroup]="artistForm" >
 
 
@@ -445,35 +452,3 @@
 </div>
 </form> -->
 
-
-<div  class="col-md-8">
-<div class="sss">
-  <form (ngSubmit)="changePassword()">
-    <div class="form-section1" style="border: 1px solid #ccc; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
-      <h2>Change Password</h2>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" [(ngModel)]="email" name="email" required />
-        </div>
-        <div class="col-md-6">
-          <label for="old-password" class="form-label">Old Password:</label>
-          <input type="password" class="form-control" [(ngModel)]="oldPassword" name="old-password" required />
-        </div>
-        <div class="col-md-6">
-          <label for="new-password" class="form-label">New Password:</label>
-          <input type="password" class="form-control" [(ngModel)]="newPassword" name="new-password" required />
-        </div>
-        <div class="col-md-6">
-          <label for="confirm-password" class="form-label">Confirm Password:</label>
-          <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirm-password" required />
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary  "style="margin-left: 550px;">Change Password</button>
-    </div>
- 
-     
-    
-  </form>
-
-</div></div>

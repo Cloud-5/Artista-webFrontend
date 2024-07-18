@@ -14,7 +14,7 @@ private apiurl: String = environment.apiUrl +'/user'
   constructor(private http:HttpClient) { }
 
   EditCustomerProfile(userId: string, data: any): Observable<any> {
-    console.log('data', data);
+    console.log('data in service edit', data);
     return this.http.put<any>(`${this.apiUrl}/${userId}`, data);
   }
   changePassword( email: string,oldPassword: string,newPassword: string, confirmPassword: string): Observable<any> {

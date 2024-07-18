@@ -31,9 +31,9 @@ private apiurl: String = environment.apiUrl +'/user'
     console.log('artistId', artistId);
     return this.http.get(`${this.apiUrl}/artist-new-home/${artistId}`);
   }
-  getSocialAccounts(artistId: string,platformId:number): Observable<any> {
-    console.log('artistId', artistId);
-    return this.http.get(`${this.apiUrl}/artist-edit/${artistId}/social-media/${platformId}`);
+  getSocialAccounts(artistId: string): Observable<any> {
+    console.log('artistId in service', artistId);
+    return this.http.get(`${this.apiUrl}/artist-edit/social-accounts/${artistId}`);
 
   }
 
@@ -47,12 +47,14 @@ return this.http.get(`${this.apiUrl}/artist-edit/social-media-platforms`)
   }
 
 
-  updateSocialMediaLink(userId: string, platformId: number, accountUrl: string): Observable<any> {
+  updateSocialMediaLink(artistId: string, platformId: number, accountUrl: string): Observable<any> {
+
+    console.log('artistIdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', artistId);
       const body = {
         platform_id: platformId,
         account_url: accountUrl
       };
-      return this.http.put(`${this.apiUrl}/artist-edit/${userId}/social-media`, body);
+      return this.http.put(`${this.apiUrl}/artist-edit/social-media`,body);
     }
 
     changePassword( email: string,oldPassword: string,newPassword: string, confirmPassword: string): Observable<any> {

@@ -24,11 +24,11 @@
         <div class="details">
             <h2>{{art.artwork_name}}</h2>
             <p>{{art.artist_name}}</p>
-            <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery()">
+            <button *ngIf="showRemoveButton" class="btn btn-danger remove-btn" (click)="removeFromGallery(); $event.stopPropagation()">
               Remove
             </button>
-        
-           
+
+
         </div>
             <div class="more">
                 <p class="price">{{art.artwork_price | currency:'USD':'symbol':'1.2-2'}}</p>
@@ -37,7 +37,7 @@
                   </button>
                   {{ formatLikeCount(art.total_likes) }}
                 </p>
-                <button class="btn cart-icon-btn" (click)="addCart(art); $event.stopPropagation()"> <i class="bi bi-cart-plus-fill"></i></button>
+                <button class="btn cart-icon-btn" style="margin-bottom: 15px;"    (click)="addCart(art); $event.stopPropagation()"> <i class="bi bi-cart-plus-fill"></i></button>
             </div>
         </div>
     </div>

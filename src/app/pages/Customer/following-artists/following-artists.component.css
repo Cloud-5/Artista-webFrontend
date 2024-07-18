@@ -1,9 +1,6 @@
-.request-card{
+.request-card {
   background: #c6cfd1; /* Semi-transparent background */
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 20px 10px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -15,22 +12,14 @@
   cursor: pointer;
   display: flex;
   height: 150px;
-  width: 1100px;
   text-decoration: none;
-  color: #000;
-  backdrop-filter: blur(-10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(-10px);
+  backdrop-filter: blur(10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.buttons{
-  justify-content: center;
-  .btn{
-      margin-top: 20px;
-      margin-bottom: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-      height: 40px;
-  }
+.buttons .btn {
+  margin: 20px 10px 10px;
+  height: 40px;
 }
 
 .request-card {

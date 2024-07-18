@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 
 <div class="header__wrapper">
-  <header></header>
+
+  <img src="{{userData.banner_img_url}}" alt="Banner Image" style="width: 100%; height: 200px" />
   <div class="cols__container">
 
 
@@ -37,8 +38,8 @@
       </div>
       <ul class="about">
         <li><span>{{userData.NumberOfArtworks}} </span>Gallery</li>
-        <li><span>{{userData.followers}}3</span>Followers</li>
-        <li><span>{{userData.NumberOfFollowers}}</span>Purchases</li>
+        <li><span>{{numberOfFollowers}}</span>Followers</li>
+        <li><span>0</span>Purchases</li>
       </ul>
       <p>{{userData.Description}}</p>
 

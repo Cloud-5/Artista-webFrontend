@@ -10,7 +10,7 @@
     color: #0b466e; /* Adjust the color as needed */
     white-space: nowrap;
     position: relative;
-    top: 2px;
+    top: 0px;
     margin-left: 38px;
 }
 .custom-button {
@@ -20,14 +20,16 @@
     z-index: 2; /* Set a higher z-index value for the button */
     font-weight: 400;
     width: 700%;
+    border-color: #047977;
     background-color: #0f969c;
+    border-radius: 4px;
     transition: transform 0.3s ease, color 0.3s ease; /* Added transform */
 }
 
 .custom-button:hover {
   color: rgb(145, 222, 250);
   transform: scale(1.1); /* Zoom-in effect */
-  background-color: #ffffff;
+  background-color: #115d70;
 }
 
 .z-custom-button {
@@ -42,13 +44,13 @@
 }
 
 .category-bar {
-    width: 114%;
+    min-width: 100%;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-    margin-left: -90px;
-    margin-right: -100px;
-    background-color: rgba(162, 162, 162, 0.398);
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: rgba(219, 219, 219, 0.677);
     margin-top: -10px;
     
 }
@@ -123,4 +125,21 @@
         height: 200px;
         padding: 8px 16px;
     }
+}
+.brief-phrase {
+    text-align: center;
+    margin: 0 0;
+    background-color: #f0f0f0;
+   
+   
+    width:100%;
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.brief-phrase p {
+    font-size: 18px;
+    font-weight:600;
+    color: #0b466e; /* Adjust the color as needed */
+    white-space: nowrap;
+    margin: 0;
 }

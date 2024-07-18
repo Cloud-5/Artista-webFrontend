@@ -72,7 +72,11 @@ export class NewPasswordComponent implements OnInit {
     }
     return password.value === confirmPassword.value ? null : { 'passwordsMismatch': true };
   }
-
+  showErrorMessage() {
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 6000); // 6000 milliseconds = 6 seconds
+  }
   submitForm(): void {
     if (this.newPasswordForm && this.newPasswordForm.valid) {
       const email = localStorage.getItem('email');
@@ -83,21 +87,17 @@ export class NewPasswordComponent implements OnInit {
             console.log('Password reset successfully');
             this.Message = 'Password reset successfully';
             localStorage.removeItem('email');
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'],{ state: { Message: 'Password reset successfully' } });
           },
           (error: any) => {
-            if (error.status === 400) {
-              this.errorMessage = 'Passwords do not match';
-            }
-            
-               else {
-              console.error('Updated failed', error);
               this.errorMessage = 'Error updating password';
-            }
+              this.showErrorMessage(); // Call to disable error message
           }
         );
-      } else {
-        console.error('Email not found in local storage');
+      } else 
+      {
+        this.errorMessage = 'Email not found in local storage';
+        this.showErrorMessage(); // Call to disable error message
       }
     }
   }
