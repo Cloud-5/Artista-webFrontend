@@ -17,9 +17,8 @@ export class CommentListComponent implements OnInit, OnChanges {
   @Input() comments: CommentInterface[] = [];
   @Output() commentsCount = new EventEmitter<number>();
   
-
-  //comments: CommentInterface[] = [];
   activeComment: ActiveCommentInterface | null = null;
+  showComments: boolean = false;
 
   constructor(private commentsService: CommentsService) {}
 
@@ -37,8 +36,8 @@ export class CommentListComponent implements OnInit, OnChanges {
   fetchComments(){
     this.commentsService.getComments(this.artworkId, this.currentUserId).subscribe((comments: CommentInterface[]) => {
       this.comments = comments;
+      console.log(comments,'commengts');
       this.commentsCount.emit(this.comments.length);
-      console.log('init',this.commentsCount);
     });
     (error: any)=>{
       console.error('Error fetching comments:', error);
@@ -47,6 +46,9 @@ export class CommentListComponent implements OnInit, OnChanges {
 
   getRootComments(): CommentInterface[] {
     return this.comments.filter((comment) => comment.parent_comment_id === null);
+  }
+  getRepliesCount(commentId: string): number {
+    return this.comments.filter((comment) => comment.parent_comment_id === commentId).length;
   }
 
   updateComment(text: string, commentId: string): void {
@@ -57,7 +59,6 @@ export class CommentListComponent implements OnInit, OnChanges {
           comment.comment_id === commentId ? updatedComment : comment
         );
         this.commentsCount.emit(this.comments.length);
-        console.log('after update',this.commentsCount);
         this.activeComment = null;
       },
       (error: any) => {
@@ -95,6 +96,7 @@ export class CommentListComponent implements OnInit, OnChanges {
     this.commentsService.createComment(text, artworkId, userId, parentId).subscribe(
       (response: any) => {
         const createdComment: CommentInterface = response.comment;
+        createdComment.profile_photo_url = this.userPhoto;
 
         if (parentId) {
           this.comments.push(createdComment);
@@ -103,8 +105,8 @@ export class CommentListComponent implements OnInit, OnChanges {
           this.comments.push(createdComment);
         }
         this.commentsCount.emit(this.comments.length);
-        console.log('after adding',this.commentsCount);
         this.activeComment = null;
+        this.showComments = true;
       },
       (error: any) => {
         console.error('Error adding comment:', error);
@@ -112,7 +114,10 @@ export class CommentListComponent implements OnInit, OnChanges {
     );
   }
   
-  
+  toggleComments(): void {
+    this.showComments = !this.showComments;
+  }
+
 
   getReplies(commentId: string): CommentInterface[] {
     return this.comments.filter((comment) => comment.parent_comment_id === commentId)

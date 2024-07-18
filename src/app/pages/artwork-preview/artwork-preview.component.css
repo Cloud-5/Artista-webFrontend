@@ -55,9 +55,9 @@ section {
 }
 .body1 {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.625rem;
-  color: #565656;
+  color: #676767;
 }
 
 .body2 {
@@ -267,6 +267,7 @@ section .header-section {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+  width: 50%;
 }
 .message-btn:hover {
   background-color: #000;
@@ -513,7 +514,7 @@ section .header-section {
 }
 .title {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #4f4f4f;
   width: 100%;
   overflow: hidden;
@@ -599,17 +600,17 @@ section .header-section {
   width: fit-content;
   top: 10px;
   right: -5px;
-  color: white;
+  color: black;
   padding: 5px 10px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 50px 0 0 50px;
   z-index: 1;
 }
 
 .editor-choice {
-  background-color: #6da5c0;
+  background-color: gold;
   border: 1px solid white;
 }
 
@@ -625,6 +626,9 @@ section .header-section {
 
   .column {
     flex: 0 0 50%;
+  }
+  .header-margin{
+    margin-top: 20px;
   }
 }
 
@@ -643,6 +647,9 @@ section .header-section {
     padding: 0;
   }
 
+  .header-margin{
+    margin-top: 0;
+  }
   .collapsible {
     height: auto !important;
   }
