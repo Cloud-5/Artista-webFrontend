@@ -18,12 +18,12 @@ export class ImageUploadService {
       'folder': folder
     });
     console.log('header', headers);
-    return this.http.post('http://localhost:3000/upload', imageForm,{headers: headers});
+    return this.http.post('http://13.233.165.220:80/upload', imageForm,{headers: headers});
   }
 
 
   removeImage(key: any) {
-    return this.http.delete(`http://localhost:3000/delete/${key}`);
+    return this.http.delete(`http://13.233.165.220:80/delete/${key}`);
   }
 
   folderUpload(files: File[], folder: string, uploadType: string, subfolder: string ) {
@@ -42,7 +42,7 @@ export class ImageUploadService {
       'subfolder': subfolder
     });
     console.log('folder', folder, 'subfolder', subfolder, 'type', uploadType);
-    return this.http.post('http://localhost:3000/uploadFolder', formData, { headers: headers });
+    return this.http.post('http://13.233.165.220:80/uploadFolder', formData, { headers: headers });
   }
 
   deleteFolder(folder: string, subfolder: string) {
@@ -50,7 +50,7 @@ export class ImageUploadService {
       'folder': folder,
       'subfolder': subfolder
     });
-    return this.http.delete('http://localhost:3000/deleteFolder', { headers: headers });
+    return this.http.delete('http://13.233.165.220:80/deleteFolder', { headers: headers });
   }
 
 }
