@@ -1,6 +1,6 @@
 <div class="container d-flex p-0 mt-1 mb-1">
   <div class="comment-image-container">
-    <img [src]="userPhoto" class="rounded-circle profile-photo"/>
+    <img [src]="profilePhoto" class="rounded-circle profile-photo"/>
   </div>
   <div class="comment-right-part">
     <div class="comment-name-content" (click)="toggleCommentActions()">
@@ -48,7 +48,10 @@
       submitLabel="Reply"
       (handleSubmit)="addComment.emit({ text: $event, parentId: replyId })"
     ></app-comment-form>
-    <div class="replies" *ngIf="replies.length > 0">
+    <div class="replies-toggle" *ngIf="repliesCount > 0" (click)="toggleReplies()" >
+      {{ repliesCount }} {{ repliesCount > 1 ? 'replies' : 'reply' }}
+    </div>
+    <div class="replies" *ngIf="replies.length > 0 && showReplies">
       <app-comment
         *ngFor="let reply of replies"
         [comment]="reply"
