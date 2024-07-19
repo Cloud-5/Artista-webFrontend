@@ -328,7 +328,7 @@
   </div>
 </div> -->
 <app-navbar></app-navbar>
-<section  style="margin: 20px;">
+<section style="margin: 20px">
   <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0">
     Upload Your Creation
   </h3>
@@ -336,9 +336,16 @@
     <div class="row">
       <div class="col-lg-8">
         <div *ngIf="!is3D" class="preview-container">
-          <div class="artwork" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')' }">
+          <div
+            class="artwork"
+            [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')' }"
+          >
             <div *ngIf="!is3D">
-              <img [src]="thumbUrl || '../../../../../assets/images/art5.jpg'" alt="Artwork" class="artwork-preview" />
+              <img
+                [src]="thumbUrl || '../../../../../assets/images/art5.jpg'"
+                alt="Artwork"
+                class="artwork-preview"
+              />
             </div>
           </div>
         </div>
@@ -346,340 +353,610 @@
           <div class="artwork1">
             <div *ngIf="is3D">
               <!-- <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model> -->
-              <img [src]="imageUrl || '../../../../../assets/images/art5.jpg'" alt="3D Artwork" />
+              <img
+                [src]="imageUrl || '../../../../../assets/images/art5.jpg'"
+                alt="3D Artwork"
+              />
             </div>
           </div>
         </div>
       </div>
 
+      <!-- //form -->
+      <div class="col-lg-4">
+        <div
+          style="border: 2px black solid; background: #c3bbbb"
+          class="tab-content"
+        >
+          <div class="container mt-5">
+            <h2>Upload Artwork</h2>
 
-    <!-- //form -->
-          <div  class="col-lg-4">
-            <div style="border: 2px black solid; background: #c3bbbb; " class="tab-content">
+            <!-- Artwork Type Switch -->
+            <div class="mb-4">
+              <label for="artworkType" class="form-label"
+                >Select Artwork Type</label
+              >
+              <select
+                id="artworkType"
+                class="form-control artwork-type"
+                [(ngModel)]="artType"
+                (change)="onArtworkTypeChange($event)"
+              >
+                <option value="2d" class="input-area">2D Artwork</option>
+                <option value="3d" class="input-area">3D Artwork</option>
+              </select>
+            </div>
 
-
-              <div class="container mt-5">
-                <h2>Upload Artwork</h2>
-
-                <!-- Artwork Type Switch -->
-                <div class="mb-4">
-                  <label for="artworkType" class="form-label ">Select Artwork Type</label>
-                  <select id="artworkType" class="form-control artwork-type" [(ngModel)]="artType"
-                    (change)="onArtworkTypeChange($event)">
-                    <option value="2d" class="input-area">2D Artwork</option>
-                    <option value="3d" class="input-area">3D Artwork</option>
-                  </select>
+            <!-- 2D art//////////////////////////////// -->
+            <form *ngIf="artType === '2d'" (ngSubmit)="upload2DArtwork()">
+              <div class="input-group mb-3">
+                <div class="row">
+                  <label>Upload Thumbnail Image</label>
                 </div>
-
-
-
-                <!-- 2D art//////////////////////////////// -->
-                <form *ngIf="artType === '2d'" (ngSubmit)="upload2DArtwork()">
-                  <div class="input-group mb-3">
-                    <div class="row">
-                      <label>Upload Thumbnail Image</label>
-                    </div>
-                    <div class="row">
-                      <input id="file2D" type="file" name="title" class="form-control input-area" (change)="onFileSelected1($event)" style="color: rgb(255, 0, 0);" required>
-                      <label *ngIf="!thumbUrl" class="input-group-text btn-custom justify-content-center w-100 mt-2" (click)="onthumbUpload('2DThumbnails','profilePicture')">Upload</label>
-                      <button *ngIf="thumbUrl" type="button" class="btn btn-danger mt-2 w-100" (click)="removeThumb()">Remove</button>
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group">
-                    <label for="title2D">Artwork Title</label>
-                    <input type="text" id="title2D" name="title" class="form-control input-area"
-                      [(ngModel)]="new2DArtwork.title" ngModel required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="price2D">Price</label>
-                    <input type="number" id="price2D" name="price" class="form-control input-area"
-                      [(ngModel)]="new2DArtwork.price" ngModel required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="category3D">2D Category</label>
-                    <select id="category3D" name="category" class="form-control input-area"
-                      [(ngModel)]="new2DArtwork.category_id" required>
-                      <option *ngFor="let category of categories" [value]="category.category_id">{{ category.name }}</option>
-                    </select>
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="description2D">Description</label>
-                    <textarea id="description2D" name="description" class="form-control input-area"
-                      [(ngModel)]="new2DArtwork.description " ngModel required></textarea>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="categoryFileTypes" class="form-label">Tags</label>
-                    <div class="d-flex flex-wrap">
-                      <span *ngFor="let j of new2DArtwork.tag_name; let i = index" class="badge bg-primary"
-                        style="margin-bottom: 5px; margin-right: 5px">
-                        {{ j.tag_name }}
-                        <button type="button" class="btn-close" aria-label="Close" (click)="remove2DTag(i)"></button>
-                      </span>
-                    </div>
-                    <div class="input-group mt-2">
-                      <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="Tag_Name"
-                        name="new tag name" required #tag_nameInput="ngModel" />
-                      <button class="btn btn-primary" type="button" (click)="addNew2DTag()"
-                        [disabled]="tag_nameInput.invalid">
-                        Add
-                      </button>
-                    </div>
-                    <div *ngIf="
-                        new2DArtwork.tag_name.length === 0 &&
-                        (tag_nameInput.touched || tag_nameInput.dirty) &&
-                        tag_nameInput.invalid
-                      " class="alert alert-danger mt-2 p-2">
-                      At least one tag_name is required.
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="tools2D" class="form-label">Tools</label>
-                    <div class="d-flex flex-wrap">
-                      <span *ngFor="let tool of new2DArtwork.tools; let i = index" class="badge bg-primary"
-                        style="margin-bottom: 5px; margin-right: 5px">
-                        {{ tool.tool_name }}
-                        <button type="button" class="btn-close" aria-label="Close" (click)="removeTool(i)"></button>
-                      </span>
-                    </div>
-                    <div class="input-group mt-2">
-                      <input type="text" class="form-control" placeholder="Add tool" [(ngModel)]="Tool_Name" name="new tool"
-                        required #toolInput="ngModel" />
-                      <button class="btn btn-primary" type="button" (click)="addNewTool()" [disabled]="toolInput.invalid">
-                        Add
-                      </button>
-                    </div>
-                    <div *ngIf="
-                        new2DArtwork.tools.length === 0 &&
-                        (toolInput.touched || toolInput.dirty) &&
-                        toolInput.invalid
-                      " class="alert alert-danger mt-2 p-2">
-                      At least one tool is required.
-                    </div>
-                  </div>
-
-
-                  <div class="mb-3">
-                    <label for="fileFormats2D" class="form-label">File Formats</label>
-                    <div class="d-flex flex-wrap">
-                      <span *ngFor="let format of new2DArtwork.fileFormats; let i = index" class="badge bg-primary"
-                        style="margin-bottom: 5px; margin-right: 5px">
-                        {{ format.file_format_name }}
-                        <button type="button" class="btn-close" aria-label="Close" (click)="removeFileFormat(i)"></button>
-                      </span>
-                    </div>
-                    <div class="input-group mt-2">
-                      <input type="text" class="form-control" placeholder="Add file format" [(ngModel)]="Format_name"
-                        name="new file format" required #fileFormatInput="ngModel" />
-                      <button class="btn btn-primary" type="button" (click)="addNewFileFormat()"
-                        [disabled]="fileFormatInput.invalid">
-                        Add
-                      </button>
-                    </div>
-                    <div *ngIf="
-                        new2DArtwork.fileFormats.length === 0 &&
-                        (fileFormatInput.touched || fileFormatInput.dirty) &&
-                        fileFormatInput.invalid
-                      " class="alert alert-danger mt-2 p-2">
-                      At least one file format is required.
-                    </div>
-                  </div>
-
-
-                  <div class="form-group d-flex justify-content-between">
-                    <button type="submit" class="btn btn-custom">Upload 2D Artwork</button>
-                    <button type="button" class="btn btn-custom" routerLink="/artist/new-home">Cancel</button>
-                  </div>
-
-                  <div *ngIf="isUploading2D" class="uploading-animation">Uploading...</div>
-                </form>
-
-
-
-
-                <!-- 3D Artwork Form///////////////////////////////////////////////// -->
-                <form (ngSubmit)="upload3DArtwork()" *ngIf="artType === '3d'">
-
-
-
-
-
-
- <div class="input-group mb-3 justify-content-center">
-    <div class="row w-100">
-      <!-- First Row: File Input -->
-      <div class="col-12 mb-2">
-        <input type="file" class="form-control input-area" (change)="onFileSelected1($event)" required>
-      </div>
-      <!-- Second Row: Upload Button -->
-      <div class="col-12">
-        <label class="input-group-text btn-custom w-100" (click)="onthumbUpload('3DThumbnail','3DArtwork')">Choose Thumbnail</label>
-        <div *ngIf="file1SizeError" class="text-danger text-center">Thumbnail image must be less than 50MB.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Background Image Upload -->
-  <div class="input-group mb-3 justify-content-center">
-    <div class="row w-100">
-      <!-- First Row: File Input -->
-      <div class="col-12 mb-2">
-        <input type="file" class="form-control input-area" (change)="onFileSelected2($event)" required>
-      </div>
-      <!-- Second Row: Upload Button -->
-      <div class="col-12">
-        <label class="input-group-text btn-custom w-100" (click)="onbgUpload('3DBackground','profilePicture')">Choose Background</label>
-        <div *ngIf="file2SizeError" class="text-danger text-center">Background image must be less than 30MB.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Folder Upload -->
-  <div class="input-group mb-3 justify-content-center">
-    <div class="row w-100">
-      <!-- First Row: File Input -->
-      <div class="col-12 mb-2">
-        <input type="file" (change)="onFolderSelect($event)" webkitdirectory mozdirectory odirectory directory class="form-control" />
-      </div>
-      <!-- Second Row: Upload Button -->
-      <div class="col-12">
-        <label class="input-group-text btn-custom w-100" (click)="newFolderUpload('3DArtwork', '3DArtwork')">Choose Folder</label>
-        <div *ngIf="folderSizeError" class="text-danger text-center">Folder size must be less than 50MB.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="d-flex justify-content-center mb-3">
-    <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')">Delete Folder</button>
-  </div>
-
-                  <div class="form-group">
-                    <label for="title3D">Artwork Title</label>
-                    <input type="text" id="title3D" name="title" class="form-control input-area"
-                      [(ngModel)]="new3DArtwork.title" ngModel required>
-                  </div>
-
-
-
-                  <div class="form-group">
-                    <label for="price3D">Price</label>
-                    <input type="number" id="price3D" name="price" class="form-control input-area"
-                      [(ngModel)]="new3DArtwork.price" ngModel required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="category3D">3D Category</label>
-                    <select id="category3D" name="category" class="form-control input-area"
-                      [(ngModel)]="new3DArtwork.category_id" required>
-                      <option *ngFor="let category of categories" [value]="category.category_id">{{ category.name }}</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="description3D">Description</label>
-                    <textarea id="description3D" name="description" class="form-control input-area"
-                      [(ngModel)]="new3DArtwork.description" ngModel required></textarea>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="categoryFileTypes" class="form-label">Tags</label>
-                    <div class="d-flex flex-wrap">
-                      <span *ngFor="let j of new3DArtwork.tag_name; let i = index" class="badge bg-primary"
-                        style="margin-bottom: 5px; margin-right: 5px">
-                        {{ j.tag_name }}
-                        <button type="button" class="btn-close" aria-label="Close" (click)="remove2DTag(i)"></button>
-                      </span>
-                    </div>
-                    <div class="input-group mt-2">
-                      <input type="text" class="form-control" placeholder="Add tag name" [(ngModel)]="Tag_Name"
-                        name="new tag name" required #tag_nameInput="ngModel" />
-                      <button class="btn btn-primary" type="button" (click)="addNew3DTag()"
-                        [disabled]="tag_nameInput.invalid">
-                        Add
-                      </button>
-                    </div>
-                    <div *ngIf="
-                        new3DArtwork.tag_name.length === 0 &&
-                        (tag_nameInput.touched || tag_nameInput.dirty) &&
-                        tag_nameInput.invalid
-                      " class="alert alert-danger mt-2 p-2">
-                      At least one tag_name is required.
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="tools2D" class="form-label">Tools</label>
-                    <div class="d-flex flex-wrap">
-                      <span *ngFor="let tool of new2DArtwork.tools; let i = index" class="badge bg-primary"
-                        style="margin-bottom: 5px; margin-right: 5px">
-                        {{ tool.tool_name }}
-                        <button type="button" class="btn-close" aria-label="Close" (click)="removeTool(i)"></button>
-                      </span>
-                    </div>
-                    <div class="input-group mt-2">
-                      <input type="text" class="form-control" placeholder="Add tool" [(ngModel)]="Tool_Name" name="new tool"
-                        required #toolInput="ngModel" />
-                      <button class="btn btn-primary" type="button" (click)="addNewTool()" [disabled]="toolInput.invalid">
-                        Add
-                      </button>
-                    </div>
-                    <div *ngIf="
-                        new2DArtwork.tools.length === 0 &&
-                        (toolInput.touched || toolInput.dirty) &&
-                        toolInput.invalid
-                      " class="alert alert-danger mt-2 p-2">
-                      At least one tool is required.
-                    </div>
-                  </div>
-
-
-                  <div class="mb-3">
-                    <label for="fileFormats2D" class="form-label">File Formats</label>
-                    <div class="d-flex flex-wrap">
-                      <span *ngFor="let format of new2DArtwork.fileFormats; let i = index" class="badge bg-primary"
-                        style="margin-bottom: 5px; margin-right: 5px">
-                        {{ format.file_format_name }}
-                        <button type="button" class="btn-close" aria-label="Close" (click)="removeFileFormat(i)"></button>
-                      </span>
-                    </div>
-                    <div class="input-group mt-2">
-                      <input type="text" class="form-control" placeholder="Add file format" [(ngModel)]="Format_name"
-                        name="new file format" required #fileFormatInput="ngModel" />
-                      <button class="btn btn-primary" type="button" (click)="addNewFileFormat()"
-                        [disabled]="fileFormatInput.invalid">
-                        Add
-                      </button>
-                    </div>
-                    <div *ngIf="
-                        new2DArtwork.fileFormats.length === 0 &&
-                        (fileFormatInput.touched || fileFormatInput.dirty) &&
-                        fileFormatInput.invalid
-                      " class="alert alert-danger mt-2 p-2">
-                      At least one file format is required.
-                    </div>
-                  </div>
-
-
-                  <div class="form-group d-flex justify-content-between">
-                    <button type="submit" class="btn btn-custom">Upload 3D Artwork</button>
-                    <button type="button" class="btn btn-custom">Cancel</button>
-                  </div>
-
-                  <div *ngIf="isUploading3D" class="uploading-animation">Uploading...</div>
-                </form>
+                <div class="row">
+                  <input
+                    id="file2D"
+                    type="file"
+                    name="title"
+                    class="form-control input-area"
+                    (change)="onFileSelected1($event)"
+                    style="color: rgb(255, 0, 0)"
+                    required
+                  />
+                  <label
+                    *ngIf="!thumbUrl"
+                    class="input-group-text btn-custom justify-content-center w-100 mt-2"
+                    (click)="onthumbUpload('2DThumbnails', 'profilePicture')"
+                    >Upload</label
+                  >
+                  <button
+                    *ngIf="thumbUrl"
+                    type="button"
+                    class="btn btn-danger mt-2 w-100"
+                    (click)="removeThumb()"
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
 
+              <div class="form-group">
+                <label for="title2D">Artwork Title</label>
+                <input
+                  type="text"
+                  id="title2D"
+                  name="title"
+                  class="form-control input-area"
+                  [(ngModel)]="new2DArtwork.title"
+                  ngModel
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="price2D">Price</label>
+                <input
+                  type="number"
+                  id="price2D"
+                  name="price"
+                  class="form-control input-area"
+                  [(ngModel)]="new2DArtwork.price"
+                  ngModel
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="category3D">2D Category</label>
+                <select
+                  id="category3D"
+                  name="category"
+                  class="form-control input-area"
+                  [(ngModel)]="new2DArtwork.category_id"
+                  required
+                >
+                  <option
+                    *ngFor="let category of categories"
+                    [value]="category.category_id"
+                  >
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="description2D">Description</label>
+                <textarea
+                  id="description2D"
+                  name="description"
+                  class="form-control input-area"
+                  [(ngModel)]="new2DArtwork.description"
+                  ngModel
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="categoryFileTypes" class="form-label">Tags</label>
+                <div class="d-flex flex-wrap">
+                  <span
+                    *ngFor="let j of new2DArtwork.tag_name; let i = index"
+                    class="badge bg-primary"
+                    style="margin-bottom: 5px; margin-right: 5px"
+                  >
+                    {{ j.tag_name }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      (click)="remove2DTag(i)"
+                    ></button>
+                  </span>
+                </div>
+                <div class="input-group mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add tag name"
+                    [(ngModel)]="Tag_Name"
+                    name="new tag name"
+                    required
+                    #tag_nameInput="ngModel"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addNew2DTag()"
+                    [disabled]="tag_nameInput.invalid"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    new2DArtwork.tag_name.length === 0 &&
+                    (tag_nameInput.touched || tag_nameInput.dirty) &&
+                    tag_nameInput.invalid
+                  "
+                  class="alert alert-danger mt-2 p-2"
+                >
+                  At least one tag_name is required.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="tools2D" class="form-label">Tools</label>
+                <div class="d-flex flex-wrap">
+                  <span
+                    *ngFor="let tool of new2DArtwork.tools; let i = index"
+                    class="badge bg-primary"
+                    style="margin-bottom: 5px; margin-right: 5px"
+                  >
+                    {{ tool.tool_name }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      (click)="removeTool(i)"
+                    ></button>
+                  </span>
+                </div>
+                <div class="input-group mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add tool"
+                    [(ngModel)]="Tool_Name"
+                    name="new tool"
+                    required
+                    #toolInput="ngModel"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addNewTool()"
+                    [disabled]="toolInput.invalid"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    new2DArtwork.tools.length === 0 &&
+                    (toolInput.touched || toolInput.dirty) &&
+                    toolInput.invalid
+                  "
+                  class="alert alert-danger mt-2 p-2"
+                >
+                  At least one tool is required.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="fileFormats2D" class="form-label"
+                  >File Formats</label
+                >
+                <div class="d-flex flex-wrap">
+                  <span
+                    *ngFor="
+                      let format of new2DArtwork.fileFormats;
+                      let i = index
+                    "
+                    class="badge bg-primary"
+                    style="margin-bottom: 5px; margin-right: 5px"
+                  >
+                    {{ format.file_format_name }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      (click)="removeFileFormat(i)"
+                    ></button>
+                  </span>
+                </div>
+                <div class="input-group mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add file format"
+                    [(ngModel)]="Format_name"
+                    name="new file format"
+                    required
+                    #fileFormatInput="ngModel"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addNewFileFormat()"
+                    [disabled]="fileFormatInput.invalid"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    new2DArtwork.fileFormats.length === 0 &&
+                    (fileFormatInput.touched || fileFormatInput.dirty) &&
+                    fileFormatInput.invalid
+                  "
+                  class="alert alert-danger mt-2 p-2"
+                >
+                  At least one file format is required.
+                </div>
+              </div>
+
+              <div class="form-group d-flex justify-content-between">
+                <button type="submit" class="btn btn-custom">
+                  Upload 2D Artwork
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-custom"
+                  routerLink="/artist/new-home"
+                >
+                  Cancel
+                </button>
+              </div>
+
+              <div *ngIf="isUploading2D" class="uploading-animation">
+                Uploading...
+              </div>
+            </form>
+
+            <!-- 3D Artwork Form///////////////////////////////////////////////// -->
+            <form (ngSubmit)="upload3DArtwork()" *ngIf="artType === '3d'">
+              <div class="input-group mb-3 justify-content-center">
+                <div class="row w-100">
+                  <!-- First Row: File Input -->
+                  <div class="col-12 mb-2">
+                    <input
+                      type="file"
+                      class="form-control input-area"
+                      (change)="onFileSelected1($event)"
+                      required
+                    />
+                  </div>
+                  <!-- Second Row: Upload Button -->
+                  <div class="col-12">
+                    <label
+                      class="input-group-text btn-custom w-100"
+                      (click)="onthumbUpload('3DThumbnail', '3DArtwork')"
+                      >Choose Thumbnail</label
+                    >
+                    <div *ngIf="file1SizeError" class="text-danger text-center">
+                      Thumbnail image must be less than 50MB.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Background Image Upload -->
+              <div class="input-group mb-3 justify-content-center">
+                <div class="row w-100">
+                  <!-- First Row: File Input -->
+                  <div class="col-12 mb-2">
+                    <input
+                      type="file"
+                      class="form-control input-area"
+                      (change)="onFileSelected2($event)"
+                      required
+                    />
+                  </div>
+                  <!-- Second Row: Upload Button -->
+                  <div class="col-12">
+                    <label
+                      class="input-group-text btn-custom w-100"
+                      (click)="onbgUpload('3DBackground', 'profilePicture')"
+                      >Choose Background</label
+                    >
+                    <div *ngIf="file2SizeError" class="text-danger text-center">
+                      Background image must be less than 30MB.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Folder Upload -->
+              <div class="input-group mb-3 justify-content-center">
+                <div class="row w-100">
+                  <!-- First Row: File Input -->
+                  <div class="col-12 mb-2">
+                    <input
+                      type="file"
+                      (change)="onFolderSelect($event)"
+                      webkitdirectory
+                      mozdirectory
+                      odirectory
+                      directory
+                      class="form-control"
+                    />
+                  </div>
+                  <!-- Second Row: Upload Button -->
+                  <div class="col-12">
+                    <label
+                      class="input-group-text btn-custom w-100"
+                      (click)="newFolderUpload('3DArtwork', '3DArtwork')"
+                      >Choose Folder</label
+                    >
+                    <div
+                      *ngIf="folderSizeError"
+                      class="text-danger text-center"
+                    >
+                      Folder size must be less than 50MB.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center mb-3">
+                <button
+                  class="btn btn-danger"
+                  (click)="deleteFolder('3DArtwork')"
+                >
+                  Delete Folder
+                </button>
+              </div>
+
+              <div class="form-group">
+                <label for="title3D">Artwork Title</label>
+                <input
+                  type="text"
+                  id="title3D"
+                  name="title"
+                  class="form-control input-area"
+                  [(ngModel)]="new3DArtwork.title"
+                  ngModel
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="price3D">Price</label>
+                <input
+                  type="number"
+                  id="price3D"
+                  name="price"
+                  class="form-control input-area"
+                  [(ngModel)]="new3DArtwork.price"
+                  ngModel
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="category3D">3D Category</label>
+                <select
+                  id="category3D"
+                  name="category"
+                  class="form-control input-area"
+                  [(ngModel)]="new3DArtwork.category_id"
+                  required
+                >
+                  <option
+                    *ngFor="let category of categories"
+                    [value]="category.category_id"
+                  >
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="description3D">Description</label>
+                <textarea
+                  id="description3D"
+                  name="description"
+                  class="form-control input-area"
+                  [(ngModel)]="new3DArtwork.description"
+                  ngModel
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="categoryFileTypes" class="form-label">Tags</label>
+                <div class="d-flex flex-wrap">
+                  <span
+                    *ngFor="let j of new3DArtwork.tag_name; let i = index"
+                    class="badge bg-primary"
+                    style="margin-bottom: 5px; margin-right: 5px"
+                  >
+                    {{ j.tag_name }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      (click)="remove2DTag(i)"
+                    ></button>
+                  </span>
+                </div>
+                <div class="input-group mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add tag name"
+                    [(ngModel)]="Tag_Name"
+                    name="new tag name"
+                    required
+                    #tag_nameInput="ngModel"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addNew3DTag()"
+                    [disabled]="tag_nameInput.invalid"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    new3DArtwork.tag_name.length === 0 &&
+                    (tag_nameInput.touched || tag_nameInput.dirty) &&
+                    tag_nameInput.invalid
+                  "
+                  class="alert alert-danger mt-2 p-2"
+                >
+                  At least one tag_name is required.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="tools2D" class="form-label">Tools</label>
+                <div class="d-flex flex-wrap">
+                  <span
+                    *ngFor="let tool of new3DArtwork.tools; let i = index"
+                    class="badge bg-primary"
+                    style="margin-bottom: 5px; margin-right: 5px"
+                  >
+                    {{ tool.tool_name }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      (click)="removeTool1(i)"
+                    ></button>
+                  </span>
+                </div>
+                <div class="input-group mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add tool"
+                    [(ngModel)]="Tool_Name"
+                    name="new tool"
+                    required
+                    #toolInput="ngModel"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addNewTool1()"
+                    [disabled]="toolInput.invalid"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    new3DArtwork.tools.length === 0 &&
+                    (toolInput.touched || toolInput.dirty) &&
+                    toolInput.invalid
+                  "
+                  class="alert alert-danger mt-2 p-2"
+                >
+                  At least one tool is required.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="fileFormats2D" class="form-label"
+                  >File Formats</label
+                >
+                <div class="d-flex flex-wrap">
+                  <span
+                    *ngFor="
+                      let format of new3DArtwork.fileFormats;
+                      let i = index
+                    "
+                    class="badge bg-primary"
+                    style="margin-bottom: 5px; margin-right: 5px"
+                  >
+                    {{ format.file_format_name }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      (click)="removeFileFormat1(i)"
+                    ></button>
+                  </span>
+                </div>
+                <div class="input-group mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Add file format"
+                    [(ngModel)]="Format_name"
+                    name="new file format"
+                    required
+                    #fileFormatInput="ngModel"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addNewFileFormat1()"
+                    [disabled]="fileFormatInput.invalid"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div
+                  *ngIf="
+                    new3DArtwork.fileFormats.length === 0 &&
+                    (fileFormatInput.touched || fileFormatInput.dirty) &&
+                    fileFormatInput.invalid
+                  "
+                  class="alert alert-danger mt-2 p-2"
+                >
+                  At least one file format is required.
+                </div>
+              </div>
+
+              <div class="form-group d-flex justify-content-between">
+                <button type="submit" class="btn btn-custom">
+                  Upload 3D Artwork
+                </button>
+                <button type="button" class="btn btn-custom">Cancel</button>
+              </div>
+
+              <div *ngIf="isUploading3D" class="uploading-animation">
+                Uploading...
+              </div>
+            </form>
 
 
-            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
