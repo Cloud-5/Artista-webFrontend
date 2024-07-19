@@ -15,7 +15,7 @@ export class CommentComponent implements OnInit{
   @Input() replies!: CommentInterface[];
   @Input() currentUserId!: string;
   @Input() parentId!: string | null;
-  @Input() userPhoto!: string;
+  @Input() repliesCount!: number;
 
   @Output()
   setActiveComment = new EventEmitter<ActiveCommentInterface | null>();
@@ -33,7 +33,11 @@ export class CommentComponent implements OnInit{
   activeCommentType = ActiveCommentTypeEnum;
   replyId: string | null = null;
   showActions: boolean = false;
+  showReplies: boolean = false;
 
+  get profilePhoto(): string {
+    return this.comment.profile_photo_url || 'assets/user-icon.png';
+  }
 
   ngOnInit(): void {
     const fiveMinutes = 300000;
@@ -81,5 +85,8 @@ export class CommentComponent implements OnInit{
   }
   toggleCommentActions(): void {
     this.showActions = !this.showActions;
+  }
+  toggleReplies(): void {
+    this.showReplies = !this.showReplies;
   }
 }

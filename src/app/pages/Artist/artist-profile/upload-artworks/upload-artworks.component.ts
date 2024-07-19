@@ -384,6 +384,29 @@ export class UploadArtworksComponent {
     }
   }
 
+  addNewTool1() {
+    if (this.Tool_Name.trim() !== '') {
+      this.new3DArtwork.tools.push({ tool_name: this.Tool_Name });
+      this.Tool_Name = '';
+    }
+  }
+
+  removeTool1(index: number) {
+    this.new3DArtwork.tools.splice(index, 1);
+  }
+
+  addNewFileFormat1() {
+    if (this.Format_name.trim() !== '') {
+      console.log('file format', this.Format_name);
+      this.new3DArtwork.fileFormats.push({ file_format_name: this.Format_name });
+      this.Format_name = '';
+    }
+  }
+
+  removeFileFormat1(index: number) {
+    this.new3DArtwork.fileFormats.splice(index, 1);
+  }
+
   async upload3DArtwork(): Promise<void> {
     try {
 

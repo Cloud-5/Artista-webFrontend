@@ -144,6 +144,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.bg = this.artworkDetails.background;
     this.thumbnail = this.artworkDetails.thumbnail;
     this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
+    console.log('customer_profile_photo',this.customer_profile_photo)
     this.is3D = this.artworkDetails.category === '3D Modeling';
     this.tags = this.artworkDetails.tags || '';
     this.tagsArray = this.tags.split(',');
