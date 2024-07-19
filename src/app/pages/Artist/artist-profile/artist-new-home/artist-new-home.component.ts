@@ -49,7 +49,7 @@ export class ArtistNewHomeComponent implements OnInit {
       this.numberOfFollowers=this.userData.NumberOfFollowers;
       this.socialAccounts = data.socialAccounts;
       this.rank = data.rank.featured;
-      this.userData.AverageRating=data.artistData[0];
+      this.userData.AverageRating=3.5;
 
       //this.artworks.reverse();
     })
