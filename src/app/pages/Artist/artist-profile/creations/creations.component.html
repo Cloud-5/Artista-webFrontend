@@ -6,8 +6,8 @@
           <!-- <h2>name</h2> -->
           <!-- <p>{{ artworks.title }}</p> -->
             <!-- Conditionally show the remove button in the top right corner -->
-    <button class="btn btn-danger remove-btn" >
-      Remove
+    <button *ngIf="artworks.is3D" class="btn  remove-btn" style="background-color: green;" >
+      <strong>3D</strong>
     </button>
       </div>
       <div class="more">
@@ -27,7 +27,7 @@
             <div class="like-count"> Likes:{{artworks.likeCount}}</div>
           </div>
           <div class="card-actions mt-3 w-100 d-flex justify-content-end">
-            <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artworks.id)">
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artworks.artwork_id)">
               Delete
             </button>
           </div>

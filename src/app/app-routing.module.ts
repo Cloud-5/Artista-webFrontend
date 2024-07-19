@@ -40,6 +40,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ChatScreenComponent } from './pages/chat/chat-screen/chat-screen.component';
 import { AuthGuard } from './shared/services/auth.Guard.service';
 import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
+import { EditArtworksComponent } from './pages/Artist/artist-profile/edit-artworks/edit-artworks.component';
 const routes: Routes = [
 
   //gihan
@@ -86,7 +87,8 @@ const routes: Routes = [
   {path:'upload',component:UploadArtworksComponent},
   {path:'notification',component:NotificationComponent},
   {path:'help',component:HelpCenterComponent},
-  {path:'creationPreview',component:CreationPreviewComponent}
+  {path:'creationPreview',component:CreationPreviewComponent},
+  {path:'editArtwork/:artworkId',component:EditArtworksComponent}
 ];
 
 @NgModule({
