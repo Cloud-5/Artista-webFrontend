@@ -12,7 +12,6 @@ export class ArtCardServiceService {
   constructor(private http: HttpClient) {}
 
   removeGalleryItem(customerUserId: string, artworkId: number): Observable<any> {
-    console.log('customerUserId', customerUserId, 'artworkId', artworkId);
     return this.http.delete(`${this.apiUrl}/remove-gallery-item/${customerUserId}/${artworkId}`);
   }
 }
