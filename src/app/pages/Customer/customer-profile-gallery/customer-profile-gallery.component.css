@@ -25,7 +25,7 @@ a {
   border: none;
   border-radius: 10px; /* Rounded corners */
   padding: 10px 20px; /* Padding for size */
-  font-size: 14px; /* Font size */
+  font-size: 12px; /* Font size */
   font-weight: 600; /* Bold text */
   cursor: pointer; /* Pointer cursor on hover */
   display: flex;
@@ -132,7 +132,7 @@ a {
 
 .header__wrapper .cols__container .left__col .about {
   justify-content: space-between;
-  margin: 35px 0;
+  margin: 40px 0;
 }
 
 .header__wrapper .cols__container .left__col .about li span {
@@ -195,7 +195,7 @@ a {
 }
 
 .tab-content {
-  padding-top: 10px;
+  padding-top: 0px;
 }
 .Gallery {
   max-height: 500px;
@@ -210,5 +210,41 @@ a {
 
 /* Hide scrollbar for other browsers */
 .Gallery {
+  scrollbar-width: none; /* Firefox */
+}
+
+.col{
+  margin-top: 0px;
+}
+
+.following-tab {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.following-tab::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Hide scrollbar for other browsers */
+.following-tab {
+  scrollbar-width: none; /* Firefox */
+}
+
+.purchase-history {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.purchase-history::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Hide scrollbar for other browsers */
+.purchase-history {
   scrollbar-width: none; /* Firefox */
 }

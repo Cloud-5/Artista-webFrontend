@@ -170,16 +170,16 @@
                 </form>
               </div>
             </nav>
-            <div class="Gallery row row-cols-1 row-cols-md-3 g-4">
+            <div class="Gallery row row-cols-1 row-cols-md-3 g-4" style="margin-top:0.5px ;">
               <div class="col" *ngFor="let art of filteredArts">
                 <app-art-card [art]="art" [showRemoveButton]="true" [customerUserId]="userId" (removeGalleryItem)="onItemRemoved(art.artwork_id)"></app-art-card>
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="following" role="tabpanel" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+          <div class="tab-pane fade following-tab" id="following" role="tabpanel">
             <app-following-artists (unfollowArtist)="onUnfollowing()"></app-following-artists>
           </div>
-          <div class="tab-pane fade" id="purchaseHistory" role="tabpanel" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+          <div class="tab-pane fade purchase-history" id="purchaseHistory" role="tabpanel" style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
             <app-purchase-img-card></app-purchase-img-card>
           </div>
         </div>

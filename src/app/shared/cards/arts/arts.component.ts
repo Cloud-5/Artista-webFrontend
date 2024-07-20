@@ -21,8 +21,10 @@ export class ArtsComponent {
 
   ngOnInit() {
     // Check if the artwork is liked by the current user
-    this.checkLikedStatus();
-    this.getTotalLikes();
+    if (this.art && this.userId) {
+      this.checkLikedStatus();
+    }
+    console.log(this.art, 'arts in arts component');
   }
   addCart(art: any) {
     
@@ -42,7 +44,7 @@ export class ArtsComponent {
       .subscribe(
         response => {
           this.art.liked = response.liked; // Update liked status for the artwork
-          this.art.total_likes = response.total_likes ||0; // Update total likes count
+          // this.art.total_likes = response.total_likes ||0; // Update total likes count
         },
         error => {
           console.error('Error fetching liked status:', error);
@@ -57,7 +59,8 @@ export class ArtsComponent {
           response => {
             console.log('Artwork unliked successfully', response);
             art.liked = false;
-            art.total_likes = response.total_likes ||0;
+            // art.total_likes = response.total_likes ||0;
+            art.total_likes -= 1;
           },
           error => {
             console.error('Error unliking artwork:', error);
@@ -70,7 +73,8 @@ export class ArtsComponent {
           response => {
             console.log('Artwork liked successfully', response);
             art.liked = true;
-            art.total_likes = response.total_likes || 0;
+            // art.total_likes = response.total_likes || 0;
+            art.total_likes += 1;
           },
           error => {
             console.error('Error liking artwork:', error);
@@ -89,6 +93,7 @@ export class ArtsComponent {
       .subscribe(
         response => {
           this.art.total_likes = response.total_likes ; // Update total likes count for the artwork
+          console.log('Total likes:', response.total_likes);
         },
         error => {
           console.error('Error fetching total likes:', error);

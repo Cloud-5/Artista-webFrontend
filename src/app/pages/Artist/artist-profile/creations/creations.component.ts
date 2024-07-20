@@ -21,10 +21,12 @@ export class CreationsComponent {
 
 
   deleteArtwork(artworkId: number): void {
+    console.log(artworkId,'artwrkid in ts')
     if (confirm('Are you sure you want to mark this artwork as unavailable?')) {
       this.creation.putArtworkAvailability(artworkId).subscribe(
         response => {
           console.log(response.message);
+          console.log('this is artwork Id in delete artwork',artworkId);
           // Optionally update the UI to reflect the change
         },
         error => {
@@ -55,7 +57,7 @@ export class CreationsComponent {
     this.router.navigate(['/preview', this.artworks.artwork_id]);
   }
   ngOnInit(): void {
-
+  // console.log('artWork data : ',this.artworks)
 
   }
 

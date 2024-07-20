@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
+
 import { NgForm } from '@angular/forms';
-import { UploadArtworksService } from './upload-artworks.service';
+import { UploadArtworksService } from '../upload-artworks/upload-artworks.service';
 import { ImageUploadService } from '../../../../shared/services/image-upload.service';
 import { ArtworkPreviewService } from '../../../artwork-preview/artwork-preview.service';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-upload-artworks',
-  templateUrl: './upload-artworks.component.html',
-  styleUrls: ['./upload-artworks.component.css']
+  selector: 'app-edit-artworks',
+  templateUrl: './edit-artworks.component.html',
+  styleUrl: './edit-artworks.component.css'
 })
-export class UploadArtworksComponent {
+export class EditArtworksComponent {
+
+
+
+
+
   artistId: string = localStorage.getItem('user_id') || '';
   artType: string = '2d';
   //fileName = '';
@@ -38,6 +45,8 @@ export class UploadArtworksComponent {
   addToGalleryButtonText: string = 'Add to Gallery';
   addToGalleryButtonClass: string = 'add-to-gallery';
   bg:string='';
+  artworkIdNew='';
+
 
 
   file1SizeError = false;
@@ -47,6 +56,7 @@ export class UploadArtworksComponent {
   descriptionLengthError = false;
   isUploadingFolder: boolean = false;
   uploadProgress: number = 0;
+  route: any;
 
 
 
@@ -134,6 +144,14 @@ export class UploadArtworksComponent {
 
   ngOnInit(): void {
 
+    // this.routeSub = this.route.params.subscribe(params => {
+    //   this.artworkIdNew = params['artworkId'];
+    //   console.log('this id newwwwwwwwwwwwww artwork Id', this.artworkIdNew);
+    //   this.initializeComponent();
+    // });
+
+
+
     const userId = localStorage.getItem('user_id');
     if (userId) {
       this.new2DArtwork.artist = userId;
@@ -145,6 +163,13 @@ export class UploadArtworksComponent {
 
     console.log('Categories', this.categories);
   }
+  initializeComponent() {
+    throw new Error('Method not implemented.');
+  }
+  // ngOnDestroy(): void {
+  //   this.routeSub.unsubscribe();
+  // }
+
 
 
 
@@ -184,7 +209,7 @@ export class UploadArtworksComponent {
     }
   }
 
- 
+
 
 
   newFolderUpload(folder: string, uploadType: string) {
@@ -256,6 +281,7 @@ export class UploadArtworksComponent {
   bg1: File | undefined;
   thumbUrl: string = '';
   bgUrl: string = '';
+  routeSub: Subscription | undefined;
 
   new2DArtwork:any={
     title:'',
@@ -384,29 +410,6 @@ export class UploadArtworksComponent {
     }
   }
 
-  addNewTool1() {
-    if (this.Tool_Name.trim() !== '') {
-      this.new3DArtwork.tools.push({ tool_name: this.Tool_Name });
-      this.Tool_Name = '';
-    }
-  }
-
-  removeTool1(index: number) {
-    this.new3DArtwork.tools.splice(index, 1);
-  }
-
-  addNewFileFormat1() {
-    if (this.Format_name.trim() !== '') {
-      console.log('file format', this.Format_name);
-      this.new3DArtwork.fileFormats.push({ file_format_name: this.Format_name });
-      this.Format_name = '';
-    }
-  }
-
-  removeFileFormat1(index: number) {
-    this.new3DArtwork.fileFormats.splice(index, 1);
-  }
-
   async upload3DArtwork(): Promise<void> {
     try {
 
@@ -430,4 +433,5 @@ export class UploadArtworksComponent {
       console.log('error upoading 3d artwork', error);
     }
   }
+
 }
