@@ -27,7 +27,7 @@ export class ArtsComponent {
     console.log(this.art, 'arts in arts component');
   }
   addCart(art: any) {
-    
+
       this.cartItemService.addItem(this.userId, art.artwork_id) // Replace '1' with the actual user_id
         .subscribe(
           response => {
@@ -37,7 +37,7 @@ export class ArtsComponent {
             console.error('Error adding item to cart:', error);
           }
         );
-   
+
   }
   checkLikedStatus() {
     this.cartItemService.getLikedStatus(this.userId, this.art.artwork_id)
@@ -82,7 +82,7 @@ export class ArtsComponent {
         );
     }
   }
-  
+
   goToPreview(art: any) {
     this.router.navigate(['/preview', art.artwork_id]);
     console.log('art', art.artwork_id);

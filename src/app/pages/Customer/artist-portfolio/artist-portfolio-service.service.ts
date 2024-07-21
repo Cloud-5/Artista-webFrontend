@@ -13,7 +13,6 @@ export class ArtistPortfolioService {
   constructor(private http: HttpClient) {}
 
   getArtistDetails(artistId: string, customerId:string): Observable<any> {
-    console.log('customweeeeeeeeeee',customerId, 'artiusyhsj', artistId)
     return this.http.get(`${this.apiUrl}/${artistId}/${customerId}`);
   }
 
