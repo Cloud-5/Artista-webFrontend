@@ -13,7 +13,7 @@ export class ArtCardComponent implements OnInit {
   @Input() art: any;
   @Input() showRemoveButton: boolean = false;
   @Input() customerUserId!: string;
-  @Input() userId!: string; 
+  @Input() userId!: string;
   private isBrowser: boolean;
 
   currentCustomer:string = localStorage.getItem('user_id') || '';
@@ -39,23 +39,12 @@ export class ArtCardComponent implements OnInit {
     this.cartItemService.getLikedStatus(this.currentCustomer, this.art.artwork_id)
       .subscribe(
         response => {
-          this.art.liked = response.liked; 
-          this.art.total_likes = response.total_likes ||0; 
+          this.art.liked = response.liked;
         },
         error => {
           console.error('Error fetching liked status:', error);
         }
       );
-  }
-
-  formatLikeCount(likeCount: number): string {
-    if (likeCount < 1000) {
-      return likeCount.toString();
-    } else if (likeCount < 1000000) {
-      return (likeCount / 1000).toFixed(1) + 'K';
-    } else {
-      return (likeCount / 1000000).toFixed(1) + 'M';
-    }
   }
 
   removeFromGallery() {
@@ -95,7 +84,7 @@ export class ArtCardComponent implements OnInit {
           response => {
             console.log('Artwork unliked successfully', response);
             art.liked = false;
-            art.total_likes = response.total_likes ||0;
+             art.total_likes -= 1;
           },
           error => {
             console.error('Error unliking artwork:', error);
@@ -108,7 +97,7 @@ export class ArtCardComponent implements OnInit {
           response => {
             console.log('Artwork liked successfully', response);
             art.liked = true;
-            art.total_likes = response.total_likes || 0;
+            art.total_likes += 1;
           },
           error => {
             console.error('Error liking artwork:', error);
@@ -120,5 +109,18 @@ export class ArtCardComponent implements OnInit {
   goToPreview(art: any) {
     this.router.navigate(['/preview', art.artwork_id]);
     console.log('art', art.artwork_id);
+  }
+
+  getTotalLikes() {
+    this.cartItemService.getTotalLikes(this.art.artwork_id)
+      .subscribe(
+        response => {
+          this.art.total_likes = response.total_likes ; // Update total likes count for the artwork
+          console.log('Total likes:', response.total_likes);
+        },
+        error => {
+          console.error('Error fetching total likes:', error);
+        }
+      );
   }
 }

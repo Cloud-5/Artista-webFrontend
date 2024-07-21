@@ -35,7 +35,7 @@
                 <p class="like-count"> <button class="btn like-btn" (click)="likeArtwork(art); $event.stopPropagation()">
                     <i class="bi" [ngClass]="art.liked ? 'bi-heart-fill' : 'bi-heart'"></i>
                   </button>
-                  {{ formatLikeCount(art.total_likes) }}
+                  {{art.total_likes}}
                 </p>
                 <button class="btn cart-icon-btn" style="margin-bottom: 15px;"    (click)="addCart(art); $event.stopPropagation()"> <i class="bi bi-cart-plus-fill"></i></button>
             </div>
