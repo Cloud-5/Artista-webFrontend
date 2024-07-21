@@ -5,7 +5,7 @@
       (handleSubmit)="addComment({ text: $event, parentId: null })"
     >
     </app-comment-form>
-    <div class="show-button">
+    <div class="show-button" *ngIf="comments.length > 0">
       <button class="btn btn-outline-dark mb-3" (click)="toggleComments()">
         {{ showComments ? 'Hide Comments' : 'View Comments' }}
       </button>
