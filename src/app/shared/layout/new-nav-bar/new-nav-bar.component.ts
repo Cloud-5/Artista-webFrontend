@@ -46,36 +46,6 @@ export class NewNavBarComponent {
     this.getAllNotifications();
   }
 
-  // toggleNotiFi() {
-  //   if (this.down) {
-  //     if (this.box) {
-  //       this.box.style.height = '0px';
-  //       this.box.style.opacity = '0';
-  //     }
-  //     this.down = false;
-  //   } else {
-  //     if (this.box) {
-  //       this.box.style.height = '510px';
-  //       this.box.style.opacity = '1';
-  //     }
-  //     this.down = true;
-  //   }
-  // }
-
-  // countUnreadMessages(): number {
-  //   return this.notifications.filter(notification => notification.unread).length;
-  // }
-
-  // markAllAsRead(): void {
-  //   this.notifications.forEach(notification => notification.unread = false);
-  // }
-
-  // clearAllNotifications(): void {
-  //   this.notifications = [];
-  //   // Optionally, perform additional actions like making an API call to clear notifications on the server
-  // }
-
-  // Method to handle search form submission
   onSearchSubmit(): void {
     if (this.searchTerm.trim()) {
       this.router.navigate(['/search-art'], {
@@ -102,5 +72,8 @@ export class NewNavBarComponent {
       }
     )
   }
+
+
+
 
 }

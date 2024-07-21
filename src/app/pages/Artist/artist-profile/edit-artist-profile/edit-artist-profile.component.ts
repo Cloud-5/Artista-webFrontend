@@ -2,7 +2,7 @@ import { ImageUploadService } from './../../../../shared/services/image-upload.s
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { EditArtistProfileService } from './edit-artist-profile.service';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { ArtistNewHomeServiceService } from '../artist-new-home/artist-new-home-service.service';
 import { get } from 'http';
 import { Platform } from '../../../../shared/interfaces/platform.interface';
@@ -296,12 +296,8 @@ export class EditArtistProfileComponent implements OnInit {
   }
 
   getSocialAccounts():void{
-    // console.log('artist in TSSSSSSSSSSSSSSS', this.userId)
     this.artistService.getSocialAccounts(this.userId).subscribe((data:any)=>{
       this.socialAccounts=data;
-      console.log('Social eccountsssssss',this.socialAccounts);
-      console.log('Social eccountsssssss',this.socialAccounts[0]);
-
 
     });
 
@@ -314,14 +310,25 @@ export class EditArtistProfileComponent implements OnInit {
     });
   }
 
-  updateSocialMediaLink(platformId: number): void {
-    const accountUrl = this.socialMediaLinks[platformId];
-    this.artistService
-      .updateSocialMediaLink(this.userId, platformId, accountUrl)
-      .subscribe((response: any) => {
-        console.log(response.message);
-      });
+  updateAllSocialMediaLinks(): void {
+    const updates = this.socialAccounts[0].map((platform: any) => {
+      return this.artistService.updateSocialMediaLink(this.userId, platform.id, platform.account_url);
+    });
+
+    forkJoin(updates).subscribe((responses: any) => {
+      console.log('All updates complete', responses);
+    }, (error: any) => {
+      console.error('Update failed', error);
+    });
   }
+  // updateSocialMediaLink(platformId: number): void {
+  //   const accountUrl = this.socialMediaLinks[platformId];
+  //   this.artistService
+  //     .updateSocialMediaLink(this.userId, platformId, accountUrl)
+  //     .subscribe((response: any) => {
+  //       console.log(response.message);
+  //     });
+  // }
 
   loadArtistData(userId: string): void {
     this.artist.getArtistDetail(userId).subscribe((data: any) => {
@@ -341,8 +348,6 @@ export class EditArtistProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-    console.log('data', this.userData);
-    console.log('updated ',this.updateDetails);
     this.artistService.updateArtistProfile(this.userId, this.updateDetails).subscribe((response: any) => {
         console.log(response.message);
       });

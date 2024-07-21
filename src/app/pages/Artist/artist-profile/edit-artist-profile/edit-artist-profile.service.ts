@@ -48,14 +48,12 @@ return this.http.get(`${this.apiUrl}/artist-edit/social-media-platforms`)
 
 
   updateSocialMediaLink(artistId: string, platformId: number, accountUrl: string): Observable<any> {
-
-    console.log('artistIdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', artistId);
-      const body = {
-        platform_id: platformId,
-        account_url: accountUrl
-      };
-      return this.http.put(`${this.apiUrl}/artist-edit/social-media`,body);
-    }
+    const body = {
+      platform_id: platformId,
+      account_url: accountUrl
+    };
+    return this.http.put(`${this.apiUrl}/artist-edit/social-media/${artistId}`, body);
+  }
 
     changePassword( email: string,oldPassword: string,newPassword: string, confirmPassword: string): Observable<any> {
       return this.http.post(`${this.apiurl}/changePassword`, {email,oldPassword,newPassword, confirmPassword });
