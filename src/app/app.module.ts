@@ -92,7 +92,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
 import { EditArtworksComponent } from './pages/Artist/artist-profile/edit-artworks/edit-artworks.component';
 import { NewNavBarComponent } from './shared/layout/new-nav-bar/new-nav-bar.component';
 
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -173,7 +174,8 @@ import { NewNavBarComponent } from './shared/layout/new-nav-bar/new-nav-bar.comp
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-
+    MatMenuModule,
+    MatBadgeModule
 
 
   ],
