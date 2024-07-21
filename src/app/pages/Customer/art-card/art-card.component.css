@@ -155,15 +155,6 @@
   bottom: 0;
 }
 
-
-/* .search-art .image {
-  width: 276px;
-}
-.customer-profile-gallery .image {
-  width:px;
-} */
-
-/* Responsive CSS */
 @media (max-width: 1080px) {
   .image {
       flex: 100%;

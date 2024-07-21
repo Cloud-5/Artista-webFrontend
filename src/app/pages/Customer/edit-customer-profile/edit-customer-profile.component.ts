@@ -60,7 +60,6 @@ confirmPasswordInput: any;
         location: this.customer.location,
         phone: this.customer.phone,
       };
-      console.log('customerDetailsSSSSSSSSSSSSSSSSSSSS', customerDetails);
 
       this.editCustomerProfileService.EditCustomerProfile(this.editingCustomer, customerDetails).subscribe(
           () => {
@@ -149,7 +148,6 @@ confirmPasswordInput: any;
       (response) => {
         console.log('Password changed successfully', response);
         alert('Password changed successfully!');
-        // Optionally reset form fields or navigate to another page
       },
       (error) => {
         console.error('Error changing password', error);

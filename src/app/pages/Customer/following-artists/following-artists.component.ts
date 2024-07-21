@@ -60,14 +60,13 @@ export class FollowingArtistsComponent implements OnInit {
       (response: any) => {
         console.log(response.message);
         this.getFollowingArtistsList(this.userId);
-        // Remove the artist from the FollowingArtistsData and filteredArtists arrays
+
         this.FollowingArtistsData = this.FollowingArtistsData.filter(artist => artist.artistId !== artistId);
         this.filteredArtists = this.filteredArtists.filter(artist => artist.artistId !== artistId);
 
-        // Emit event to notify parent component (if needed)
+
         this.unfollowArtist.emit();
 
-        // Log the updated arrays
         console.log('Updated FollowingArtistsData:', this.FollowingArtistsData);
         console.log('Updated filteredArtists:', this.filteredArtists);
       },
