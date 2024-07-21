@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArtistPortfolioService } from './artist-portfolio-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { notificationService } from '../../../shared/layout/new-nav-bar/new-nav-bar.service';
 
 @Component({
   selector: 'app-artist-portfolio',
@@ -31,6 +32,7 @@ export class ArtistPortfolioComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
+    private notificationService:notificationService
   ) {
     this.ratingForm = this.fb.group({
       rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
@@ -134,6 +136,27 @@ export class ArtistPortfolioComponent implements OnInit {
       const feedback = this.feedbackForm.get('feedback')?.value;
       this.artistPortfolioService.submitFeedback(this.artistId, feedback, this.customerId).subscribe(
         response => {
+
+          //start
+          const notificationBody = `You have a new feedback`;
+
+          const notification = {
+            sender_id: this.customerId,
+            receiver_id: this.artistId,
+            source: 'Feedback',
+            title: 'New Feedback Received',
+            body: notificationBody,
+            isViewed: false
+          };
+          
+          this.notificationService.createNotification(notification).subscribe(
+            response => {
+              console.log(response);
+            }, error => {
+              console.error(error);
+            }
+          )
+          //end
           console.log(response);
           alert('Feedback submitted successfully!');
         },
