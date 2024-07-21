@@ -53,6 +53,7 @@ a {
 }
 .header__wrapper .cols__container .left__col .about li {
   text-align: center;
+  justify-content: space-between;
 }
 .header__wrapper .cols__container .left__col .about li span {
   display: block;
@@ -136,14 +137,13 @@ a {
   overflow-x: hidden;
 }
 
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .Creations::-webkit-scrollbar {
   width: 0;
 }
 
-/* Hide scrollbar for other browsers */
+
 .Creations {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .feedbacks {
@@ -152,14 +152,12 @@ a {
   overflow-x: hidden;
 }
 
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .feedbacks::-webkit-scrollbar {
   width: 0;
 }
 
-/* Hide scrollbar for other browsers */
 .feedbacks {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 

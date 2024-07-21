@@ -38,7 +38,6 @@ export class PurchaseImgCardComponent implements OnInit {
   }
 
   onPurchaseDeleted(purchaseId: number): void {
-    // Remove the deleted purchase from the purchaseData array
     this.purchaseData = this.purchaseData.filter(purchase => purchase.purchase_id !== purchaseId);
   }
 }

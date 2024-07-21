@@ -151,11 +151,8 @@
 </div>
 <app-footer></app-footer>
  -->
- <!-- <app-navbar></app-navbar> -->
-
-<app-new-nav-bar></app-new-nav-bar>
-
- <div class="header__wrapper">
+ <app-new-nav-bar></app-new-nav-bar>
+<div class="header__wrapper">
   <img src="{{ artistData.banner_img_url }}" alt="Banner Image" class="container-fluid" style="height: 200px; padding: 0%;" />
 
   <div class="cols__container container">
@@ -180,7 +177,7 @@
         </div>
         <ul class="about">
           <li><span>{{ artistData.total_likes }}</span>Likes</li>
-          <li><span>{{ artistData.total_followers }}</span>Followers</li>
+          <li style="margin-left: 30px;"><span>{{ artistData.total_followers }}</span>Followers</li>
           <li><span>{{ artistData.total_creations }}</span>Creations</li>
         </ul>
 
@@ -272,7 +269,7 @@
           </li>
         </ul>
 
-        
+
         <div class="tab-content">
           <div class="tab-pane fade show active" id="home" role="tabpanel">
             <nav class="navbar bg-body-tertiary">

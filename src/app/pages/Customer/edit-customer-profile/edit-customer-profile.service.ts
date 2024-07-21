@@ -10,7 +10,7 @@ import { environment } from '../../../../environments/environment';
 export class EditCustomerProfileService {
 
   private apiUrl: string = environment.apiUrl + '/edit-customer-profile';
-private apiurl: String = environment.apiUrl +'/user'
+  private apiurl: String = environment.apiUrl +'/user'
   constructor(private http:HttpClient) { }
 
   EditCustomerProfile(userId: string, data: any): Observable<any> {
