@@ -41,5 +41,8 @@ export class ArtistNewHomeServiceService {
   getArtworksCountForArtist(artistId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/artist/${artistId}/creation/count`);
   }
+  getAvailableArtworkCount(artistId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/artist-new-home/get-available-Arts/${artistId}`);
+  }
 }
 

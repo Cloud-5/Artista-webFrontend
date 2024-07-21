@@ -90,7 +90,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
   //dhanushka
   editArtwork(artworkId: string) {
-
+    console.log('artworkId',artworkId);
     this.router.navigate(['/editArtwork',artworkId]);
   }
 

@@ -90,6 +90,7 @@ import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation
 import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { EditArtworksComponent } from './pages/Artist/artist-profile/edit-artworks/edit-artworks.component';
+import { NewNavBarComponent } from './shared/layout/new-nav-bar/new-nav-bar.component';
 
 
 
@@ -147,7 +148,8 @@ import { EditArtworksComponent } from './pages/Artist/artist-profile/edit-artwor
     CreationPreviewComponent,
     St03Component,
     AlertComponent,
-    EditArtworksComponent
+    EditArtworksComponent,
+    NewNavBarComponent
 
 
   ],
