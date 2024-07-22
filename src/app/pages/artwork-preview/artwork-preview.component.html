@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="likeCount-pubDate">
-          <div class="like">
+          <div class="like"  *ngIf="userRole==='customer'">
             <p class="body1 m-0">Like</p>
             <button (click)="toggleFavorite()" class="favorite-button">
               <i class="bi fs-5" style="color: #0f969c" aria-hidden="false" aria-label="Favorite icon"
@@ -69,6 +69,17 @@
             </button>
             <p class="body2 m-0">{{ artworkDetails.total_likes }}</p>
           </div>
+
+
+          <div class="like" *ngIf="userRole==='artist'" >
+            <p class="body1 m-0">Like</p>
+            <button class="favorite-button">
+              <i class="bi fs-5" style="color: #0f969c" aria-hidden="false" aria-label="Favorite icon"
+                [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
+            </button>
+            <p class="body2 m-0">{{ artworkDetails.total_likes }}</p>
+          </div>
+
           <div class="pub-date">
             <p class="body2">
               <span class="body1">Published On:</span>
