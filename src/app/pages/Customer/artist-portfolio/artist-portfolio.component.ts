@@ -58,7 +58,6 @@ export class ArtistPortfolioComponent implements OnInit {
       (data: any) => {
         this.artistData = data.artistDetails[0];
         this.socialMediaLinks = data.social;
-        console.log('socialMediaLinks', this.socialMediaLinks);
         this.isFollowing = this.artistData.is_following;
         this.updateFollowButton();
       },
