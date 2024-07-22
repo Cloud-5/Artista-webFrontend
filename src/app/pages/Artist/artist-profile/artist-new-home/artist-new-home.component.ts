@@ -20,6 +20,9 @@ export class ArtistNewHomeComponent implements OnInit {
   loading = false;
   availableArtworksCount: number = 0;
   NumberOfSales:string='';
+  profession:string='';
+  loginDate:string='';
+  filteredArts: any[] = [];
 
 
   // artistsData: Artist[] = [];
@@ -39,9 +42,38 @@ export class ArtistNewHomeComponent implements OnInit {
     this.loadArtworks();
     this.loadArtworksCount();
     this.getAvailableArtworkCount();
+    // console.log('userDataaaaaaaaaaaaaaaaa', this.userData);
 
-    console.log('artist data in home component', this.userData);
+    // console.log('artist data in home component', this.userData);
   }
+
+  loadArtworks(): void {
+    this.artistServices.getArtworksForArtist(this.artistId)
+      .subscribe((data: any) => {
+        this.artworks = data;
+        this.filteredArts = this.artworks;
+        data.forEach((e: any) => {
+          console.log(e.artwork_id);
+          let id = this.getArtworkLikes(e.artwork_id);
+          console.log(id);
+        });
+        //console.log("Artworks: ", data);
+      });
+  }
+
+
+  searchByKeyword(searchKeyword: string): void {
+    console.log('Search keywordddddddddddddddddddddddddddd:', searchKeyword);
+    searchKeyword = searchKeyword.toLowerCase().trim();
+    if (searchKeyword === '') {
+      this.filteredArts = this.artworks;
+    } else {
+      this.filteredArts = this.artworks.filter((art:any) =>
+        art.title.toLowerCase().includes(searchKeyword)
+      );
+    }
+  }
+
 
   // getAvailableArtworkCount(): void {
   //   this.artistServices.getAvailableArtworkCount(this.artistId).subscribe(
@@ -71,31 +103,19 @@ export class ArtistNewHomeComponent implements OnInit {
       .getArtistDetail(this.artistId)
       .subscribe((data: any) => {
         this.userData = data.artistData[0];
-        console.log('userDataaaaaaaaaaaaaaaaa', this.userData);
+        this.profession=this.userData.Profession;
         this.numberOfFollowers = this.userData.NumberOfFollowers;
         this.socialAccounts = data.socialAccounts;
         this.rank = data.rank.featured;
         this.userData.AverageRating = 3.5;
         this.NumberOfSales=this.userData.NumberOfSales;
-        
+        this.loginDate=this.userData.RegistrationDate;
+
 
         //this.artworks.reverse();
       });
   }
 
-  loadArtworks(): void {
-    this.artistServices
-      .getArtworksForArtist(this.artistId)
-      .subscribe((data: any) => {
-        this.artworks = data;
-        data.forEach((e: any) => {
-          console.log(e.artwork_id);
-          let id = this.getArtworkLikes(e.artwork_id);
-          console.log(id);
-        });
-        //console.log("Artworks: ", data);
-      });
-  }
 
   getArtworkLikes(artId: number): void {
     this.artistServices.getLikeCountForArtwork(artId).subscribe((data: any) => {

@@ -144,7 +144,7 @@ export class ArtistPortfolioComponent implements OnInit {
             body: notificationBody,
             isViewed: false
           };
-          
+
           this.notificationService.createNotification(notification).subscribe(
             response => {
               console.log(response);

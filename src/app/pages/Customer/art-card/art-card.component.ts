@@ -53,7 +53,6 @@ export class ArtCardComponent implements OnInit {
       response => {
         this.removeGalleryItem.emit();
         console.log(response.message);
-        // Optionally remove the artwork from the UI or refresh the gallery
       },
       error => {
         console.error('Error removing artwork from gallery:', error);
@@ -115,7 +114,7 @@ export class ArtCardComponent implements OnInit {
     this.cartItemService.getTotalLikes(this.art.artwork_id)
       .subscribe(
         response => {
-          this.art.total_likes = response.total_likes ; // Update total likes count for the artwork
+          this.art.total_likes = response.total_likes ;
           console.log('Total likes:', response.total_likes);
         },
         error => {

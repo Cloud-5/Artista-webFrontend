@@ -32,7 +32,6 @@ export class CustomerProfileGalleryComponent implements OnInit {
   }
 
   getCustomerDetails(userId: string): void {
-    console.log(userId,'user idddddddd');
     this.customerService.getCustomerDetails(userId).subscribe(
       (data: any[]) => {
         this.CustomerData = data[0];
@@ -89,7 +88,7 @@ export class CustomerProfileGalleryComponent implements OnInit {
         (response: any) => {
           console.log(response.message);
           alert('Your profile has been deleted successfully.');
-          this.router.navigate(['/']);  // Redirect to home or any other page
+          this.router.navigate(['/']); 
         },
         (error: any) => {
           console.log(error);

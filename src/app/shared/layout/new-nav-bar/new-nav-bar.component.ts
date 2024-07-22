@@ -3,24 +3,19 @@ import { Router } from '@angular/router';
 import { NotificationComponent } from '../../components/notification/notification.component';
 import { notificationService } from './new-nav-bar.service';
 
+
 @Component({
   selector: 'app-new-nav-bar',
   templateUrl: './new-nav-bar.component.html',
   styleUrl: './new-nav-bar.component.css',
 })
 export class NewNavBarComponent {
-  // notifications: any[] = [
-  //   { id: 1, profilePic: '../../../../assets/imgs/profile1.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 2, profilePic: '../../../../assets/imgs/profile3.png', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 3, profilePic: '../../../../assets/imgs/profile4.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 4, profilePic: '../../../../assets/imgs/profile4.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 5, profilePic: '../../../../assets/imgs/profile4.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 6, profilePic: '../../../../assets/imgs/profile4.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 7, profilePic: '../../../../assets/imgs/profile4.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true },
-  //   { id: 8, profilePic: '../../../../assets/imgs/profile4.jpeg', message: "Hi Guys, I' am anna kim I am from united states, I am 24 years old", time: '1m ago', unread: true }
-  // ];
+  notifications: any[] = [];
   box: HTMLElement | null = null;
   down: boolean = true;
+  userRole: string = localStorage.getItem('role') || '';
+
+
 
   @ViewChild(NotificationComponent)
   notificationComponent!: NotificationComponent;
@@ -29,7 +24,9 @@ export class NewNavBarComponent {
 
   constructor(private router: Router, private notificationService:notificationService) {}
   artist: { firebase_uid: string; artist_name: string } | undefined;
-  notifications:any[] = [];
+ //notifications:any[] = [];
+
+
 
   // toggleNotification() {
   //   this.notificationComponent.toggleNotiFi();
@@ -39,6 +36,8 @@ export class NewNavBarComponent {
     console.log('Im in new nav bar')
     this.box = document.getElementById('box');
     this.userId = localStorage.getItem('user_id') || '';
+
+    console.log('user role',this.userRole);
     // this.countUnreadMessages();
     this.artist = {
       firebase_uid: 'someFirebaseUid',
@@ -47,36 +46,6 @@ export class NewNavBarComponent {
     this.getAllNotifications();
   }
 
-  // toggleNotiFi() {
-  //   if (this.down) {
-  //     if (this.box) {
-  //       this.box.style.height = '0px';
-  //       this.box.style.opacity = '0';
-  //     }
-  //     this.down = false;
-  //   } else {
-  //     if (this.box) {
-  //       this.box.style.height = '510px';
-  //       this.box.style.opacity = '1';
-  //     }
-  //     this.down = true;
-  //   }
-  // }
-
-  // countUnreadMessages(): number {
-  //   return this.notifications.filter(notification => notification.unread).length;
-  // }
-
-  // markAllAsRead(): void {
-  //   this.notifications.forEach(notification => notification.unread = false);
-  // }
-
-  // clearAllNotifications(): void {
-  //   this.notifications = [];
-  //   // Optionally, perform additional actions like making an API call to clear notifications on the server
-  // }
-
-  // Method to handle search form submission
   onSearchSubmit(): void {
     if (this.searchTerm.trim()) {
       this.router.navigate(['/search-art'], {
@@ -103,5 +72,8 @@ export class NewNavBarComponent {
       }
     )
   }
-  
+
+
+
+
 }

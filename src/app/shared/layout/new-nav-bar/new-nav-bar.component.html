@@ -3,6 +3,11 @@
     <!-- Artista Logo -->
     <img src="../assets/images/Artista.png" alt="Artista Logo" class="custom-logo img-fluid" />
 
+
+
+
+    <!-- <img  *ngIf=" userRole==='artist'" routerLink="artist/new-home" src="../assets/images/Artista.png" alt="Artista Logo" class="custom-logo img-fluid" /> -->
+
     <!-- Toggle button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,15 +18,15 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link " routerLink="/foryou" routerLinkActive="active">ForYou<span class="visually-hidden">(current)</span></a>
+          <a class="nav-link " *ngIf=" userRole!=='artist'" routerLink="/foryou" routerLinkActive="active">ForYou<span class="visually-hidden">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="/artist" routerLinkActive="active">Artist</a>
+          <a class="nav-link " *ngIf=" userRole!=='artist'"  routerLink="/artist" routerLinkActive="active">Artist</a>
         </li>
       </ul>
 
       <!-- Search Bar -->
-      <form class="d-flex searchbox"  (submit)="onSearchSubmit()">
+      <form class="d-flex searchbox" *ngIf=" userRole!=='artist'"  (submit)="onSearchSubmit()">
         <input class="form-control me-sm-2" style="border-radius: 5px; height: 40px;" type="search" placeholder="Search" [(ngModel)]="searchTerm" name="searchTerm">
         <button class="btn btn-light my-2 my-s m-0" type="submit" style="border-radius: 4px;">Search</button>
       </form>
@@ -29,15 +34,36 @@
 
  <!-- Icon Section -->
  <div class="d-flex ms-3">
-  <a href="#" class="navbar-text me-3">
+  <a class="navbar-text me-3" [matMenuTriggerFor]="menu" matBadge="{{notifications.length}}" matBadgeColor="warn">
     <i class="bi bi-bell-fill"></i>
-  </a>`
+  </a>
 
+  <mat-menu #menu="matMenu">
+    <div *ngFor="let notification of notifications" class="notification-item">
+      <div mat-menu-item>
+        <div class="notification-content">
+          <mat-icon class="notification-icon">notifications</mat-icon>
+          <div class="notification-text">
+            <div class="notification-title">{{ notification.title }}</div>
+            <div class="notification-body">{{ notification.body }}</div>
+            <div class="notification-time">{{ notification.created_at | date: 'short' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <a class="navbar-text me-3"  (click)="artist && messageArtist(artist.firebase_uid, artist.artist_name)" >
+    <button mat-menu-item >
+      <mat-icon>done</mat-icon> Mark all as read
+    </button>
+    <button mat-menu-item >
+      <mat-icon>delete</mat-icon> Clear all notifications
+    </button>
+  </mat-menu>
+
+  <a class="navbar-text me-3" (click)="artist && messageArtist(artist.firebase_uid, artist.artist_name)">
     <i class="bi bi-chat-dots-fill"></i>
   </a>
-  <a routerLink="/cart" class="navbar-text me-3">
+  <a *ngIf="userRole !== 'artist'" routerLink="/cart" class="navbar-text me-3">
     <i class="bi bi-cart-fill"></i>
   </a>
   <a href="/customer-profile-gallery" class="navbar-text">

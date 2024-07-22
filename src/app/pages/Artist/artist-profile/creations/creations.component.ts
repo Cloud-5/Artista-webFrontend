@@ -17,8 +17,7 @@ export class CreationsComponent {
   artistRole: string = localStorage.getItem('role') || '';
   constructor(private router: Router,private creation:CreationsService){}
 
-
-
+  
 
   deleteArtwork(artworkId: number): void {
     console.log(artworkId,'artwrkid in ts')
@@ -48,6 +47,19 @@ export class CreationsComponent {
     }
   }
 
+
+  getLikeCountForArtwork(artworkId: number): void {
+    this.creation.getLikeCountForArtwork(artworkId).subscribe(
+      data => {
+        console.log('like count for artwork:', data);
+        // Optionally update the UI to reflect the change
+      },
+      error => {
+        console.error('Error fetching like count for artwork:', error);
+      }
+    );
+  }
+
   handleDelete() {
     if (this.deleteArtwork) {
       this.deleteArtwork(this.artworks.artwork_id);
@@ -57,7 +69,7 @@ export class CreationsComponent {
     this.router.navigate(['/preview', this.artworks.artwork_id]);
   }
   ngOnInit(): void {
-  // console.log('artWork data : ',this.artworks)
+  console.log('artWorkkkkkkkkkkkkkkkkkkkkdata : ',this.artworks)
 
   }
 

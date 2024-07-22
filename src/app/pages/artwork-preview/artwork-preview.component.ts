@@ -67,6 +67,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       this.artworkId = params['artworkId'];
       this.initializeComponent();
     });
+    console.log('artistRole',this.userRole);
   }
 
   ngAfterViewInit(): void {
