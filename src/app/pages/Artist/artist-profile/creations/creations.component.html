@@ -5,18 +5,20 @@
     <div class="details" (click)="viewArtwork(artworks.artwork_id)">
           <!-- <h2>name</h2> -->
           <!-- <p>{{ artworks.title }}</p> -->
-            <!-- Conditionally show the remove button in the top right corner -->`
-    <button *ngIf="artworks.is3D" class="btn  remove-btn" style="background-color: green;" >
-     3D
-    </button>
+            <!-- Conditionally show the remove button in the top right corner -->
+    <!--  -->
+    <div class="row justify-content-end" style="margin: 10px;">
+      <button *ngIf="artworks.is3D===1"   style="background-color: green; width: 50px; border-radius: 10px; border: none; font-weight: bolder;" >
+        3D
+       </button>
+    </div>
+
+
+
       </div>
       <div class="more">
 
-<!--
-        <p class="price">{{ artworks.price | currency:'USD':'symbol':'1.2-2' }}</p>
-        <p class="like-count"><i class="bi bi-heart-fill"></i>like </p>
-        <button class="btn cart-icon-btn" > <i class="bi bi-cart-plus-fill"></i>
-        </button> -->
+
         <div class="card-body card-content d-flex flex-column align-items-center">
           <div class="card-details d-flex justify-content-between w-100">
             <div class="price">{{artworks.price | currency}}</div>

@@ -17,4 +17,8 @@ export class notificationService{
   createNotification(notification:any):Observable<any>{
     return this.http.post<any>(`${this.apiUrl}/create-notification`,{notification})
   }
+
+  deleteAllNotifications(userId:string):Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/delete-all/${userId}`);
+  }
 }

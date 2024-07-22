@@ -73,6 +73,17 @@ export class NewNavBarComponent {
     )
   }
 
+  deleteAllNotifications(){
+    this.notificationService.deleteAllNotifications(this.userId).subscribe(
+      (data: any) => {
+        console.log('notidfi',data);
+        this.notifications = [];
+      }, (error:any)=>{
+        console.error('error getting notifications',error);
+      }
+    )
+  }
+
 
 
 

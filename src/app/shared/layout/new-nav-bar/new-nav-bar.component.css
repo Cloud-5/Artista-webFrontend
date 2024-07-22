@@ -110,3 +110,18 @@ background-color:  #055287;
   z-index: 1000;
   border-radius: 5px;
 }
+
+.notification-count{
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -5px;
+  right: 0px; 
+  font-size: 12px;
+}

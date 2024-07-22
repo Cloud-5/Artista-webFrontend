@@ -39,7 +39,9 @@
     </div>
   </div>
 </div>
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
+<app-new-nav-bar></app-new-nav-bar>
+
 <section>
   <div class="container">
     <div class="row">
@@ -158,12 +160,11 @@
     </div>
   </div>
   <div class="col-12 d-flex justify-content-end">
-    <button class="btn btn-custom" *ngIf="userRole === 'artist'" class="btn btn btn-custom" type="button"
-      (click)="addCart(artworkDetails)">
+    <button class="btn btn-custom" *ngIf="userRole === 'artist'" class="btn btn btn-custom" type="button"  routerLink="/upload">
       <span class="">Upload Creations</span>
     </button>
     <button class="btn btn-custom" *ngIf="userRole === 'artist'" class="btn btn btn-custom" type="button"
-      (click)="addCart(artworkDetails)">
+     routerLink="/artist/new-home">
       <span class="">Back To Home</span>
     </button>
   </div>
