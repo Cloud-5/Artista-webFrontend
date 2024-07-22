@@ -119,10 +119,10 @@
 
 
 .form-control {
-  background-color: rgb(13, 202, 240); /* Transparent background */
+  background-color: rgba(255, 255, 255, 0.606); /* Transparent background */
   color: #000000; /* Text color */
-  border: none; /* Black border */
-  border-radius: 0; /* No border radius */
+  border: 2px solid #000; /* Black border */
+  border-radius: 5px; /* No border radius */
   padding: 10px;
 }
 
@@ -245,11 +245,11 @@ select.input-area option {
   margin-bottom: 10px;
 }
 .tag {
-  background-color: #bc6a4f;
+  background-color: #fdfdfd;
   letter-spacing: 1px;
   color: white;
   padding: 5px 10px;
-  border-radius: 0px;
+  border-radius: 4px;
   font-size: 14px;
   font-weight: 200;
   margin: 5px;
@@ -260,7 +260,7 @@ select.input-area option {
 }
 
 .tag:hover {
-  background-color: #0c6d72;
+  background-color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -321,7 +321,4 @@ table {
   padding: 0;
   padding-left: 10px; /* Add padding to accommodate the dropdown arrow */
   box-sizing: border-box; /* Ensure padding is included in the width */
-}
-.form-group input{
-  background-color: #0f969c;
 }

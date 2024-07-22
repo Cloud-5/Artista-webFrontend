@@ -743,17 +743,18 @@
               </div>
 
               <!-- Upload Message -->
-              <div class="d-flex justify-content-center mb-3" *ngIf="uploadMessage">
+              <div class="d-flex justify-content-center mb-3" *ngIf="uploadMessage && !isUploadingFolder">
                 <div class="alert" [ngClass]="{'alert-success': uploadProgress === 100, 'alert-danger': uploadProgress === 0}">
                   {{ uploadMessage }}
                 </div>
               </div>
 
               <div class="d-flex justify-content-center mb-3">
-                <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')">
+                <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')" *ngIf="subfolderName">
                   Delete Folder
                 </button>
               </div>
+
 
               <div class="form-group">
                 <label for="title3D">Artwork Title</label>

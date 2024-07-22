@@ -215,12 +215,12 @@ export class UploadArtworksComponent {
   //   });
   // }
 
-  uploadMessage='Uploading Folder ...'
+  uploadMessage = '';
 
   newFolderUpload(folder: string, uploadType: string) {
     this.isUploadingFolder = true;
     this.uploadProgress = 0;
-    this.uploadMessage = '';
+    this.uploadMessage = 'Uploading Folder...';
 
     const uploadInterval = setInterval(() => {
       if (this.uploadProgress < 100) {
@@ -256,6 +256,7 @@ export class UploadArtworksComponent {
       }
     );
   }
+
 
 
   deleteFolder(folder: string) {
