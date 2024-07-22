@@ -88,40 +88,7 @@ export class EditArtworksComponent implements OnInit {
     return false;
   }
 
-  // loadArtworkDetails(artworkId: string, userId: string): void {
-  //   this.artworkService.getArtworkDetails(artworkId, userId).subscribe(
-  //     (data: any) => {
-  //       this.artworkDetails = data.artworkDetails[0];
-  //       console.log(this.artworkDetails);
-  //       this.imageUrl = this.artworkDetails.url_link;
-  //       this.bg = this.artworkDetails.background;
-  //       this.thumbnail = this.artworkDetails.thumbnail;
-  //       this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
 
-  //       if(this.artworkDetails.category === '3D Modeling'){
-  //         this.is3D = true;
-  //       } else {
-  //         this.is3D = false;
-  //       }
-  //       if (this.artworkDetails.tags) {
-  //         this.tags = this.artworkDetails.tags;
-  //         this.tagsArray = this.tags.split(',');
-  //       } else {
-  //         this.tags = '';
-  //         this.tagsArray = [];
-  //       }
-  //       this.isFavorite = this.artworkDetails.is_liked;
-  //       this.isFollowing = this.artworkDetails.is_following;
-  //       this.isAddedToGallery = this.artworkDetails.is_addedToGallery;
-
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching artwork details:', error);
-  //     }
-  //   );
-  // }
-
-  //my ts files
 
   artwork_id:number = 0;
 
@@ -156,20 +123,7 @@ export class EditArtworksComponent implements OnInit {
     });
     this.loadArtworkDetails(this.artwork_id);
   }
-  // ngOnDestroy(): void {
-  //   this.routeSub.unsubscribe();
-  // }
 
-  // addNew3DTag() {
-  //   if (this.Tag_Name.trim() !== '') {
-  //     this.editing3DArtwork.tag_name.push({ tag_name: this.Tag_Name });
-  //     this.Tag_Name = '';
-  //   }
-  // }
-
-  // remove3DTag(index: number) {
-  //   this.editing3DArtwork.tag_name.splice(index, 1);
-  // }
 
   onArtworkTypeChange(event: any): void {
     this.artType = event.target.value;
@@ -214,6 +168,17 @@ export class EditArtworksComponent implements OnInit {
     if (folder.length > 0) {
       this.files = Array.from(folder);
     }
+  }
+  loadArtworkIs3D(artwork_id: number): void {
+    console.log('artwork id foooooooooooooooooooor ', artwork_id);
+    this.editArtworksService.getArtworkIs3D(artwork_id).subscribe(
+      (data: any) => {
+        this.is3D = data.is3D;
+      },
+      error => {
+        console.error('Error fetching artwork is3D status', error);
+      }
+    );
   }
 
   newFolderUpload(folder: string, uploadType: string) {
@@ -363,9 +328,22 @@ export class EditArtworksComponent implements OnInit {
     }
   }
 
-  async upload2DArtwork(): Promise<void> {
+  // async upload2DArtwork(): Promise<void> {
 
+  // }
+  async upload2DArtwork(): Promise<void> {
+    console.log(this.editing2dArtwork, 'editing 2d');
+
+    this.editArtworksService.update2d(this.artwork_id, this.editing2dArtwork).subscribe(
+      (response: any) => {
+        console.log('2D artwork updated', response);
+      },
+      (error) => {
+        console.error('Error updating 2D artwork', error);
+      }
+    );
   }
+
 
   async upload3DArtwork(): Promise<void> {
     console.log(this.editing3DArtwork,'editing 3d')
