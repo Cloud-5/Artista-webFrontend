@@ -245,7 +245,7 @@ select.input-area option {
   margin-bottom: 10px;
 }
 .tag {
-  background-color: #0f969c;
+  background-color: #fdfdfd;
   letter-spacing: 1px;
   color: white;
   padding: 5px 10px;
@@ -260,7 +260,7 @@ select.input-area option {
 }
 
 .tag:hover {
-  background-color: #0c6d72;
+  background-color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

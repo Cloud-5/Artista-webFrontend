@@ -21,6 +21,8 @@
             <button type="button" class="btn btn-secondary "  routerLink="/upload" style="width: 170px; height: 50px; margin-left: 10px;" >Upload
               Creations</button>
           </div>
+
+
           <ul class="about">
             <li><span>23</span>Likes</li>
             <li><span>{{ numberOfFollowers }}</span>Followers</li>
@@ -28,6 +30,12 @@
           </ul>
           <div class="content">
             <p>{{ userData.Description}}</p>
+          </div>
+
+          <div class="row">
+            <button class="logout-btn" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
           </div>
 
 
