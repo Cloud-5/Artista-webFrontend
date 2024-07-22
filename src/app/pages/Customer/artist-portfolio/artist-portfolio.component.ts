@@ -45,7 +45,6 @@ export class ArtistPortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe( params => {
       this.artistId = params['user_id'];
-      console.log('artistId9999999999999999', this.artistId);
       this.getArtistDetails(this.artistId);
       this.getArtistCreations(this.artistId);
 
@@ -55,13 +54,10 @@ export class ArtistPortfolioComponent implements OnInit {
   }
 
   getArtistDetails(artistId: string): void {
-    console.log('customweeeeeeeeeee',this.CurrentcustomerId)
     this.artistPortfolioService.getArtistDetails(artistId, this.CurrentcustomerId).subscribe(
       (data: any) => {
-        console.log('artistData=======', data);
         this.artistData = data.artistDetails[0];
         this.socialMediaLinks = data.social;
-        console.log('socialMediaLinks', this.socialMediaLinks);
         this.isFollowing = this.artistData.is_following;
         this.updateFollowButton();
       },
