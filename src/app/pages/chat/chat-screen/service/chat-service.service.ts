@@ -15,35 +15,6 @@ export class ChatServiceService {
     this.messagesCollection = collection(this.firestore, 'messages');
   }
 
-  // getMessages(senderId: string, recipientId: string): Observable<any[]> {
-  //   const messagesQuery = query(
-  //     this.messagesCollection,
-  //     where('senderId', 'in', [senderId, recipientId]),
-  //     where('recipientId', 'in', [senderId, recipientId]),
-  //     orderBy('timestamp')
-  //   );
-
-  //   return collectionData(messagesQuery, { idField: 'id' });
-  // }
- 
-  // getMessages(senderId: string, recipientId: string): Observable<any[]> {
-  //   const messagesQuery = query(
-  //     this.messagesCollection,
-  //     where('senderId', 'in', [senderId, recipientId]),
-  //     where('recipientId', 'in', [senderId, recipientId]),
-  //     orderBy('timestamp')
-  //   );
-  
-  //   return new Observable(observer => {
-  //     const unsubscribe = onSnapshot(messagesQuery, snapshot => {
-  //       const messages = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  //       observer.next(messages);
-  //     });
-  
-  //     // Return the unsubscribe function to stop listening on destroy
-  //     return { unsubscribe };
-  //   });
-  // }
   getMessages(senderId: string, recipientId: string): Observable<any[]> {
     const messagesQuery = query(
       this.messagesCollection,
@@ -67,17 +38,6 @@ export class ChatServiceService {
     });
   }
 
-  // sendMessage(senderId: string, recipientId: string, message: string): Promise<void> {
-  //   const timestamp = Timestamp.fromDate(new Date());
-
-  //   return addDoc(this.messagesCollection, {
-  //     senderId,
-  //     recipientId,
-  //     message,
-  //     timestamp,
-  //     read: false // Add a read flag to each message
-  //   }) as unknown as Promise<void>;
-  // }
   sendMessage(senderId: string, recipientId: string, message: string): Promise<void> {
     const timestamp = Timestamp.fromDate(new Date());
 
@@ -91,10 +51,6 @@ export class ChatServiceService {
     }) as unknown as Promise<void>;
   }
 
-  // deleteMessage(messageId: string): Promise<void> {
-  //   const messageDocRef = doc(this.firestore, `messages/${messageId}`);
-  //   return deleteDoc(messageDocRef);
-  // }
   deleteMessage(messageId: string,userId: string): Promise<void> {
     const messageDocRef = doc(this.firestore, `messages/${messageId}`);
   
@@ -102,27 +58,6 @@ export class ChatServiceService {
       deletedBy: arrayUnion(userId) // Add the userId to the deletedBy array
     }) as unknown as Promise<void>;
   }
-
-  // getUnreadMessageCount(uid: string): Observable<{ [key: string]: number }> {
-  //   const unreadMessagesQuery = query(
-  //     this.messagesCollection,
-  //     where('recipientId', '==', uid),
-  //     where('read', '==', false)
-  //   );
-
-  //   return from(getDocs(unreadMessagesQuery)).pipe(
-  //     switchMap(snapshot => from(snapshot.docs)),
-  //     map(doc => doc.data()),
-  //     toArray(),
-  //     map(messages =>
-  //       messages.reduce((counts, message) => {
-  //         const senderId = message['senderId'];
-  //         counts[senderId] = (counts[senderId] || 0) + 1;
-  //         return counts;
-  //       }, {} as { [key: string]: number })
-  //     )
-  //   );
-  // }
 
   getUnreadMessageCount(uid: string): Observable<{ [key: string]: number }> {
     const unreadMessagesQuery = query(

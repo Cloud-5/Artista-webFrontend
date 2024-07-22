@@ -76,18 +76,7 @@ subscribeToUnreadCounts(): void {
       this.updateUserUnreadCounts();
     });
   }
-
-  // updateUserUnreadCounts(): void {
-  //   this.users$ = this.users$.pipe(
-  //     map(users => users.map(user => ({
-  //       ...user,
-  //       unreadCount: this.unreadCounts[user.firebaseUid] || 0
-  //     })))
-  //   );
-
-  //   this.filteredUsers$ = this.users$;
-  // }
-
+  
   updateUserUnreadCounts(): void {
     this.users$ = this.users$.pipe(
       map(users => users.map(user => ({
@@ -160,14 +149,6 @@ subscribeToUnreadCounts(): void {
     );
   }
 
-  // loadMessages(): void {
-  //   if (this.senderId && this.recipientId) {
-  //     this.messages$ = this.chatService.getMessages(this.senderId, this.recipientId);
-  //   } else {
-  //     console.error('Sender ID or Recipient ID is missing');
-  //   }
-  // }
-
   loadMessages(): Subscription {
     if (this.senderId && this.recipientId) {
       return this.chatService.getMessages(this.senderId, this.recipientId).subscribe(messages => {
@@ -192,16 +173,6 @@ subscribeToUnreadCounts(): void {
     }
   }
 
-  // deleteMessage(messageId: string): void {
-  //   this.chatService.deleteMessage(messageId)
-  //     .then(() => {
-  //       console.log('Message deleted successfully');
-  //       this.loadMessages();
-  //     })
-  //     .catch(error => {
-  //       console.error('Error deleting message:', error);
-  //     });
-  // }
   deleteMessage(messageId: string): void {
     this.chatService.deleteMessage(messageId, this.senderId)
       .then(() => {
@@ -263,4 +234,5 @@ subscribeToUnreadCounts(): void {
     this.filteredUsers$ = this.users$;
     this.loadUnreadCounts();
   }
+  
 }

@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
    
     this.ArtistServieService.getArtist().subscribe(
       (data: any[]) => {
-        console.log(data);
+      
         this.artistsData = data;
         this.dataLoaded = true;
       },
@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   getArtwork(): void {
     this.ArtServiceService.getArtwork().subscribe(
       (data: any[]) => {
-        console.log(data);
+       
         this.artsData = data;
         this.dataLoaded = true;
       },
@@ -95,17 +95,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
       });
     }
   }
-  // logout() {
-  //     // Clear local storage items related to user session
-  //     localStorage.removeItem('uid');
-  //     localStorage.removeItem('role');
-  //     localStorage.removeItem('user_id');
-  //     localStorage.removeItem('email');
-  //     localStorage.removeItem('firebase_uid');
-
-  //     // Navigate to the login page or home page after logout
-  //     this.router.navigate(['/login']);
-  //   }
+  
 
   next(): void {
     if (this.currentIndex < this.artsData.length - 100 / this.itemWidth) {
