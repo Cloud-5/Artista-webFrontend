@@ -67,7 +67,10 @@
   <a *ngIf="userRole !== 'artist'" routerLink="/cart" class="navbar-text me-3">
     <i class="bi bi-cart-fill"></i>
   </a>
-  <a href="/customer-profile-gallery" class="navbar-text">
+  <a href="/customer-profile-gallery"  *ngIf="userRole==='customer'" class="navbar-text">
+    <i class="bi bi-person-circle"></i>
+  </a>
+  <a routerLink="/artist/new-home"  *ngIf="userRole==='artist'" class="navbar-text">
     <i class="bi bi-person-circle"></i>
   </a>
 </div>

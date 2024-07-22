@@ -2,6 +2,7 @@ import { ArtistCreationsService } from './../artist-creations/artist-creations.s
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ArtistNewHomeServiceService } from './artist-new-home-service.service';
 import { EditArtistProfileService } from '../edit-artist-profile/edit-artist-profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artist-new-home',
@@ -12,7 +13,6 @@ export class ArtistNewHomeComponent implements OnInit {
   public userData: any = {};
   private socialAccounts: any[] = [];
   public artworks: any = [];
-  router: any;
   public artworksCount: number = 0;
   private rank: number = 0;
   numberOfFollowers: number = 0;
@@ -30,7 +30,9 @@ export class ArtistNewHomeComponent implements OnInit {
   constructor(
     private artistServices: ArtistNewHomeServiceService,
     ArtistCreationsService: ArtistCreationsService,
-    artistEdit: EditArtistProfileService
+    artistEdit: EditArtistProfileService,
+    private router: Router
+
   ) {}
 
   changeRating(newRating: number): void {

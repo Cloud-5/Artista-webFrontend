@@ -184,13 +184,43 @@ export class UploadArtworksComponent {
     }
   }
 
- 
 
+
+
+  // newFolderUpload(folder: string, uploadType: string) {
+
+  //   this.isUploadingFolder = true;
+  //   this.uploadProgress = 0;
+
+  //   const uploadInterval = setInterval(() => {
+  //     if (this.uploadProgress < 100) {
+  //       this.uploadProgress += 10; // increment progress
+  //     } else {
+  //       clearInterval(uploadInterval);
+  //       this.isUploadingFolder = false; // hide loader when upload is complete
+  //     }
+  //   }, 300); // update every 300ms
+
+  //   const subfolderName = `Subfolder_${Date.now()}`;
+  //   this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
+  //     if (res.gltfFile) {
+  //       this.subfolderName = res.subfolderName;
+  //       this.new3DArtwork.subfolder_name = this.subfolderName;
+  //       this.new3DArtwork.original_url = res.gltfFile;
+  //       console.log('3D artwork upload successful', res);
+  //       console.log('3D artwork', res.gltfFile);
+  //     } else {
+  //       console.log('3D artwork upload UNsuccessful', res);
+  //     }
+  //   });
+  // }
+
+  uploadMessage='Uploading Folder ...'
 
   newFolderUpload(folder: string, uploadType: string) {
-
     this.isUploadingFolder = true;
     this.uploadProgress = 0;
+    this.uploadMessage = '';
 
     const uploadInterval = setInterval(() => {
       if (this.uploadProgress < 100) {
@@ -202,18 +232,31 @@ export class UploadArtworksComponent {
     }, 300); // update every 300ms
 
     const subfolderName = `Subfolder_${Date.now()}`;
-    this.imageUploadService.folderUpload(this.files, folder,uploadType, subfolderName).subscribe((res: any) => {
-      if (res.gltfFile) {
-        this.subfolderName = res.subfolderName;
-        this.new3DArtwork.subfolder_name = this.subfolderName;
-        this.new3DArtwork.original_url = res.gltfFile;
-        console.log('3D artwork upload successful', res);
-        console.log('3D artwork', res.gltfFile);
-      } else {
-        console.log('3D artwork upload UNsuccessful', res);
+    this.imageUploadService.folderUpload(this.files, folder, uploadType, subfolderName).subscribe(
+      (res: any) => {
+        if (res.gltfFile) {
+          this.subfolderName = res.subfolderName;
+          this.new3DArtwork.subfolder_name = this.subfolderName;
+          this.new3DArtwork.original_url = res.gltfFile;
+          this.uploadMessage = '3D artwork upload successful';
+          console.log('3D artwork upload successful', res);
+          console.log('3D artwork', res.gltfFile);
+        } else {
+          this.uploadMessage = '3D artwork upload unsuccessful';
+          console.log('3D artwork upload unsuccessful', res);
+        }
+        this.isUploadingFolder = false;
+        this.uploadProgress = 100; // set progress to 100% after completion
+      },
+      (error) => {
+        this.uploadMessage = '3D artwork upload failed';
+        console.error('Error uploading 3D artwork', error);
+        this.isUploadingFolder = false;
+        this.uploadProgress = 0; // reset progress on error
       }
-    });
+    );
   }
+
 
   deleteFolder(folder: string) {
     if (this.subfolderName) {

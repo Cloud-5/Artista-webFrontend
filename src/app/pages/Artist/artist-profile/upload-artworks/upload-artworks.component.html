@@ -366,7 +366,7 @@
       <!-- //form -->
       <div class="col-lg-4">
         <div
-          style="border: 2px black solid; background: #c3bbbb"
+          style=" background: #ffffff"
           class="tab-content"
         >
           <div class="container mt-5">
@@ -422,7 +422,7 @@
               </div>
 
               <div class="form-group">
-                <label for="title2D">Artwork Title</label>
+                <label for="title2D" >Artwork Title</label>
                 <input
                   type="text"
                   id="title2D"
@@ -719,21 +719,38 @@
                       (click)="newFolderUpload('3DArtwork', '3DArtwork')"
                       >Choose Folder</label
                     >
-                    <div
-                      *ngIf="folderSizeError"
-                      class="text-danger text-center"
-                    >
+                    <div *ngIf="folderSizeError" class="text-danger text-center">
                       Folder size must be less than 50MB.
                     </div>
                   </div>
                 </div>
               </div>
 
+              <!-- Progress Bar -->
+              <div class="d-flex justify-content-center mb-3" *ngIf="isUploadingFolder">
+                <div class="progress w-50">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    [style.width.%]="uploadProgress"
+                    [attr.aria-valuenow]="uploadProgress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    {{ uploadProgress }}%
+                  </div>
+                </div>
+              </div>
+
+              <!-- Upload Message -->
+              <div class="d-flex justify-content-center mb-3" *ngIf="uploadMessage">
+                <div class="alert" [ngClass]="{'alert-success': uploadProgress === 100, 'alert-danger': uploadProgress === 0}">
+                  {{ uploadMessage }}
+                </div>
+              </div>
+
               <div class="d-flex justify-content-center mb-3">
-                <button
-                  class="btn btn-danger"
-                  (click)="deleteFolder('3DArtwork')"
-                >
+                <button class="btn btn-danger" (click)="deleteFolder('3DArtwork')">
                   Delete Folder
                 </button>
               </div>
