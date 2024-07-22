@@ -16,18 +16,17 @@ a {
   text-decoration: none;
 }
 
-/* Button Styles */
 .edit-profile-btn,
 .delete-btn,
 .logout-btn {
-  background-color: #0052cc; /* Blue background */
-  color: white; /* White text */
+  background-color: #0052cc;
+  color: white;
   border: none;
-  border-radius: 10px; /* Rounded corners */
-  padding: 10px 20px; /* Padding for size */
-  font-size: 14px; /* Font size */
-  font-weight: 600; /* Bold text */
-  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,44 +34,43 @@ a {
 }
 
 .edit-profile-btn {
-  background-color: #0052cc; /* Blue background */
+  background-color: #0052cc;
   margin-top: 60px;
-  margin-left: 60px;
+  margin-left: 50px;
   margin-right: 50px;
 }
 
 .edit-profile-btn:hover {
-  background-color: #003a99; /* Darker blue on hover */
+  background-color: #003a99;
 }
 
 .delete-btn {
-  background-color: #6c757d; /* Grey background */
-  margin-left: 50px;
+  background-color: #6c757d;
+  margin-left: 40px;
   margin-top: 50px;
 }
 
 .delete-btn:hover {
-  background-color: #5a6268; /* Darker grey on hover */
+  background-color: #5a6268;
 }
 
 .logout-btn {
-  background-color: #0F969C; /* Teal background */
-  margin-left: 50px;
+  background-color: #0F969C;
+  margin-left: 40px;
   margin-top: 5px;
 }
 
 .logout-btn:hover {
-  background-color: #0d8288; /* Darker teal on hover */
+  background-color: #0d8288;
 }
 
 .edit-profile-btn .bi,
 .delete-btn .bi,
 .logout-btn .bi {
-  margin-right: 10px; /* Space between icon and text */
-  font-size: 14px; /* Adjust icon size if needed */
+  margin-right: 10px;
+  font-size: 14px;
 }
 
-/* Flexbox Container for Buttons */
 .button-container {
   display: flex;
   flex-direction: column;
@@ -80,12 +78,11 @@ a {
   justify-content: center;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
   .edit-profile-btn,
   .delete-btn,
   .logout-btn {
-    width: 100%; /* Full width on small screens */
+    width: 100%;
   }
 }
 
@@ -104,7 +101,7 @@ a {
 }
 
 .header__wrapper .cols__container .left__col .img__container:hover {
-  top: -50px; /* Adjust the value to move the image upwards on hover */
+  top: -50px;
 }
 
 .header__wrapper .cols__container .left__col .img__container img {
@@ -132,7 +129,7 @@ a {
 
 .header__wrapper .cols__container .left__col .about {
   justify-content: space-between;
-  margin: 35px 0;
+  margin: 40px 0;
 }
 
 .header__wrapper .cols__container .left__col .about li span {
@@ -195,7 +192,7 @@ a {
 }
 
 .tab-content {
-  padding-top: 10px;
+  padding-top: 0px;
 }
 .Gallery {
   max-height: 500px;
@@ -203,12 +200,42 @@ a {
   overflow-x: hidden;
 }
 
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .Gallery::-webkit-scrollbar {
   width: 0;
 }
 
-/* Hide scrollbar for other browsers */
 .Gallery {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
+}
+
+.col{
+  margin-top: 0px;
+}
+
+.following-tab {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.following-tab::-webkit-scrollbar {
+  width: 0;
+}
+
+.following-tab {
+  scrollbar-width: none;
+}
+
+.purchase-history {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.purchase-history::-webkit-scrollbar {
+  width: 0;
+}
+
+.purchase-history {
+  scrollbar-width: none;
 }

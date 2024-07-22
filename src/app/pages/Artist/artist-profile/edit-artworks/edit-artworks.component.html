@@ -1,0 +1,202 @@
+
+<app-new-nav-bar></app-new-nav-bar>
+<section style="margin: 20px;">
+  <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0">
+    Edit Your Creation
+  </h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div *ngIf="!is3D" class="preview-container">
+          <div class="artwork" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')' }">
+            <div *ngIf="!is3D">
+              <img [src]="thumbUrl || '../../../../../assets/images/art5.jpg'" alt="Artwork" class="artwork-preview" />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="is3D" class="preview-container">
+          <div class="artwork1">
+            <div *ngIf="is3D">
+              <p>3D Model</p>
+              <app-model [objectUrl]="imageUrl" [textureUrl]="bg"></app-model>
+              <p>Thumbnail Of the Model</p>
+              <img [src]="thumbUrl || '../../../../../assets/images/art5.jpg'" alt="3D Artwork" style="width: 400px;" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- //form -->
+      <div class="col-lg-4">
+        <div style="border: none; background: #ffffff; " class="tab-content">
+
+
+          <div class="container mt-5">
+            <h2>Upload Artwork</h2>
+
+            <!-- Artwork Type Switch -->
+            <!-- <div class="mb-4" >
+              <label for="artworkType" class="form-label ">Select Artwork Type</label>
+              <select id="artworkType" class="form-control artwork-type" [(ngModel)]="artType"
+                (change)="onArtworkTypeChange($event)">
+                <option value="2d" class="input-area">2D Artwork</option>
+                <option value="3d" class="input-area">3D Artwork</option>
+              </select>
+            </div> -->
+
+
+
+            <!-- 2D art//////////////////////////////// -->
+            <form (ngSubmit)="upload2DArtwork()" *ngIf="!is3D" >
+              <div class="input-group mb-3">
+                    <div class="row">
+                      <label>Upload Thumbnail Image</label>
+                    </div>
+                    <div class="row">
+                      <input id="file2D" type="file" name="title" class="form-control input-area" (change)="onFileSelected1($event)" style="color: rgb(255, 0, 0);" required>
+                      <label *ngIf="!thumbUrl" class="input-group-text btn-custom justify-content-center w-100 mt-2" (click)="onthumbUpload('2DThumbnails','profilePicture')">Upload</label>
+                      <button *ngIf="thumbUrl" type="button" class="btn btn-danger mt-2 w-100" (click)="removeThumb()">Remove</button>
+                    </div>
+                  </div>
+
+              <div class="form-group">
+                <label for="title2D">Artwork Title</label>
+                <input type="text" id="title2D" name="title" class="form-control input-area"
+                  [(ngModel)]="editing2dArtwork.title" ngModel required>
+              </div>
+
+              <div class="form-group">
+                <label for="price2D">Price</label>
+                <input type="number" id="price2D" name="price" class="form-control input-area"
+                  [(ngModel)]="editing2dArtwork.price" ngModel required>
+              </div>
+
+              <div class="form-group">
+                <label for="category3D">2D Category</label>
+                <select id="category3D" name="category" class="form-control input-area"
+                  [(ngModel)]="editing2dArtwork.category_id" required>
+                  <option *ngFor="let category of categories" [value]="category.category_id">{{ category.name }}
+                  </option>
+                </select>
+              </div>
+
+
+              <div class="form-group">
+                <label for="description2D">Description</label>
+                <textarea id="description2D" name="description" class="form-control input-area"
+                  [(ngModel)]="editing2dArtwork.description " ngModel required></textarea>
+              </div>
+
+
+
+              <div class="form-group d-flex justify-content-between">
+                <button type="submit" class="btn btn-custom">Edit 2D Artwork</button>
+                <button type="button" class="btn btn-custom" routerLink="/artist/new-home">Cancel</button>
+              </div>
+
+            </form>
+
+
+
+
+            <!-- 3D Artwork Form///////////////////////////////////////////////// -->
+            <form (ngSubmit)="upload3DArtwork()" *ngIf="is3D">
+
+              <div class="input-group mb-3 justify-content-center">
+                <div class="row w-100">
+
+                  <div class="col-12 mb-2">
+                    <input type="file" class="form-control input-area" (change)="onFileSelected1($event)" required>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="input-group-text btn-custom w-100" *ngIf="!thumbUrl"
+                      (click)="onthumbUpload('3DThumbnail','3DArtwork')">Choose Thumbnail</label>
+                      <button *ngIf="thumbUrl" type="button" class="btn btn-danger mt-2 w-100" (click)="removeThumb()">Remove</button>
+                    <div *ngIf="file1SizeError" class="text-danger text-center">Thumbnail image must be less than 50MB.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-group mb-3 justify-content-center">
+                <div class="row w-100">
+                  <div class="col-12 mb-2">
+                    <input type="file" class="form-control input-area" (change)="onFileSelected2($event)" required>
+                  </div>
+                  <div class="col-12">
+                    <label class="input-group-text btn-custom w-100" *ngIf="!bgUrl"
+                      (click)="onbgUpload('3DBackground','profilePicture')">Choose Background</label>
+                      <button *ngIf="bgUrl" type="button" class="btn btn-danger mt-2 w-100" (click)="removeBg()">Remove Background</button>
+                    <div *ngIf="file2SizeError" class="text-danger text-center">Background image must be less than 30MB.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-group mb-3 justify-content-center">
+                <div class="row w-100">
+                  <div class="col-12 mb-2">
+                    <input type="file" (change)="onFolderSelect($event)" webkitdirectory mozdirectory odirectory
+                      directory class="form-control" />
+                  </div>
+                  <div class="col-12">
+                    <label class="input-group-text btn-custom w-100" *ngIf="!subfolderName"
+                      (click)="newFolderUpload('3DArtwork', '3DArtwork')">Choose Folder</label>
+                    <div *ngIf="folderSizeError" class="text-danger text-center">Folder size must be less than 50MB.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center mb-3">
+                <button *ngIf="subfolderName" class="btn btn-danger" (click)="deleteFolder('3DArtwork')">Delete Folder</button>
+              </div>
+
+              <div class="form-group">
+                <label for="title3D">3D Artwork Title</label>
+                <input type="text" id="title3D" name="title" class="form-control input-area"
+                  [(ngModel)]="editing3DArtwork.title" ngModel required>
+              </div>
+
+              <div class="form-group">
+                <label for="price3D">Price</label>
+                <input type="number" id="price3D" name="price" class="form-control input-area"
+                  [(ngModel)]="editing3DArtwork.price" ngModel required>
+              </div>
+
+              <div class="form-group">
+                <label for="category3D">3D Category</label>
+                <select id="category3D" name="category" class="form-control input-area"
+                  [(ngModel)]="editing3DArtwork.category_id" required>
+                  <option *ngFor="let category of categories" [value]="category.category_id">{{ category.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="description3D">Description</label>
+                <textarea id="description3D" name="description" class="form-control input-area"
+                  [(ngModel)]="editing3DArtwork.description" ngModel required></textarea>
+              </div>
+
+
+              <div class="form-group d-flex justify-content-between">
+                <button type="submit" class="btn btn-custom">Edit 3D Artwork</button>
+                <button routerLink="/artist/new-home" type="button" class="btn btn-custom">Cancel</button>
+              </div>
+
+              <div *ngIf="isUploading3D" class="uploading-animation">Uploading...</div>
+            </form>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

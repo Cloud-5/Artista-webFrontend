@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HelpCenterService } from './help-center.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-help-center',
@@ -6,8 +8,39 @@ import { Component } from '@angular/core';
   styleUrl: './help-center.component.css'
 })
 export class HelpCenterComponent {
+  constructor(private helpCenterService:HelpCenterService){}
+  complainCategories: any[] = [];
 
+  userId: string = localStorage.getItem('user_id') || '';
 
+  complaint={
+    user_id:this.userId,
+    complaintCategoriesId:'',
+    subject:'',
+    description:'',
+  }
+
+  // complainCategories = [
+  //   'Technical Issue',
+  //   'Account Problem',
+  //   'Payment Issue',
+  //   'Service Quality',
+  //   'Content Inaccuracy',
+  //   'Feature Request',
+  //   'Other'
+  // ];
+
+  ngOnInit(): void {
+    this.helpCenterService.getCategories().subscribe(
+      (categories: any[]) => {
+        this.complainCategories = categories;
+        console.log('this id catecories',categories[0].category_name);
+      },
+      (error) => {
+        console.error('Failed to fetch complaint categories', error);
+      }
+    );
+  }
 
 
   categories = [
@@ -164,6 +197,23 @@ export class HelpCenterComponent {
   selectQuestion(question: any) {
     this.selectedQuestion = question;
   }
+
+
+  onSubmit() {
+    console.log('compin in ts', this.complaint);
+    this.helpCenterService.submitComplaint(this.complaint).subscribe(
+      response => {
+        console.log('Complaint submitted:', response);
+        alert('Complaint submitted successfully.');
+      },
+      error => {
+        console.error('Error submitting complaint:', error);
+        alert('There was an error submitting your complaint. Please try again.');
+      }
+    );
+  }
+
+
 }
 
 

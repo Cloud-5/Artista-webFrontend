@@ -1,212 +1,157 @@
-<app-navbar></app-navbar>
-
-<div class="header__wrapper">
-
-  <img src="{{userData.banner_img_url}}" alt="Banner Image" style="width: 100%; height: 200px" />
-  <div class="cols__container">
+<app-new-nav-bar></app-new-nav-bar>
 
 
-    <div class="left__col artist-details" style="width: 450px;">
-      <div class="img__container">
-        <img [src]="userData.ProfilePhoto" alt={{userData.name}} />
-        <span></span>
-      </div>
-      <h2>{{userData.FName + " " + userData.LName}}</h2>
-      <p class="sub-title"><b>{{userData.Location}}</b></p>
-      <div class="ratings">
-        <span class="fa fa-star star" [ngClass]="{
-          'star-active': userData.AverageRating >= 1,
-          'star-half': userData.AverageRating >= 0.5 && userData.AverageRating < 1
-        }"></span>
-        <span class="fa fa-star star" [ngClass]="{
-          'star-active': userData.AverageRating >= 2,
-          'star-half': userData.AverageRating >= 1.5 && userData.AverageRating < 2
-        }"></span>
-        <span class="fa fa-star star" [ngClass]="{
-          'star-active': userData.AverageRating >= 3,
-          'star-half': userData.AverageRating >= 2.5 && userData.AverageRating < 3
-        }"></span>
-        <span class="fa fa-star star" [ngClass]="{
-          'star-active': userData.AverageRating >= 4,
-          'star-half': userData.AverageRating >= 3.5 && userData.AverageRating < 4
-        }"></span>
-        <span class="fa fa-star star" [ngClass]="{
-          'star-active': userData.AverageRating >= 5,
-          'star-half': userData.AverageRating >= 4.5 && userData.AverageRating < 5
-        }"></span>
+  <div class="header__wrapper">
+    <img src="{{userData.banner_img_url}}" alt="Banner Image" style="width: 100%; height: 200px" />
 
-      </div>
-      <ul class="about">
-        <li><span>{{userData.NumberOfArtworks}} </span>Gallery</li>
-        <li><span>{{numberOfFollowers}}</span>Followers</li>
-        <li><span>0</span>Purchases</li>
-      </ul>
-      <p>{{userData.Description}}</p>
-
-      <div class="content">
-        <div class="row" style="margin: 0">
-          <div class="d-flex" style="justify-content: space-between">
-
-            <button class="btn btn-primary" style="width: 48%" [routerLink]="['/artist/edit', userData.UserID]"> Edit
-              profile</button>
-            <button type="button" class="btn btn-primary uploadArtworks" routerLink="/upload" style="width: 48%">Upload
-              Artwoks</button>
+    <div class="cols__container container">
+      <div class="row">
+        <div class="left__col col-md-3">
+          <div class="img__container mx-auto">
+            <img [src]="userData.ProfilePhoto" alt="Artist Photo" class="img-fluid" />
           </div>
-          <div class="row" style="margin: 10px 0 0 0">
-            <button type="button" class="btn btn-success" (click)="logout()">Log Out</button>
 
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="right__col" style="width: 900px; ">
-
-      <!-- 3Tabs -->
-
-
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">My Creations</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" data-bs-toggle="tab" href="#Followers" aria-selected="false" role="tab"
-            tabindex="-1">Followers</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" data-bs-toggle="tab" href="#feedbacks" aria-selected="false" tabindex="-1"
-            role="tab">Feedbacks</a>
-        </li>
-      </ul>
-
-      <div id="myTabContent" class="tab-content">
-
-        <div class="tab-pane fade active show" id="home" role="tabpanel">
-          <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-              <form class="d-flex" role="search" style="width: 100%">
-                <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
-                  aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
+          <div class="d-flex justify-content-between mt-5 mx-auto" style="width: 300px; margin-top: 10px;">
+            <div class="follow-button">
+              <button [ngClass]="['btn', 'btn-outline-info', 'rounded']" type="button"
+                [routerLink]="['/artist/edit', userData.UserID]" style="width: 140px; height: 50px;">
+                edit profile
+              </button>
             </div>
-          </nav>
-          <!-- ////////////////////////////////////////////////////////////creations -->
-
-          <div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
-            <div class="col mb-3" *ngFor="let art of artworks">
-              <app-creations [artworks]="art"></app-creations>
-            </div>
+            <button type="button" class="btn btn-secondary "  routerLink="/upload" style="width: 170px; height: 50px; margin-left: 10px;" >Upload
+              Creations</button>
           </div>
+
+
+          <ul class="about">
+            <li><span>23</span>Likes</li>
+            <li><span>{{ numberOfFollowers }}</span>Followers</li>
+            <li><span>{{ availableArtworksCount }}</span>Creations</li>
+          </ul>
+          <div class="content">
+            <p>{{ userData.Description}}</p>
+          </div>
+
+          <div class="row">
+            <button class="logout-btn" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+          </div>
+
+
 
         </div>
 
+        <div class="right__col col-md-8">
+          <div class="artist-info d-flex align-items-center" style="margin-top: 20px;">
+            <h2 class="artist-name m-0">{{ userData.FName }} {{ userData.LName }}</h2>
 
-
- <!-- ////////////////////////////////////////////////////////////Followers -->
-        <div class="tab-pane fade" id="Followers" role="tabpanel">
-          <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-
-
-              <form class="d-flex" role="search" style="width: 100%">
-                <input class="form-control me-2 rounded-pill border border-primary" type="search" placeholder="Search"
-                  aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
-
-
-             <app-artist-followers></app-artist-followers>
-
+            <div class="datebtn d-flex align-items-center ml-auto" style="border-radius: 10px; font-size: 14px;">
+              <i class="bi bi-calendar-check" style="font-size: 20px; margin-right: 10px;"></i>
+              <b>Member Since: </b> {{loginDate| date: 'dd MMM yyyy'}}
             </div>
-          </nav>
-        </div>
+          </div>
+          <div class="loc-prof-rate" style="margin-top: 5px;">
+            <p
+              class="artist-location-profession-rating font-weight-light mt-2 text-primary d-inline-flex align-items-center">
+              <i class="bi bi-geo-alt-fill" style="font-size: 20px; margin-right: 5px;"></i> {{ userData.Location}}
+              <span class="artist-profession-rating ml-4 d-inline-flex align-items-center"
+                style="color: rgb(132, 132, 132);">
+                <i class="bi bi-person-fill mr-2" style="font-size: 20px;"></i>{{ profession}}
+                <span class="ml-4 d-inline-flex align-items-center text-info">
+                  <b>Rating :</b> {{ userData.AverageRating| number: '1.1-1'}}
+                  <i class="bi bi-star-fill ml-1" style="font-size: 20px;"></i>
+                </span>
+              </span>
+            </p>
+          </div>
+          <!-- <div class="social-media-links my-3" style="margin-top: 5px;">
+          <ul class="d-flex list-unstyled">
+            <li *ngFor="let link of socialMediaLinks" class="mr-3">
+              <a [href]="link.account_url" target="_blank">
+                <img [src]="link.logo_url" alt="{{ link.platform_name }}" style="width: 25px;" />
+              </a>
+            </li>
+          </ul>
+        </div> -->
 
 
- <!-- ////////////////////////////////////////////////////////////feedback -->
 
-          <div class="tab-pane fade" id="feedbacks" role="tabpanel">
-            <nav class="navbar bg-body-tertiary">
-              <div class="container-fluid">
-                <form class="d-flex" role="search" style="width: 100%">
-                  <input class="form-control me-2 rounded-pill border border-primary" type="search"
-                    placeholder="Search" aria-label="Search" />
-                  <button class="btn btn-outline-success" type="submit">
-                    Search
-                  </button>
-                </form>
 
-                <app-artist-feedback></app-artist-feedback>
+
+
+          <!-- Tabs Navigation -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab">My
+                Creations</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#Followers" aria-selected="false" role="tab"
+                tabindex="-1">Followers</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#feedbacks" aria-selected="false" tabindex="-1"
+                role="tab">Feedbacks</a>
+            </li>
+          </ul>
+
+          <!-- Tabs Content -->
+          <div id="myTabContent" class="tab-content">
+            <!-- My Creations Tab -->
+            <div class="tab-pane fade active show" id="home" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                  <form class="d-flex w-100" role="search">
+                    <input
+                      #searchkeyword
+                      (keyup)="searchByKeyword(searchkeyword.value)"
+                      class="form-control me-2 rounded-pill border border-primary"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                  </form>
+                </div>
+              </nav>
+
+              <div class="Creations" style="max-height: 1000px; overflow-y: scroll; overflow-x: hidden;">
+                <div class="col mb-3" *ngFor="let art of filteredArts">
+                  <app-creations [artworks]="art"></app-creations>
+                </div>
               </div>
-            </nav>
+            </div>
+
+            <!-- Followers Tab -->
+            <div class="tab-pane fade" id="Followers" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+
+                  <app-artist-followers></app-artist-followers>
+                </div>
+              </nav>
+            </div>
+
+            <!-- Feedbacks Tab -->
+            <div class="tab-pane fade" id="feedbacks" role="tabpanel">
+              <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+
+                  <app-artist-feedback></app-artist-feedback>
+                </div>
+              </nav>
+            </div>
           </div>
 
 
 
+        </div>
 
 
 
       </div>
     </div>
   </div>
-  <!--
-<app-footer></app-footer> -->
 
-  <!--
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks">
-      <div class="card p-0 category-card">
-        <div class="card-image">
-          <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
-        </div>
-        <div class="card-body card-content d-flex flex-column align-items-center">
-          <div class="card-details d-flex justify-content-between w-100">
-            <div class="price">{{artwork.price | currency}}</div>
-            <div class="title">{{artwork.title}}</div>
-          </div>
-          <div class="card-stats d-flex justify-content-between w-100 mt-2">
-            <div class="purchase-count">{{artwork.purchaseCount}} Purchases</div>
-            <div class="like-count">{{artwork.likeCount}} Likes</div>
-          </div>
-          <div class="card-actions mt-3 w-100 d-flex justify-content-end">
-            <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artwork.id)">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let artwork of artworks">
-      <div class="card p-0 category-card">
-        <div class="card-image">
-          <img [src]="artwork.thumbnail_url" class="card-img-top" alt="{{artwork.title}}">
-        </div>
-        <div class="card-body card-content d-flex flex-column align-items-center">
-          <div class="card-details d-flex justify-content-between w-100">
-            <div class="price">{{artwork.price | currency}}</div>
-            <div class="title">{{artwork.title}}</div>
-          </div>
-          <div class="card-stats d-flex justify-content-between w-100 mt-2">
-            <div class="purchase-count">{{artwork.purchaseCount}} Purchases</div>
-            <div class="like-count">{{artwork.likeCount}} Likes</div>
-          </div>
-          <div class="card-actions mt-3 w-100 d-flex justify-content-end">
-            <button type="button" class="btn btn-danger btn-sm" (click)="deleteArtwork(artwork.id)">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+  <app-footer></app-footer>

@@ -192,8 +192,6 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   private createScene() {
     this.scene = new THREE.Scene();
 
-    //this.scene!.background = new THREE.Color(0x1A1A1A);
-
     this.loaderGLTF.load('assets/house/scene.gltf', (gltf: GLTF): void => {
       this.model = gltf.scene;
 
@@ -213,11 +211,11 @@ export class HomeComponent implements OnInit, AfterViewInit  {
         this.scene!.add(this.model);
         this.model.castShadow = true;
         this.model.receiveShadow = true;
-        this.loading = false; // Hide the loader
+        this.loading = false; 
       }
     }, undefined, (error) => {
       console.error(error);
-      this.loading = false; // Hide the loader on error
+      this.loading = false; 
     });
 
     let aspectRatio = this.getAspectRatio();
@@ -268,8 +266,8 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     (function render() {
       if (component.scene && component.camera && component.renderer) {
         component.renderer.render(component.scene, component.camera);
-        component.controls?.update();  // Ensure the controls are updated
-        component.animateModel();      // Ensure the model is animated
+        component.controls?.update();  
+        component.animateModel();     
       }
       requestAnimationFrame(render);
     }());

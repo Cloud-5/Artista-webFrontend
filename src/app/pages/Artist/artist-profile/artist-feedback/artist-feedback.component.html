@@ -1,4 +1,4 @@
-<div *ngFor="let feedback of feedbacks" class="card request-card" style="width: 720px;">
+<!-- <div *ngFor="let feedback of feedbacks" class="card request-card" style="width: 720px;">
   <div class="d-flex" style="height: 100%;">
     <div class="profile-pic">
       <img [src]="feedback.profile_photo_url" alt="Profile Photo" style="width: 180px; height: 180px;">
@@ -15,11 +15,38 @@
         <h6>{{ feedback.content }}</h6>
       </div>
       <div class="buttons d-flex flex-column align-items-end mt-2">
-        <button class="btn btn-success">Reply</button>
+
+        <button class="btn btn-success" (click)="likeFeedback(feedback.feedback_id)" *ngIf="feedbacks2[feedback].isLiked">Like</button>
+        <button class="btn btn-danger" (click)="unlikeFeedback(feedback.feedback_id)" *ngIf="!feedbacks2[feedback].isLiked">Unlike</button>
 
       </div>
     </div>
   </div>
 </div>
 
+ -->
+
+ <div *ngFor="let feedback of feedbacks" class="card request-card" style="width: 720px;">
+  <div class="d-flex" style="height: 100%;">
+    <div class="profile-pic">
+      <img [src]="feedback.profile_photo_url" alt="Profile Photo" style="width: 180px; height: 180px;">
+    </div>
+    <div class="card-body">
+      <div class="d-flex" style="justify-content: space-between;">
+        <div class="d-flex">
+          <span style="font-size: large;">{{ feedback.username }} |</span>&nbsp;
+          <span class="fs-6 fw-medium mr-2 text-secondary">{{ feedback.full_name }} |</span>&nbsp;
+          <span class="fs-6 fw-medium text-info">Date: {{ feedback.created_at | date:'dd MMM yyyy' }}</span>
+        </div>
+      </div>
+      <div style="margin: auto; text-align: left;">
+        <h6>{{ feedback.content }}</h6>
+      </div>
+      <div class="buttons d-flex flex-column align-items-end mt-2">
+        <button class="btn btn-success" (click)="likeFeedback(feedback.feedback_id, feedback.customer_user_id)" *ngIf="!feedback.isLiked">Like</button>
+        <button class="btn btn-danger" (click)="unlikeFeedback(feedback.feedback_id, feedback.customer_user_id)" *ngIf="feedback.isLiked">Unlike</button>
+      </div>
+    </div>
+  </div>
+</div>
 

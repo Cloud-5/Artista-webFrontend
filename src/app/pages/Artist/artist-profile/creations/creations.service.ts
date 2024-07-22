@@ -26,9 +26,8 @@ export class CreationsService {
     return this.http.put(`${this.apiUrl}/artwork/${artId}`,artwork);
   }
   putArtworkAvailability(artId:number):Observable<any>{
-    // return this.http.put(`${this.apiUrl}/artist-edit/artwork-availability/${artId}`)
-    return this.http.put(`${this.apiUrl}/artist-edit/artwork-availability/${artId}`,artId);
-
+    console.log('artwork id in service fontedn',artId)
+    return this.http.put(`${this.apiUrl}/creation/delete-artwork`,{artId});
   }
 
 }

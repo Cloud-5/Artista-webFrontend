@@ -18,7 +18,7 @@ export class NotificationComponent implements OnInit {
   ];
 
   box: HTMLElement | null = null;
-  down: boolean = false;
+  showNotifications: boolean = false;
 
   constructor() { }
 
@@ -27,31 +27,37 @@ export class NotificationComponent implements OnInit {
     this.countUnreadMessages();
   }
 
-  toggleNotiFi() {
-    if (this.down) {
-      if (this.box) {
-        this.box.style.height = '0px';
-        this.box.style.opacity = '0';
-      }
-      this.down = false;
-    } else {
-      if (this.box) {
-        this.box.style.height = '510px';
-        this.box.style.opacity = '1';
-      }
-      this.down = true;
-    }
+  toggleNotifications() {
+    // if (this.down) {
+    //   if (this.box) {
+    //     this.box.style.height = '0px';
+    //     this.box.style.opacity = '0';
+    //   }
+    //   this.down = false;
+    // } else {
+    //   if (this.box) {
+    //     this.box.style.height = '510px';
+    //     this.box.style.opacity = '1';
+    //   }
+    //   this.down = true;
+    // }
+    this.showNotifications = !this.showNotifications;
+
   }
 countUnreadMessages(): number|any{
   return this.notifications.filter(notification=>notification.unread=false);
 }
 
 markAllAsRead(): void {
-  this.notifications.forEach(notification => notification.unread = false);
+  this.notifications.forEach(notification => notification.read = true);
 }
 
-  clearAllNotifications(): void {
+clearAll(): void {
     this.notifications = [];
     // Optionally, perform additional actions like making an API call to clear notifications on the server
   }
 }
+
+
+
+

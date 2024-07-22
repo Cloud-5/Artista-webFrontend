@@ -67,6 +67,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
       this.artworkId = params['artworkId'];
       this.initializeComponent();
     });
+    console.log('artistRole',this.userRole);
   }
 
   ngAfterViewInit(): void {
@@ -86,6 +87,12 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.updateColumns();
     this.updateItemWidth();
     this.getArtwork();
+  }
+
+  //dhanushka
+  editArtwork(artworkId: string) {
+    console.log('artworkId',artworkId);
+    this.router.navigate(['/editArtwork',artworkId]);
   }
 
   private handleError(error: any, message: string): void {
@@ -138,6 +145,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     this.bg = this.artworkDetails.background;
     this.thumbnail = this.artworkDetails.thumbnail;
     this.customer_profile_photo = this.artworkDetails.customer_profile_photo;
+    console.log('customer_profile_photo',this.customer_profile_photo)
     this.is3D = this.artworkDetails.category === '3D Modeling';
     this.tags = this.artworkDetails.tags || '';
     this.tagsArray = this.tags.split(',');
@@ -265,7 +273,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
     }
   addCart2(art: any) {
       console.log('art', art);
-  
+
       this.cartItemService.addItem(this.userId, art.artwork_id)
         .subscribe(
           response => {
@@ -277,7 +285,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
           }
         );
     }
-  
+
     next() {
       if (this.currentIndex < this.bestArtworks.length - (100 / this.itemWidth)) {
         this.currentIndex++;
@@ -351,7 +359,7 @@ export class ArtworkPreviewComponent implements OnInit,OnDestroy {
 
     searchCategory(categoryId:number){
       console.log('Category ID:', categoryId);
-      this.router.navigate(['/search-art'], { queryParams: { category_id: categoryId } });  
+      this.router.navigate(['/search-art'], { queryParams: { category_id: categoryId } });
     }
     messageArtist(firebase_uid:string, artistName:string){
       localStorage.setItem('artistFirebaseUid', firebase_uid);

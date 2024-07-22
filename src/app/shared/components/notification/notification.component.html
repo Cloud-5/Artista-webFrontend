@@ -1,22 +1,6 @@
+
+
 <!--
-<div id="box" class="notifi-box">
-  <h2>Notifications <span>{{ countUnreadMessages() }}</span></h2>
-
-  <div class="noti-item" *ngFor="let notification of notifications">
-    <img [src]="notification.profilePic" alt="Profile Picture">
-    <div class="text">
-      <h4>{{ notification.message }}</h4>
-      <p>{{ notification.time }}</p>
-    </div>
-  </div>
-
-  <div class="notification-footer">
-    <button class="btn btn-sm btn-secondary" (click)="markAllAsRead()">Mark All as Read</button>
-    <button class="btn btn-sm btn-danger" (click)="clearAllNotifications()">Clear All Notifications</button>
-  </div>
-</div> -->
-
-
 <div class="icon" (click)="toggleNotiFi()">
   <img src="../../../../assets/bell.jpg" alt="">
   <div class="notifi-count"><span>{{ countUnreadMessages() }}</span></div>
@@ -37,21 +21,19 @@
     <button class="btn btn-sm btn-secondary" (click)="markAllAsRead()">Mark All as Read</button>
     <button class="btn btn-sm btn-danger" (click)="clearAllNotifications()">Clear All Notifications</button>
   </div>
-</div>
+</div> -->
 
-<!-- <div id="box" class="notifi-box">
-  <h2>Notifications <span>{{ countUnreadMessages() }}</span></h2>
-
-  <div class="noti-item" *ngFor="let notification of notifications">
-    <img [src]="notification.profilePic" alt="Profile Picture">
-    <div class="text">
-      <h4>{{ notification.message }}</h4>
-      <p>{{ notification.time }}</p>
+<div class="notification-box" *ngIf="showNotifications">
+  <div class="notification-header">
+    <h5>Notifications</h5>
+  </div>
+  <div class="notification-list">
+    <div *ngFor="let notification of notifications" class="notification-item">
+      {{ notification.message }}
     </div>
   </div>
-
-  <div class="notification-footer">
-    <button class="btn btn-sm btn-secondary" (click)="markAllAsRead()">Mark All as Read</button>
-    <button class="btn btn-sm btn-danger" (click)="clearAllNotifications()">Clear All Notifications</button>
+  <div class="notification-actions">
+    <button class="btn btn-secondary" (click)="markAllAsRead()">Read All</button>
+    <button class="btn btn-danger" (click)="clearAll()">Clear All</button>
   </div>
-</div> -->
+</div>

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArtistPortfolioService } from './artist-portfolio-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { notificationService } from '../../../shared/layout/new-nav-bar/new-nav-bar.service';
 
 @Component({
   selector: 'app-artist-portfolio',
@@ -31,6 +32,7 @@ export class ArtistPortfolioComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
+    private notificationService:notificationService
   ) {
     this.ratingForm = this.fb.group({
       rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
@@ -43,7 +45,6 @@ export class ArtistPortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe( params => {
       this.artistId = params['user_id'];
-      console.log('artistId9999999999999999', this.artistId);
       this.getArtistDetails(this.artistId);
       this.getArtistCreations(this.artistId);
 
@@ -53,13 +54,10 @@ export class ArtistPortfolioComponent implements OnInit {
   }
 
   getArtistDetails(artistId: string): void {
-    console.log('customweeeeeeeeeee',this.CurrentcustomerId)
     this.artistPortfolioService.getArtistDetails(artistId, this.CurrentcustomerId).subscribe(
       (data: any) => {
-        console.log('artistData=======', data);
         this.artistData = data.artistDetails[0];
         this.socialMediaLinks = data.social;
-        console.log('socialMediaLinks', this.socialMediaLinks);
         this.isFollowing = this.artistData.is_following;
         this.updateFollowButton();
       },
@@ -134,6 +132,27 @@ export class ArtistPortfolioComponent implements OnInit {
       const feedback = this.feedbackForm.get('feedback')?.value;
       this.artistPortfolioService.submitFeedback(this.artistId, feedback, this.customerId).subscribe(
         response => {
+
+          //start
+          const notificationBody = `You have a new feedback`;
+
+          const notification = {
+            sender_id: this.customerId,
+            receiver_id: this.artistId,
+            source: 'Feedback',
+            title: 'New Feedback Received',
+            body: notificationBody,
+            isViewed: false
+          };
+
+          this.notificationService.createNotification(notification).subscribe(
+            response => {
+              console.log(response);
+            }, error => {
+              console.error(error);
+            }
+          )
+          //end
           console.log(response);
           alert('Feedback submitted successfully!');
         },

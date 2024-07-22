@@ -19,4 +19,12 @@ export class ArtistFeedbackService {
 
   }
 
+  likeFeedback(feedbackId: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/artist-feedback/like/${feedbackId}`, {});
+  }
+
+  unlikeFeedback(feedbackId: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/artist-feedback/unlike/${feedbackId}`, {});
+  }
+
 }

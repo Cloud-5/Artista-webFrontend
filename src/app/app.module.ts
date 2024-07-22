@@ -81,7 +81,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore'; 
 import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { ArtCardComponent } from './pages/Customer/art-card/art-card.component';
@@ -89,8 +89,11 @@ import { CreationsComponent } from './pages/Artist/artist-profile/creations/crea
 import { CreationPreviewComponent } from './pages/Artist/artist-profile/creation-preview/creation-preview.component';
 import { St03Component } from './pages/sign-up/sign-up-users/st03/st03.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { EditArtworksComponent } from './pages/Artist/artist-profile/edit-artworks/edit-artworks.component';
+import { NewNavBarComponent } from './shared/layout/new-nav-bar/new-nav-bar.component';
 
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -145,7 +148,9 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     CreationsComponent,
     CreationPreviewComponent,
     St03Component,
-    AlertComponent
+    AlertComponent,
+    EditArtworksComponent,
+    NewNavBarComponent
 
 
   ],
@@ -169,7 +174,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     MatSnackBarModule,
     MatSidenavModule,
     MatAutocompleteModule,
-
+    MatMenuModule,
+    MatBadgeModule
 
 
   ],

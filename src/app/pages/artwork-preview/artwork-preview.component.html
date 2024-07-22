@@ -1,12 +1,8 @@
 <app-alert></app-alert>
-<div
-  class="sticky-bar"
-  [ngClass]="{ show: showStickyBar }"
-  style="
+<div class="sticky-bar" [ngClass]="{ show: showStickyBar }" style="
     background-color: rgb(241, 241, 241);
     border: 0.5px solid rgb(207, 207, 207);
-  "
->
+  ">
   <div class="d-sm-flex justify-content-between align-items-center">
     <div class="bar-header" style="margin-left: 20px">
       <h3 class="title fs-4 fw-bolder fst-italic" style="padding-left: 0">
@@ -15,62 +11,43 @@
       <p>by {{ artworkDetails.artist }}</p>
     </div>
 
-    <div
-      class="d-flex align-items-center gap-3"
-      style="justify-content: center"
-    >
+    <div class="d-flex align-items-center gap-3" style="justify-content: center">
       <div class="price">
         <p class="body1 m-0">
           <span class="header-art">{{
             artworkDetails.price | currency
-          }}</span>
+            }}</span>
         </p>
       </div>
       <div>
         <button (click)="toggleFavorite()" class="favorite-button">
-          <i
-            class="bi fs-5"
-            style="color: #0f969c"
-            aria-hidden="false"
-            aria-label="Favorite icon"
-            [class.bi-heart-fill]="isFavorite"
-            [class.bi-heart]="!isFavorite"
-          ></i>
+          <i class="bi fs-5" style="color: #0f969c" aria-hidden="false" aria-label="Favorite icon"
+            [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
         </button>
       </div>
       <div>
-        <button
-                *ngIf="userRole === 'customer'"
-                [ngClass]="['btn', addToGalleryButtonClass]"
-                type="button"
-                (click)="toggleAddToGallery()"
-              >
-                <span class="">{{ addToGalleryButtonText }}</span>
-              </button>
+        <button *ngIf="userRole === 'customer'" [ngClass]="['btn', addToGalleryButtonClass]" type="button"
+          (click)="toggleAddToGallery()">
+          <span class="">{{ addToGalleryButtonText }}</span>
+        </button>
       </div>
       <div>
-        <button
-                *ngIf="userRole === 'customer'"
-                class="addToCart"
-                type="button"
-                (click)="addCart(artworkDetails)"
-              >
-                <span class="">Add To Cart</span>
-              </button>
+        <button *ngIf="userRole === 'customer'" class="addToCart" type="button" (click)="addCart(artworkDetails)">
+          <span class="">Add To Cart</span>
+        </button>
       </div>
     </div>
   </div>
 </div>
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
+<app-new-nav-bar></app-new-nav-bar>
+
 <section>
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
         <div *ngIf="!is3D" class="preview-container">
-          <div
-            class="artwork"
-            [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')' }"
-          >
+          <div class="artwork" [ngStyle]="{ 'background-image': 'url(' + thumbnail + ')' }">
             <div *ngIf="!is3D">
               <img [src]="thumbnail" alt="Artwork" class="artwork-preview" />
             </div>
@@ -87,14 +64,8 @@
           <div class="like">
             <p class="body1 m-0">Like</p>
             <button (click)="toggleFavorite()" class="favorite-button">
-              <i
-                class="bi fs-5"
-                style="color: #0f969c"
-                aria-hidden="false"
-                aria-label="Favorite icon"
-                [class.bi-heart-fill]="isFavorite"
-                [class.bi-heart]="!isFavorite"
-              ></i>
+              <i class="bi fs-5" style="color: #0f969c" aria-hidden="false" aria-label="Favorite icon"
+                [class.bi-heart-fill]="isFavorite" [class.bi-heart]="!isFavorite"></i>
             </button>
             <p class="body2 m-0">{{ artworkDetails.total_likes }}</p>
           </div>
@@ -108,51 +79,29 @@
         <div class="artwork-details">
           <h5 class="body2">
             Artwork description
-            <button
-              *ngIf="isSmallScreen"
-              type="button"
-              class="btn btn-link"
-              (click)="toggleCollapse('description')"
-            >
-              <i
-                class="bi"
-                [ngClass]="{
+            <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('description')">
+              <i class="bi" [ngClass]="{
                   'bi-caret-down-square-fill': !isDescriptionCollapsed,
                   'bi-caret-up-square-fill': isDescriptionCollapsed
-                }"
-              ></i>
+                }"></i>
             </button>
           </h5>
-          <div
-            class="collapsible"
-            [class.expanded]="isDescriptionCollapsed || !isSmallScreen"
-          >
+          <div class="collapsible" [class.expanded]="isDescriptionCollapsed || !isSmallScreen">
             <p class="body1" style="text-align: justify">
               {{ artworkDetails.description }}
             </p>
           </div>
 
-          <h5 class="body2">
+          <h5 class="body2 mb-3">
             Tags
-            <button
-              *ngIf="isSmallScreen"
-              type="button"
-              class="btn btn-link"
-              (click)="toggleCollapse('tags')"
-            >
-              <i
-                class="bi"
-                [ngClass]="{
+            <button *ngIf="isSmallScreen" type="button" class="btn btn-link" (click)="toggleCollapse('tags')">
+              <i class="bi" [ngClass]="{
                   'bi-caret-down-square-fill': !isTagsCollapsed,
                   'bi-caret-up-square-fill': isTagsCollapsed
-                }"
-              ></i>
+                }"></i>
             </button>
           </h5>
-          <div
-            class="collapsible"
-            [class.expanded]="isTagsCollapsed || !isSmallScreen"
-          >
+          <div class="collapsible" [class.expanded]="isTagsCollapsed || !isSmallScreen">
             <div class="d-flex flex-wrap">
               <span *ngFor="let tag of tagsArray" class="tag" (click)="searchTag(tag)">#{{ tag }}</span>
             </div>
@@ -168,7 +117,8 @@
             <i><span>by</span>&nbsp; {{ artworkDetails.artist }}</i>
           </h2>
           &nbsp;
-          <p class="body2">Category: <span class="under" style="cursor: pointer;" (click)="searchCategory(artworkDetails.category_id)" >{{ artworkDetails.category }}</span> </p>
+          <p class="body2">Category: <span class="under" style="cursor: pointer;"
+              (click)="searchCategory(artworkDetails.category_id)">{{ artworkDetails.category }}</span> </p>
 
           <table>
             <tbody>
@@ -189,33 +139,19 @@
           <p class="body1 mt-5">
             <span class="header-art">{{
               artworkDetails.price | currency
-            }}</span>
+              }}</span>
           </p>
           <div class="d-grid gap-3 artwork-details-content-pricing-buttons">
             <div class="d-grid gap-2">
-              <button
-                *ngIf="userRole === 'customer'"
-                [ngClass]="['btn', addToGalleryButtonClass]"
-                type="button"
-                (click)="toggleAddToGallery()"
-              >
+              <button *ngIf="userRole === 'customer'" [ngClass]="['btn', addToGalleryButtonClass]" type="button"
+                (click)="toggleAddToGallery()">
                 <span class="">{{ addToGalleryButtonText }}</span>
               </button>
-              <button
-                *ngIf="userRole === 'customer'"
-                class="addToCart"
-                type="button"
-                (click)="addCart(artworkDetails)"
-              >
+              <button *ngIf="userRole === 'customer'" class="addToCart" type="button" (click)="addCart(artworkDetails)">
                 <span class="">Add To Cart</span>
               </button>
-              <button
-                *ngIf="userRole === 'artist'"
-                class="btn btn-custom"
-                type="button"
-                routerLink="/ed"
-              >
-                <span class="">Edit Artwork Details</span>
+              <button *ngIf="userRole === 'artist'" class="btn btn-custom" type="button">
+                <span (click)="editArtwork(artworkId)" class="">Edit Artwork Details</span>
               </button>
             </div>
           </div>
@@ -224,22 +160,11 @@
     </div>
   </div>
   <div class="col-12 d-flex justify-content-end">
-    <button
-      class="btn btn-custom"
-      *ngIf="userRole === 'artist'"
-      class="btn btn btn-custom"
-      type="button"
-      (click)="addCart(artworkDetails)"
-    >
+    <button class="btn btn-custom" *ngIf="userRole === 'artist'" class="btn btn btn-custom" type="button"  routerLink="/upload">
       <span class="">Upload Creations</span>
     </button>
-    <button
-      class="btn btn-custom"
-      *ngIf="userRole === 'artist'"
-      class="btn btn btn-custom"
-      type="button"
-      (click)="addCart(artworkDetails)"
-    >
+    <button class="btn btn-custom" *ngIf="userRole === 'artist'" class="btn btn btn-custom" type="button"
+     routerLink="/artist/new-home">
       <span class="">Back To Home</span>
     </button>
   </div>
@@ -247,15 +172,11 @@
 <section class="artist-info">
   <div class="container">
     <div class="row mb-5 2 artist-card">
-      <div class="col-lg-5" *ngIf="userRole === 'customer'">
+      <div class="col-lg-6" *ngIf="userRole === 'customer'">
         <div class="artist-menu">
           <div class="avatar-container">
-            <a class="artist-page-link"
-              ><img
-                [src]="artworkDetails.artist_profile_photo"
-                class="artist-avatar"
-                alt="visit artist profile"
-              />
+            <a class="artist-page-link"><img [src]="artworkDetails.artist_profile_photo" class="artist-avatar"
+                alt="visit artist profile" />
             </a>
           </div>
           <div class="brief">
@@ -285,25 +206,20 @@
               </div>
             </div>
             <div class="button-group">
-              <button
-                [ngClass]="['btn', followButtonClass, 'rounded']"
-                type="button"
-                (click)="toggleFollow()"
-              >
+              <button [ngClass]="['btn', followButtonClass, 'rounded']" type="button" (click)="toggleFollow()">
                 {{ followButtonText }}
               </button>
-              <button class="btn message-btn" type="button" (click)="messageArtist(artworkDetails.firebase_uid, artworkDetails.artist)" >Message</button>
+              <button class="btn message-btn" type="button"
+                (click)="messageArtist(artworkDetails.firebase_uid, artworkDetails.artist)">Message</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div *ngIf="userRole === 'customer'" class="artist-introduction col-lg-7">
-        <p class="body1" style="text-align: justify">
-          <i class="bi bi-geo-alt-fill fs-5" style="color: #0f969c"></i>&nbsp;{{
-            artworkDetails.location
-          }}
-          <br />
+      <div *ngIf="userRole === 'customer'" class="artist-introduction col-lg-6">
+        <p class="body1 mb-1" style="text-align: justify">
+          <i class="bi bi-geo-alt-fill fs-5" style="color: #0f969c"></i>&nbsp;
+          {{artworkDetails.location}}
         </p>
         <p class="body2">
           About artist <br />
@@ -328,27 +244,12 @@
           <h2>SEE ALL TRENDING ARTWORKS</h2>
         </div>
         <br />
-
-        <!-- <div class="carousel-container">
-     <div class="carousel artwork-carousel">
-       <div class="card2 shadow" *ngFor="let art of artsData" >
-         <app-card [art]="art"></app-card>
-         <div class="badge1 editor-choice">Trending</div>
-       </div>
-     </div>
-     <button class="carousel-control prev" (click)="prev()">&#10094;</button>
-     <button class="carousel-control next" (click)="next()">&#10095;</button>
-   </div> -->
       </div>
     </div>
 
     <div *ngIf="userRole === 'customer'" class="carousel-container">
       <div class="carousel">
-        <div
-          class="card2 shadow"
-          *ngFor="let artwork of bestArtworks"
-          (click)="viewArtwork(artwork.artwork_id)"
-        >
+        <div class="card2 shadow" *ngFor="let artwork of bestArtworks" (click)="viewArtwork(artwork.artwork_id)">
           <div class="badge1 editor-choice">Best</div>
           <img [src]="artwork.thumbnail_url" alt="Artwork" class="banner" style="cursor: pointer;" />
           <section class="title">
@@ -390,12 +291,8 @@
         </div>
       </div>
       <div class="row comment-area">
-        <app-comment-list
-          [currentUserId]="userId"
-          [artworkId]="artworkId"
-          [userPhoto]="customer_profile_photo"
-          (commentsCount)="oncommentsCount($event)"
-        ></app-comment-list>
+        <app-comment-list [currentUserId]="userId" [artworkId]="artworkId" [userPhoto]="customer_profile_photo"
+          (commentsCount)="oncommentsCount($event)"></app-comment-list>
       </div>
     </div>
   </div>
@@ -403,7 +300,7 @@
 
 
 
-<section class="related-artworks">
+<section class="related-artworks " *ngIf="userRole === 'customer' && relatedArtworks.length > 0">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -415,11 +312,7 @@
     <div class="gallery">
       <div class="column" *ngFor="let column of columns">
         <div class="gallery-item" *ngFor="let image of column">
-          <img
-            [src]="image.thumbnail_url"
-            alt="{{ image.title }}"
-            (click)="viewArtwork(image.artwork_id)"
-          />
+          <img [src]="image.thumbnail_url" alt="{{ image.title }}" (click)="viewArtwork(image.artwork_id)" />
           <div class="title-overlay">
             <p class="m-0 fs-5" (click)="viewArtwork(image.artwork_id)">{{ image.title }}</p>
           </div>
@@ -430,20 +323,11 @@
                 {{ image.price | currency : "USD" : "symbol" : "1.2-2" }}
               </p>
               <p class="like-count">
-                <i
-                  class="bi bi-heart-fill"
-                  aria-hidden="false"
-                  aria-label="Favorite icon"
-                  [class.bi-heart-fill]="image.is_liked"
-                  [class.bi-heart]="!image.is_liked"
-                  (click)="toggleFavorite1(image)"
-                ></i
-                >{{ " " + image.like_count }}
+                <i class="bi bi-heart-fill" aria-hidden="false" aria-label="Favorite icon"
+                  [class.bi-heart-fill]="image.is_liked" [class.bi-heart]="!image.is_liked"
+                  (click)="toggleFavorite1(image)"></i>{{ " " + image.like_count }}
               </p>
-              <button
-                class="btn cart-icon-btn p-0 fs-5"
-                (click)="addCart2(image); $event.stopPropagation()"
-              >
+              <button class="btn cart-icon-btn p-0 fs-5" (click)="addCart2(image); $event.stopPropagation()">
                 <i class="bi bi-cart-plus-fill"></i>
               </button>
             </div>
