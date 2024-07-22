@@ -234,4 +234,5 @@ subscribeToUnreadCounts(): void {
     this.filteredUsers$ = this.users$;
     this.loadUnreadCounts();
   }
+  
 }
